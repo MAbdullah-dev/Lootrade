@@ -1,0 +1,59 @@
+.profile{
+flex: 1;
+.form-label {
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .form-control {
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 15px;
+    box-shadow: none;
+  }
+
+  .form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .file-upload-wrapper {
+    position: relative;
+  }
+
+  .file-upload-wrapper input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .custom-file-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    color: #000;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+
+  .custom-file-label i {
+    font-size: 16px;
+  }
+
+  .btn-save {
+    padding: 10px 30px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+}
