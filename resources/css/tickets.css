@@ -1,0 +1,115 @@
+.tickets-page {
+    background: #1a1a1a; /* Black background to match the theme */
+    min-height: 100vh;
+    color: #fff; /* Default text color */
+  }
+
+  .tickets-page .inner {
+    padding: 40px 0; /* Add padding to the inner wrapper */
+    width: 100%;
+  }
+
+  .tickets-page .container {
+    max-width: 1200px; /* Standard container width */
+  }
+
+  .tickets-page .section-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #ff4b5c; /* Red heading */
+    text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .tickets-page .section-title::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: #ff4b5c; /* Red underline */
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .tickets-page .tickets-card,
+  .tickets-page .package-card {
+    background: #222; /* Slightly lighter black for cards */
+    border: 1px solid #ff4b5c; /* Red border */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    transition: transform 0.3s ease;
+  }
+
+  .tickets-page .tickets-card:hover,
+  .tickets-page .package-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+  }
+
+  .tickets-page .card-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #ff4b5c; /* Red title */
+    margin-bottom: 20px;
+  }
+
+  .tickets-page .ticket-count {
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+
+  .tickets-page .btn-outline-light {
+    border-color: #ff4b5c; /* Red border for buttons */
+    color: #ff4b5c;
+    font-size: 18px;
+    transition: all 0.3s ease;
+  }
+
+  .tickets-page .btn-outline-light:hover {
+    background: #ff4b5c;
+    color: #fff;
+  }
+
+  .tickets-page .btn-checkout,
+  .tickets-page .btn-select {
+    background: #ff4b5c; /* Red button */
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+
+  .tickets-page .btn-checkout:hover,
+  .tickets-page .btn-select:hover {
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 4px 15px rgba(255, 75, 92, 0.4); /* Red shadow */
+  }
+
+  .tickets-page .package-card .card-text {
+    color: #ccc;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .tickets-page .package-card .card-price {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ff4b5c; /* Red price */
+    margin-bottom: 20px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    .tickets-page .package-card {
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }

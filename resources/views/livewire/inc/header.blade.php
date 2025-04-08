@@ -11,7 +11,7 @@
         <nav>
             <ul class="nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="{{ route('home') }}" class="nav-link" wire:navigate>Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Raffles</a>
