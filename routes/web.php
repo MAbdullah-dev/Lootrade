@@ -6,6 +6,7 @@ use App\Livewire\Dashboard\Profile;
 use App\Livewire\Dashboard\Support;
 use App\Livewire\Pages\Home;
 use App\Livewire\Welcome;
+use App\Livewire\Raffles;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Welcome::class)->name('login');
@@ -14,3 +15,4 @@ Route::get('/profile', Profile::class)->name('profile');
 Route::get('/mytickets', MyTickets::class)->name('myTickets');
 Route::get('/support', Support::class)->name('support');
 Route::get('/home', Home::class)->name('home');
+Route::get('/raffles', Raffles::class)->name('raffles');

@@ -1,0 +1,80 @@
+.raffles .nav-tabs .nav-link {
+    border-radius: 0;
+    padding: 10px 20px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #222222;
+    border: 1px solid #444;
+}
+
+.raffles .nav-tabs .nav-link.active {
+    background-color: #fe3839;
+    color: #fff;
+    border-color: #fe3839;
+}
+
+/* Raffle Card */
+.raffles .raffle-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #222222;
+}
+
+.raffles .raffle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(254, 56, 57, 0.3);
+}
+
+.raffles .raffle-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.raffles .raffle-card .card-body {
+    text-align: center;
+    padding: 16px;
+}
+
+.raffles .raffle-card .card-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.raffles .raffle-card .raffle-type {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ccc;
+    margin-bottom: 8px;
+}
+.raffles .raffle-card .raffle-description {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.raffles .raffle-card .card-text {
+    font-size: 14px;
+    color: #ccc;
+    margin: 0;
+}
+
+.raffles .raffle-card .text-muted {
+    color: #aaa !important;
+}
+
+.raffles .raffle-card .raffle-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 16px;
+    color: #ccc;
+}
+
+.raffles .raffle-card .btn-custom {
+    padding: 10px 20px;
+}
