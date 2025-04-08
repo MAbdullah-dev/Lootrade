@@ -151,9 +151,9 @@
             <div class="container text-center">
                 <h4 class="section-title">How it Works</h4>
 
-                <div class="row justify-content-center g-5">
+                <div class="row justify-content-center">
 
-                    <div class="col-md-4">
+                    <div class="col-12 text-center col-md-4">
                         <div class="step-item">
                             <div class="step-icon rounded-circle mx-auto">1</div>
                             <h6 class="step-title">Step 1</h6>
@@ -161,7 +161,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-12 text-center col-md-4">
                         <div class="step-item">
                             <div class="step-icon rounded-circle mx-auto">2</div>
                             <h6 class="step-title">Step 2</h6>
@@ -169,7 +169,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-12 text-center col-md-4">
                         <div class="step-item">
                             <div class="step-icon rounded-circle mx-auto">3</div>
                             <h6 class="step-title">Step 3</h6>
