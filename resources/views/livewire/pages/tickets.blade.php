@@ -1,28 +1,36 @@
 <section class="tickets-page">
     <div class="inner">
         <div class="container">
-            <!-- Top Row: Number of Tickets and Summary -->
+            <!-- Top Row: Merged Ticket Counter and Summary -->
             <div class="row mb-5">
-                <!-- Number of Tickets -->
-                <div class="col-md-6 mb-4">
+                <div class="col-12">
                     <div class="card tickets-card">
                         <div class="card-body">
-                            <h5 class="card-title">Number of Tickets</h5>
-                            <div class="d-flex align-items-center">
-                                <button class="btn btn-outline-light me-3"><i class="fas fa-minus"></i></button>
-                                <span class="ticket-count">0</span>
-                                <button class="btn btn-outline-light ms-3"><i class="fas fa-plus"></i></button>
+                            <h5 class="card-title">Ticket Selection</h5>
+                            <div class="row align-items-center">
+                                <!-- Ticket Counter -->
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <h6 class="sub-title">Number of Tickets</h6>
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-outline-light me-3"><i class="fas fa-minus"></i></button>
+                                        <span class="ticket-count">0</span>
+                                        <button class="btn btn-outline-light ms-3"><i class="fas fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <!-- Selected Package -->
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <h6 class="sub-title">Selected Package</h6>
+                                    <p class="selected-package mb-0">None</p>
+                                    <p class="selected-tickets mb-0">Tickets: 0</p>
+                                    <p class="selected-price mb-0">Price: $0</p>
+                                </div>
+                                <!-- Summary -->
+                                <div class="col-md-4 text-md-end">
+                                    <h6 class="sub-title">Summary</h6>
+                                    <p class="mb-2">Total Tickets: 0</p>
+                                    <button class="btn btn-checkout">Checkout</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Summary -->
-                <div class="col-md-6 mb-4">
-                    <div class="card tickets-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Summary</h5>
-                            <p class="mb-2">Tickets: 0</p>
-                            <button class="btn btn-checkout w-100">Checkout</button>
                         </div>
                     </div>
                 </div>

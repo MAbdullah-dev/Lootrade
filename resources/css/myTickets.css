@@ -1,3 +1,28 @@
-.mytickets{
+.mytickets {
     flex: 1;
+}
+
+/* Rounded and shadowed container */
+.table-responsive {
+    border-radius: 1rem;
+    overflow: hidden;
+    /* Ensures inner border-radius is respected */
+}
+
+/* Optional enhancements */
+.table th,
+.table td {
+    vertical-align: middle;
+    padding: 0.75rem;
+}
+
+.badge {
+    padding: 0.5em 0.75em;
+    font-size: 0.85rem;
+    border-radius: 0.5rem;
+}
+
+/* Add soft shadow */
+.shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }

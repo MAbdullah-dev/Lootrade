@@ -11,7 +11,7 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @livewireStyles
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 
     <title>@yield('title', 'Page Title')</title>
 </head>
@@ -19,9 +19,11 @@
 <body>
     <livewire:inc.header />
     <main>
-        <div class="container d-flex dashboard-main gap-4">
-            <livewire:inc.DashboardSidebar />
-            {{ $slot }}
+        <div class="container ">
+            <div class="inner d-flex dashboard-main gap-4 pt-5">
+                <livewire:inc.DashboardSidebar />
+                {{ $slot }}
+            </div>
         </div>
     </main>
     @livewireScripts

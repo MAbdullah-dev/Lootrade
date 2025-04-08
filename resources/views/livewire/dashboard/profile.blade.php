@@ -1,7 +1,6 @@
 <div class="profile">
     <div class="form-wrapper mx-auto">
         <h5 class="mb-4">Profile Form</h5>
-
         <form>
             <!-- Row 1: First Name and Last Name -->
             <div class="row mb-3">
@@ -46,20 +45,22 @@
             </div>
 
             <!-- Connect with Section -->
-            <div class="connect-with mt-4">
-                <h6 class="connect-title">Connect with</h6>
-                <div class="social-login">
-                    <button class="social-btn google">
-                        <i class="fab fa-google"></i>
-                    </button>
-                    <button class="social-btn x">
-                        <i class="fab fa-x-twitter"></i>
-                    </button>
-                    <button class="social-btn discord">
-                        <i class="fab fa-discord"></i>
-                    </button>
-                </div>
-            </div>
         </form>
     </div>
+    <section class="social-logins">
+        <div class="inner">
+            <div class="option-btns w-100 d-flex flex-column align-items-center">
+                <button class="google-btn login-btn w-100">
+                    <img src="{{ asset('assets/svg/google.svg') }}" alt="">Continue with Google
+                </button>
+                <button class="X-btn login-btn w-100">
+                    <img src="{{ asset('assets/svg/x-white.svg') }}" alt="">Continue with X
+                </button>
+                <button class="discord-btn login-btn w-100">
+                    <img src="{{ asset('assets/svg/discord-white.svg') }}" alt="">Continue with
+                    Discord
+                </button>
+            </div>
+        </div>
+    </section>
 </div>
