@@ -13,4 +13,4 @@ Route::get('/login', Login::class);
 Route::get('/profile', Profile::class)->name('profile');
 Route::get('/mytickets', MyTickets::class)->name('myTickets');
 Route::get('/support', Support::class)->name('support');
-Route::get('/home', Home::class);
+Route::get('/home', Home::class)->name('home');
