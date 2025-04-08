@@ -9,5 +9,6 @@
 @import "./profile.css";
 @import "./myTickets.css"; /* tickets page styles */
 @import "./home.css";
+@import "./tickets.css"; /* tickets page styles */
 @import "./raffles.css";
 @import "./global.css"; /* base styles, resets, variables */

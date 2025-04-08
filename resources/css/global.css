@@ -23,9 +23,11 @@ li {
     padding: 16px 24px;
     font-size: 16px;
     border-radius: 5px;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .btn-custom:hover {
-    background-color: #fd2828;
+    /* background-color: #fd2828; */
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 4px 15px rgba(255, 75, 92, 0.4); /* Red shadow on hover */
 }
