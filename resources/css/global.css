@@ -1,23 +1,23 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-body{
+body {
     /* overflow-x: hidden; */
     background-color: #000000;
     color: #ffffff;
 }
-a{
+a {
     text-decoration: none;
     color: #ffffff !important;
 }
-li{
+li {
     list-style: none;
 }
 .btn-custom {
-    background-color: #FE3839;
+    background-color: #fe3839;
     color: white;
     border: none;
     padding: 16px 24px;

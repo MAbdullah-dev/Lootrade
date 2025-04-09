@@ -1,14 +1,23 @@
 /* 2. Load Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 /* 3. Load Your Custom CSS (from general to specific) */
-@import "./main.css";    /* layout, components */
-@import "./logins.css";  /* page-specific overrides */
-@import "./header.css";  /* header styles */
-@import "./sidebar.css";  /* sidebar styles */
+@import "./main.css";
+/* layout, components */
+@import "./logins.css";
+/* page-specific overrides */
+@import "./header.css";
+/* header styles */
+@import "./sidebar.css";
+/* sidebar styles */
 @import "./profile.css";
-@import "./myTickets.css"; /* tickets page styles */
+@import "./myTickets.css";
+/* tickets page styles */
 @import "./home.css";
-@import "./global.css";  /* base styles, resets, variables */
-@import "./tickets.css"; /* tickets page styles */
-@import "./users.css"; /* users page styles */
+@import "./tickets.css";
+/* tickets page styles */
+@import "./users.css";
+/* users page styles */
+@import "./raffles.css";
+@import "./global.css";
+/* base styles, resets, variables */
