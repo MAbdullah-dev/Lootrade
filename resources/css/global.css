@@ -31,3 +31,10 @@ li {
     transform: translateY(-2px); /* Lift effect on hover */
     box-shadow: 0 4px 15px rgba(255, 75, 92, 0.4); /* Red shadow on hover */
 }
+
+footer .inner .footer-nav ul,
+.social-links ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

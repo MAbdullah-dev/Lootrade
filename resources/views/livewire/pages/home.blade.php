@@ -182,8 +182,12 @@
     </section>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        new Swiper('.featuredRaffleSwiper', {
+    function initializeSwiper() {
+        if (window.featuredRaffleSwiper instanceof Swiper) {
+            window.featuredRaffleSwiper.destroy();
+        }
+
+        window.featuredRaffleSwiper = new Swiper('.featuredRaffleSwiper', {
             slidesPerView: 3,
             spaceBetween: 20,
             loop: true,
@@ -207,5 +211,13 @@
                 }
             }
         });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        initializeSwiper();
+    });
+
+    document.addEventListener('livewire:navigated', function() {
+        initializeSwiper();
     });
 </script>

@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 p-0">
-                    <div class="login-options pt-5 d-flex flex-column align-items-center gap-4">
+                    <div class="login-options pt-5 d-flex flex-column align-items-center  justify-content-center gap-4">
                         <h2 class="fs-5 fw-semibold text-center">Sign In / Sign Up</h2>
                         <p class="text-left fs-6">Log in or sign up using your most active platform to ensure you
                             receive our winner's email.</p>
@@ -145,26 +145,4 @@
             </div>
         </div>
     </section>
-
-    <footer>
-        <div class="container">
-            <div class="inner">
-                <div class="row gy-3">
-                    <div class="col-md-6">
-                        <a href="https://ghitloot.com/faq" class="text-white text-decoration-none"
-                            target="_blank">FAQs</a>
-                        <a href="https://ghitloot.com/giveaway-policy" class="text-white text-decoration-none"
-                            target="_blank">Legal</a>
-                        <a href="https://ghitloot.com/privacy-policy" class="text-white text-decoration-none"
-                            target="_blank">Privacy</a>
-                        <a href="https://ghitloot.com/terms-and-conditions" class="text-white text-decoration-none"
-                            target="_blank">Terms</a>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="text-md-end">© 2025 Ghitloot | All Rights Reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 </div>

@@ -25,6 +25,7 @@
     <main>
         {{ $slot }}
     </main>
+    <livewire:inc.footer />
     @livewireScripts
     @stack('js')
 </body>

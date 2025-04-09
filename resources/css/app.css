@@ -5,6 +5,7 @@
 @import "./main.css"; /* layout, components */
 @import "./logins.css"; /* page-specific overrides */
 @import "./header.css"; /* header styles */
+@import "./footer.css";
 @import "./sidebar.css"; /* sidebar styles */
 @import "./profile.css";
 @import "./myTickets.css"; /* tickets page styles */
