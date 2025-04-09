@@ -3,7 +3,7 @@
         <!-- Logo -->
         <div class="d-flex align-items-center">
             <a href="#" class="me-3">
-                <img src="assets/svg/ghit-beta-logo.svg" alt="Logo" height="40">
+                <img src="{{ asset('assets/svg/ghit-beta-logo.svg') }}" alt="Logo" height="40">
             </a>
         </div>
 
