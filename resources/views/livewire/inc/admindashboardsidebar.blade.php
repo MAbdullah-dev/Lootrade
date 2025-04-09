@@ -3,7 +3,7 @@
         <div class="nav d-flex flex-column">
             <ul>
                 <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}"
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}"
                         aria-current="page" href="{{ route('admin.dashboard') }}" wire:navigate>
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                     </a>
@@ -11,11 +11,11 @@
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'myTickets' ? 'active' : '' }}"
                         aria-current="page" href="" wire:navigate>
-                        <i class="fas fa-ticket-alt"></i> Raffles
+                        <i class="fas fa-gift"></i> Raffles
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'users' ? 'active' : '' }}"
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.users' ? 'active' : '' }}"
                         aria-current="page" href="{{ route('admin.users') }}" wire:navigate>
                         <i class="fas fa-users"></i> Users
                     </a>
