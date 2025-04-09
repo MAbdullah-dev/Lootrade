@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admindashboard\Dashboard;
 use App\Livewire\Admindashboard\Users;
 use App\Livewire\Auth\Login;
 use App\Livewire\Dashboard\MyTickets;
@@ -19,4 +20,8 @@ Route::get('/support', Support::class)->name('support');
 Route::get('/home', Home::class)->name('home');
 Route::get('/raffles', Raffles::class)->name('raffles');
 Route::get('/tickets', Tickets::class)->name('tickets');
+
+
+//Admin Dashboard Routes
 Route::get('/users', Users::class)->name('users');
+Route::get('/dashboard', Dashboard::class)->name('dashboard');
