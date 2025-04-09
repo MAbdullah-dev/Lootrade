@@ -1,20 +1,20 @@
-/* 2. Load Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-/* 3. Load Your Custom CSS (from general to specific) */
-@import "./main.css"; /* layout, components */
-@import "./logins.css"; /* page-specific overrides */
-@import "./header.css"; /* header styles */
+@import "./main.css";
+@import "./logins.css";
+@import "./header.css";
 @import "./footer.css";
-@import "./sidebar.css"; /* sidebar styles */
+@import "./sidebar.css";
 @import "./profile.css";
 @import "./myTickets.css";
-/* tickets page styles */
 @import "./home.css";
 @import "./tickets.css";
-/* tickets page styles */
-@import "./users.css";
-/* users page styles */
+
 @import "./raffles.css";
 @import "./global.css";
-/* base styles, resets, variables */
+
+
+
+/* admindashboard styles */
+@import "./Admindashboard/users.css";
+@import "./Admindashboard/dashboardmain.css";

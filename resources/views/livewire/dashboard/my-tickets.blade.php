@@ -2,7 +2,7 @@
     <h5 class="mb-4">My Tickets</h5>
 
     <div class="table-responsive rounded shadow">
-        <table class="table table-dark table-striped table-bordered table-hover mb-0">
+        <table class="table table-dark table-hover mb-0">
             <thead class="thead-light">
                 <tr>
                     <th>Ticket Number</th>
