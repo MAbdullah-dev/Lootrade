@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <livewire:inc.header />
+    {{-- <livewire:inc.header /> --}}
     <main>
         {{ $slot }}
     </main>

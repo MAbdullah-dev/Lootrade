@@ -213,11 +213,11 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener('livewire:navigated', function() {
         initializeSwiper();
     });
 
-    document.addEventListener('livewire:navigated', function() {
+    document.addEventListener("DOMContentLoaded", function() {
         initializeSwiper();
     });
 </script>
