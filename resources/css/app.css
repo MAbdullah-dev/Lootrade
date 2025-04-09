@@ -11,3 +11,4 @@
 @import "./home.css";
 @import "./global.css";  /* base styles, resets, variables */
 @import "./tickets.css"; /* tickets page styles */
+@import "./users.css"; /* users page styles */
