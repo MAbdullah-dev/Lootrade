@@ -4,7 +4,7 @@
             <ul>
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('dashboard') }}" wire:navigate>
+                        aria-current="page" href="{{ route('admin.dashboard') }}" wire:navigate>
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                     </a>
                 </li>
@@ -16,7 +16,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'users' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('users') }}" wire:navigate>
+                        aria-current="page" href="{{ route('admin.users') }}" wire:navigate>
                         <i class="fas fa-users"></i> Users
                     </a>
                 </li>
