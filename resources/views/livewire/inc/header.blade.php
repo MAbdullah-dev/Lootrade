@@ -14,10 +14,10 @@
                     <a href="{{ route('home') }}" class="nav-link" wire:navigate>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('tickets') }}" class="nav-link">Raffles</a>
+                    <a href="{{ route('raffles') }}" class="nav-link" wire:>Raffles</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Tickets</a>
+                    <a href="{{ route('tickets') }}" class="nav-link" wire:navigate>Tickets</a>
                 </li>
             </ul>
         </nav>
