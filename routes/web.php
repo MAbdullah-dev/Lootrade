@@ -24,7 +24,7 @@ Route::get('/tickets', Tickets::class)->name('tickets');
 
 
 //Admin Dashboard Routes
-Route::get('/users', Users::class)->name('users');
-Route::get('/dashboard', Dashboard::class)->name('dashboard');
-// Route::get('/admin/raffle', AdminRaffles::class)->name('admin.raffles');
-Route::get('/admin/raffle', AdminRaffles::class)->name('admin.raffles');
+Route::get('/admin/users', Users::class)->name('admin.users');
+Route::get('/admin/dashboard', Dashboard::class)->name('admin.dashboard');
+Route::get('/admin/dashboard', AdminRaffles::class)->name('admin.dashboard');
+
