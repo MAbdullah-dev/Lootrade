@@ -3,33 +3,43 @@
         <div class="nav d-flex flex-column">
             <ul>
                 <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'profile' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('profile') }}" wire:navigate>
-                        <i class="fas fa-user"></i> Profile
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('dashboard') }}" wire:navigate>
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'myTickets' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('myTickets') }}" wire:navigate>
-                        <i class="fas fa-ticket-alt"></i> My Tickets
+                        aria-current="page" href="" wire:navigate>
+                        <i class="fas fa-ticket-alt"></i> Raffles
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'support' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('support') }}" wire:navigate>
-                        <i class="fas fa-headset"></i> Support
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'users' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('users') }}" wire:navigate>
+                        <i class="fas fa-users"></i> Users
                     </a>
                 </li>
-                <!-- Additional menu items can be added here -->
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'settings' ? 'active' : '' }}"
                         aria-current="page" href="" wire:navigate>
-                        <i class="fas fa-cog"></i> Settings
+                        <i class="fas fa-trophy"></i> Winner
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'logout' ? 'active' : '' }}"
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'transactions' ? 'active' : '' }}"
                         aria-current="page" href="" wire:navigate>
+                        <i class="fas fa-exchange-alt"></i> Transaction
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'analytics' ? 'active' : '' }}"
+                        aria-current="page" href="" wire:navigate>
+                        <i class="fas fa-chart-line"></i> Analytics
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center" href="">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </li>
