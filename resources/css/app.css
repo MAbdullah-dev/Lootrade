@@ -8,8 +8,13 @@
 @import "./footer.css";
 @import "./sidebar.css"; /* sidebar styles */
 @import "./profile.css";
-@import "./myTickets.css"; /* tickets page styles */
+@import "./myTickets.css";
+/* tickets page styles */
 @import "./home.css";
-@import "./tickets.css"; /* tickets page styles */
+@import "./tickets.css";
+/* tickets page styles */
+@import "./users.css";
+/* users page styles */
 @import "./raffles.css";
-@import "./global.css"; /* base styles, resets, variables */
+@import "./global.css";
+/* base styles, resets, variables */
