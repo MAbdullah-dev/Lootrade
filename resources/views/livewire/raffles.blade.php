@@ -1,7 +1,7 @@
 <div>
     <section class="raffles">
+        <div class="container">
         <div class="inner">
-            <div class="container">
                 <div class="raffle-filter">
                     <ul class="nav nav-tabs gap-2 border-0 my-4 justify-content-end" id="raffleTabs" role="tablist">
                         <li class="nav-item" role="presentation">

@@ -1,3 +1,7 @@
+.raffles .inner {
+    min-height: 100vh;
+}
+
 .raffles .nav-tabs .nav-link {
     border-radius: 0;
     padding: 10px 20px;
@@ -49,6 +53,7 @@
     color: #ccc;
     margin-bottom: 8px;
 }
+
 .raffles .raffle-card .raffle-description {
     font-size: 14px;
     color: #ccc;
