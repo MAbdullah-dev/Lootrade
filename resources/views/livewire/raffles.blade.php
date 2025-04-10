@@ -34,8 +34,6 @@
                                     <div class="card-body d-flex flex-column">
                                         <h5 class="card-title">Dōtonbori Canal Raffle</h5>
                                         <p class="raffle-type">Solo</p>
-
-
                                         <p class="raffle-description mb-4">Is a manmade waterway dug in the
                                             early 1600's and now displays many landmark commercial locals and vivid neon
                                             signs</p>

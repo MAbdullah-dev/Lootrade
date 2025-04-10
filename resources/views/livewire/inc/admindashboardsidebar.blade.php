@@ -21,8 +21,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'settings' ? 'active' : '' }}"
-                        aria-current="page" href="" wire:navigate>
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.winners' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('admin.winners') }}" wire:navigate>
                         <i class="fas fa-trophy"></i> Winner
                     </a>
                 </li>

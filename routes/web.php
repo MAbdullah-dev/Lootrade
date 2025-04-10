@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admindashboard\AdminWinners;
 use App\Livewire\Admindashboard\AdminRaffles;
 use App\Livewire\Admindashboard\Dashboard;
 use App\Livewire\Admindashboard\Users;
@@ -28,3 +29,5 @@ Route::get('/admin/users', Users::class)->name('admin.users');
 Route::get('/admin/dashboard', Dashboard::class)->name('admin.dashboard');
 Route::get('/admin/raffle', AdminRaffles::class)->name('admin.raffles');
 
+Route::get('/admin/dashboard', AdminRaffles::class)->name('admin.dashboard');
+Route::get('/admin/winners', AdminWinners::class)->name('admin.winners');
