@@ -3,6 +3,7 @@
 use App\Livewire\Admindashboard\AdminWinners;
 use App\Livewire\Admindashboard\AdminRaffles;
 use App\Livewire\Admindashboard\Dashboard;
+use App\Livewire\Admindashboard\Transaction;
 use App\Livewire\Admindashboard\Users;
 use App\Livewire\Auth\Login;
 use App\Livewire\Dashboard\MyTickets;
@@ -28,6 +29,6 @@ Route::get('/tickets', Tickets::class)->name('tickets');
 Route::get('/admin/users', Users::class)->name('admin.users');
 Route::get('/admin/dashboard', Dashboard::class)->name('admin.dashboard');
 Route::get('/admin/raffle', AdminRaffles::class)->name('admin.raffles');
-
-Route::get('/admin/dashboard', AdminRaffles::class)->name('admin.dashboard');
 Route::get('/admin/winners', AdminWinners::class)->name('admin.winners');
+Route::get('/admin/transaction', Transaction::class)->name('admin.transaction');
+

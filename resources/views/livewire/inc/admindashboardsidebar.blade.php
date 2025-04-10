@@ -10,7 +10,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.raffles' ? 'active' : '' }}"
-                        aria-current="page" href="{{route('admin.raffles')}}" wire:navigate>
+                        aria-current="page" href="{{ route('admin.raffles') }}" wire:navigate>
                         <i class="fas fa-ticket-alt"></i> Raffles
                     </a>
                 </li>
@@ -27,15 +27,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'transactions' ? 'active' : '' }}"
-                        aria-current="page" href="" wire:navigate>
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.transactions' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('admin.transaction') }}" wire:navigate>
                         <i class="fas fa-exchange-alt"></i> Transaction
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'analytics' ? 'active' : '' }}"
-                        aria-current="page" href="" wire:navigate>
-                        <i class="fas fa-chart-line"></i> Analytics
                     </a>
                 </li>
                 <li class="nav-item">
