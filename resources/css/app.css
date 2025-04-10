@@ -16,4 +16,5 @@
 /* admindashboard styles */
 @import "./Admindashboard/users.css";
 @import "./Admindashboard/dashboardmain.css";
+@import "./Admindashboard/admin-raffles.css";
 @import "./Admindashboard/admin-winners.css";

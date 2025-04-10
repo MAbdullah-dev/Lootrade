@@ -10,8 +10,8 @@
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.raffles' ? 'active' : '' }}"
-                        aria-current="page" href="" wire:navigate>
-                        <i class="fas fa-gift"></i> Raffles
+                        aria-current="page" href="{{route('admin.raffles')}}" wire:navigate>
+                        <i class="fas fa-ticket-alt"></i> Raffles
                     </a>
                 </li>
                 <li class="nav-item">
