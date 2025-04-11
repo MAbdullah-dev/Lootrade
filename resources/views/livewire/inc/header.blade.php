@@ -31,7 +31,7 @@
                 </span>
             </button>
 
-            <a href="#" class="btn-custom">Login</a>
+            <a href="{{ route('login') }}" class="btn-custom">Login</a>
         </div>
     </div>
 </header>
