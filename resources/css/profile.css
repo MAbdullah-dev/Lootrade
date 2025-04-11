@@ -7,6 +7,11 @@
     padding: 20px 30px;
     width: 100%;
     max-width: 80%;
+
+    @media(max-width: 786.99px) {
+        padding: 0;
+        max-width: 100%;
+    }
 }
 
 .profile .form-wrapper h5 {
