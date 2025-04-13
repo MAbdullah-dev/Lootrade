@@ -23,6 +23,7 @@ class User extends Authenticatable
         'ticket_balance',
         'profile_completion_awarded',
         'last_login_award_date',
+        'last_login_at',
     ];
 
     protected $hidden = [

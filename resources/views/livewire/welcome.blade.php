@@ -16,14 +16,14 @@
                             <button wire:click="redirectToLogin" class="login-btn google-btn w-100">
                                 <img src="{{ asset('assets/svg/email-1-svgrepo-com.svg') }}" alt="">Continue with Email
                             </button>
-                            <button class="X-btn login-btn w-100">
+                            <button wire:click="redirectToTwitterLogin" class="X-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/x-white.svg') }}" alt="">Continue with X
                             </button>
-                            <button class="google-btn login-btn w-100">
+                            <button wire:click="redirectToGoogleLogin" class="google-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/google.svg') }}" alt="">Continue with Google
                             </button>
                             
-                            <button class="discord-btn login-btn w-100">
+                            <button wire:click="redirectToDiscordLogin" class="discord-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/discord-white.svg') }}" alt="">Continue with
                                 Discord
                             </button>

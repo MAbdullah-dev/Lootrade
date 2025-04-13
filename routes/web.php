@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Livewire\Admindashboard\AdminWinners;
 use App\Livewire\Admindashboard\AdminRaffles;
 use App\Livewire\Admindashboard\Dashboard;
@@ -16,7 +17,6 @@ use App\Livewire\Raffles;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Welcome::class)->name('welcome');
-Route::get('/login', Login::class)->name('login');
 Route::get('/profile', Profile::class)->name('profile');
 Route::get('/mytickets', MyTickets::class)->name('myTickets');
 Route::get('/support', Support::class)->name('support');
@@ -31,3 +31,13 @@ Route::get('/Admin/dashboard', Dashboard::class)->name('admin.dashboard');
 Route::get('/Admin/raffle', AdminRaffles::class)->name('admin.raffles');
 Route::get('/Admin/winners', AdminWinners::class)->name('admin.winners');
 Route::get('/Admin/transaction', Transaction::class)->name('admin.transaction');
+
+//auth
+Route::get('/login', Login::class)->name('login');
+//social auth
+Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])
+    ->name('auth.redirect')
+    ->where('provider', 'google|twitter|discord');
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])
+    ->name('auth.callback')
+    ->where('provider', 'google|twitter|discord');

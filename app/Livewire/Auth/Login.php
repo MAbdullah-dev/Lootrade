@@ -3,6 +3,7 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use App\Rules\RegisterPasswordRule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -38,11 +39,7 @@ class Login extends Component
             'register_last_name' => 'required|string|max:255',
             'register_username' => 'required|string|max:255|unique:users,username',
             'register_email' => 'required|email|max:255|unique:users,email',
-            'register_password' => ['required', 'confirmed', Password::min(8)
-            ->mixedCase()
-            ->letters()
-            ->numbers()
-            ->symbols()],
+            'register_password' => ['required', 'confirmed', new RegisterPasswordRule()],
             'register_date_of_birth' => 'required|date|before:today',
         ];
     }
@@ -60,9 +57,6 @@ class Login extends Component
             'register_email.required' => 'Please enter your email address.',
             'register_email.email' => 'Please enter a valid email address.',
             'register_email.unique' => 'This email is already registered.',
-            'register_password.required' => 'Please enter a password.',
-            'register_password.min' => 'Your password must be at least 8 characters.',
-            'register_password.symbols' => 'Your password must include at least one special character (e.g. @, #, $, %, etc).',
             'register_password.confirmed' => 'Passwords do not match.',
             'login_email.required' => 'Please enter your email address.',
             'login_email.email' => 'Please enter a valid email address.',

@@ -19,11 +19,14 @@ return new class extends Migration
             $table->string('provider', 50);
             $table->string('provider_id', 255);
             $table->string('provider_email', 255)->nullable();
-            $table->string('access_token', 255)->nullable();
-            $table->string('refresh_token', 255)->nullable();
+            $table->longText('access_token', 255)->nullable();
+            $table->longText('refresh_token', 255)->nullable();
             $table->timestamps();
 
             $table->unique(['provider', 'provider_id']);
+
+            $table->index('provider');
+            $table->index('provider_id');
 
         });
     }
