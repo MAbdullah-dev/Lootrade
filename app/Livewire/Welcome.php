@@ -6,6 +6,10 @@ use Livewire\Component;
 
 class Welcome extends Component
 {
+    public function redirectToLogin(){ 
+         return redirect('/login');
+    }
+
     public function render()
     {
         return view('livewire.welcome')->layout('components.layouts.main');

@@ -13,12 +13,16 @@
                         <p class="text-left fs-6">Log in or sign up using your most active platform to ensure you
                             receive our winner's email.</p>
                         <div class="option-btns w-100 d-flex flex-column align-items-center">
-                            <button class="google-btn login-btn w-100">
-                                <img src="{{ asset('assets/svg/google.svg') }}" alt="">Continue with Google
+                            <button wire:click="redirectToLogin" class="login-btn google-btn w-100">
+                                <img src="{{ asset('assets/svg/email-1-svgrepo-com.svg') }}" alt="">Continue with Email
                             </button>
                             <button class="X-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/x-white.svg') }}" alt="">Continue with X
                             </button>
+                            <button class="google-btn login-btn w-100">
+                                <img src="{{ asset('assets/svg/google.svg') }}" alt="">Continue with Google
+                            </button>
+                            
                             <button class="discord-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/discord-white.svg') }}" alt="">Continue with
                                 Discord
