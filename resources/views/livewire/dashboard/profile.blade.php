@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="dob" class="form-label">Date of Birth</label>
-                    <input type="date" class="form-control" id="dob" />
+                    <input class="form-control flatpickr-input" id="dob" placeholder="Select date" />
                 </div>
             </div>
 
@@ -64,3 +64,19 @@
         </div>
     </section>
 </div>
+@push('js')
+    <script>
+        $("#dob").flatpickr({
+            dateFormat: "Y-m-d",
+            maxDate: "today",
+            defaultDate: null,
+            minDate: "1900-01-01",
+            enableTime: false,
+            altInput: true,
+            altFormat: "F j, Y",
+            allowInput: true,
+            clickOpens: true,
+            disableMobile: false
+        });
+    </script>
+@endpush

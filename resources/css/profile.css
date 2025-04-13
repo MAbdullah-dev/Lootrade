@@ -4,7 +4,6 @@
 
 .profile .form-wrapper {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    /* Subtle shadow for depth */
     padding: 20px 30px;
     width: 100%;
     max-width: 80%;
@@ -12,10 +11,8 @@
 
 .profile .form-wrapper h5 {
     font-size: 28px;
-    /* Larger heading */
     font-weight: 600;
     color: #ff4b5c;
-    /* Red color for the heading */
     text-align: center;
     margin-bottom: 40px;
     position: relative;
@@ -26,7 +23,6 @@
     width: 60px;
     height: 3px;
     background: #ff4b5c;
-    /* Red underline */
     position: absolute;
     bottom: -10px;
     left: 50%;
@@ -36,45 +32,38 @@
 .profile .form-label {
     font-weight: 500;
     color: #fff;
-    font-size: 16px;
-    /* Larger label text */
+    font-size: 14px;
     margin-bottom: 10px;
     transition: color 0.3s ease;
 }
 
 .profile .form-control {
     background-color: #333;
-    /* Darker input background */
     border: 1px solid #444;
     border-radius: 8px;
     padding: 14px 18px;
-    /* Increased padding for larger inputs */
     font-size: 16px;
-    /* Larger font size */
     color: #fff;
-    /* White text for inputs */
     box-shadow: none;
     transition: all 0.3s ease;
+    height: 35px;
 }
 
 .profile .form-control:focus {
     outline: none;
     border-color: #ff4b5c;
-    /* Red border on focus */
     box-shadow: 0 0 8px rgba(255, 75, 92, 0.3);
-    /* Red glow effect */
     background-color: #444;
-    /* Slightly lighter background on focus */
 }
 
 .profile .form-control::placeholder {
     color: #888;
+    font-size: 12px;
     transition: opacity 0.3s ease;
 }
 
 .profile .form-control:focus::placeholder {
     opacity: 0.5;
-    /* Fade placeholder on focus */
 }
 
 .profile .file-upload-wrapper {
@@ -97,40 +86,30 @@
     align-items: center;
     gap: 12px;
     background-color: #333;
-    /* Dark background for file input */
     border: 1px solid #444;
     border-radius: 8px;
     padding: 20px 18px;
-    /* Increased padding for taller field */
     color: #fff;
-    /* White text */
     cursor: pointer;
     position: relative;
     z-index: 1;
     font-size: 16px;
-    /* Larger text */
     transition: all 0.3s ease;
     min-height: 80px;
-    /* Increased height for the custom image field */
 }
 
 .profile .custom-file-label:hover {
     border-color: #ff4b5c;
-    /* Red border on hover */
     background-color: #444;
-    /* Slightly lighter background on hover */
 }
 
 .profile .custom-file-label i {
     font-size: 18px;
-    /* Larger icon */
     color: #ff4b5c;
-    /* Red icon */
 }
 
 .profile .btn-custom {
     padding: 12px 40px;
-    /* Larger button */
 }
 
 .profile .connect-with {
@@ -145,31 +124,23 @@
     margin-bottom: 15px;
 }
 
-/* Social Login Styling */
 .profile .social-login {
     display: flex;
     flex-direction: column;
-    /* Stack buttons vertically */
     gap: 10px;
-    /* Space between buttons */
 }
 
 .profile .social-btn {
     background: #333;
-    /* Dark background for buttons */
     border: 1px solid #444;
     border-radius: 8px;
-    /* Rectangular buttons */
     padding: 12px 20px;
-    /* Padding for button size */
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    /* Space between icon and text */
     transition: all 0.3s ease;
     width: 100%;
-    /* Full-width buttons */
 }
 
 .profile .social-btn i {
@@ -185,23 +156,17 @@
 
 .profile .social-btn:hover {
     border-color: #ff4b5c;
-    /* Red border on hover */
     background: #444;
-    /* Slightly lighter background on hover */
     transform: translateY(-2px);
-    /* Lift effect on hover */
     box-shadow: 0 4px 15px rgba(255, 75, 92, 0.4);
-    /* Red shadow */
 }
 
 .profile .social-btn.google:hover i,
 .profile .social-btn.x:hover i,
 .profile .social-btn.discord:hover i {
     color: #ff4b5c;
-    /* Red icon on hover */
 }
 
-/* Terms Text Styling */
 .profile .terms-text {
     font-size: 12px;
     color: #ccc;
@@ -211,7 +176,6 @@
 
 .profile .terms-text a {
     color: #ff4b5c;
-    /* Red link color */
     text-decoration: none;
 }
 

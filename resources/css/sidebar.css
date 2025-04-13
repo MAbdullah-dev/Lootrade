@@ -2,8 +2,8 @@ aside {
     height: auto;
     position: sticky;
     top: 0;
+    max-width: 25%;
     width: 100%;
-    max-width: 20%;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 
     .nav-item {
