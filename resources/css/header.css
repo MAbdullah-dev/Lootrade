@@ -15,6 +15,41 @@ header .header-btns a {
 }
 
 header .nav-item .nav-link:hover {
-    color: #fd2828 !important;
+    color: rgb(253, 40, 40) !important;
+}
+header .user-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+header .user-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
+header .user-avatar .dropdown-menu {
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    a {
+        color: #000 !important;
+        font-weight: 600;
+    }
+}
+
+header .user-avatar .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* adds space between icon and text */
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+header .user-avatar .dropdown-item:hover {
+    background-color: #fd2828;
+    color: #fff !important;
+}

@@ -30,8 +30,28 @@
                     3
                 </span>
             </button>
-
-            <a href="{{ route('login') }}" class="btn-custom">Login</a>
+            @if (!Auth::check())
+                <a href="{{ route('login') }}" class="btn-custom">Login</a>
+            @endif
+            @if (Auth::check())
+                <div class="user-avatar dropdown">
+                    <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('assets/images/dummy-profile-photo.png') }}" alt="Profile">
+                        <i class="fa-solid fa-sort-down ms-2"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        {{-- <li><a class="dropdown-item" href=""><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li> --}}
+                        <li><a class="dropdown-item" href="{{ route('profile') }}" wire:navigate><i
+                                    class="fas fa-user"></i>
+                                Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
 </header>
