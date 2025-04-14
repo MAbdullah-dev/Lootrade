@@ -48,7 +48,8 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        <li><a class="dropdown-item" wire:click="logout()"><i class="fas fa-sign-out-alt"></i>
+                                Logout</a></li>
                     </ul>
                 </div>
             @endif

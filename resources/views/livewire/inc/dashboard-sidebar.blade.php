@@ -27,12 +27,6 @@
                         <i class="fas fa-cog"></i> Settings
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'logout' ? 'active' : '' }}"
-                        aria-current="page" href="" wire:navigate>
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
