@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\SocialiteController;
 use App\Livewire\Admindashboard\AdminWinners;
 use App\Livewire\Admindashboard\AdminRaffles;
 use App\Livewire\Admindashboard\Dashboard;
+use App\Livewire\Admindashboard\TicketPackeges;
 use App\Livewire\Admindashboard\Transaction;
 use App\Livewire\Admindashboard\Users;
 use App\Livewire\Auth\Login;
@@ -31,6 +32,7 @@ Route::get('/Admin/dashboard', Dashboard::class)->name('admin.dashboard');
 Route::get('/Admin/raffle', AdminRaffles::class)->name('admin.raffles');
 Route::get('/Admin/winners', AdminWinners::class)->name('admin.winners');
 Route::get('/Admin/transaction', Transaction::class)->name('admin.transaction');
+Route::get('/Admin/ticketsPackeges', TicketPackeges::class)->name('admin.ticketsPackeges');
 
 //auth
 Route::get('/login', Login::class)->name('login');
