@@ -35,7 +35,7 @@
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.ticketsPackeges' ? 'active' : '' }}"
                         aria-current="page" href="{{ route('admin.ticketsPackeges') }}" wire:navigate>
-                        <i class="fas fa-exchange-alt"></i> Ticket Packeges
+                        <i class="fa-solid fa-box"></i> Ticket Packeges
                     </a>
                 </li>
                 <li class="nav-item">
