@@ -35,7 +35,13 @@
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.ticketsPackeges' ? 'active' : '' }}"
                         aria-current="page" href="{{ route('admin.ticketsPackeges') }}" wire:navigate>
-                        <i class="fa-solid fa-box"></i> Ticket Packeges
+                        <i class="fa-solid fa-box"></i> Ticket packages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.packageTypes' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('admin.packageTypes') }}" wire:navigate>
+                        <i class="fa-solid fa-box"></i> Ticket packages type
                     </a>
                 </li>
                 <li class="nav-item">

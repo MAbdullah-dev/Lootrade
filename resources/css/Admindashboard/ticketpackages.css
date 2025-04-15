@@ -1,5 +1,6 @@
-.packages{
+.ticketpackages {
     flex: 1;
+
     .form-control {
         background-color: #333;
         border: 1px solid #444;
@@ -11,36 +12,53 @@
         transition: all 0.3s ease;
         height: 35px;
     }
-    .form-select{
+
+    .form-select {
         background-color: #333;
         color: #fff;
         transition: all 0.3s ease;
         border: 1px solid #444;
 
     }
-    .form-select:focus{
+
+    .form-select:focus {
         outline: none;
         border-color: #ff4b5c;
         box-shadow: 0 0 8px rgba(255, 75, 92, 0.3);
 
     }
+
     .form-control:focus {
         outline: none;
         border-color: #ff4b5c;
         box-shadow: 0 0 8px rgba(255, 75, 92, 0.3);
         background-color: #444;
     }
+
     .form-control::placeholder {
         color: #888;
         font-size: 12px;
         transition: opacity 0.3s ease;
     }
+
     .form-select::placeholder {
         color: #888;
         font-size: 12px;
         transition: opacity 0.3s ease;
     }
 }
-.packages form .btn-custom{
+
+.ticketpackages form .btn-custom {
     padding: 10px 20px;
+}
+
+.ticketpackages .modal .modal-content {
+    background-color: #222;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+}
+
+.ticketpackages #updateModal .btn-custom {
+    padding: 6px 10px;
 }
