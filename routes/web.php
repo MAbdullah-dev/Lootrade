@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\CheckoutController;
 use App\Livewire\Admindashboard\AdminWinners;
 use App\Livewire\Admindashboard\AdminRaffles;
 use App\Livewire\Admindashboard\Dashboard;
@@ -46,10 +47,5 @@ Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProvi
     ->name('auth.callback')
     ->where('provider', 'google|twitter|discord');
 
-    Route::get('/checkout/success', function () {
-        return 'Payment successful! 🎉';
-    })->name('checkout.success');
-
-    Route::get('/checkout/cancel', function () {
-        return 'Payment cancelled.';
-    })->name('checkout.cancel');
+Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');

@@ -10,7 +10,6 @@ use Stripe\Stripe;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\Redirect;
 
-
 class Tickets extends Component
 {
     public $Ticketpackages;
@@ -46,6 +45,7 @@ class Tickets extends Component
             $this->packageQuantity--;
         }
     }
+
     public function checkout()
     {
         if (!$this->selectedPackage) return;
