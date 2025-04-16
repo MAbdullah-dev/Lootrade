@@ -2,7 +2,8 @@
 
 namespace App\Livewire\Admindashboard;
 
-use App\Models\TicketPackege;
+use App\Models\PackageType;
+use App\Models\TicketPackage;
 use Livewire\Component;
 
 class TicketPackages extends Component
@@ -10,6 +11,7 @@ class TicketPackages extends Component
     public $type, $tickets, $price, $package_id;
     public $packages;
     public $editType, $editTickets, $editPrice;
+    public $packagesTypes;
 
 
     protected $rules = [
@@ -21,18 +23,23 @@ class TicketPackages extends Component
     public function mount()
     {
         $this->loadPackages();
+        $this->loadpackagesTypes();
     }
 
     public function loadPackages()
     {
-        $this->packages = TicketPackege::latest()->get();
+        $this->packages = TicketPackage::latest()->get();
+    }
+    public function loadpackagesTypes()
+    {
+        $this->packagesTypes = PackageType::latest()->get();
     }
 
     public function store()
     {
         $this->validate();
 
-        TicketPackege::create([
+        TicketPackage::create([
             'type' => $this->type,
             'tickets' => $this->tickets,
             'price' => $this->price,
@@ -45,7 +52,7 @@ class TicketPackages extends Component
 
     public function edit($id)
     {
-        $package = TicketPackege::findOrFail($id);
+        $package = TicketPackage::findOrFail($id);
         $this->package_id = $package->id;
         $this->editType = $package->type;
         $this->editTickets = $package->tickets;
@@ -61,7 +68,7 @@ class TicketPackages extends Component
             'editPrice' => 'required|numeric|min:0',
         ]);
 
-        $package = TicketPackege::findOrFail($this->package_id);
+        $package = TicketPackage::findOrFail($this->package_id);
         $package->update([
             'type' => $this->editType,
             'tickets' => $this->editTickets,
@@ -83,7 +90,7 @@ class TicketPackages extends Component
 
     public function confirmDelete()
     {
-        TicketPackege::destroy($this->package_id);
+        TicketPackage::destroy($this->package_id);
         $this->resetForm();
         $this->loadPackages();
 

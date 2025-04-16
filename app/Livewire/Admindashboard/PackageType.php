@@ -63,18 +63,18 @@ class PackageType extends Component
     }
 
     public function delete($id)
-    {
-        $this->package_type_id = $id;
-    }
+{
+    $this->package_type_id = $id;
+}
 
-    public function confirmDelete()
-    {
-        ModelsPackageType::destroy($this->package_type_id);
-        $this->resetForm();
-        $this->loadTypes();
-        session()->flash('success', 'Package type deleted successfully!');
-        $this->dispatch('close-modal');
-    }
+public function confirmDelete()
+{
+    ModelsPackageType::destroy($this->package_type_id);
+    $this->resetForm();
+    $this->loadTypes();
+    session()->flash('success', 'Package type deleted successfully!');
+    $this->dispatch('close-modal');
+}
     public function render()
     {
         return view('livewire.admindashboard.package-type')

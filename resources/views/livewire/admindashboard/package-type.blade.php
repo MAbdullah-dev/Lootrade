@@ -13,37 +13,42 @@
         </form>
 
         <h4 class="mt-5">All Package Types</h4>
-        <table class="table table-dark table-hover mt-3">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Type Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($types as $index => $type)
+        <div class="table-responsive rounded mt-4">
+            <table class="table table-dark table-hover mb-2">
+                <thead>
                     <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $type->name }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#updateTypeModal" wire:click="edit({{ $type->id }})">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteTypeModal" wire:click="delete({{ $type->id }})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
+                        <th scope="col">#</th>
+                        <th scope="col">Type Name</th>
+                        <th scope="col">Actions</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="3" class="text-center  py-3">No package types found.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse ($types as $index => $type)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $type->name }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#updateTypeModal" wire:click.prevent="edit({{ $type->id }})"
+                                    title="Edit Type">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteTypeModal" wire:click.prevent="delete({{ $type->id }})"
+                                    title="Delete Type">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="text-center py-3">No package types found.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Update Modal -->

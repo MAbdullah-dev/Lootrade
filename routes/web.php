@@ -45,3 +45,11 @@ Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider']
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])
     ->name('auth.callback')
     ->where('provider', 'google|twitter|discord');
+
+    Route::get('/checkout/success', function () {
+        return 'Payment successful! 🎉';
+    })->name('checkout.success');
+
+    Route::get('/checkout/cancel', function () {
+        return 'Payment cancelled.';
+    })->name('checkout.cancel');

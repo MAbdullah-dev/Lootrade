@@ -4,9 +4,9 @@
             <label for="type" class="form-label">Package Type</label>
             <select id="type" class="form-select" wire:model="type">
                 <option value="">-- Select Package Type --</option>
-                <option value="Basic Package">Basic Package</option>
-                <option value="Premium Package">Premium Package</option>
-                <option value="Elite Package">Elite Package</option>
+                @foreach ($packagesTypes as $packageType)
+                    <option value="{{ $packageType->name }}">{{ $packageType->name }}</option>
+                @endforeach
             </select>
             @error('type')
                 <span class="text-danger">{{ $message }}</span>
@@ -35,7 +35,7 @@
     </form>
 
     <h4 class="mt-5">All Packages</h4>
-    <div class="table-responsive rounded shadow mt-4">
+    <div class="table-responsive rounded mt-4">
         <table class="table table-dark table-hover mb-2">
             <thead class="thead-light">
                 <tr>
