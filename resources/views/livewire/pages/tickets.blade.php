@@ -1,87 +1,54 @@
 <section class="tickets-page">
-    <div class="inner">
-        <div class="container">
-            <!-- Top Row: Merged Ticket Counter and Summary -->
-            <div class="row mb-5">
-                <div class="col-12">
-                    <div class="card tickets-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Ticket Selection</h5>
-                            <div class="row align-items-center">
-                                <!-- Ticket Counter -->
-                                <div class="col-md-4 mb-3 mb-md-0">
-                                    <h6 class="sub-title">Number of Tickets</h6>
-                                    <div class="d-flex align-items-center">
-                                        <button class="btn btn-outline-light me-3"><i class="fas fa-minus"></i></button>
-                                        <span class="ticket-count">0</span>
-                                        <button class="btn btn-outline-light ms-3"><i class="fas fa-plus"></i></button>
-                                    </div>
-                                </div>
-                                <!-- Selected Package -->
-                                <div class="col-md-4 mb-3 mb-md-0">
-                                    <h6 class="sub-title">Selected Package</h6>
-                                    <p class="selected-package mb-0">None</p>
-                                    <p class="selected-tickets mb-0">Tickets: 0</p>
-                                    <p class="selected-price mb-0">Price: $0</p>
-                                </div>
-                                <!-- Summary -->
-                                <div class="col-md-4 text-md-end">
-                                    <h6 class="sub-title">Summary</h6>
-                                    <p class="mb-2">Total Tickets: 0</p>
-                                    <button class="btn btn-checkout">Checkout</button>
-                                </div>
+    <div class="container inner">
+        <h2 class="section-title">Ticket Packages</h2>
+        <div class="row g-4">
+            <!-- All Packages -->
+            <div class="col-lg-7 ">
+                <div class="row">
+                    @foreach ($Ticketpackages as $Ticketpackage)
+                        <div class="col-md-6 mb-4">
+                            <div class="card package-card h-100 text-center p-3">
+                                <h5 class="card-title">{{ $Ticketpackage->type }}</h5>
+                                <p class="card-text">Tickets: {{ $Ticketpackage->tickets }}</p>
+                                <p class="card-price">${{ $Ticketpackage->price }}</p>
+                                <button class="btn btn-select" wire:click="selectPackage({{ $Ticketpackage->id }})">
+                                    Select Package
+                                </button>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
+            <div class="col-lg-5">
+                <div class="card tickets-card p-4 h-100">
+                    <h5 class="card-title">Selected Package</h5>
 
-            <!-- Bottom Row: Ticket Packages -->
-            <div class="row">
-                <h5 class="section-title mb-4">Ticket Packages</h5>
-                <!-- Package 1 -->
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card package-card">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Basic Package</h6>
-                            <p class="card-text">5 Tickets</p>
-                            <p class="card-price">$10</p>
-                            <button class="btn btn-select">Select</button>
+                    @if ($selectedPackage)
+                        <div class="selected-package mb-3">
+                            <div class="sub-title">Package Type: {{ $selectedPackage->type }}</div>
+                            <div class="selected-tickets">Tickets per Package: {{ $selectedPackage->tickets }}</div>
+                            <div class="selected-price">Price per Package: ${{ $selectedPackage->price }}</div>
                         </div>
-                    </div>
-                </div>
-                <!-- Package 2 -->
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card package-card">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Standard Package</h6>
-                            <p class="card-text">10 Tickets</p>
-                            <p class="card-price">$18</p>
-                            <button class="btn btn-select">Select</button>
+
+                        <div class="mt-4">
+                            <h6 class="sub-title">Select Quantity (Packages)</h6>
+                            <div class="d-flex align-items-center mb-3">
+                                <button class="btn btn-outline-light me-3" wire:click="decrement">-</button>
+                                <div class="ticket-count">{{ $packageQuantity }}</div>
+                                <button class="btn btn-outline-light ms-3" wire:click="increment">+</button>
+                            </div>
+
+                            <div class="sub-title">Total Tickets: {{ $selectedPackage->tickets * $packageQuantity }}
+                            </div>
+                            <div class="sub-title">Total Price: ${{ $selectedPackage->price * $packageQuantity }}</div>
+
+                            <button class="btn btn-checkout mt-4 w-100" wire:click="checkout">
+                                Checkout
+                            </button>
                         </div>
-                    </div>
-                </div>
-                <!-- Package 3 -->
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card package-card">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Premium Package</h6>
-                            <p class="card-text">20 Tickets</p>
-                            <p class="card-price">$35</p>
-                            <button class="btn btn-select">Select</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Package 4 -->
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card package-card">
-                        <div class="card-body text-center">
-                            <h6 class="card-title">Elite Package</h6>
-                            <p class="card-text">50 Tickets</p>
-                            <p class="card-price">$80</p>
-                            <button class="btn btn-select">Select</button>
-                        </div>
-                    </div>
+                    @else
+                        <p class="text-light">Please select a package to continue.</p>
+                    @endif
                 </div>
             </div>
         </div>

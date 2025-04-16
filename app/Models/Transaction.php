@@ -10,23 +10,23 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_number',
-        'user_id',
-        'amount',
-        'ticket_count',
-        'currency',
-        'payment_method',
-        'external_transaction_id',
+       'user_id',
+        'ticket_package_id',
+        'package_quantity',
+        'total_tickets',
+        'total_price',
+        'stripe_transaction_id',
         'payment_status',
-        'raw_response',
     ];
 
-    protected $casts = [
-        'raw_response' => 'array',
-    ];
+    public function ticketPackage()
+    {
+        return $this->belongsTo(TicketPackage::class);
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
 }
