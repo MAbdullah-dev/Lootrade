@@ -9,6 +9,7 @@ class PackageType extends Component
 {
     public $name, $editName, $package_type_id;
     public $types;
+    public $search = '';
 
     public function mount()
     {
@@ -63,20 +64,28 @@ class PackageType extends Component
     }
 
     public function delete($id)
-{
-    $this->package_type_id = $id;
-}
+    {
+        $this->package_type_id = $id;
+    }
 
-public function confirmDelete()
-{
-    ModelsPackageType::destroy($this->package_type_id);
-    $this->resetForm();
-    $this->loadTypes();
-    session()->flash('success', 'Package type deleted successfully!');
-    $this->dispatch('close-modal');
-}
+    public function confirmDelete()
+    {
+        ModelsPackageType::destroy($this->package_type_id);
+        $this->resetForm();
+        $this->loadTypes();
+        session()->flash('success', 'Package type deleted successfully!');
+        $this->dispatch('close-modal');
+    }
     public function render()
     {
+        $query = ModelsPackageType::query();
+
+        if (!empty($this->search)) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        $this->types = $query->latest()->get();
+
         return view('livewire.admindashboard.package-type')
             ->layout('components.layouts.Admindashboard');
     }

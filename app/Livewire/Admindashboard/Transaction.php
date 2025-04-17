@@ -4,24 +4,45 @@ namespace App\Livewire\Admindashboard;
 
 use App\Models\Transaction as ModelsTransaction;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Transaction extends Component
 {
-    public $transactions;
+    use WithPagination;
 
-    public function mount()
+    public $search = '';
+    public $sortField = 'created_at';
+    public $sortDirection = 'desc';
+
+    protected $paginationTheme = 'bootstrap'; // if you're using Bootstrap pagination
+
+    public function updatingSearch()
     {
-        $this->loadtransactions();
+        $this->resetPage();
     }
 
-    public function loadtransactions()
+    public function sortBy($field)
     {
-        $this->transactions = ModelsTransaction::with('user', 'ticketPackage')->get();
-        // dd($this->transactions);
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortField = $field;
+            $this->sortDirection = 'asc';
+        }
     }
+
     public function render()
     {
+        $transactions = ModelsTransaction::with('user', 'ticketPackage')
+            ->where(function ($query) {
+                $query->whereHas('user', fn($q) => $q->where('username', 'like', '%' . $this->search . '%'))
+                    ->orWhereHas('ticketPackage', fn($q) => $q->where('type', 'like', '%' . $this->search . '%'))
+                    ->orWhere('stripe_transaction_id', 'like', '%' . $this->search . '%');
+            })
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(3);
 
-        return view('livewire.admindashboard.transaction')->layout('components.layouts.Admindashboard');
+        return view('livewire.admindashboard.transaction', compact('transactions'))
+            ->layout('components.layouts.Admindashboard');
     }
 }

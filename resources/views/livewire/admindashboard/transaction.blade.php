@@ -1,24 +1,28 @@
-<div class="transacton">
+<div class="transaction">
     <h2 class="mb-3">Transactions :</h2>
+
+    <input type="text" wire:model.live="search" class="form-control mb-3"
+        placeholder="Search by username or package..." />
+
     <div class="body table-responsive rounded shadow">
         <table class="table table-dark table-hover mb-0">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>User Name</th>
-                    <th>Package Name</th>
-                    <th>Quantity</th>
-                    <th>Total Tickets</th>
-                    <th>Total Price</th>
+                    <th wire:click="sortBy('id')">#</th>
+                    <th wire:click="sortBy('user.username')">User Name</th>
+                    <th wire:click="sortBy('ticketPackage.type')">Package Name</th>
+                    <th wire:click="sortBy('package_quantity')">Quantity</th>
+                    <th wire:click="sortBy('total_tickets')">Total Tickets</th>
+                    <th wire:click="sortBy('total_price')">Total Price</th>
                     <th>Status</th>
                     <th>Transaction ID</th>
-                    <th>Date</th>
+                    <th wire:click="sortBy('created_at')">Date</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($transactions as $index => $transaction)
                     <tr>
-                        <th>{{ $index + 1 }}</th>
+                        <th>{{ $loop->iteration + ($transactions->firstItem() - 1) }}</th>
                         <td>{{ $transaction->user->username }}</td>
                         <td>{{ $transaction->ticketPackage->type ?? 'N/A' }}</td>
                         <td>{{ $transaction->package_quantity }}</td>
@@ -33,7 +37,9 @@
                                 <span class="text-warning fw-bold">Pending</span>
                             @endif
                         </td>
-                        <td>{{ Str::limit($transaction->stripe_transaction_id, 12, '...') }} <i class="fa-solid fa-clone"
+                        <td>
+                            {{ \Illuminate\Support\Str::limit($transaction->stripe_transaction_id, 12, '...') }}
+                            <i class="fa-solid fa-clone" style="cursor:pointer"
                                 onclick="navigator.clipboard.writeText('{{ $transaction->stripe_transaction_id }}')"></i>
                         </td>
                         <td>{{ $transaction->created_at->format('d M Y') }}</td>
@@ -45,5 +51,9 @@
                 @endforelse
             </tbody>
         </table>
+
+        <div class="mt-3">
+            {{ $transactions->links() }}
+        </div>
     </div>
 </div>
