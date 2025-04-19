@@ -7,7 +7,7 @@
                     <div class="card-body text-center">
                         <i class="fas fa-users fa-2x mb-4 "></i>
                         <h4 class="card-title">Total Users</h4>
-                        <p class="card-text">1,245</p>
+                        <p class="card-text">{{ $totalUsers }}</p>
                     </div>
                 </div>
             </div>
@@ -63,14 +63,18 @@
             var options = {
                 chart: {
                     type: 'bar',
-                    height: 350
+                    height: 350,
+                    background: '#000', // dark background
+                    foreColor: '#fff'
                 },
                 series: [{
                     name: 'Revenue',
-                    data: [1500, 2400, 1800]
+                    data: @json(array_values($monthlyRevenue))
+
                 }],
                 xaxis: {
-                    categories: ['Total Users', 'Active Raffles', 'Tickets Sold']
+                    categories: @json($monthLabels)
+
                 },
                 colors: ['#007bff'],
                 title: {

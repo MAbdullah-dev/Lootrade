@@ -24,6 +24,11 @@
     }
 }
 
+.dahsboard .revenueSection {
+    color: #000 !important;
+}
+
+/*
 /* #revenueSection .inner {
     width: 100%;
     max-width: 800px;
