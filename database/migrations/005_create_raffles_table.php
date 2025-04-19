@@ -30,6 +30,9 @@ return new class extends Migration
                     ELSE 'past'
                 END
             ")->stored();
+
+            // $table->index('status');
+
             $table->timestamps();
         });
     }

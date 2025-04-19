@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('ticket_number', 20)->unique();
             $table->enum('status', ['available', 'assigned'])->default('available');
             $table->enum('acquisition_type', ['earned', 'purchased']);
+
+            $table->index(['user_id', 'status']);
+
             $table->timestamps();
         });
     }

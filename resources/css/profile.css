@@ -2,6 +2,10 @@
     flex: 1;
 }
 
+.profile ol li {
+    list-style: disc;
+}
+
 .profile .form-wrapper {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     padding: 20px 30px;
@@ -19,7 +23,7 @@
 }
 
 .profile .form-wrapper h5::after {
-    content: '';
+    content: "";
     width: 60px;
     height: 3px;
     background: #ff4b5c;
