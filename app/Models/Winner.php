@@ -17,11 +17,8 @@ class Winner extends Model
         'awarded_at',
     ];
 
-    protected $casts = [
-        'awarded_at' => 'datetime',
-    ];
+    protected $dates = ['awarded_at'];
 
-    
     public function raffle()
     {
         return $this->belongsTo(Raffle::class);
@@ -34,6 +31,6 @@ class Winner extends Model
 
     public function ticket()
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(UserTicket::class, 'ticket_id');
     }
 }

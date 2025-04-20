@@ -20,11 +20,9 @@
                         <i class="fas fa-headset"></i> Support
                     </a>
                 </li>
-                <!-- Additional menu items can be added here -->
                 <li class="nav-item">
-                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'settings' ? 'active' : '' }}"
-                        aria-current="page" href="" wire:navigate>
-                        <i class="fas fa-cog"></i> Settings
+                    <a class="d-flex align-items-center" wire:click="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </li>
             </ul>

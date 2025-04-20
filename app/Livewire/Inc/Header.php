@@ -9,6 +9,13 @@ use Livewire\Component;
 class Header extends Component
 {
 
+    public $ticketCount;
+
+    public function mount()
+    {
+        $this->ticketCount = Auth::user()->ticket_balance;
+    }
+
     public function logout()
     {
         Auth::logout();

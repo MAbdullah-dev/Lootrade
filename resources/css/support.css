@@ -1,0 +1,68 @@
+.support-section {
+    flex: 1;
+}
+
+.support-section h5 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fe3839;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.support-section h5::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background: #fe3839;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.support-section.form-wrapper .form-control::placeholder {
+    color: #999;
+}
+
+.support-section .form-label {
+    font-weight: 500;
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.support-section .form-control {
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 16px;
+    color: #fff;
+    box-shadow: none;
+    transition: all 0.3s ease;
+    /* height: 35px; */
+}
+
+.support-section .form-control:focus {
+    outline: none;
+    border-color: #fe3839;
+    box-shadow: 0 0 8px rgba(255, 75, 92, 0.3);
+    background-color: #444;
+}
+
+.support-section .form-control::placeholder {
+    color: #888;
+    font-size: 12px;
+    transition: opacity 0.3s ease;
+}
+
+.support-section .form-control:focus::placeholder {
+    opacity: 0.5;
+}
+
+.support-section form .btn-custom {
+    padding: 10px 20px;
+}

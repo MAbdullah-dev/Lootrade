@@ -45,7 +45,7 @@
             margin-bottom: 20px;
         }
 
-        .btn {
+        .btn-go-back {
             display: inline-block;
             padding: 10px 20px;
             color: #fff;
@@ -57,7 +57,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
+        .btn-go-back:hover {
             background-color: #e60000;
         }
     </style>
@@ -68,7 +68,7 @@
         <h1>Payment Failed</h1>
         <img src="{{ asset('assets/images/paymentfailed.gif') }}" alt="Payment Failed">
         <p>There was an issue processing your payment. Please try again or contact support.</p>
-        <a href="/" class="btn">Go Back</a>
+        <a href="/" class="btn-go-back">Go Back</a>
     </div>
 </body>
 

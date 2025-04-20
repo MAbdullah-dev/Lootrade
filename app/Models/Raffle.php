@@ -15,6 +15,8 @@ class Raffle extends Model
         'image_path',
         'entry_cost',
         'max_entries_per_user',
+        'prize',
+        'slots',
         'start_date',
         'end_date',
     ];
@@ -24,13 +26,13 @@ class Raffle extends Model
         'end_date'   => 'datetime',
     ];
 
-    
+
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
     }
 
-    
+
     public function winners()
     {
         return $this->hasMany(Winner::class);

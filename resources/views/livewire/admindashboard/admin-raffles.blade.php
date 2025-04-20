@@ -2,134 +2,169 @@
     <section class="admin-raffles">
         <div class="inner">
             <div class="head">
-                <div class="search-feild">
-                    <div class="input-group">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default">
-                    </div>
-                </div>
+                <div class="d-flex mb-3 gap-3 w-100">
+                    <input type="text" class="form-control w-50" placeholder="Search raffles..."
+                        wire:model.live="search">
 
-                <div class="button-wrapper">
-                    <div class="select-feild">
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Create Raffle
-                    </button>
+                    <select class="form-select w-25" wire:model.live="sortDirection">
+                        <option value="desc">Newest First</option>
+                        <option value="asc">Oldest First</option>
+                    </select>
                 </div>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn-custom" data-bs-toggle="modal" data-bs-target="#createRaffleModal">
+                    Create Raffle
+                </button>
+            </div>
+            <!-- Create Raffle Modal -->
+            <div wire:ignore.self class="modal fade" id="createRaffleModal" tabindex="-1"
+                aria-labelledby="createRaffleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="createRaffleModalLabel">Create Raffle</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Title -->
+                            <div class="input-wrapper mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" id="title" class="form-control" wire:model.defer="title"
+                                    placeholder="Enter title">
+                                @error('title')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
-
-                            <div class="modal-body">
-
-                                <div class="model-inner">
-                                    <div class="input-wrapper mb-3">
-                                        <label for="" class="form-label">Tittle</label>
-                                        <input type="text" name="" id="" class="form-control">
-                                    </div>
-                                    <div class="input-wrapper mb-3">
-                                        <label for="" class="form-label">Description</label>
-                                        <input type="text" name="" id="" class="form-control">
-                                    </div>
-
-                                    <div class="input-wrapper mb-3">
-                                        <label for="" class="form-label">minimum tickets</label>
-                                        <input type="text" name="" id="" class="form-control">
-                                    </div>
-                                    <div class="input-wrapper mb-3">
-                                        <label for="" class="form-label">Price</label>
-                                        <input type="text" name="" id="" class="form-control">
-                                    </div>
-                                    <div class="input-wrapper mb-3">
-                                        <label for="dob" class="form-label">Date of Birth</label>
-                                        <input class="form-control flatpickr-input" id="s-date"
-                                            placeholder="Select date" />
-                                    </div>
-                                    <div class="input-wrapper mb-3">
-                                        <label for="dob" class="form-label">Date of Birth</label>
-                                        <input class="form-control flatpickr-input" id="e-date"
-                                            placeholder="Select date" />
-                                    </div>
-
-                                    <div class="input-wrapper mb-3 w-100">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                Dropdown button
-                                            </button>
-                                            <ul class="dropdown-menu bg-gray">
-                                                <li><a class="dropdown-item text-black" href="#">Action</a></li>
-                                                <li><a class="dropdown-item text-black" href="#">Another
-                                                        action</a></li>
-                                                <li><a class="dropdown-item text-black" href="#">Something else
-                                                        here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-wrapper mb-3 w-100">
-                                        <label for="" class="form-label">Upload Picture</label>
-                                        <input type="file" name="" id="" class="form-control">
-                                    </div>
+                            <!-- Description -->
+                            <div class="input-wrapper mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea id="description" rows="5" cols="30" class="form-control" wire:model.defer="description"
+                                    placeholder="Enter description"></textarea>
+                                @error('description')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <!-- Minimum and Maximum entries (2 inputs in 1 row) -->
+                            <div class="d-flex gap-3 mb-3">
+                                <div class="w-50">
+                                    <label for="entry_cost" class="form-label">Minimum Tickets to Enter</label>
+                                    <input type="number" id="entry_cost" class="form-control"
+                                        wire:model.defer="entry_cost" placeholder="Min Tickets">
+                                    @error('entry_cost')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
-
+                                <div class="w-50">
+                                    <label for="max_entries_per_user" class="form-label">Maximum Entries Per
+                                        User</label>
+                                    <input type="number" id="max_entries_per_user" class="form-control"
+                                        wire:model.defer="max_entries_per_user" placeholder="Max Entries">
+                                    @error('max_entries_per_user')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-custom">Save changes</button>
+
+                            <!-- Date Range -->
+                            <div class=" mb-3">
+                                <div wire:ignore class="input-wrapper">
+                                    <label for="date_range" class="form-label">Raffle Duration</label>
+                                    <input type="text" id="date_range" class="form-control"
+                                        wire:model.defer="date_range" placeholder="Select start and end date" readonly>
+                                </div>
+                                @error('date_range')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+
+                            <!-- Slots -->
+                            <div class="input-wrapper mb-3">
+                                <label for="slots" class="form-label">Slots (No of Users that can enter in
+                                    Raffle)</label>
+                                <input type="number" id="slots" class="form-control" wire:model.defer="slots"
+                                    placeholder="Enter Slots">
+                                @error('slots')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <!-- Prize -->
+                            <div class="input-wrapper mb-3">
+                                <label for="prize" class="form-label">Prize (No of Tickets as Reward)</label>
+                                <input type="number" id="prize" class="form-control" wire:model.defer="prize"
+                                    placeholder="Enter prize">
+                                @error('prize')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <!-- Upload Picture -->
+                            <div class="input-wrapper mb-3">
+                                <label for="image" class="form-label">Upload Image</label>
+                                <input type="file" id="image" class="form-control" wire:model="image">
+                                <div wire:loading wire:target="image" class="text-primary mt-2">
+                                    Uploading Image...
+                                </div>
+                                @if ($image)
+                                    <div class="text-success mt-2">
+                                        Image Uploaded Successfully!
+                                    </div>
+                                @endif
+                                @error('image')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn-custom" wire:click="createRaffle">Save
+                                Raffle</button>
+                        </div>
+
                     </div>
                 </div>
-
             </div>
+        </div>
 
-            <div class="body table-responsive rounded shadow">
-                <table class="table table table-dark table-hover mb-0">
-                    <thead>
+        <div class="table-responsive rounded shadow">
+            <table class="table table-dark table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Prize</th>
+                        <th>Entries</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($raffles as $index => $raffle)
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <td>{{ $raffles->firstItem() + $index }}</td>
+                            <td>{{ $raffle->title }}</td>
+                            <td>{{ $raffle->prize ?? '-' }}</td>
+                            <td>{{ $raffle->entry_cost }} Min / {{ $raffle->max_entries_per_user }} Max</td>
+                            <td>{{ $raffle->start_date->format('M d, Y') }}</td>
+                            <td>{{ $raffle->end_date->format('M d, Y') }}</td>
+                            <td>{{ ucfirst($raffle->status) }}</td>
                         </tr>
-                    </thead>
-                    <tbody>
+                    @empty
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td colspan="7" class="text-center">No raffles found.</td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>@social</td>
-                        </tr>
-                    </tbody>
-                </table>
+                    @endforelse
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="mt-3">
+                {{ $raffles->links() }}
             </div>
         </div>
     </section>
@@ -137,30 +172,17 @@
 
 @push('js')
     <script>
-        $("#s-date").flatpickr({
+        $("#date_range").flatpickr({
+            mode: "range",
             dateFormat: "Y-m-d",
-            maxDate: "today",
-            defaultDate: null,
-            minDate: "1900-01-01",
-            enableTime: false,
+            enableTime: true,
             altInput: true,
-            altFormat: "F j, Y",
+            altFormat: "F j, Y H:i",
             allowInput: true,
-            clickOpens: true,
-            disableMobile: false
+            time_24hr: true,
         });
-
-        $("#e-date").flatpickr({
-            dateFormat: "Y-m-d",
-            maxDate: "today",
-            defaultDate: null,
-            minDate: "1900-01-01",
-            enableTime: false,
-            altInput: true,
-            altFormat: "F j, Y",
-            allowInput: true,
-            clickOpens: true,
-            disableMobile: false
+        Livewire.on('raffleCreated', () => {
+            $('#createRaffleModal').modal('hide');
         });
     </script>
 @endpush

@@ -190,13 +190,3 @@
         });
     });
 </script>
-
-@push('js')
-    <script>
-        window.addEventListener('redirect-after-delay', event => {
-            setTimeout(() => {
-                window.location.href = event.detail.url;
-            }, event.detail.delay);
-        });
-    </script>
-@endpush

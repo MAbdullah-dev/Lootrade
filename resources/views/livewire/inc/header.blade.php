@@ -27,7 +27,7 @@
             <button class="btn-custom position-relative">
                 <i class="fa-solid fa-ticket me-1"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    3
+                    {{ $ticketCount }}
                 </span>
             </button>
             @if (!Auth::check())
@@ -36,7 +36,9 @@
             @if (Auth::check())
                 <div class="user-avatar dropdown">
                     <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('assets/images/dummy-profile-photo.png') }}" alt="Profile">
+                        <img src="{{ Auth::check() && Auth::user()->profile_picture ? Storage::url(Auth::user()->profile_picture) : asset('assets/images/dummy-profile-photo.png') }}"
+                            alt="Profile">
+
                         <i class="fa-solid fa-sort-down ms-2"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">

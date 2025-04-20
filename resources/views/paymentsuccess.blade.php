@@ -54,7 +54,7 @@
             color: #ccc;
         }
 
-        .btn {
+        .btn-go-to {
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
@@ -67,7 +67,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
+        .btn-go-to:hover {
             background-color: #00cc00;
         }
     </style>
@@ -82,7 +82,7 @@
         <p><strong>Transaction ID:</strong> {{ Str::limit($transaction->stripe_transaction_id, 20, '...') }}</p>
         <p><strong>Total Amount Paid:</strong> ${{ number_format($transaction->total_price, 2) }}</p>
 
-        <a href="/" class="btn">Go to Dashboard</a>
+        <a href="/" class="btn-go-to">Go to Dashboard</a>
     </div>
 </body>
 

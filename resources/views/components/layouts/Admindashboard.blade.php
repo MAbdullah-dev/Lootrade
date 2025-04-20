@@ -31,6 +31,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @livewireScripts
     @stack('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

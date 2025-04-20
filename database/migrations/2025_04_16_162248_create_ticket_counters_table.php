@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ticket_counter', function (Blueprint $table) {
+        Schema::create('ticket_counters', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('next_ticket')->default(1);
+            $table->timestamps();
         });
 
-        DB::table('ticket_counter')->insert(['id' => 1, 'next_ticket' => 1]);
+        DB::table('ticket_counters')->insert(['id' => 1, 'next_ticket' => 1]);
     }
 
     /**

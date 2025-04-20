@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
@@ -20,10 +20,19 @@ class User extends Authenticatable
         'date_of_birth',
         'joined_date',
         'role_id',
+        'email_verified_at',
         'ticket_balance',
         'profile_completion_awarded',
-        'last_login_award_date',
         'last_login_at',
+        'last_login_award_date',
+    ];
+
+    protected $dates = [
+        'date_of_birth',
+        'joined_date',
+        'email_verified_at',
+        'last_login_at',
+        'last_login_award_date',
     ];
 
     protected $hidden = [
@@ -32,52 +41,51 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'email_verified_at'         => 'datetime',
-        'date_of_birth'             => 'date',
-        'joined_date'               => 'date',
-        'last_login_award_date'     => 'date',
-        'profile_completion_awarded' => 'boolean',
+        'date_of_birth' => 'date:Y-m-d',
     ];
-
 
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
 
-
     public function socialAccounts()
     {
         return $this->hasMany(UserSocialAccount::class);
     }
 
-
-    // public function userTickets()
-    // {
-    //     return $this->hasMany(UserTicket::class);
-    // }
-
+    public function tickets()
+    {
+        return $this->hasMany(UserTicket::class);
+    }
 
     public function raffleTickets()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(RaffleTicket::class);
     }
 
-
-    public function transactions()
+    public function winners()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Winner::class);
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function auditLogs()
+    {
+        return $this->hasMany(AuditLog::class);
+    }
 
     public function supportTickets()
     {
         return $this->hasMany(SupportTicket::class);
     }
 
-
-    public function auditLogs()
+    public function transactions()
     {
-        return $this->hasMany(AuditLog::class);
+        return $this->hasMany(Transaction::class);
     }
 }

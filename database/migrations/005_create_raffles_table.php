@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('entry_cost')->default(1);
             $table->integer('max_entries_per_user')->nullable();
             $table->integer('prize')->nullable();
+            $table->integer('slots')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('status', 20)->virtualAs("
@@ -30,8 +31,6 @@ return new class extends Migration
                     ELSE 'past'
                 END
             ")->stored();
-
-            // $table->index('status');
 
             $table->timestamps();
         });

@@ -5,32 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ticket extends Model
+class UserTicket extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'raffle_id',
-        'user_ticket_id',
         'ticket_number',
+        'status',
+        'acquisition_type',
     ];
 
-   
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    
-    public function raffle()
+    public function raffleTickets()
     {
-        return $this->belongsTo(Raffle::class);
-    }
-
-    
-    public function userTicket()
-    {
-        return $this->belongsTo(UserTicket::class, 'user_ticket_id');
+        return $this->hasMany(RaffleTicket::class);
     }
 }

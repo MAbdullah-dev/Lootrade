@@ -83,8 +83,11 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->login_email, 'password' => $this->login_password])) {
             alert_success('Login successful!');
-            $this->dispatch('redirect-after-delay', url: route('home'), delay: 1000);
-            return;
+            if(Auth::user()->role_id == 1){
+                return redirect('/home');
+            }elseif(Auth::user()->role_id == 2){
+                return redirect('/admin/dashboard');
+            }
         }
 
         alert_error('Login failed!');
@@ -113,8 +116,7 @@ class Login extends Component
 
         alert_success('Registered successfully!');
 
-            $this->dispatch('redirect-after-delay', url: route('home'), delay: 3000);
-            return;
+         return redirect('/home');
     }
 
     public function redirectToGoogleLogin(){

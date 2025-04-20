@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\UserSocialAccount;
+use App\Services\TicketGenerationService;
+
 
 class Profile extends Component
 {
@@ -26,9 +28,9 @@ class Profile extends Component
     protected $rules = [
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
-        'username' => 'required|string|max:255|unique:users,username',
+        'username' => 'required|string|max:255|unique:users,   username',
         'date_of_birth' => 'nullable|date|before:today',
-        'profile_picture' => 'nullable|image|max:2048',
+        'profile_picture' => 'nullable|image|max:5120',
     ];
 
     public function mount()
@@ -55,30 +57,63 @@ class Profile extends Component
     }
 
     public function save()
-    {
-        $this->validate();
+{
+    $this->rules['username'] = 'required|string|max:255|unique:users,username,' . Auth::id();
+    $this->validate();
 
-        $user = Auth::user();
+    $user = Auth::user();
 
-
-        if ($this->profile_picture) {
-            if ($user->profile_picture) {
-                Storage::disk('public')->delete($user->profile_picture);
-            }
-
-            $path = $this->profile_picture->store('profile-pictures', 'public');
-            $user->profile_picture = $path;
+    if ($this->profile_picture) {
+        if ($user->profile_picture && Storage::disk('public')->exists($user->profile_picture)) {
+            Storage::disk('public')->delete($user->profile_picture);
         }
+        $path = $this->profile_picture->store('profile‑pictures', 'public');
+        $user->profile_picture = $path;
+    }
+
+    $user->update([
+        'first_name' => $this->first_name,
+        'last_name'  => $this->last_name,
+        'username'   => $this->username,
+        'date_of_birth' => $this->date_of_birth,
+    ]);
+
+    if (! $user->profile_completion_awarded
+        && $user->first_name
+        && $user->last_name
+        && $user->username
+        && $user->date_of_birth
+        && $user->profile_picture
+    ) {
+
+        app(TicketGenerationService::class)
+            ->generateTickets($user->id, 10, 'earned');
 
         $user->update([
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'username' => $this->username,
-            'date_of_birth' => $this->date_of_birth,
+            'profile_completion_awarded' => true,
+            'ticket_balance'             => $user->ticket_balance + 10,
         ]);
 
-        session()->flash('message', 'Profile updated successfully!');
+        alert_success('🎉 You’ve earned 10 tickets for completing your profile!');
     }
+    else{
+        alert_success('Profile updated successfully!');
+    }
+}
+
+    public function redirectToGoogleLogin(){
+         return redirect('auth/google', 'google');
+    }
+    public function redirectToDiscordLogin()
+    {
+        return redirect('auth/discord', 'discord');
+    }
+
+        public function redirectToTwitterLogin()
+    {
+        return redirect('auth/twitter', 'twitter');
+    }
+
 
     public function render()
     {

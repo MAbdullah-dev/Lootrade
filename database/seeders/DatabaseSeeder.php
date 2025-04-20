@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             TicketPackageSeeder::class,
             TicketPackagesTypeSeeder::class,
+            AdminSeeder::class,
         ]);
     }
 }
