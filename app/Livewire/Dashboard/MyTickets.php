@@ -13,6 +13,8 @@ class MyTickets extends Component
     public $search = '';
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
+    protected $paginationTheme = 'bootstrap'; // if you're using Bootstrap pagination
+
 
     public function updatingSearch()
     {
@@ -33,11 +35,11 @@ class MyTickets extends Component
     public function render()
     {
         $tickets = UserTicket::where('user_id', auth()->id())
-        ->when($this->search, function ($query) {
-            $query->where('ticket_number', 'like', '%' . $this->search . '%');
-        })
-        ->orderBy($this->sortField, $this->sortDirection)
-        ->paginate(10);
+            ->when($this->search, function ($query) {
+                $query->where('ticket_number', 'like', '%' . $this->search . '%');
+            })
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(5);
 
 
         return view('livewire.dashboard.my-tickets', [

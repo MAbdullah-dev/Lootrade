@@ -28,8 +28,8 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @stack('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

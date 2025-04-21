@@ -57,6 +57,6 @@
     </div>
 
     <div class="mt-4">
-        {{ $tickets->links('pagination::bootstrap-5') }}
+        {{ $tickets->links() }}
     </div>
 </div>

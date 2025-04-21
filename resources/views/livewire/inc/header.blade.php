@@ -9,7 +9,7 @@
 
         <!-- Navigation -->
         <nav>
-            <ul class="nav">
+            <ul class="nav gap-4">
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link" wire:navigate>Home</a>
                 </li>
