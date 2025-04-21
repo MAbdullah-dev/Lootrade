@@ -1,3 +1,10 @@
 .users{
 flex: 1;
 }
+
+.users .modal .modal-content {
+    background-color: #222;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+}

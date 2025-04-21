@@ -29,6 +29,7 @@ return new class extends Migration
             $table->boolean('profile_completion_awarded')->default(false);
             $table->date('last_login_at')->nullable();
             $table->date('last_login_award_date')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
