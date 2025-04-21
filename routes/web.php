@@ -16,7 +16,8 @@ use App\Livewire\Dashboard\Support;
 use App\Livewire\Pages\Home;
 use App\Livewire\Pages\Tickets;
 use App\Livewire\Welcome;
-use App\Livewire\Raffles;
+use App\Livewire\Pages\Raffles;
+use App\Livewire\Pages\RaffleDetail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Welcome::class)->name('welcome');
@@ -25,6 +26,7 @@ Route::get('/mytickets', MyTickets::class)->name('myTickets');
 Route::get('/support', Support::class)->name('support');
 Route::get('/home', Home::class)->name('home');
 Route::get('/raffles', Raffles::class)->name('raffles');
+Route::get('/raffle/{id}', RaffleDetail::class)->name('raffle');
 Route::get('/tickets', Tickets::class)->name('tickets');
 
 

@@ -1,0 +1,37 @@
+.raffle-detail {
+    background-color: #000;
+    color: #fff;
+    padding: 50px 0;
+}
+
+.raffle-detail h1 {
+    color: #fe3839;
+    font-size: 36px;
+}
+.raffle-detail h1::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 2px;
+    background-color: #fe3839;
+    margin: 5px auto;
+    margin-bottom: 20px;
+}
+.raffle-detail .raffle-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.raffle-detail .raffle-description {
+    font-size: 16px;
+    color: #ccc;
+}
+
+.raffle-detail .raffle-info p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.raffle-detail .raffle-info i {
+    color: #fe3839;
+}

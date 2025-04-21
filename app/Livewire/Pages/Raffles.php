@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Pages;
 
 use Livewire\Component;
-use App\Models\Raffle; // Assuming your model is called Raffle
+use App\Models\Raffle;
 use Carbon\Carbon;
 
 class Raffles extends Component
@@ -21,8 +21,6 @@ class Raffles extends Component
             ->latest()
             ->get();
 
-            //  dd($this->activeRaffles);
-
         $this->upcomingRaffles = Raffle::where('start_date', '>', $today)
             ->latest()
             ->get();
@@ -34,6 +32,6 @@ class Raffles extends Component
 
     public function render()
     {
-        return view('livewire.raffles');
+        return view('livewire.pages.raffles');
     }
 }
