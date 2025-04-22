@@ -24,7 +24,7 @@
                         <form wire:submit.prevent="login">
                             <div class="form-group">
                                 <label for="login_email">Email</label>
-                                <input type="email" id="login_email" wire:model.debounce.500ms="login_email"
+                                <input type="email" id="login_email" wire:model.defer="login_email"
                                     name="login_email">
                                 @error('login_email')
                                     <span class="text-danger">{{ $message }}</span>
@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="login_password">Password</label>
-                                <input type="password" id="login_password" wire:model.debounce.500ms="login_password"
+                                <input type="password" id="login_password" wire:model.defer="login_password"
                                     name="login_password">
                                 @error('login_password')
                                     <span class="text-danger">{{ $message }}</span>

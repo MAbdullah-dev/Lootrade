@@ -13,7 +13,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="{{ asset('assets/js/jqery_min.js') }}"></script>
     @livewireStyles
-    @vite(['resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 
     <title> @yield('title', 'Page Title') </title>
 </head>

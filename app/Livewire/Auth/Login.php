@@ -83,14 +83,14 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->login_email, 'password' => $this->login_password])) {
             alert_success('Login successful!');
-            if(Auth::user()->role_id == 1){
+            if (Auth::user()->role_id == 1) {
                 return redirect('/home');
-            }elseif(Auth::user()->role_id == 2){
+            } elseif (Auth::user()->role_id == 2) {
                 return redirect('/admin/dashboard');
             }
+        } else {
+            alert_error('Login failed!');
         }
-
-        alert_error('Login failed!');
     }
 
     public function register()
@@ -116,18 +116,19 @@ class Login extends Component
 
         alert_success('Registered successfully!');
 
-         return redirect('/home');
+        return redirect('/home');
     }
 
-    public function redirectToGoogleLogin(){
-         return redirect('auth/google', 'google');
+    public function redirectToGoogleLogin()
+    {
+        return redirect('auth/google', 'google');
     }
     public function redirectToDiscordLogin()
     {
         return redirect('auth/discord', 'discord');
     }
 
-        public function redirectToTwitterLogin()
+    public function redirectToTwitterLogin()
     {
         return redirect('auth/twitter', 'twitter');
     }

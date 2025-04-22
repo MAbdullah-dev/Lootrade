@@ -45,36 +45,32 @@
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
-        let chart = null;
-
         function initializeChart() {
-            // Destroy existing chart instance if it exists
-            if (chart && typeof chart.destroy === 'function') {
-                chart.destroy();
-            }
-
-            // Check if the chart container exists
             const chartContainer = document.querySelector("#revenueChart");
+
             if (!chartContainer) {
                 console.error("Chart container #revenueChart not found in DOM");
                 return;
             }
 
-            var options = {
+            // If chart is already rendered on the DOM, destroy it
+            if (chartContainer.chartInstance && typeof chartContainer.chartInstance.destroy === 'function') {
+                chartContainer.chartInstance.destroy();
+            }
+
+            const options = {
                 chart: {
                     type: 'bar',
                     height: 350,
-                    background: '#000', // dark background
+                    background: '#000',
                     foreColor: '#fff'
                 },
                 series: [{
                     name: 'Revenue',
                     data: @json(array_values($monthlyRevenue))
-
                 }],
                 xaxis: {
                     categories: @json($monthLabels)
-
                 },
                 colors: ['#007bff'],
                 title: {
@@ -86,27 +82,21 @@
                 }
             };
 
-            // Initialize the chart
-            chart = new ApexCharts(chartContainer, options);
-            chart.render();
+            const newChart = new ApexCharts(chartContainer, options);
+            newChart.render();
+
+            // Store the chart instance on the DOM element
+            chartContainer.chartInstance = newChart;
         }
 
-        // Initial page load
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeChart();
+        document.addEventListener('DOMContentLoaded', initializeChart);
+
+        window.addEventListener('livewire:navigated', () => {
+            setTimeout(initializeChart, 100);
         });
 
-        // Livewire navigation event
-        window.addEventListener('livewire:navigated', function() {
-            // Small delay to ensure DOM is fully updated
-            setTimeout(() => {
-                initializeChart();
-            }, 50);
-        });
-
-        // Fallback for Livewire updates (if not using wire:navigate exclusively)
-        document.addEventListener('livewire:update', function() {
-            initializeChart();
+        document.addEventListener('livewire:update', () => {
+            setTimeout(initializeChart, 100);
         });
     </script>
 @endpush
