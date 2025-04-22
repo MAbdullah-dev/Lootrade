@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('ticket_number', 20)->unique();
-            $table->enum('status', ['available', 'assigned'])->default('available');
+            $table->enum('status', ['available', 'assigned', 'consumed'])->default('available');
             $table->enum('acquisition_type', ['earned', 'purchased']);
 
             $table->index(['user_id', 'status']);
