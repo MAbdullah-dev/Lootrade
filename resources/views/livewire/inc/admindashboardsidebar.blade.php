@@ -44,7 +44,7 @@
                         <i class="fa-solid fa-box"></i> Ticket packages type
                     </a>
                 </li>
-                <li class="nav-item">
+                <li style="cursor: pointer" class="nav-item">
                     <a class="d-flex align-items-center" wire:click="logout()">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>

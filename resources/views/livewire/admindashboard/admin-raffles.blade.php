@@ -168,9 +168,6 @@
             </div>
         </div>
     </section>
-</div>
-
-@push('js')
     <script>
         $("#date_range").flatpickr({
             mode: "range",
@@ -185,4 +182,4 @@
             $('#createRaffleModal').modal('hide');
         });
     </script>
-@endpush
+</div>
