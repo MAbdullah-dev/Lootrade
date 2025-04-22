@@ -28,8 +28,13 @@
                             @endif
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#userDetailModal"
-                                wire:click="viewUser({{ $user->id }})">
+                            <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#giveTicketModal"
+                                wire:click="prepareToGiveTickets({{ $user->id }})">
+                                Give Ticket
+                            </button>
+
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#userDetailModal" wire:click="viewUser({{ $user->id }})">
                                 View
                             </button>
 
@@ -83,4 +88,38 @@
         </div>
     </div>
 
+    <div wire:ignore.self class="modal fade" id="giveTicketModal" tabindex="-1" aria-labelledby="giveTicketModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <form wire:submit.prevent="giveTickets" class="modal-content shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="giveTicketModalLabel">Give Tickets to
+                        {{ $selectedUser['first_name'] ?? '' }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="resetForm"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="ticketCount" class="form-label">Number of Tickets</label>
+                        <input type="number" min="1" wire:model="ticketCount" class="form-control"
+                            id="ticketCount" placeholder="Enter number of tickets">
+                        @error('ticketCount')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        wire:click="resetForm">Cancel</button>
+                    <button type="submit" class="btn btn-success">Give</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+@push('js')
+    <script>
+        window.addEventListener('close-modal', () => {
+            $('#giveTicketModal').modal('hide');
+        });
+    </script>
+@endpush
