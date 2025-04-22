@@ -2,11 +2,15 @@
     background-color: #000;
     color: #fff;
     padding: 50px 0;
+    height: 100dvh;
 }
 
 .raffle-detail h1 {
     color: #fe3839;
     font-size: 36px;
+    position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
 }
 .raffle-detail h1::after {
     content: "";
@@ -14,9 +18,11 @@
     width: 100px;
     height: 2px;
     background-color: #fe3839;
-    margin: 5px auto;
-    margin-bottom: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
+
 .raffle-detail .raffle-image img {
     max-width: 100%;
     height: auto;
