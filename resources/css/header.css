@@ -94,9 +94,9 @@ header .mobile-nav nav .nav-item:hover::before {
 
 header .mobile-nav {
     position: fixed;
-    top: 106px;
+    top: 80px;
     right: 0;
-    height: calc(100vh - 106px);
+    height: calc(100vh - 80px);
     width: 100%;
     max-width: 60%;
     z-index: 9999;
