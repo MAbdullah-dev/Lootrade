@@ -20,8 +20,8 @@
                 </div>
             </div>
             <div class="col-lg-5">
-                <div class="card tickets-card p-4 h-100">
-                    <h5 class="card-title">Selected Package</h5>
+                <div class="card tickets-card p-4 h-100 px-5">
+                    <h5 class="card-title text-center">Selected Package</h5>
 
                     @if ($selectedPackage)
                         <div class="selected-package mb-3">
@@ -47,8 +47,10 @@
                             </button>
                         </div>
                     @else
-                        <p class="text-light">Please select a package to continue.</p>
-                        <img src="{{ asset('assets/svg/animate.svg') }}" alt="">
+                        <div class="d-flex align-items-center flex-column justify-content-center h-100">
+                            <p class="text-light">Please select a package to continue.</p>
+                            <img src="{{ asset('assets/images/Box.gif') }}" alt="">
+                        </div>
                     @endif
                 </div>
             </div>
