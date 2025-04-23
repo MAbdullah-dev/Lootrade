@@ -206,3 +206,9 @@
     transform: none;
     box-shadow: none;
 }
+
+@media (max-width: 1024px) {
+    .form-wrapper ol {
+        flex-wrap: wrap;
+    }
+}

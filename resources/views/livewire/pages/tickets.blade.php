@@ -11,7 +11,7 @@
                                 <h5 class="card-title">{{ $Ticketpackage->type }}</h5>
                                 <p class="card-text">Tickets: {{ $Ticketpackage->tickets }}</p>
                                 <p class="card-price">${{ $Ticketpackage->price }}</p>
-                                <button class="btn btn-select" wire:click="selectPackage({{ $Ticketpackage->id }})">
+                                <button class="btn-select" wire:click="selectPackage({{ $Ticketpackage->id }})">
                                     Select Package
                                 </button>
                             </div>
@@ -20,8 +20,8 @@
                 </div>
             </div>
             <div class="col-lg-5">
-                <div class="card tickets-card p-4 h-100">
-                    <h5 class="card-title">Selected Package</h5>
+                <div class="card tickets-card p-4 h-100 px-5">
+                    <h5 class="card-title text-center">Selected Package</h5>
 
                     @if ($selectedPackage)
                         <div class="selected-package mb-3">
@@ -42,12 +42,15 @@
                             </div>
                             <div class="sub-title">Total Price: ${{ $selectedPackage->price * $packageQuantity }}</div>
 
-                            <button class="btn btn-checkout mt-4 w-100" wire:click="checkout">
+                            <button class="btn-checkout mt-4 w-100" wire:click="checkout">
                                 Checkout
                             </button>
                         </div>
                     @else
-                        <p class="text-light">Please select a package to continue.</p>
+                        <div class="d-flex align-items-center flex-column justify-content-center h-100">
+                            <p class="text-light">Please select a package to continue.</p>
+                            <img src="{{ asset('assets/images/Box.gif') }}" alt="">
+                        </div>
                     @endif
                 </div>
             </div>

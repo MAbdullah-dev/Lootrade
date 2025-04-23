@@ -191,6 +191,7 @@
             slidesPerView: 3,
             spaceBetween: 20,
             loop: true,
+            grabCursor: true,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true

@@ -3,9 +3,9 @@
 
     <div class="form-wrapper mx-auto">
         <h5 class="mb-5">Profile Form</h5>
-        <ol class="d-flex align-items-center">
+        <ol class="d-flex align-items-center text-center gap-4 mb-4 ">
             <li><span class="text-secondary">Login everyday to receive a ticket each day.</span></li>
-            <li class="mx-2"><span class="text-secondary">Complete the profile to receive 10 tickets.</span></li>
+            <li><span class="text-secondary">Complete the profile to receive 10 tickets.</span></li>
             <li><span class="text-secondary">Connect Social Account to receive 10 tickets.</span></li>
         </ol>
         <form wire:submit="save">

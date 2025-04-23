@@ -12,7 +12,7 @@
                         <h2 class="fs-5 fw-semibold text-center">Sign In / Sign Up</h2>
                         <p class="text-left fs-6">Log in or sign up using your most active platform to ensure you
                             receive our winner's email.</p>
-                        <div class="option-btns w-100 d-flex flex-column align-items-center">
+                        <div class="option-btns w-100 d-flex flex-column align-items-center px-4">
                             <button wire:click="redirectToLogin" class="login-btn google-btn w-100">
                                 <img src="{{ asset('assets/svg/email-1-svgrepo-com.svg') }}" alt="">Continue
                                 with Email

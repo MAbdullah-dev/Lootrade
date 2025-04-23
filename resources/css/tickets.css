@@ -119,6 +119,11 @@
     margin-bottom: 20px;
 }
 
+.tickets-card img {
+    width: 300px;
+    border-radius: 12px 12px 0 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 992px) {
     .tickets-page .package-card {

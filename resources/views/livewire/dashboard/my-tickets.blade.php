@@ -1,32 +1,25 @@
 <div class="mytickets">
     <h5 class="mb-4">My Tickets</h5>
 
-    <div class="mb-4">
+    <div class="mb-4 px-4">
         <input type="text" wire:model.live="search" class="form-control" placeholder="Search by ticket number...">
     </div>
 
-    <div class="table-responsive rounded shadow">
-        <table class="table table-dark table-hover mb-0">
+    <!-- Responsive wrapper -->
+    <div class="table-responsive rounded shadow overflow-hidden px-4">
+        <table class="table table-dark table-hover table-bordered mb-0">
             <thead class="thead-light">
                 <tr>
                     <th wire:click="sortBy('ticket_number')" style="cursor: pointer;">
                         Ticket Number
                         @if ($sortField === 'ticket_number')
-                            @if ($sortDirection === 'asc')
-                                ▲
-                            @else
-                                ▼
-                            @endif
+                            {{ $sortDirection === 'asc' ? '▲' : '▼' }}
                         @endif
                     </th>
                     <th wire:click="sortBy('created_at')" style="cursor: pointer;">
                         Date
                         @if ($sortField === 'created_at')
-                            @if ($sortDirection === 'asc')
-                                ▲
-                            @else
-                                ▼
-                            @endif
+                            {{ $sortDirection === 'asc' ? '▲' : '▼' }}
                         @endif
                     </th>
                     <th>Status</th>

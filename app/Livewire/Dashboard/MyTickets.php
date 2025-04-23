@@ -39,7 +39,7 @@ class MyTickets extends Component
                 $query->where('ticket_number', 'like', '%' . $this->search . '%');
             })
             ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(5);
+            ->paginate(10);
 
 
         return view('livewire.dashboard.my-tickets', [
