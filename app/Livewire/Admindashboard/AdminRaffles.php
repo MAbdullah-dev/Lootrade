@@ -67,6 +67,13 @@ class AdminRaffles extends Component
         $this->dispatch('raffleCreated');
         alert_success('Raffle created successfully!');
     }
+
+    public function viewRaffle($raffleId)
+    {
+        return redirect()->route('admin.raffle.users', $raffleId);
+    }
+
+
     public function render()
     {
         $raffles = Raffle::where('title', 'like', '%' . $this->search . '%')

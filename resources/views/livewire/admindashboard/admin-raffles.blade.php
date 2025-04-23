@@ -141,6 +141,7 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,6 +154,22 @@
                             <td>{{ $raffle->start_date->format('M d, Y') }}</td>
                             <td>{{ $raffle->end_date->format('M d, Y') }}</td>
                             <td>{{ ucfirst($raffle->status) }}</td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-secondary"
+                                        wire:click="viewRaffle({{ $raffle->id }})">
+                                        <i class="fa-solid fa-user"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-primary"
+                                        wire:click="editRaffle({{ $raffle->id }})">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger"
+                                        wire:click="deleteRaffle({{ $raffle->id }})">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
                     @empty
                         <tr>

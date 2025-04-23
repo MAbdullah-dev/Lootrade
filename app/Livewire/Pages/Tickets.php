@@ -52,18 +52,16 @@ class Tickets extends Component
 
         $user = Auth::user();
 
-        // 1. Create pending transaction
         $transaction = Transaction::create([
             'user_id' => $user->id,
             'ticket_package_id' => $this->selectedPackage->id,
             'package_quantity' => $this->packageQuantity,
             'total_tickets' => $this->packageQuantity * $this->selectedPackage->tickets,
             'total_price' => $this->packageQuantity * $this->selectedPackage->price,
-            'stripe_transaction_id' => 'temp_' . uniqid(), // placeholder until actual session ID
+            'stripe_transaction_id' => 'temp_' . uniqid(),
             'payment_status' => 'pending',
         ]);
 
-        // 2. Create Stripe Checkout Session
         Stripe::setApiKey(config('services.stripe.secret'));
 
         $session = Session::create([
@@ -86,7 +84,6 @@ class Tickets extends Component
             'cancel_url' => route('checkout.cancel'),
         ]);
 
-        // 3. Update Stripe ID in transaction
         $transaction->update([
             'stripe_transaction_id' => $session->id
         ]);

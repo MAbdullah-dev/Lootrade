@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\GenerateTicketsJob;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -36,6 +37,18 @@ class CheckoutController extends Controller
                 ]);
                 Log::info('Transaction updated to paid: ' . $transaction->id);
 
+                GenerateTicketsJob::dispatch(
+                $transaction->user_id,
+                $transaction->total_tickets,
+                'purchase'
+            );
+
+            $user = $transaction->user;
+            if ($user) {
+                $user->increment('ticket_balance', $transaction->total_tickets);
+            } else {
+                Log::error('User not found for transaction: ' . $transaction->id);
+            }
                 return view('paymentsuccess', ['transaction' => $transaction]);
             }
 
