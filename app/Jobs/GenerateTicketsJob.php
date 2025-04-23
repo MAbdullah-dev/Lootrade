@@ -17,7 +17,7 @@ class GenerateTicketsJob implements ShouldQueue
     protected $quantity;
     protected $acquisitionType;
 
-    public function __construct($userId, $quantity, $acquisitionType = 'purchased')
+    public function __construct($userId, $quantity, $acquisitionType = 'earned')
     {
         $this->userId = $userId;
         $this->quantity = $quantity;

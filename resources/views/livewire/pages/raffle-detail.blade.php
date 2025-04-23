@@ -45,8 +45,7 @@
 
                     <div class="last-user-joined">
                         @if ($lastUserJoined)
-                            <p><strong>Last Participant Joined:</strong> {{ $lastUserJoined->name }}
-                                ({{ $lastUserJoined->email }})</p>
+                            <p><strong>Last Participant Joined:</strong> {{ $lastUserJoined->first_name }} {{ $lastUserJoined->last_name }}</p>
                         @else
                             <p><strong>No users have joined yet.</strong></p>
                         @endif
@@ -54,7 +53,7 @@
 
                     <div class="join-raffle mt-4">
                         <button class="btn-custom w-100 p-2" wire:click="openJoinModal"
-                            @disabled($alreadyJoined)>Join Raffle</button>
+                        >Join Raffle</button>
                     </div>
                 </div>
             </div>
@@ -63,24 +62,24 @@
     @if ($showJoinModal)
         <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Join Raffle</h5>
+                <div style="background-color: #222; color: #fff;" class="modal-content">
+                    <div class="modal-header border-0">
+                        {{-- <h5 class="modal-title">Join Raffle</h5> --}}
                         <button type="button" class="btn-close" wire:click="closeJoinModal"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-3">
+                        <div>
                             <label for="ticketsToUse" class="form-label">How many tickets?</label>
-                            <input type="number" id="ticketsToUse" wire:model="ticketsToUse" class="form-control"
+                            <input type="number" id="ticketsToUse" wire:model="joinTicketsCount" class="form-control"
                                 min="{{ $raffle->entry_cost }}" max="{{ $maxTicketsAvailable }}">
-                            <small class="text-muted">
+                            <h6 style="font-size: 14px;" class="mt-3">
                                 Minimum {{ $raffle->entry_cost }} - Maximum {{ $maxTicketsAvailable }} tickets
-                            </small>
+                            </h6>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" wire:click="closeJoinModal">Cancel</button>
-                        <button class="btn btn-primary" wire:click="confirmJoinRaffle">Confirm Join</button>
+                    <div class="modal-footer border-0">
+                        {{-- <button class="btn btn-secondary" wire:click="closeJoinModal">Cancel</button> --}}
+                        <button class="btn-custom p-2 w-100" wire:click="confirmJoinRaffle">Confirm Join</button>
                     </div>
                 </div>
             </div>

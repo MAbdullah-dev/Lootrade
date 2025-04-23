@@ -4,6 +4,8 @@ namespace App\Livewire\Pages;
 
 use App\Models\Raffle;
 use App\Models\RaffleTicket;
+use App\Models\UserTicket;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class RaffleDetail extends Component
@@ -14,6 +16,7 @@ class RaffleDetail extends Component
     public $joinTicketsCount = 1;
     public $alreadyJoined;
     public $showJoinModal;
+    public $maxTicketsAvailable;
 
     public function mount()
     {
@@ -24,48 +27,72 @@ class RaffleDetail extends Component
             ->with('user')
             ->first()
             ?->user;
+
+            $this->alreadyJoined = RaffleTicket::where('raffle_id', $this->id)
+        ->where('user_id', auth()->id())
+        ->exists();
     }
 
     public function openJoinModal()
     {
-    if ($this->raffle->status !== 'active') {
+
+     $user = auth()->user();
+
+     if ($this->raffle->status !== 'active') 
+     {
         alert_error('The raffle is not active.');
         return;
-    }
-    $alreadyJoined = RaffleTicket::where('raffle_id', $this->raffle->id)
+     }
+     $alreadyJoined = RaffleTicket::where('raffle_id', $this->raffle->id)
                             ->where('user_id', $user->id)
                             ->exists();
 
-    if ($alreadyJoined)
-    {
+     if ($alreadyJoined)
+     {
         alert_error('You have already joined this raffle.');
         return;
-    }
+     }
 
-    $availableTicketsCount = UserTicket::where('user_id', $user->id)
+     $availableTicketsCount = UserTicket::where('user_id', $user->id)
                             ->where('status', 'available')
                             ->count();
 
-    if ($availableTicketsCount < $this->raffle->entry_cost) {
+     if ($availableTicketsCount < $this->raffle->entry_cost) {
         alert_error("You must have at least {$this->raffle->entry_cost} tickets to join.");
         return;
+     }
+
+     $this->joinTicketsCount = $this->raffle->entry_cost;
+     $this->maxTicketsAvailable = min($availableTicketsCount, $this->raffle->max_entries_per_user);
+
+     $this->resetErrorBag();
+     $this->showJoinModal = true; 
     }
 
-    $thisjoinTicketsCount = $this->raffle->entry_cost;
-    $this->maxTicketsAvailable = min($availableTicketsCount, $this->raffle->max_entries_per_user);
+    public function closeJoinModal()
+{
+    $this->showJoinModal = false;
+}
 
-    $this->resetErrorBag();
-    $this->dispatchBrowserEvent('open-join-modal');
+public function confirmJoinRaffle()
+{
+    try {
+        $this->joinRaffle();
+        alert_success('Successfully joined the raffle!');
+        $this->showJoinModal = false;
+    } catch (\Exception $e) {
+        alert_error($e->getMessage());
     }
 
-    public function joinRaffle()
+}
+
+public function joinRaffle()
 {
     DB::transaction(function () {
         $user = auth()->user();
 
         if ($this->raffle->status !== 'active') {
-            alert_error('The raffle is not active.');
-            return;
+            throw new \Exception('The raffle is not active.');
         }
 
         $alreadyJoined = RaffleTicket::where('raffle_id', $this->raffle->id)
@@ -73,14 +100,12 @@ class RaffleDetail extends Component
                             ->exists();
 
         if ($alreadyJoined) {
-            alert_error('You have already joined this raffle.');
-            return;
+            throw new \Exception('You have already joined this raffle.');
         }
 
         if ($this->joinTicketsCount < $this->raffle->entry_cost ||
             $this->joinTicketsCount > $this->raffle->max_entries_per_user) {
-            alert_error('Invalid number of tickets selected.');
-            return;
+            throw new \Exception('Invalid number of tickets selected.');
         }
 
         $availableTickets = UserTicket::where('user_id', $user->id)
@@ -90,8 +115,7 @@ class RaffleDetail extends Component
                             ->get();
 
         if ($availableTickets->count() < $this->joinTicketsCount) {
-            alert_error('You do not have enough available tickets.');
-            return;
+            throw new \Exception('You do not have enough available tickets.');
         }
 
         foreach ($availableTickets as $ticket) {
@@ -103,12 +127,11 @@ class RaffleDetail extends Component
             ]);
 
             $ticket->update(['status' => 'assigned']);
+            $user->update(['ticket_balance' => $user->ticket_balance - $this->joinTicketsCount]);
         }
     });
-
-    $this->dispatchBrowserEvent('close-join-modal');
-    alert_success('Successfully joined the raffle!');
 }
+
 
 
     public function render()
