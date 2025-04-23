@@ -11,7 +11,7 @@
                                 <h5 class="card-title">{{ $Ticketpackage->type }}</h5>
                                 <p class="card-text">Tickets: {{ $Ticketpackage->tickets }}</p>
                                 <p class="card-price">${{ $Ticketpackage->price }}</p>
-                                <button class="btn btn-select" wire:click="selectPackage({{ $Ticketpackage->id }})">
+                                <button class="btn-select" wire:click="selectPackage({{ $Ticketpackage->id }})">
                                     Select Package
                                 </button>
                             </div>
@@ -42,12 +42,13 @@
                             </div>
                             <div class="sub-title">Total Price: ${{ $selectedPackage->price * $packageQuantity }}</div>
 
-                            <button class="btn btn-checkout mt-4 w-100" wire:click="checkout">
+                            <button class="btn-checkout mt-4 w-100" wire:click="checkout">
                                 Checkout
                             </button>
                         </div>
                     @else
                         <p class="text-light">Please select a package to continue.</p>
+                        <img src="{{ asset('assets/svg/animate.svg') }}" alt="">
                     @endif
                 </div>
             </div>
