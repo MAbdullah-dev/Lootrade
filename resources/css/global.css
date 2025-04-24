@@ -103,3 +103,25 @@ ul.pagination {
     cursor: not-allowed;
     opacity: 0.6;
 }
+
+.notification-bell {
+    top: 150px;
+    right: 45px;
+    z-index: 9;
+    background: #222;
+    padding: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: #fe3839;
+}
+
+.notification-bell i {
+    font-size: 1.25rem;
+}
+
+.offcanvas {
+    z-index: 10000;
+    background-color: #222;
+    color: #fe3839;
+}

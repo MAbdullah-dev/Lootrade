@@ -112,7 +112,21 @@
             <i class="fab fa-discord"></i>
         </button>
     </div>
-
+    <div class="notification-bell position-fixed d-flex align-items-center justify-content-center"
+        data-bs-toggle="offcanvas" data-bs-target="#notificationCanvas" aria-controls="notificationCanvas">
+        <i class="fa-solid fa-bell"></i>
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="notificationCanvas"
+        aria-labelledby="notificationCanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="notificationCanvasLabel">Notifications</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>No new notifications.</p>
+            <!-- You can load notifications here dynamically -->
+        </div>
+    </div>
 </div>
 
 @push('js')

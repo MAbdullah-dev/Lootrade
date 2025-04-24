@@ -1,4 +1,4 @@
-{{-- @vite(['resources/css/app.css']) --}}
+ {{-- @vite(['resources/css/app.css']) --}}
 <header class="border-bottoms">
     <div class="container d-flex align-items-center justify-content-between">
         <!-- Logo -->
