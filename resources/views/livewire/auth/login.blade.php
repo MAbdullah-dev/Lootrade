@@ -1,5 +1,5 @@
 <section class="logins">
-    <div class="container-fluid">
+    <div class="container">
         <div class="inner">
             <div class="tab-wrapper">
                 <ul class="nav nav-tabs" id="myTabs" role="tablist">
