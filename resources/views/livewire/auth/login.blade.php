@@ -1,5 +1,5 @@
 <section class="logins">
-    <div class="container">
+    <div class="container-fluid">
         <div class="inner">
             <div class="tab-wrapper">
                 <ul class="nav nav-tabs" id="myTabs" role="tablist">
@@ -175,18 +175,3 @@
         </div>
     </div>
 </section>
-
-<script>
-    document.addEventListener('livewire:initialized', () => {
-        flatpickr('#register_date_of_birth', {
-            altInput: true,
-            altFormat: 'F j, Y',
-            dateFormat: 'Y-m-d',
-            maxDate: 'today',
-            defaultDate: @json($this->register_date_of_birth),
-            onChange: function(selectedDates, dateStr) {
-                @this.set('register_date_of_birth', dateStr);
-            }
-        });
-    });
-</script>
