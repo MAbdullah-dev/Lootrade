@@ -144,7 +144,36 @@
                             interactive experiences, Ghitloot is the perfect platform for you. Connect with us today to
                             learn how we can help you reward and celebrate your community in a fun and impactful way.
                         </p>
-                        <button class="btn-custom mt-3">Contact with Us</button>
+                        <button class="btn-custom mt-3" onclick="window.location.href='mailto:join@ghitloot.com'">
+                            Contact with Us
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="inner">
+                <div class="row">
+                    <div class="col text-center">
+                        <h2 class="text-uppercase fs-5">Join Our Newsletter</h2>
+                        <p class="mt-4">
+                            Stay updated with the latest news and offers from Ghitloot. Subscribe to our newsletter and be the first to know about our exciting giveaways, community events, and more!
+                        </p>
+                        <form wire:submit.prevent="subscribe">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" wire:model="email" id="email" class="form-control" placeholder="Enter your email">
+
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mt-3">Subscribe</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -183,3 +183,73 @@
         }
     }
 }
+.newsletter-section {
+    background-color: #1b1b1b;
+    padding: 40px 0;
+
+    h2 {
+        color: #ffffff;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 24px;
+    }
+
+    p {
+        color: #ffffff;
+        font-size: 18px;
+        line-height: 1.6;
+        font-weight: 300;
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-top: 30px;
+    }
+
+    label {
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        width: 100%;
+        max-width: 400px;
+        padding: 12px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin: 0 auto;
+        font-size: 16px;
+        color: #333;
+        background-color: #f4f4f4;
+    }
+
+    .form-control:focus {
+        border-color: #fe3839;
+        box-shadow: 0 0 5px rgba(254, 56, 57, 0.5);
+    }
+
+    .text-danger {
+        color: #fe3839;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        background-color: #fe3839;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #e63946;
+    }
+}
+

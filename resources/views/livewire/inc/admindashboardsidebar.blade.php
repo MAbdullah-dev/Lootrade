@@ -44,6 +44,12 @@
                         <i class="fa-solid fa-box"></i> <span>Ticket packages type</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'admin.newsletter' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('admin.newsletter') }}" wire:navigate>
+                        <i class="fa-solid fa-envelope"></i> <span>News Letter subscribers</span>
+                    </a>
+                </li>
                 <li style="cursor: pointer" class="nav-item">
                     <a class="d-flex align-items-center" wire:click="logout()">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>

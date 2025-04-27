@@ -41,6 +41,11 @@
                             <div class="form-btn">
                                 <button type="submit">Login</button>
                             </div>
+                            <div class="text-end mt-2">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" class="text-sm text-primary">
+                                    Forgot your password?
+                                </a>
+                            </div>
 
                             <div class="divider">
                                 <span>OR</span>
@@ -151,7 +156,11 @@
                             <div class="form-btn">
                                 <button type="submit">Register</button>
                             </div>
-
+                            <div class="text-end mt-2">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" class="text-sm text-primary">
+                                    Forgot your password?
+                                </a>
+                            </div>
                             <div class="divider">
                                 <span>OR</span>
                             </div>
@@ -174,4 +183,26 @@
             </div>
         </div>
     </div>
+    <livewire:auth.forgot-password />
 </section>
+<script>
+    document.addEventListener('livewire:initialized', () => {
+        flatpickr('#register_date_of_birth', {
+            altInput: true,
+            altFormat: 'F j, Y',
+            dateFormat: 'Y-m-d',
+            maxDate: 'today',
+            defaultDate: @json($this->register_date_of_birth),
+            onChange: function(selectedDates, dateStr) {
+                @this.set('register_date_of_birth', dateStr);
+            }
+        });
+    });
+</script>
+@push('js')
+    <script>
+        window.addEventListener('close-modal', () => {
+            $('#forgotPasswordModal').modal('hide');
+        });
+    </script>
+@endpush

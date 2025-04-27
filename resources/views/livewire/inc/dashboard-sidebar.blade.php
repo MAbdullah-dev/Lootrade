@@ -21,6 +21,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'user.raffles' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('user.raffles') }}" wire:navigate>
+                        <i class="fas fa-gift"></i> <span>Raffles</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'user.transactions' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('user.transactions') }}" wire:navigate>
+                        <i class="fas fa-exchange-alt"></i> <span>Transaction</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class=" align-items-center" wire:click="logout()">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
                     </a>

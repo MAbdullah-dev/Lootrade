@@ -2,15 +2,22 @@
 
 namespace App\Livewire;
 
+use App\Models\NewsletterSubscriber;
 use Livewire\Component;
 
 class Welcome extends Component
 {
-    public function redirectToLogin(){ 
+    public $email;
+
+    protected $rules = [
+        'email' => 'required|email|unique:newsletter_subscribers,email',
+    ];
+
+    public function redirectToLogin(){
          return redirect('/login');
     }
 
-    public function redirectToGoogleLogin(){ 
+    public function redirectToGoogleLogin(){
          return redirect('auth/google', 'google');
     }
     public function redirectToDiscordLogin()
@@ -22,6 +29,19 @@ class Welcome extends Component
     {
         return redirect('auth/twitter', 'twitter');
     }
+    public function subscribe()
+    {
+        $this->validate();
+
+        NewsletterSubscriber::create([
+            'email' => $this->email
+        ]);
+
+        session()->flash('message', 'You have successfully subscribed to the newsletter!');
+
+        $this->email = ''; // Reset email field
+    }
+
 
     public function render()
     {

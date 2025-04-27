@@ -1,0 +1,61 @@
+.faq .card{
+    background-color: #1B1B1B;
+    color: #fff;
+}
+.faq .card .card-head {
+    i {
+        font-size: 22px;
+        color: #FF0000;
+    }
+}
+
+.faq .card .card-head h3 {
+    margin: 0;
+}
+
+.faq .card p {
+    font-size: 18px;
+}
+.faqs {
+    background-color: #000;
+    padding: 2rem 0;
+}
+
+
+.accordion-item {
+    background-color: #000;
+    border: none;
+    margin-bottom: 0.5rem;
+}
+
+
+.accordion-button {
+    background-color: #000 !important;
+    color: #fff !important;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 1rem;
+    box-shadow: none !important;
+}
+
+
+.accordion-button:not(.collapsed) {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 15l7-7 7 7'/%3E%3C/svg%3E") !important; /* White upward arrow */
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E") !important; /* White downward arrow */
+}
+
+
+.accordion-body {
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+}
