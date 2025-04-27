@@ -1,4 +1,4 @@
-<div class="raffles">
+<div class="user-raffles">
     <h2 class="mb-3">Your Raffles</h2>
 
     <div class="body table-responsive rounded shadow">

@@ -125,3 +125,7 @@ ul.pagination {
     background-color: #222;
     color: #fe3839;
 }
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}

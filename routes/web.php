@@ -13,6 +13,7 @@ use App\Livewire\Admindashboard\Transaction;
 use App\Livewire\Admindashboard\Users;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\ResetPassword;
+use App\Livewire\Dashboard\ChangePassword;
 use App\Livewire\Dashboard\MyTickets;
 use App\Livewire\Dashboard\Profile;
 use App\Livewire\Dashboard\Support;
@@ -24,7 +25,10 @@ use App\Livewire\Pages\Tickets;
 use App\Livewire\Welcome;
 use App\Livewire\Pages\Raffles;
 use App\Livewire\Pages\RaffleDetail;
+use App\Models\User;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', Welcome::class)->name('welcome');
 Route::get('/faq', Faq::class)->name('faq');
@@ -37,6 +41,7 @@ Route::get('/raffle/{id}', RaffleDetail::class)->name('raffle');
 Route::get('/tickets', Tickets::class)->name('tickets');
 Route::get('/user/transactions',UserTransaction::class)->name('user.transactions');
 Route::get('/user/raffles',UserRaffles::class)->name('user.raffles');
+Route::get('/user/change/password',ChangePassword::class)->name('user.change.password');
 
 
 //Admin Dashboard Routes
@@ -70,3 +75,24 @@ Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('che
 // })->name('password.reset');
 
 Route::get('reset-password/{token}/{email}', ResetPassword::class)->name('password.reset');
+
+// Redirect to login after verification
+Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
+    $user = User::findOrFail($id);
+
+    // Verify the email hash
+    if (! hash_equals((string) $hash, (string) sha1($user->getEmailForVerification()))) {
+        abort(403, 'This action is unauthorized.');
+    }
+
+    // Mark the email as verified
+    if ($user->markEmailAsVerified()) {
+        event(new Verified($user)); // Dispatch Verified event
+    }
+
+    // Redirect after verification
+    return redirect()->route('login');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Send verification email after registration
+Route::get('/email/resend', 'Auth\VerificationController@resend')->middleware(['auth'])->name('verification.resend');

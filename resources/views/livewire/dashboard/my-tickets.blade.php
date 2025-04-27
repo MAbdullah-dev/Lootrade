@@ -6,7 +6,7 @@
     </div>
 
     <!-- Responsive wrapper -->
-    <div class="table-responsive rounded shadow overflow-hidden px-4">
+    <div class="table-responsive rounded">
         <table class="table table-dark table-hover table-bordered mb-0">
             <thead class="thead-light">
                 <tr>

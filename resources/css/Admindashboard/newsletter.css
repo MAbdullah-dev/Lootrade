@@ -1,3 +1,4 @@
-.news-letter{
-flex: 1;
+.news-letter {
+    flex: 1;
+    min-width: 0;
 }

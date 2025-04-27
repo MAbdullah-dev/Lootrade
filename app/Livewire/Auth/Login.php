@@ -4,6 +4,7 @@ namespace App\Livewire\Auth;
 
 use App\Models\User;
 use App\Rules\RegisterPasswordRule;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -82,22 +83,33 @@ class Login extends Component
         $this->validate();
 
         if (Auth::attempt(['email' => $this->login_email, 'password' => $this->login_password])) {
-            alert_success('Login successful!');
-            if (Auth::user()->role_id == 1) {
-                return redirect('/home');
-            } elseif (Auth::user()->role_id == 2) {
-                return redirect('/admin/dashboard');
+            $user = Auth::user();
+
+            if (! $user->hasVerifiedEmail()) {
+                Auth::logout();
+                alert_error('Please verify your email before logging in.');
+                return redirect('/login');
             }
+
+            alert_success('Login successful!');
+
+            return match ($user->role_id) {
+                1 => redirect('/home'),
+                2 => redirect('/admin/dashboard'),
+                default => redirect('/'), // fallback if role_id is unexpected
+            };
         } else {
             alert_error('Login failed!');
         }
     }
+
 
     public function register()
     {
         $this->activeTab = 'register';
         $this->validate();
 
+        // Create the user
         $user = User::create([
             'first_name' => $this->register_first_name,
             'last_name' => $this->register_last_name,
@@ -112,11 +124,24 @@ class Login extends Component
             'last_login_award_date' => null,
         ]);
 
+        // Dispatch the Registered event to send the verification email
+        event(new Registered($user));
+
+        // Log the user in
         Auth::login($user);
 
-        alert_success('Registered successfully!');
+        alert_success('Registered successfully! Please check your email for verification.');
 
-        return redirect('/home');
+        $this->reset([
+            'register_first_name',
+            'register_last_name',
+            'register_username',
+            'register_email',
+            'register_password',
+            'register_password_confirmation',
+            'register_date_of_birth',
+        ]);
+        $this->activeTab = 'login';
     }
 
     public function redirectToGoogleLogin()

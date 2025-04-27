@@ -6,22 +6,26 @@
                     <div class="card-header">{{ __('Reset Password') }}</div>
 
                     <div class="card-body">
-                        <form wire:submit.prevent="resetPassword">
+                        <form wire:submit.prevent="resetPassword" >
                             @csrf
 
                             <div class="mb-3">
-                                <label for="password" class="form-label">{{ __('Password') }}</label>
-                                <input type="password" id="password" class="form-control" wire:model="password" required>
-                                @error('password') <div class="text-danger">{{ $message }}</div> @enderror
+                                <label for="password" class="form-label text-white">{{ __('Password') }}</label>
+                                <input type="password" id="password" wire:model="password" class="form-control @error('password') is-invalid @enderror" required placeholder="Enter new password">
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
-                                <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
-                                <input type="password" id="password_confirmation" class="form-control" wire:model="password_confirmation" required>
+                                <label for="password_confirmation" class="form-label text-white">{{ __('Confirm Password') }}</label>
+                                <input type="password" id="password_confirmation" wire:model="password_confirmation" class="form-control" required placeholder="Confirm new password">
                             </div>
 
-                            <div class="mb-3 text-end">
-                                <button type="submit" class="btn-custom">{{ __('Reset Password') }}</button>
+                            <div class="d-grid">
+                                <button type="submit" class="btn-custom">
+                                    {{ __('Reset Password') }}
+                                </button>
                             </div>
                         </form>
                     </div>

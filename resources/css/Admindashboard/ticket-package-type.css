@@ -1,7 +1,9 @@
 .ticket-package-type {
     flex: 1;
+    min-width: 0;
 }
-.ticket-package-type form .btn-custom{
+
+.ticket-package-type form .btn-custom {
     padding: 10px 20px;
 }
 
@@ -31,6 +33,7 @@
     font-size: 16px;
     transition: opacity 0.3s ease;
 }
+
 .ticket-package-type .modal .modal-content {
     background-color: #222;
     border-radius: 8px;

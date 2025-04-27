@@ -33,6 +33,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="d-flex align-items-center {{ Route::currentRouteName() == 'user.change.password' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('user.change.password') }}" wire:navigate>
+                        <i class="fa-solid fa-unlock"></i> <span>Change Password</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class=" align-items-center" wire:click="logout()">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
                     </a>

@@ -1,5 +1,6 @@
 .ticketpackages {
     flex: 1;
+    min-width: 0;
 
     .form-control {
         background-color: #333;

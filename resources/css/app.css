@@ -13,6 +13,8 @@
 @import "./myTickets.css";
 @import "./home.css";
 @import "./tickets.css";
+@import "./changepassword.css";
+
 
 @import "./raffles.css";
 @import "./raffle-details.css";
@@ -21,6 +23,7 @@
 @import "./forgetmodal.css";
 @import "./resetpassword.css";
 @import "./faq.css";
+@import "./user-raffles.css";
 
 /* admindashboard styles */
 @import "./Admindashboard/users.css";
