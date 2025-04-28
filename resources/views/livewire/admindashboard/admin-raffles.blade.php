@@ -13,7 +13,8 @@
                         </select>
                     </div>
                     <div class="col-12 col-md-3 text-md-end">
-                        <button type="button" class="btn-custom" data-bs-toggle="modal" data-bs-target="#createRaffleModal">
+                        <button type="button" class="btn-custom" data-bs-toggle="modal"
+                            data-bs-target="#createRaffleModal">
                             Create Raffle
                         </button>
                     </div>
@@ -21,69 +22,97 @@
             </div>
 
             <!-- Create Raffle Modal -->
-            <div wire:ignore.self class="modal fade" id="createRaffleModal" tabindex="-1" aria-labelledby="createRaffleModalLabel" aria-hidden="true">
+            <div wire:ignore.self class="modal fade" id="createRaffleModal" tabindex="-1"
+                aria-labelledby="createRaffleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="createRaffleModalLabel">Create Raffle</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
-                                <input type="text" id="title" class="form-control" wire:model.defer="title" placeholder="Enter title">
-                                @error('title') <small class="text-danger">{{ $message }}</small> @enderror
+                                <input type="text" id="title" class="form-control" wire:model.defer="title"
+                                    placeholder="Enter title">
+                                @error('title')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
-                                <textarea id="description" rows="5" class="form-control" wire:model.defer="description" placeholder="Enter description"></textarea>
-                                @error('description') <small class="text-danger">{{ $message }}</small> @enderror
+                                <textarea id="description" rows="5" class="form-control" wire:model.defer="description"
+                                    placeholder="Enter description"></textarea>
+                                @error('description')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="row g-3 mb-3">
                                 <div class="col-6">
                                     <label for="entry_cost" class="form-label">Minimum Tickets to Enter</label>
-                                    <input type="number" id="entry_cost" class="form-control" wire:model.defer="entry_cost" placeholder="Min Tickets">
-                                    @error('entry_cost') <small class="text-danger">{{ $message }}</small> @enderror
+                                    <input type="number" id="entry_cost" class="form-control"
+                                        wire:model.defer="entry_cost" placeholder="Min Tickets">
+                                    @error('entry_cost')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="col-6">
-                                    <label for="max_entries_per_user" class="form-label">Maximum Entries Per User</label>
-                                    <input type="number" id="max_entries_per_user" class="form-control" wire:model.defer="max_entries_per_user" placeholder="Max Entries">
-                                    @error('max_entries_per_user') <small class="text-danger">{{ $message }}</small> @enderror
+                                    <label for="max_entries_per_user" class="form-label">Maximum Entries Per
+                                        User</label>
+                                    <input type="number" id="max_entries_per_user" class="form-control"
+                                        wire:model.defer="max_entries_per_user" placeholder="Max Entries">
+                                    @error('max_entries_per_user')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="date_range" class="form-label">Raffle Duration</label>
                                 <div wire:ignore>
-                                    <input type="text" id="date_range" class="form-control" wire:model.defer="date_range" placeholder="Select start and end date" readonly>
+                                    <input type="text" id="date_range" class="form-control"
+                                        wire:model.defer="date_range" placeholder="Select start and end date" readonly>
                                 </div>
-                                @error('date_range') <small class="text-danger">{{ $message }}</small> @enderror
+                                @error('date_range')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
-                                <label for="slots" class="form-label">Slots (No of Users that can enter in Raffle)</label>
-                                <input type="number" id="slots" class="form-control" wire:model.defer="slots" placeholder="Enter Slots">
-                                @error('slots') <small class="text-danger">{{ $message }}</small> @enderror
+                                <label for="slots" class="form-label">Slots (No of Users that can enter in
+                                    Raffle)</label>
+                                <input type="number" id="slots" class="form-control" wire:model.defer="slots"
+                                    placeholder="Enter Slots">
+                                @error('slots')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="prize" class="form-label">Prize (No of Tickets as Reward)</label>
-                                <input type="number" id="prize" class="form-control" wire:model.defer="prize" placeholder="Enter prize">
-                                @error('prize') <small class="text-danger">{{ $message }}</small> @enderror
+                                <input type="number" id="prize" class="form-control" wire:model.defer="prize"
+                                    placeholder="Enter prize">
+                                @error('prize')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="image" class="form-label">Upload Image</label>
                                 <input type="file" id="image" class="form-control" wire:model="image">
-                                <div wire:loading wire:target="image" class="text-primary mt-2">Uploading Image...</div>
+                                <div wire:loading wire:target="image" class="text-primary mt-2">Uploading Image...
+                                </div>
                                 @if ($image)
                                     <div class="text-success mt-2">Image Uploaded Successfully!</div>
                                 @endif
-                                @error('image') <small class="text-danger">{{ $message }}</small> @enderror
+                                @error('image')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
 
@@ -98,7 +127,7 @@
         </div>
 
         <div class="table-responsive rounded shadow">
-            <table class="table table-dark table-hover mb-0">
+            <table class="table table-neon table-hover mb-0">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -123,13 +152,16 @@
                             <td>{{ ucfirst($raffle->status) }}</td>
                             <td>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-sm btn-secondary" wire:click="viewRaffle({{ $raffle->id }})">
+                                    <button class="btn btn-sm btn-secondary"
+                                        wire:click="viewRaffle({{ $raffle->id }})">
                                         <i class="fa-solid fa-user"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary" wire:click="editRaffle({{ $raffle->id }})">
+                                    <button class="btn btn-sm btn-primary"
+                                        wire:click="editRaffle({{ $raffle->id }})">
                                         <i class="fa fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-danger" wire:click="deleteRaffle({{ $raffle->id }})">
+                                    <button class="btn btn-sm btn-danger"
+                                        wire:click="deleteRaffle({{ $raffle->id }})">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </div>
@@ -144,9 +176,9 @@
             </table>
 
             <!-- Pagination -->
-            <div class="mt-3">
-                {{ $raffles->links() }}
-            </div>
+        </div>
+        <div class="mt-3">
+            {{ $raffles->links() }}
         </div>
     </section>
 

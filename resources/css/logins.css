@@ -1,16 +1,16 @@
 /* Main Section */
 .logins {
-    background-color: #000;
-    color: #fff;
+    background: linear-gradient(to bottom, #1A0C48, #440640);
+    /* color: #fff; */
     display: flex;
     flex-direction: column;
     overflow: hidden;
     padding-top: 50px;
     padding-bottom: 50px;
+    min-height: 93vh;
 }
 
-/* Container */
-.logins .container {
+.logins .inner {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
@@ -19,7 +19,7 @@
 
 /* Tab Wrapper */
 .logins .tab-wrapper {
-    background-color: #111;
+    background-color: #0E0026;
     border-radius: 10px;
     padding: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -42,12 +42,13 @@
     border-radius: 30px !important;
     border: none;
     color: #fff !important;
-    background-color: #222;
     transition: all 0.3s ease;
+    background: #0E0026;
+    border: 2px solid #A347BA;
 }
 
 .logins .nav-link.active {
-    background: linear-gradient(135deg, #fc4a4a, #f76161);
+    background: linear-gradient(to right, #A347BA, #2E8AEA);
     color: #fff;
 }
 
@@ -67,8 +68,8 @@
     padding: 12px 15px;
     border-radius: 8px;
     border: 1px solid #333;
-    background-color: #222;
-    color: #fff;
+    /* background-color: #; */
+    color: #A347BA;
 }
 
 /* Submit Button */
@@ -77,7 +78,7 @@
     padding: 12px;
     border-radius: 8px;
     border: none;
-    background: linear-gradient(135deg, #df3737, #b43f3f);
+    background: linear-gradient(to right, #A347BA, #2E8AEA);
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -99,10 +100,10 @@
 .logins .divider span {
     display: inline-block;
     padding: 0 15px;
-    background-color: #111;
+    background-color: #0E0026;
     position: relative;
     z-index: 1;
-    color: #777;
+    color: #fff;
 }
 
 .logins .divider::before {
@@ -112,7 +113,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background-color: #333;
+    background-color: #66ff66;
     z-index: 0;
 }
 
@@ -134,22 +135,21 @@
     font-size: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
+    background: linear-gradient(to right, #A347BA, #2E8AEA);
 }
 
 .logins .social-btn.google {
-    background: white;
-    color: #db4437;
+    color: #fff;
 }
 
 .logins .social-btn.x {
-    background: black;
-    color: white;
+    color: #fff;
     border: 1px solid #333;
 }
 
 .logins .social-btn.discord {
     background: #5865F2;
-    color: white;
+    color: #fff;
 }
 
 .logins .social-btn:hover {

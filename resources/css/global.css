@@ -7,7 +7,7 @@
 
 body {
     /* overflow-x: hidden; */
-    background-color: #000000;
+    background: linear-gradient(to right, #efadff, #a3d0ff);
     color: #ffffff;
 }
 
@@ -21,7 +21,7 @@ li {
 }
 
 .btn-custom {
-    background-color: #fe3839;
+    background: linear-gradient(to right, #A347BA, #2E8AEA);
     color: white;
     border: none;
     padding: 16px 24px;
@@ -34,7 +34,7 @@ li {
     /* background-color: #fd2828; */
     transform: translateY(-2px);
     /* Lift effect on hover */
-    box-shadow: 0 4px 15px rgba(255, 75, 92, 0.4);
+    box-shadow: 0 4px 15px #1F0B46;
     /* Red shadow on hover */
 }
 
@@ -125,7 +125,98 @@ ul.pagination {
     background-color: #222;
     color: #fe3839;
 }
+
 .table-responsive {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
+
+.gradient {
+    background: linear-gradient(to right, #A347BA, #2E8AEA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Scrollbar Track (background) */
+::-webkit-scrollbar-track {
+    background: #000;
+    /* Black background for strong contrast */
+}
+
+/* Scrollbar Thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #39FF14;
+    /* Neon Green color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14;
+    /* Glow effect */
+}
+
+/* Scrollbar Thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #66ff66;
+    box-shadow: 0 0 15px #66ff66, 0 0 30px #66ff66;
+    /* Brighter glow when hovering */
+}
+
+.table-neon {
+    background-color: #1E1E2D;
+    /* Soft dark background */
+    color: #FFFFFF;
+    /* White text */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.table-neon th {
+    background-color: #1F0B46;
+    /* Dark purple for header */
+    color: #d58be7;
+    /* Neon purple text for headers */
+    font-weight: 600;
+    border: none;
+}
+
+.table-neon td {
+    font-size: 14px;
+    border-top: 1px solid #2E8AEA;
+    /* Thin neon blue borders between rows */
+}
+
+.table-neon tr:hover td {
+    background-color: #d58be7;
+    color: #ffffff;
+}
+
+.table-neon thead th {
+    border-bottom: 2px solid #2E8AEA;
+    /* Neon blue bottom border on header */
+}
+
+.table-neon .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.table-neon .btn-primary {
+    background: linear-gradient(to right, #A347BA, #2E8AEA);
+    border: none;
+}
+
+.table-neon .btn-danger {
+    background-color: #FF1744;
+    border: none;
+}
+
+/* Optional: Make buttons glow slightly on hover */
+/* .table-neon .btn:hover {
+    box-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14;
+    transform: scale(1.05);
+    transition: 0.3s;
+} */

@@ -42,7 +42,8 @@
                                 <button type="submit">Login</button>
                             </div>
                             <div class="text-end mt-2">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" class="text-sm text-primary">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"
+                                    class="text-sm text-white">
                                     Forgot your password?
                                 </a>
                             </div>
@@ -157,7 +158,8 @@
                                 <button type="submit">Register</button>
                             </div>
                             <div class="text-end mt-2">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" class="text-sm text-primary">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"
+                                    class="text-sm text-white">
                                     Forgot your password?
                                 </a>
                             </div>

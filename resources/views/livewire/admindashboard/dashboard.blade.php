@@ -62,7 +62,7 @@
                 chart: {
                     type: 'bar',
                     height: 350,
-                    background: '#000',
+                    // background: '#1F0B46',
                     foreColor: '#fff'
                 },
                 series: [{
