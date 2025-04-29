@@ -1,4 +1,4 @@
-<div class="mytickets">
+<div class="mytickets" >
     <h5 class="mb-4">My Tickets</h5>
 
     <div class="mb-4 px-4">

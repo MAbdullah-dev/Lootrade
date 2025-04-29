@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Dashboard;
 
+use App\Jobs\GenerateTicketsJob;
+use App\Models\Notification;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Models\User;
 use App\Models\UserSocialAccount;
-use App\Services\TicketGenerationService;
 
 
 class Profile extends Component
@@ -22,6 +22,7 @@ class Profile extends Component
     public $date_of_birth;
     public $profile_picture;
     public $existing_profile_picture;
+    public $notifications, $unreadCount;
 
     public $connected_providers = [];
 
@@ -48,6 +49,8 @@ class Profile extends Component
         $this->connected_providers = UserSocialAccount::where('user_id', $user->id)
             ->pluck('provider')
             ->toArray();
+
+            $this->loadnotifications();
     }
 
     public function updatedUsername()
@@ -86,8 +89,12 @@ class Profile extends Component
         && $user->profile_picture
     ) {
 
-        app(TicketGenerationService::class)
-            ->generateTickets($user->id, 10, 'earned');
+            GenerateTicketsJob::dispatch($user->id, 10, 'earned');
+
+            $user->notifications()->create([
+                'type' => 'profile_completion_awarded',
+                'message' => "You have been awarded 10 tickets for completing your profile.", 
+            ]);
 
         $user->update([
             'profile_completion_awarded' => true,
@@ -99,6 +106,9 @@ class Profile extends Component
     else{
         alert_success('Profile updated successfully!');
     }
+
+    $this->loadnotifications();
+
 }
 
     public function redirectToGoogleLogin(){
@@ -114,9 +124,33 @@ class Profile extends Component
         return redirect('auth/twitter', 'twitter');
     }
 
+    public function loadnotifications()
+    {
+        $user = Auth::user();
+        $this->notifications = Notification::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->where('is_read', false)
+            ->limit(10)
+            ->get();
+        $this->unreadCount = Notification::where('user_id', $user->id)
+            ->where('is_read', false)
+            ->count();
+    }
+
+    public function deleteNotification($notificationId)
+    {
+        $notification = Notification::find($notificationId);
+
+        if ($notification && $notification->user_id === auth()->id()) {
+            $notification->update(['is_read' => true]);
+        }
+
+         $this->loadnotifications();
+    }
+
 
     public function render()
     {
-        return view('livewire.dashboard.profile', ['connected_providers' => $this->connected_providers])->layout('components.layouts.dashboard');
+        return view('livewire.dashboard.profile', ['connected_providers' => $this->connected_providers, 'notifications' => $this->notifications,] )->layout('components.layouts.dashboard');
     }
 }

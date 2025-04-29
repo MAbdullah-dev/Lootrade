@@ -38,10 +38,15 @@
                                                 class="btn-custom mt-3">View More</a>
                                         </div>
                                     </div>
-                            </div> @empty <div class="col-12">
+                            </div>
+                             @empty 
+                            <div class="col-12">
                                     <p class="text-center">No active raffles found.</p>
-                                </div>
+                            </div>
                             @endforelse
+                        </div>
+                        <div class="mt-4">
+                            {{ $activeRaffles->links('pagination::bootstrap-5') }}
                         </div>
                     </div> <!-- Upcoming Raffles -->
                     <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
@@ -71,6 +76,9 @@
                                 </div>
                             @endforelse
                         </div>
+                        <div class="mt-4">
+                            {{ $upcomingRaffles->links('pagination::bootstrap-5') }}
+                        </div>
                     </div> <!-- Past Raffles -->
                     <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
                         <div class="row">
@@ -99,6 +107,9 @@
                                     <p class="text-center">No past raffles found.</p>
                                 </div>
                             @endforelse
+                        </div>
+                        <div class="mt-4">
+                            {{ $pastRaffles->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>

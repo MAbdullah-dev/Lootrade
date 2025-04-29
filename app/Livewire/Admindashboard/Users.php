@@ -6,8 +6,6 @@ use App\Jobs\GenerateTicketsJob;
 use App\Models\User;
 use Livewire\Component;
 
-use function Laravel\Prompts\alert;
-
 class Users extends Component
 {
     public $users;
@@ -27,14 +25,14 @@ class Users extends Component
     {
         $user = User::find($id);
         $user?->delete();
-        $this->loaduserdata(); // Refresh the user list
+        $this->loaduserdata();
     }
 
     public function unblockUser($id)
     {
         $user = User::withTrashed()->find($id);
         $user?->restore();
-        $this->loaduserdata(); // Refresh the user list
+        $this->loaduserdata(); 
     }
     public function viewUser($id)
     {
@@ -52,36 +50,30 @@ class Users extends Component
         $user = User::withTrashed()->find($id);
         if ($user) {
             $this->ticketUserId = $user->id;
-            $this->selectedUser = $user->toArray(); // Optional: you can show this in the modal title
-            $this->ticketCount = ''; // Reset ticket count
+            $this->selectedUser = $user->toArray(); 
+            $this->ticketCount = '';
         }
     }
 
     public function giveTickets()
     {
         $this->validate([
-            'ticketCount' => 'required|integer|min:1', // Validate the ticket count
+            'ticketCount' => 'required|integer|min:1',
         ]);
 
-        $user = User::withTrashed()->find($this->ticketUserId);  // Find the user
+        $user = User::withTrashed()->find($this->ticketUserId);  
 
         if ($user) {
-            // Generate the tickets using the service
-            // app('App\Services\TicketGenerationService')->generateTickets($user->id, $this->ticketCount, 'earned');
             GenerateTicketsJob::dispatch($user->id, $this->ticketCount, 'earned');
 
-
-            // Update user's ticket balance
             $user->update([
                 'ticket_balance' => $user->ticket_balance + $this->ticketCount,
             ]);
 
-            // Emit the event to close the modal and refresh the user list
             $this->dispatch('close-modal');
             alert_success('Tickets successfully given!');
-            $this->resetForm();  // Reset the form values
+            $this->resetForm();  
 
-            // Reload the user data
             $this->loaduserdata();
         }
     }

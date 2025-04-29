@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Constants\SocialProviders;
+use App\Jobs\GenerateTicketsJob;
 use App\Models\User;
 use App\Models\UserSocialAccount;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ class SocialAccountService
 {
     public function createOrGetUser($providerUser, string $provider): User
     {
-        // Validate provider
+
         if (!in_array($provider, SocialProviders::all())) {
             throw new \InvalidArgumentException("Unsupported social provider: {$provider}");
         }
@@ -31,7 +32,7 @@ class SocialAccountService
                 $name = 'User_' . Str::random(4);
             }
 
-            // Check if social account already exists
+
             $socialAccount = UserSocialAccount::where('provider', $provider)
                 ->where('provider_id', $providerUser->id)
                 ->first();
@@ -45,19 +46,19 @@ class SocialAccountService
                 return $socialAccount->user;
             }
 
-            // Check if user exists by email
+
             $user = $email ? User::where('email', $email)->first() : null;
             $isNewUser = false;
 
             if (!$user) {
                 $isNewUser = true;
 
-                // Split full name
+
                 $nameParts = explode(' ', $name, 2);
                 $firstName = $nameParts[0] ?? '';
                 $lastName = $nameParts[1] ?? '';
 
-                // Generate username
+
                 $baseUsername = strtolower(preg_replace('/[^a-zA-Z0-9]/', '_', $name)) ?: 'user_' . Str::random(4);
                 $username = $baseUsername;
                 $counter = 1;
@@ -72,7 +73,7 @@ class SocialAccountService
                     $counter++;
                 }
 
-                // Create user
+
                 $user = User::create([
                     'first_name' => $firstName,
                     'last_name' => $lastName,
@@ -89,7 +90,7 @@ class SocialAccountService
                 ]);
             }
 
-            // Create or update social account
+
             $socialAccount = UserSocialAccount::updateOrCreate(
                 [
                     'provider' => $provider,
@@ -103,14 +104,19 @@ class SocialAccountService
                 ]
             );
 
-            // Handle rewards
+            $user->notifications()->create([
+                'type' => 'social_account_linked',
+                'message' => "You have been awarded 10 tickets for connecting your {$provider} account with us!",
+            ]);
+
+
             if ($isNewUser) {
-                app('App\Services\TicketGenerationService')->generateTickets($user->id, 10, 'earned');
+                GenerateTicketsJob::dispatch($user->id, 10, 'earned');
                 $user->update([
                     'ticket_balance' => $user->ticket_balance + 10,
                 ]);
             } else {
-                app('App\Services\TicketGenerationService')->generateTickets($user->id, 10, 'earned');
+                GenerateTicketsJob::dispatch($user->id, 10, 'earned');
                 $user->update([
                     'ticket_balance' => $user->ticket_balance + 10,
                 ]);
