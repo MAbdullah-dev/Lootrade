@@ -1,3 +1,4 @@
-.transacton {
+.transaction {
     flex: 1;
+    min-width: 0;
 }

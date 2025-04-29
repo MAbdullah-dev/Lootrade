@@ -1,5 +1,6 @@
-.users{
-flex: 1;
+.users {
+    flex: 1;
+    min-width: 0
 }
 
 .users .modal .modal-content {

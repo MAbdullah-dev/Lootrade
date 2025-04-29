@@ -1,9 +1,10 @@
 aside {
     height: auto;
+    padding: 10px 0;
     position: sticky;
+    border-radius: 5px;
     top: 0;
-    max-width: 25%;
-    width: 100%;
+    background: #1F0B46;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 
     @media (max-width: 999px) {
@@ -20,7 +21,7 @@ aside {
         font-size: 16px;
         font-weight: 500;
         line-height: 30px;
-        padding: 10px 30px;
+        padding: 10px;
         border-radius: 5px;
         text-decoration: none;
         white-space: nowrap;
@@ -39,7 +40,7 @@ aside {
     }
 
     a:hover {
-        background-color: #fd2828;
+        background-color: #c700ff;
         color: #212529;
     }
 
@@ -51,7 +52,7 @@ aside {
     }
 
     a.active {
-        background-color: #fd2828;
+        background-color: #c700ff;
         color: #fff;
         box-shadow: 0 2px 5px rgba(253, 40, 40, 0.3);
     }

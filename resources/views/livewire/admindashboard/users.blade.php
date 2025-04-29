@@ -53,6 +53,8 @@
             </tbody>
         </table>
     </div>
+
+    <!-- User Detail Modal -->
     <div wire:ignore.self class="modal fade" id="userDetailModal" tabindex="-1" aria-labelledby="userDetailModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -61,8 +63,7 @@
                     <h5 class="modal-title" id="userDetailModalLabel">
                         User Details - {{ $selectedUser['first_name'] ?? '' }} {{ $selectedUser['last_name'] ?? '' }}
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        wire:click="resetSelectedUser"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="resetSelectedUser"></button>
                 </div>
                 <div class="modal-body">
                     @if ($selectedUser)
@@ -81,13 +82,13 @@
                     @endif
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                        wire:click="resetSelectedUser">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" wire:click="resetSelectedUser">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Give Ticket Modal -->
     <div wire:ignore.self class="modal fade" id="giveTicketModal" tabindex="-1" aria-labelledby="giveTicketModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -116,6 +117,7 @@
         </div>
     </div>
 </div>
+
 @push('js')
     <script>
         window.addEventListener('close-modal', () => {

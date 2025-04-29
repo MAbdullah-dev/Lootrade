@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail as AuthMustVerifyEmail;
 
-class User extends Authenticatable
+class User extends Authenticatable implements AuthMustVerifyEmail
 {
     use HasFactory, Notifiable,SoftDeletes;
 

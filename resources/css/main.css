@@ -17,6 +17,10 @@
     }
 }
 
+.social-login-main {
+    background: linear-gradient(to bottom, #1A0C48, #440640);
+}
+
 .login-options {
     height: 100vh;
     width: 100%;
@@ -49,6 +53,7 @@
     font-weight: bold;
     position: relative;
     transition: all 0.3s ease-in-out;
+    background: linear-gradient(to right, #A347BA, #2E8AEA)
 }
 
 .login-btn img {
@@ -57,6 +62,7 @@
     left: 15px;
 }
 
+/*
 .google-btn {
     background: white;
     color: black;
@@ -86,13 +92,13 @@
 
 .discord-btn:hover {
     background: #4854d7;
-}
+} */
 
 .intro-section {
-    background-color: #1b1b1b;
+    background-color: #0E0026;
     /* height: 80vh; */
     /* width: 100%; */
-    padding: 40px 0;
+    padding: 60px 0;
 
     .bg-img {
         top: 50px;
@@ -104,17 +110,15 @@
 .commitment-section {
     /* text-align: center; */
     padding: 40px 0;
-    background: #ffffff;
+    background: linear-gradient(to bottom, #1A0C48, #440640);
 }
 
 .commitment-section {
     h2 {
         font-weight: bold;
-        color: #262626;
     }
 
     p {
-        color: #262626;
         font-size: 20px;
         line-height: 25px;
         font-weight: 300;
@@ -126,21 +130,19 @@
     }
 
     .icon-box img {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
     }
 
     .icon-box p {
-        /* font-weight: bold; */
         font-size: 18px;
         font-weight: 400;
-        color: #fe3839;
         margin-top: 10px;
     }
 }
 
 .gamification-section {
-    background-color: #1b1b1b;
+    background-color: #0E0026;
     padding: 40px 0;
 }
 
@@ -160,19 +162,11 @@
 }
 
 .community-section {
-    background-color: #ffffff;
+    background: linear-gradient(to bottom, #1A0C48, #440640);
     padding: 40px 0;
 
     h6 {
         font-weight: 400;
-    }
-
-    h2 {
-        color: #262626;
-    }
-
-    p {
-        color: #262626;
     }
 }
 
@@ -181,5 +175,53 @@
         p {
             font-size: 18px !important;
         }
+    }
+}
+
+.newsletter-section {
+    background-color: #0E0026;
+    padding: 40px 0;
+
+    h2 {
+        color: #ffffff;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 24px;
+    }
+
+    p {
+        color: #ffffff;
+        font-size: 18px;
+        line-height: 1.6;
+        font-weight: 300;
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-top: 30px;
+    }
+
+    label {
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        width: 100%;
+        max-width: 400px;
+        padding: 12px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin: 0 auto;
+        font-size: 16px;
+        color: #333;
+        background-color: #f4f4f4;
+    }
+
+    .form-control:focus {
+        border-color: linear-gradient(to bottom, #1A0C48, #440640);
     }
 }

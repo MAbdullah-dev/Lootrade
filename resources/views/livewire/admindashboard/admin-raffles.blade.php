@@ -1,19 +1,24 @@
-<div style="flex: 1">
+<div style="flex: 1;">
     <section class="admin-raffles">
         <div class="inner">
-            <div class="head">
-                <div class="d-flex mb-3 gap-3 w-100">
-                    <input type="text" class="form-control w-50" placeholder="Search raffles..." wire:model.live="search">
-
-                    <select class="form-select w-25" wire:model.live="sortDirection">
-                        <option value="desc">Newest First</option>
-                        <option value="asc">Oldest First</option>
-                    </select>
+            <div class="head mb-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-12 col-md-6">
+                        <input type="text" class="form-control" placeholder="Search raffles..." wire:model.live="search">
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <select class="form-select" wire:model.live="sortDirection">
+                            <option value="desc">Newest First</option>
+                            <option value="asc">Oldest First</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3 text-md-end">
+                        <button type="button" class="btn-custom" data-bs-toggle="modal"
+                            data-bs-target="#createRaffleModal">
+                            Create Raffle
+                        </button>
+                    </div>
                 </div>
-
-                <button type="button" wire:click="resetForm" class="btn-custom" data-bs-toggle="modal" data-bs-target="#createRaffleModal">
-                    Create Raffle
-                </button>
             </div>
 
             <!-- Create Raffle Modal -->
@@ -27,8 +32,7 @@
                         </div>
 
                         <div class="modal-body">
-                            <!-- Title -->
-                            <div class="input-wrapper mb-3">
+                            <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
                                 <input type="text" id="title" class="form-control" wire:model.defer="title" placeholder="Enter title">
                                 @error('title') <small class="text-danger">{{ $message }}</small> @enderror
@@ -72,15 +76,13 @@
                                 @error('slots') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
 
-                            <!-- Prize -->
-                            <div class="input-wrapper mb-3">
+                            <div class="mb-3">
                                 <label for="prize" class="form-label">Prize (No of Tickets as Reward)</label>
                                 <input type="number" id="prize" class="form-control" wire:model.defer="prize" placeholder="Enter prize">
                                 @error('prize') <small class="text-danger">{{ $message }}</small> @enderror
                             </div>
 
-                            <!-- Upload Picture -->
-                            <div class="input-wrapper mb-3">
+                            <div class="mb-3">
                                 <label for="image" class="form-label">Upload Image</label>
                                 <input type="file" id="image" class="form-control" wire:model="image">
                                 <div wire:loading wire:target="image" class="text-primary mt-2">Uploading Image...</div>

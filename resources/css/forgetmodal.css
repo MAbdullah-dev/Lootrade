@@ -1,0 +1,17 @@
+#forgotPasswordModal .modal-content {
+    background-color: #222;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+}
+#forgotPasswordModal input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: #ffffff;
+    color: #000000;
+}
+#forgotPasswordModal .btn-custom{
+    padding: 7px 20px;
+}

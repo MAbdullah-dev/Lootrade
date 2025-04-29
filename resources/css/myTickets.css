@@ -1,5 +1,6 @@
 .mytickets {
     flex: 1;
+    min-width: 0;
 }
 
 .table-responsive {

@@ -1,15 +1,16 @@
 .dahsboard {
     flex: 1;
+    min-width: 0;
     width: 100%;
     max-width: 75%;
 }
 
 .dahsboard .Stats .card {
-    background-color: #222222;
-    color: #f0f8ff;
+    background-color: #1F0B46;
+    color: #c700ff;
 
     i {
-        color: rgba(254, 56, 56, 0.956);
+        /* color: #1F0B46; */
     }
 
     .card-text {

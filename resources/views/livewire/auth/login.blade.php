@@ -41,6 +41,12 @@
                             <div class="form-btn">
                                 <button type="submit">Login</button>
                             </div>
+                            <div class="text-end mt-2">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"
+                                    class="text-sm text-white">
+                                    Forgot your password?
+                                </a>
+                            </div>
 
                             <div class="divider">
                                 <span>OR</span>
@@ -151,7 +157,12 @@
                             <div class="form-btn">
                                 <button type="submit">Register</button>
                             </div>
-
+                            <div class="text-end mt-2">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"
+                                    class="text-sm text-white">
+                                    Forgot your password?
+                                </a>
+                            </div>
                             <div class="divider">
                                 <span>OR</span>
                             </div>
@@ -174,8 +185,8 @@
             </div>
         </div>
     </div>
+    <livewire:auth.forgot-password />
 </section>
-
 <script>
     document.addEventListener('livewire:initialized', () => {
         flatpickr('#register_date_of_birth', {
@@ -190,3 +201,10 @@
         });
     });
 </script>
+@push('js')
+    <script>
+        window.addEventListener('close-modal', () => {
+            $('#forgotPasswordModal').modal('hide');
+        });
+    </script>
+@endpush
