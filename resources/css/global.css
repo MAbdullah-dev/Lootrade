@@ -125,3 +125,45 @@ ul.pagination {
     background-color: #222;
     color: #fe3839;
 }
+
+
+
+/* .card-table {
+    border: 1px solid #cdcfd5;
+    border-radius: 6px;
+    border-bottom: none !important;
+}
+
+.card-table table {
+    border: none !important;
+    min-width: 700px;
+    margin-bottom: 0 !important;
+}
+
+.card-table table thead th {
+    padding: 9px 16px;
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 500;
+    white-space: nowrap;
+    color: #41454f;
+    border-bottom: 1px solid #cdcfd5;
+    background-color: #f4f6f9;
+}
+
+.card-table table tbody tr {
+    border-bottom: 1px solid #cdcfd5;
+}
+
+.card-table table tbody tr td {
+    padding: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: #212327;
+}
+
+.card-table table tbody tr td a {
+    cursor: pointer;
+    color: #212327;
+} */

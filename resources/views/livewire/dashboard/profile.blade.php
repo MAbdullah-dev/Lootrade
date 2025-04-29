@@ -1,6 +1,5 @@
 <div class="profile">
 
-
     <div class="form-wrapper mx-auto">
         <h5 class="mb-5">Profile Form</h5>
         <ol class="d-flex align-items-center text-center gap-4 mb-4 ">
@@ -115,6 +114,11 @@
     <div class="notification-bell position-fixed d-flex align-items-center justify-content-center"
         data-bs-toggle="offcanvas" data-bs-target="#notificationCanvas" aria-controls="notificationCanvas">
         <i class="fa-solid fa-bell"></i>
+        @if ($unreadCount > 0)
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{ $unreadCount }}
+        </span>
+    @endif
     </div>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="notificationCanvas"
         aria-labelledby="notificationCanvasLabel">
@@ -123,8 +127,19 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <p>No new notifications.</p>
-            <!-- You can load notifications here dynamically -->
+            @foreach($notifications as $notification)
+            <div class="notification-card p-3 mb-3 rounded-4 shadow-sm d-flex flex-column" wire:key="notification-{{ $notification->id }}>
+                <p class="mb-1 text-white">
+                    {{ $notification->message }}
+                </p>
+                <div class="d-flex align-items-center justify-content-between">
+                    <small class="text-secondary">
+                        {{ $notification->created_at->diffForHumans() }}
+                    </small>
+                    <button class="btn btn-danger btn-sm mt-2" wire:click="deleteNotification({{ $notification->id }})"><i class="fa fa-trash"></i></button>
+                </div>
+            </div>
+        @endforeach
         </div>
     </div>
 </div>

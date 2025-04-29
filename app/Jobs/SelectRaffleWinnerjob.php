@@ -46,21 +46,22 @@ class SelectRaffleWinnerJob implements ShouldQueue
 
             if (!$winningTicket) {
                 Log::info('No participants', ['raffle_id' => $raffle->id]);
-                return; // No participants
+                return;
             }
 
-             // Store the winner in the raffle_winners table
              Winner::create([
                 'raffle_id' => $raffle->id,
                 'user_id' => $winningTicket->user_id,
                 'ticket_id' => $winningTicket->id,
-                'prize' => $raffle->prize, // Assuming 'prize' is a field in your raffle table
+                'prize' => $raffle->prize,
             ]);
+
+            $message = "Raffle '{$raffle->title}' has been closed. The winner is: {$winningTicket->user->name}";
+            CreateNotificationsJob::dispatch('global', $message);
 
             $raffle->status = 'past';
             $raffle->save();
 
-            // Optionally, consume user's tickets too (depends on your app rules)
             UserTicket::whereIn('id', function ($query) use ($raffle) {
                 $query->select('user_ticket_id')
                     ->from('raffle_tickets')

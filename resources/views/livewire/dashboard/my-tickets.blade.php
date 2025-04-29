@@ -1,4 +1,4 @@
-<div class="mytickets">
+<div class="mytickets" >
     <h5 class="mb-4">My Tickets</h5>
 
     <div class="mb-4 px-4">
@@ -6,7 +6,7 @@
     </div>
 
     <!-- Responsive wrapper -->
-    <div class="table-responsive rounded shadow overflow-hidden px-4">
+    <div class="table-responsive rounded shadow px-4">
         <table class="table table-dark table-hover table-bordered mb-0">
             <thead class="thead-light">
                 <tr>

@@ -4,34 +4,24 @@ namespace App\Livewire\Pages;
 
 use Livewire\Component;
 use App\Models\Raffle;
-use Carbon\Carbon;
+use Livewire\WithPagination;
 
 class Raffles extends Component
 {
-    public $activeRaffles;
-    public $upcomingRaffles;
-    public $pastRaffles;
-
-    public function mount()
-    {
-        $today = Carbon::today();
-
-        $this->activeRaffles = Raffle::where('start_date', '<=', $today)
-            ->where('end_date', '>=', $today)
-            ->latest()
-            ->get();
-
-        $this->upcomingRaffles = Raffle::where('start_date', '>', $today)
-            ->latest()
-            ->get();
-
-        $this->pastRaffles = Raffle::where('end_date', '<', $today)
-            ->latest()
-            ->get();
-    }
+    use WithPagination;
 
     public function render()
     {
-        return view('livewire.pages.raffles');
+        return view('livewire.pages.raffles', [
+            'activeRaffles' => Raffle::where('status', 'active')
+                ->latest()
+                ->paginate(6),
+            'upcomingRaffles' => Raffle::where('status', 'upcoming')
+                ->latest()
+                ->paginate(6),
+            'pastRaffles' => Raffle::where('status', 'past')
+                ->latest()
+                ->paginate(6),
+        ]);
     }
 }

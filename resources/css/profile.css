@@ -212,3 +212,9 @@
         flex-wrap: wrap;
     }
 }
+
+.profile .notification-card{
+  background-color: #000;
+  color: #fff;
+  border-left: 4px solid #fe3839;
+}

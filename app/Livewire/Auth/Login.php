@@ -112,6 +112,11 @@ class Login extends Component
             'last_login_award_date' => null,
         ]);
 
+        $user->notifications()->create([
+            'type' => 'registration',
+            'message' => 'Welcome to the raffle system, ' . $user->first_name . '!',
+        ]);
+
         Auth::login($user);
 
         alert_success('Registered successfully!');

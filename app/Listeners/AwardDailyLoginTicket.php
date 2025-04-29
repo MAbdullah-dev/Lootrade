@@ -2,19 +2,12 @@
 
 namespace App\Listeners;
 
+use App\Jobs\GenerateTicketsJob;
 use Illuminate\Auth\Events\Login;
-use App\Services\TicketGenerationService;
 use Carbon\Carbon;
 
 class AwardDailyLoginTicket
 {
-    protected $ticketService;
-
-    public function __construct(TicketGenerationService $ticketService)
-    {
-        $this->ticketService = $ticketService;
-    }
-
     /**
      * Handle the event.
      *
@@ -27,13 +20,19 @@ class AwardDailyLoginTicket
         $today = Carbon::today()->toDateString();
 
         if ($user->last_login_award_date !== $today) {
-            $this->ticketService->generateTickets($user->id, 1, 'earned');
+            GenerateTicketsJob::dispatch($user->id, 1, 'earned');
 
             $user->update([
                 'last_login_at'        => now(),
                 'last_login_award_date' => $today,
                 'ticket_balance'       => $user->ticket_balance + 1,
             ]);
+
+            $user->notifications()->create([
+                'type' => 'daily_login_award',
+                'message' => 'You have earned your daily 1 ticket for logging in today!',
+            ]);
+
         }
     }
 }
