@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-6 p-0">
                     <div class="cover-image">
-                        <img src="{{ asset('assets/images/ghit-login-cover.png') }}" alt="">
+                        <img src="{{ asset('assets/images/lootraiders-cover-photo.png') }}" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 p-0 social-login-main">

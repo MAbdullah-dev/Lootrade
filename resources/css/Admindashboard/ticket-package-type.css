@@ -9,7 +9,6 @@
 
 .ticket-package-type .form-control,
 .ticket-package-type .form-select {
-    background-color: #333;
     border: 1px solid #444;
     border-radius: 8px;
     padding: 14px 18px;
@@ -23,9 +22,8 @@
 .ticket-package-type .form-control:focus,
 .ticket-package-type .form-select:focus {
     outline: none;
-    border-color: #ff4b5c;
+    border-color: #1F0B46;
     box-shadow: 0 0 8px rgba(255, 75, 92, 0.3);
-    background-color: #444;
 }
 
 .ticket-package-type .form-control::placeholder {

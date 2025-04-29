@@ -2,8 +2,8 @@
     <h5 class="mb-4">Users</h5>
 
     <div class="table-responsive rounded shadow">
-        <table class="table table-dark table-hover mb-0">
-            <thead class="thead-light">
+        <table class="table table-neon  table-hover mb-0">
+            <thead class="thead">
                 <tr>
                     <th>#</th>
                     <th>Name</th>
@@ -63,7 +63,8 @@
                     <h5 class="modal-title" id="userDetailModalLabel">
                         User Details - {{ $selectedUser['first_name'] ?? '' }} {{ $selectedUser['last_name'] ?? '' }}
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="resetSelectedUser"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        wire:click="resetSelectedUser"></button>
                 </div>
                 <div class="modal-body">
                     @if ($selectedUser)
@@ -82,7 +83,8 @@
                     @endif
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" wire:click="resetSelectedUser">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        wire:click="resetSelectedUser">Close</button>
                 </div>
             </div>
         </div>

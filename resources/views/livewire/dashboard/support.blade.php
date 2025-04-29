@@ -1,8 +1,8 @@
 <section class="support-section">
     {{-- <div class="container"> --}}
     <div class="inner">
-        <div class="form-wrapper mx-auto px-4">
-            <h5 class="text-center mb-4">Support Ticket</h5>
+        <div class="form-wrapper mx-auto">
+            <h5 class="text-center mb-4 gradient">Support Ticket</h5>
             <form class="mx-auto" wire:submit.prevent="submit">
                 <div class="mb-3">
                     <label for="subject" class="form-label">Subject</label>
@@ -26,14 +26,14 @@
             </form>
         </div>
 
-        <div class="ticket-list mt-5 mx-auto">
-            <h5 class="mb-4">Tickets Initiated</h5>
+        <div class="ticket-list mt-5 mx-auto grie">
+            <h5 class="mb-4 gradient">Tickets Initiated</h5>
 
             <input type="text" class="form-control mb-3 w-50" placeholder="Search Tickets..."
                 wire:model.live="search">
 
             <div class="table-responsive rounded shadow">
-                <table class="table table-dark table-hover">
+                <table class="table table-neon  table-hover">
                     <thead>
                         <tr>
                             <th>Subject</th>

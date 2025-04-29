@@ -4,8 +4,8 @@
     <input type="text" wire:model.live="search" class="form-control mb-3"
         placeholder="Search by username or package..." />
 
-    <div class="body table-responsive rounded shadow">
-        <table class="table table-dark table-hover mb-0">
+    <div class="body table-responsive rounded ">
+        <table class="table table-neon table-hover mb-0">
             <thead>
                 <tr>
                     <th wire:click="sortBy('id')">#</th>
@@ -22,7 +22,7 @@
             <tbody>
                 @forelse($transactions as $index => $transaction)
                     <tr>
-                        <th>{{ $loop->iteration + ($transactions->firstItem() - 1) }}</th>
+                        <td>{{ $loop->iteration + ($transactions->firstItem() - 1) }}</td>
                         <td>{{ $transaction->user->username }}</td>
                         <td>{{ $transaction->ticketPackage->type ?? 'N/A' }}</td>
                         <td>{{ $transaction->package_quantity }}</td>
@@ -51,9 +51,9 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
 
-        <div class="mt-3">
-            {{ $transactions->links() }}
-        </div>
+    <div class="mt-3">
+        {{ $transactions->links() }}
     </div>
 </div>

@@ -1,12 +1,10 @@
 <div class="profile">
-
-
     <div class="form-wrapper mx-auto">
-        <h5 class="mb-5">Profile Form</h5>
+        <h5 class="mb-5 gradient">Profile Form</h5>
         <ol class="d-flex align-items-center text-center gap-4 mb-4 ">
-            <li><span class="text-secondary">Login everyday to receive a ticket each day.</span></li>
-            <li><span class="text-secondary">Complete the profile to receive 10 tickets.</span></li>
-            <li><span class="text-secondary">Connect Social Account to receive 10 tickets.</span></li>
+            <li><span>Login everyday to receive a ticket each day.</span></li>
+            <li><span>Complete the profile to receive 10 tickets.</span></li>
+            <li><span>Connect Social Account to receive 10 tickets.</span></li>
         </ol>
         <form wire:submit="save">
             <div class="row mb-3">
@@ -95,19 +93,19 @@
 
     <div class="social-login">
         <button wire:click="redirectToGoogleLogin" type="button"
-            class="social-btn google {{ in_array('google', $connected_providers) ? 'connected' : '' }}"
+            class="social-btn gradient google {{ in_array('google', $connected_providers) ? 'connected' : '' }}"
             {{ in_array('google', $connected_providers) ? 'disabled' : '' }}>
             <i class="fab fa-google"></i>
         </button>
 
         <button wire:click="redirectToTwitterLogin" type="button"
-            class="social-btn x {{ in_array('twitter', $connected_providers) ? 'connected' : '' }}"
+            class="social-btn gradient x {{ in_array('twitter', $connected_providers) ? 'connected' : '' }}"
             {{ in_array('twitter', $connected_providers) ? 'disabled' : '' }}>
             <i class="fab fa-x-twitter"></i>
         </button>
 
         <button wire:click="redirectToDiscordLogin" type="button"
-            class="social-btn discord {{ in_array('discord', $connected_providers) ? 'connected' : '' }}"
+            class="social-btn gradient discord {{ in_array('discord', $connected_providers) ? 'connected' : '' }}"
             {{ in_array('discord', $connected_providers) ? 'disabled' : '' }}>
             <i class="fab fa-discord"></i>
         </button>

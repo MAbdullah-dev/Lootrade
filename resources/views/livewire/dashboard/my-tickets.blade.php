@@ -7,7 +7,7 @@
 
     <!-- Responsive wrapper -->
     <div class="table-responsive rounded">
-        <table class="table table-dark table-hover table-bordered mb-0">
+        <table class="table table-neon  table-hover mb-0">
             <thead class="thead-light">
                 <tr>
                     <th wire:click="sortBy('ticket_number')" style="cursor: pointer;">

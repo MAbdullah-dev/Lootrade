@@ -8,7 +8,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-dark table-hover">
+        <table class="table table-neon  table-hover">
             <thead>
                 <tr>
                     <th>#</th>

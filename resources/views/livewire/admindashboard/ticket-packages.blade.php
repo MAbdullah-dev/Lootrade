@@ -36,7 +36,7 @@
 
     <h4 class="mt-5">All Packages</h4>
     <div class="table-responsive rounded mt-4">
-        <table class="table table-dark table-hover mb-2">
+        <table class="table table-neon table-hover mb-2">
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
@@ -49,7 +49,7 @@
             <tbody>
                 @forelse ($packages as $index => $package)
                     <tr>
-                        <th>{{ $index + 1 }}</th>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $package->type }}</td>
                         <td>{{ $package->tickets }}</td>
                         <td>${{ number_format($package->price, 2) }}</td>

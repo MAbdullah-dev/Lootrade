@@ -6,7 +6,6 @@
 .support-section h5 {
     font-size: 28px;
     font-weight: 600;
-    color: #fe3839;
     text-align: center;
     margin-bottom: 40px;
     position: relative;
@@ -16,7 +15,7 @@
     content: "";
     width: 60px;
     height: 3px;
-    background: #fe3839;
+    background: #1F0B46;
     position: absolute;
     bottom: -10px;
     left: 50%;
@@ -36,12 +35,11 @@
 }
 
 .support-section .form-control {
-    background-color: #333;
-    border: 1px solid #444;
+    border: 1px solid #1F0B46;
     border-radius: 8px;
     padding: 14px 18px;
     font-size: 16px;
-    color: #fff;
+    color: #1F0B46;
     box-shadow: none;
     transition: all 0.3s ease;
     /* height: 35px; */
@@ -49,9 +47,8 @@
 
 .support-section .form-control:focus {
     outline: none;
-    border-color: #fe3839;
+    border-color: #EAAFFF;
     box-shadow: 0 0 8px rgba(255, 75, 92, 0.3);
-    background-color: #444;
 }
 
 .support-section .form-control::placeholder {

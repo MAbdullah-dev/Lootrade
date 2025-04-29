@@ -18,7 +18,7 @@
         </div>
 
         <div class="table-responsive rounded mt-4">
-            <table class="table table-dark table-hover mb-2">
+            <table class="table table-neon  table-hover mb-2">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

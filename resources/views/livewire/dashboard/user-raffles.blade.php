@@ -2,7 +2,7 @@
     <h2 class="mb-3">Your Raffles</h2>
 
     <div class="body table-responsive rounded shadow">
-        <table class="table table-dark table-hover mb-0">
+        <table class="table table-neon  table-hover mb-0">
             <thead>
                 <tr>
                     <th>#</th>
@@ -15,7 +15,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <th>1</th>
+                    <td>1</td>
                     <td>Spring Raffle</td>
                     <td>Win a free car! A lucky draw for the spring season.</td>
                     <td>01 Jan 2025</td>
@@ -23,7 +23,7 @@
                     <td><span class="text-success fw-bold">Active</span></td>
                 </tr>
                 <tr>
-                    <th>2</th>
+                    <td>2</td>
                     <td>Summer Raffle</td>
                     <td>Get a chance to win a free vacation package.</td>
                     <td>01 Jun 2025</td>
@@ -31,7 +31,7 @@
                     <td><span class="text-warning fw-bold">Upcoming</span></td>
                 </tr>
                 <tr>
-                    <th>3</th>
+                    <td>3</td>
                     <td>Holiday Raffle</td>
                     <td>Win a shopping voucher worth $500 this holiday season.</td>
                     <td>01 Dec 2025</td>

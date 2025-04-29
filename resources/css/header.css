@@ -1,6 +1,11 @@
 header {
     padding: 20px 0;
     background-color: #1F0B46;
+
+    .btn-custom span {
+        background-color: #C0C2FF;
+        color: #1F0B46;
+    }
 }
 
 header img {

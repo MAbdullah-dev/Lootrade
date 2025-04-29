@@ -1,11 +1,10 @@
 <div class="transaction">
     <h2 class="mb-3">Your Transactions :</h2>
 
-    <input type="text" wire:model.live="search" class="form-control mb-3"
-        placeholder="Search by package..." />
+    <input type="text" wire:model.live="search" class="form-control mb-3" placeholder="Search by package..." />
 
     <div class="body table-responsive rounded shadow">
-        <table class="table table-dark table-hover mb-0">
+        <table class="table table-neon  table-hover mb-0">
             <thead>
                 <tr>
                     <th wire:click="sortBy('id')">#</th>
