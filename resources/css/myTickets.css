@@ -3,6 +3,41 @@
     min-width: 0;
 }
 
+.mytickets h5 {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.mytickets h5::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background: #1f0b46;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mytickets .form-control {
+    border: 1px solid #1f0b46;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 16px;
+    color: #1f0b46;
+    box-shadow: none;
+    transition: all 0.3s ease;
+    height: 35px;
+}
+
+.mytickets .form-control:focus {
+    outline: none;
+    border: none;
+}
+
 .table-responsive {
     border-radius: 1rem;
 }

@@ -1,7 +1,7 @@
 <div class="news-letter p-3">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Newsletter Subscribers</h2>
-        <button wire:click="exportCsv" class="btn btn-success">
+    <div class="d-flex justify-content-end mb-3">
+        {{-- <h2>Newsletter Subscribers</h2> --}}
+        <button wire:click="exportCsv" class="btn-custom p-2">
             Download CSV
         </button>
     </div>

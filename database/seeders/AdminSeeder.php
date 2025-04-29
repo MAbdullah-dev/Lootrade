@@ -22,6 +22,7 @@ class AdminSeeder extends Seeder
                 'role_id' => 2,
                 'ticket_balance' => 0,
                 'profile_completion_awarded' => true,
+                'email_verified_at' => now(),
                 'last_login_award_date' => now(),
                 'date_of_birth' => null,
                 'last_login_at' => now(),

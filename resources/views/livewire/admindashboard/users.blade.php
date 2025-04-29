@@ -1,5 +1,17 @@
 <div class="users">
-    <h5 class="mb-4">Users</h5>
+    <div class="head mb-4">
+        <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-6">
+                <input type="text" class="form-control" placeholder="Search raffles...">
+            </div>
+            <div class="col-12 col-md-3">
+                <select class="form-select">
+                    <option value="desc">Newest First</option>
+                    <option value="asc">Oldest First</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
     <div class="table-responsive rounded shadow">
         <table class="table table-neon  table-hover mb-0">
@@ -28,7 +40,8 @@
                             @endif
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#giveTicketModal"
+                            <button class="btn btn-sm btn-success" data-bs-toggle="modal"
+                                data-bs-target="#giveTicketModal"
                                 wire:click="prepareToGiveTickets({{ $user->id }})">
                                 Give Ticket
                             </button>

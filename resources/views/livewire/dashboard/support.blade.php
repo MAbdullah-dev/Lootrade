@@ -26,7 +26,7 @@
             </form>
         </div>
 
-        <div class="ticket-list mt-5 mx-auto grie">
+        {{-- <div class="ticket-list mt-5 mx-auto grie">
             <h5 class="mb-4 gradient">Tickets Initiated</h5>
 
             <input type="text" class="form-control mb-3 w-50" placeholder="Search Tickets..."
@@ -68,7 +68,7 @@
             <div class="mt-4">
                 {{ $tickets->links('pagination::bootstrap-5') }}
             </div>
-        </div>
+        </div> --}}
     </div>
     {{-- </div> --}}
 </section>

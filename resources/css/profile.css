@@ -2,15 +2,13 @@
     flex: 1;
 
     ol li {
-        color: #1A0C48;
+        color: #1a0c48;
     }
 }
-
 
 .profile .form-wrapper h5 {
     font-size: 28px;
     font-weight: 600;
-    /* color: #fe3839; */
     text-align: center;
     margin-bottom: 40px;
     position: relative;
@@ -20,7 +18,7 @@
     content: "";
     width: 60px;
     height: 3px;
-    background: #1F0B46;
+    background: #1f0b46;
     position: absolute;
     bottom: -10px;
     left: 50%;
@@ -44,11 +42,11 @@
 }
 
 .profile .form-control {
-    border: 1px solid #1F0B46;
+    border: 1px solid #1f0b46;
     border-radius: 8px;
     padding: 14px 18px;
     font-size: 16px;
-    color: #1F0B46;
+    color: #1f0b46;
     box-shadow: none;
     transition: all 0.3s ease;
     height: 35px;
@@ -56,12 +54,11 @@
 
 .profile .form-control:focus {
     outline: none;
-    border-color: #EAAFFF;
-    box-shadow: 0 0 8px rgba(255, 75, 92, 0.3);
+    border: none;
 }
 
 .profile .form-control::placeholder {
-    color: #1F0B46;
+    color: #1f0b46;
     font-size: 12px;
     transition: opacity 0.3s ease;
 }
@@ -89,7 +86,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    background-color: linear-gradient(to bottom, #1A0C48, #440640);
+    background-color: linear-gradient(to bottom, #1a0c48, #440640);
     border: 1px solid #444;
     border-radius: 8px;
     padding: 20px 18px;
@@ -109,7 +106,7 @@
 
 .profile .custom-file-label i {
     font-size: 18px;
-    color: #1F0B46;
+    color: #1f0b46;
 }
 
 .profile .btn-custom {
@@ -135,10 +132,10 @@
 .profile .divider span {
     display: inline-block;
     padding: 0 15px;
-    background-color: #C0C2FF;
+    background-color: #c0c2ff;
     position: relative;
     z-index: 1;
-    color: #1F0B46;
+    color: #1f0b46;
 }
 
 .profile .divider::before {
@@ -147,8 +144,8 @@
     top: 50%;
     left: 0;
     right: 0;
-    height: 1px;
-    background-color: #39FF14;
+    height: 2px;
+    background-color: #1f0b46;
     z-index: 0;
 }
 
@@ -174,7 +171,7 @@
 
 .profile .social-btn.google {
     color: #db4437;
-    border: 1px solid #1F0B46;
+    border: 1px solid #1f0b46;
 }
 
 .profile .social-btn.x {
@@ -183,9 +180,8 @@
 }
 
 .profile .social-btn.discord {
-
     color: #ffffff;
-    border: 1px solid #1F0B46;
+    border: 1px solid #1f0b46;
 }
 
 .profile .social-btn:hover {
@@ -211,8 +207,21 @@
     }
 }
 
-.profile .notification-card{
-  background-color: #000;
-  color: #fff;
-  border-left: 4px solid #fe3839;
+.profile .offcanvas {
+    background: linear-gradient(to right, #efadff, #a3d0ff);
+}
+
+.profile .notification-bell {
+    background-color: #1f0b46;
+}
+
+.profile .notification-bell span {
+    background-color: rgb(172, 174, 227);
+    color: rgb(31, 11, 70);
+}
+
+.profile .notification-card {
+    background-color: #1f0b46;
+    color: #fff;
+    border-left: 4px solid #c700ff;
 }

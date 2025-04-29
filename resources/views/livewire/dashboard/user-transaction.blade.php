@@ -1,5 +1,5 @@
 <div class="transaction">
-    <h2 class="mb-3">Your Transactions :</h2>
+    <h5 class="mb-3 gradient">Transactions</h5>
 
     <input type="text" wire:model.live="search" class="form-control mb-3" placeholder="Search by package..." />
 

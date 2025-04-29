@@ -1,16 +1,14 @@
 aside {
-    height: auto;
-    padding: 10px 0;
+    height: 780px;
+    padding: 10px 0px;
     position: sticky;
     border-radius: 5px;
     top: 0;
-    background: #1F0B46;
+    background: #1f0b46;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 
     @media (max-width: 999px) {
-
         max-width: 15%;
-
     }
 
     .nav-item {
@@ -31,11 +29,9 @@ aside {
         margin: 0 10px;
 
         @media (max-width: 999px) {
-
             display: block;
             padding: 10px 10px;
             text-align: center;
-
         }
     }
 
@@ -72,5 +68,4 @@ aside {
     aside .sidebar ul li a span {
         display: none;
     }
-
 }
