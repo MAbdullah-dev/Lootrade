@@ -1,6 +1,6 @@
 header {
     padding: 20px 0;
-    background-color: #1F0B46;
+    background-color: #5B267C;
 
     .btn-custom span {
         background-color: #C0C2FF;
@@ -10,6 +10,7 @@ header {
 
 header img {
     width: 180px;
+    object-fit: cover;
 }
 
 header .header-btns button {

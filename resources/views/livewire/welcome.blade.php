@@ -40,7 +40,7 @@
     </section>
     <section class="intro-section">
         <div class="container">
-            <div class="inner position-relative">
+            <div class="inner">
                 <div class="row">
                     <div class="col">
                         <h2 class="opacity-75 text-uppercase fs-5 fs-md-5 mb-2 mb-md-4 gradient">

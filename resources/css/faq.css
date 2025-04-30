@@ -1,7 +1,8 @@
-.faq .card{
+.faq .card {
     background-color: #1B1B1B;
     color: #fff;
 }
+
 .faq .card .card-head {
     i {
         font-size: 22px;
@@ -16,8 +17,9 @@
 .faq .card p {
     font-size: 18px;
 }
+
 .faqs {
-    background-color: #000;
+    /* background-color: #000; */
     padding: 2rem 0;
 }
 
@@ -40,17 +42,19 @@
 
 
 .accordion-button:not(.collapsed) {
-    background-color: #000 !important;
+    /* background-color: #000 !important; */
     color: #fff !important;
 }
 
 
 .accordion-button::after {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 15l7-7 7 7'/%3E%3C/svg%3E") !important; /* White upward arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 15l7-7 7 7'/%3E%3C/svg%3E") !important;
+    /* White upward arrow */
 }
 
 .accordion-button:not(.collapsed)::after {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E") !important; /* White downward arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E") !important;
+    /* White downward arrow */
 }
 
 
