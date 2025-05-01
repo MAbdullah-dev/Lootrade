@@ -1,8 +1,8 @@
 <div class="change-password">
+    <h5 class="mb-3 gradient">Reset Password</h5>
     <div class="row">
         <div class="col-md-6">
             <form wire:submit="changePassword">
-
                 <div class="mb-3">
                     <label for="current_password" class="form-label text-white">Current Password</label>
                     <input type="password" id="current_password" wire:model="current_password"
@@ -43,4 +43,3 @@
         </div>
     </div>
 </div>
-

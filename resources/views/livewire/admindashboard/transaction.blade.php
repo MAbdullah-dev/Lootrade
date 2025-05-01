@@ -1,5 +1,4 @@
 <div class="transaction">
-    <h2 class="mb-3">Transactions :</h2>
 
     <input type="text" wire:model.live="search" class="form-control mb-3"
         placeholder="Search by username or package..." />

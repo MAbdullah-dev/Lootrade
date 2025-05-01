@@ -40,7 +40,7 @@ class CheckoutController extends Controller
                 GenerateTicketsJob::dispatch(
                 $transaction->user_id,
                 $transaction->total_tickets,
-                'purchase'
+                'purchased'
             );
 
             $user = $transaction->user;

@@ -42,16 +42,14 @@ class Support extends Component
 
     public function render()
     {
-        $tickets = SupportTicket::where('user_id', auth()->id())
-            ->where(function ($query) {
-                $query->where('subject', 'like', '%' . $this->search . '%')
-                      ->orWhere('description', 'like', '%' . $this->search . '%');
-            })
-            ->latest()
-            ->paginate(5);
+        // $tickets = SupportTicket::where('user_id', auth()->id())
+        //     ->where(function ($query) {
+        //         $query->where('subject', 'like', '%' . $this->search . '%')
+        //               ->orWhere('description', 'like', '%' . $this->search . '%');
+        //     })
+        //     ->latest()
+        //     ->paginate(5);
 
-        return view('livewire.dashboard.support', [
-            'tickets' => $tickets,
-        ])->layout('components.layouts.dashboard');
+        return view('livewire.dashboard.support')->layout('components.layouts.dashboard');
     }
 }

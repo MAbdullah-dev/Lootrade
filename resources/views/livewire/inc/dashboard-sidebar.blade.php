@@ -35,7 +35,7 @@
                 <li class="nav-item">
                     <a class="d-flex align-items-center {{ Route::currentRouteName() == 'user.change.password' ? 'active' : '' }}"
                         aria-current="page" href="{{ route('user.change.password') }}" wire:navigate>
-                        <i class="fa-solid fa-unlock"></i> <span>Change Password</span>
+                        <i class="fa-solid fa-unlock"></i> <span>Reset Password</span>
                     </a>
                 </li>
                 <li class="nav-item">

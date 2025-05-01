@@ -93,28 +93,28 @@
 
     <div class="social-login">
         <button wire:click="redirectToGoogleLogin" type="button"
-            class="social-btn gradient google {{ in_array('google', $connected_providers) ? 'connected' : '' }}"
+            class="social-btn google {{ in_array('google', $connected_providers) ? 'connected' : 'gradient' }}"
             {{ in_array('google', $connected_providers) ? 'disabled' : '' }}>
             <i class="fab fa-google"></i>
         </button>
 
         <button wire:click="redirectToTwitterLogin" type="button"
-            class="social-btn gradient x {{ in_array('twitter', $connected_providers) ? 'connected' : '' }}"
+            class="social-btn x {{ in_array('twitter', $connected_providers) ? 'connected' : ' gradient' }}"
             {{ in_array('twitter', $connected_providers) ? 'disabled' : '' }}>
             <i class="fab fa-x-twitter"></i>
         </button>
 
         <button wire:click="redirectToDiscordLogin" type="button"
-            class="social-btn gradient discord {{ in_array('discord', $connected_providers) ? 'connected' : '' }}"
+            class="social-btn discord {{ in_array('discord', $connected_providers) ? 'connected' : ' gradient' }}"
             {{ in_array('discord', $connected_providers) ? 'disabled' : '' }}>
             <i class="fab fa-discord"></i>
         </button>
     </div>
     <div class="notification-bell position-fixed d-flex align-items-center justify-content-center"
         data-bs-toggle="offcanvas" data-bs-target="#notificationCanvas" aria-controls="notificationCanvas">
-        <i class="fa-solid fa-bell"></i>
+        <i class="fa-solid fa-bell gradient"></i>
         @if ($unreadCount > 0)
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
                 {{ $unreadCount }}
             </span>
         @endif
@@ -122,7 +122,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="notificationCanvas"
         aria-labelledby="notificationCanvasLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="notificationCanvasLabel">Notifications</h5>
+            <h5 class="offcanvas-title gradient" id="notificationCanvasLabel">Notifications</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
