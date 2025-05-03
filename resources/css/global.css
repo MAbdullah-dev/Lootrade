@@ -7,8 +7,8 @@
 
 body {
     /* overflow-x: hidden; */
-    background: linear-gradient(to right, #efadff, #a3d0ff);
-    color: #ffffff;
+    background: linear-gradient(135deg, #440640, #29084F, #1A0C48);
+    color: #1F0B46;
 }
 
 a {
