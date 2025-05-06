@@ -7,7 +7,7 @@
 
 body {
     /* overflow-x: hidden; */
-    background: linear-gradient(135deg, #440640, #29084F, #1A0C48);
+    background: linear-gradient(135deg, #440640, #29084f, #1a0c48);
     color: #fff;
 }
 
@@ -182,18 +182,13 @@ ul.pagination {
 
 .table-neon td {
     font-size: 14px;
-    border-top: 1px solid #2e8aea;
+    /* border-top: 1px solid #2e8aea; */
     /* Thin neon blue borders between rows */
 }
 
 .table-neon tr:hover td {
     background-color: #d58be7;
     color: #ffffff;
-}
-
-.table-neon thead th {
-    border-bottom: 2px solid #2e8aea;
-    /* Neon blue bottom border on header */
 }
 
 .table-neon .btn-secondary {

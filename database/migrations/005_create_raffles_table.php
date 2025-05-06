@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('image_path')->nullable();
-            $table->integer('entry_cost')->default(1);
+            $table->string('video_path')->nullable();
+            $table->enum('game_type', ['solo', 'multiplayer', 'both'])->default('solo');
             $table->integer('max_entries_per_user')->nullable();
             $table->integer('prize')->nullable();
             $table->integer('slots')->nullable();
@@ -31,7 +32,6 @@ return new class extends Migration
                     ELSE 'past'
                 END
             ")->stored();
-
             $table->timestamps();
         });
     }

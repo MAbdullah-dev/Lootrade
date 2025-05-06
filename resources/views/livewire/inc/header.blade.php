@@ -25,12 +25,15 @@
 
          <!-- Ticket Count + Login -->
          <div class="d-flex align-items-center gap-3 header-btns gap-4">
-             <button class="btn-custom position-relative">
-                 <i class="fa-solid fa-ticket me-1"></i>
-                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
-                     {{ $ticketCount }}
-                 </span>
-             </button>
+             @if ($isNotAdmin)
+                 <button class="btn-custom position-relative">
+                     <i class="fa-solid fa-ticket me-1"></i>
+                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
+                         {{ $ticketCount }}
+                     </span>
+                 </button>
+             @endif
+
              @if (!Auth::check())
                  <a href="{{ route('login') }}" class="btn-custom">Login</a>
              @endif

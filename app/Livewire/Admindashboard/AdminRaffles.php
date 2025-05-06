@@ -14,7 +14,7 @@ class AdminRaffles extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $title, $raffle_id, $description, $entry_cost, $max_entries_per_user, $prize, $date_range, $start_date, $end_date, $image, $slots;
+    public $title, $raffle_id, $description, $entry_cost, $max_entries_per_user, $prize, $date_range, $start_date, $end_date, $image, $slots, $video;
     public $search = '';
     public $sortDirection = 'desc';
     public $message;
@@ -96,12 +96,12 @@ class AdminRaffles extends Component
     public function viewForEditRaffle($raffleId)
     {
         $raffle = Raffle::find($raffleId);
-    
+
         if (!$raffle) {
             alert_error('Raffle not found.');
             return;
         }
-    
+
         // Set all your fields from the raffle data
         $this->raffle_id = $raffle->id;
         $this->title = $raffle->title;
@@ -129,16 +129,16 @@ class AdminRaffles extends Component
             'prize' => 'required|integer|min:1',
             'image' => 'nullable|image|max:2048',
         ]);
-    
+
         $raffle = Raffle::find($this->raffle_id);
-    
+
         if (!$raffle) {
             alert_error('Raffle not found.');
             return;
         }
-    
+
         [$startDate, $endDate] = explode(' to ', $this->date_range);
-    
+
         $raffle->update([
             'title' => $this->title,
             'description' => $this->description,
@@ -149,12 +149,12 @@ class AdminRaffles extends Component
             'slots' => $this->slots,
             'prize' => $this->prize,
         ]);
-    
+
         if ($this->image) {
             $path = $this->image->store('raffle-images', 'public');
             $raffle->update(['image' => $path]);
         }
-    
+
         $this->dispatch('hideEditModal'); // To close the modal after update (optional if you have a listener)
         alert_success('Raffle updated successfully!');
     }
@@ -163,7 +163,7 @@ class AdminRaffles extends Component
     public function render()
     {
         $raffles = Raffle::where('title', 'like', '%' . $this->search . '%')
-        ->orderByRaw("status = 'Active' DESC") 
+        ->orderByRaw("status = 'Active' DESC")
         ->paginate(10);
 
 

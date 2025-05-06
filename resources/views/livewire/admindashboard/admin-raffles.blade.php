@@ -34,6 +34,7 @@
                         </div>
 
                         <div class="modal-body">
+                            <!-- Title -->
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
                                 <input type="text" id="title" class="form-control" wire:model.defer="title"
@@ -53,52 +54,61 @@
                                 @enderror
                             </div>
 
-                            <!-- Minimum and Maximum Entries -->
-                            <div class="d-flex gap-3 mb-3">
-                                <div class="w-50">
-                                    <label for="entry_cost" class="form-label">Minimum Tickets to Enter</label>
-                                    <input type="number" id="entry_cost" class="form-control"
-                                        wire:model.defer="entry_cost" placeholder="Min Tickets">
-                                    @error('entry_cost')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <div class="w-50">
-                                    <label for="max_entries_per_user" class="form-label">Maximum Entries Per
-                                        User</label>
-                                    <input type="number" id="max_entries_per_user" class="form-control"
-                                        wire:model.defer="max_entries_per_user" placeholder="Max Entries">
-                                    @error('max_entries_per_user')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
+                            <!-- Game Type -->
+                            <div class="mb-3">
+                                <label for="game_type" class="form-label">Game Type</label>
+                                <select id="game_type" class="form-control" wire:model.defer="game_type">
+                                    <option value="solo">Solo</option>
+                                    <option value="multiplayer">Multiplayer</option>
+                                    <option value="both">Both</option>
+                                </select>
+                                @error('game_type')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
-                            <!-- Date Range -->
+                            <!-- Max Entries -->
                             <div class="mb-3">
-                                <div wire:ignore class="input-wrapper">
-                                    <label for="date_range" class="form-label">Raffle Duration</label>
-                                    <input type="text" id="date_range" class="form-control"
-                                        wire:model.defer="date_range" placeholder="Select start and end date" readonly>
-                                </div>
-                                @error('date_range')
+                                <label for="max_entries_per_user" class="form-label">Maximum Entries Per User</label>
+                                <input type="number" id="max_entries_per_user" class="form-control"
+                                    wire:model.defer="max_entries_per_user" placeholder="Max Entries">
+                                @error('max_entries_per_user')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <!-- Raffle Duration -->
+                            <div class="mb-3">
+                                <label for="start_date" class="form-label">Start Date</label>
+                                <input type="datetime-local" id="start_date" class="form-control"
+                                    wire:model.defer="start_date">
+                                @error('start_date')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="end_date" class="form-label">End Date</label>
+                                <input type="datetime-local" id="end_date" class="form-control"
+                                    wire:model.defer="end_date">
+                                @error('end_date')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
                             <!-- Slots -->
-                            <div class="input-wrapper mb-3">
-                                <label for="slots" class="form-label">Slots (Number of users that can enter)</label>
+                            <div class="mb-3">
+                                <label for="slots" class="form-label">Slots (Max Players)</label>
                                 <input type="number" id="slots" class="form-control" wire:model.defer="slots"
-                                    placeholder="Enter Slots">
+                                    placeholder="Enter slots">
                                 @error('slots')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
+                            <!-- Prize -->
                             <div class="mb-3">
-                                <label for="prize" class="form-label">Prize (No of Tickets as Reward)</label>
+                                <label for="prize" class="form-label">Prize (No of Tickets)</label>
                                 <input type="number" id="prize" class="form-control" wire:model.defer="prize"
                                     placeholder="Enter prize">
                                 @error('prize')
@@ -106,6 +116,7 @@
                                 @enderror
                             </div>
 
+                            <!-- Upload Image -->
                             <div class="mb-3">
                                 <label for="image" class="form-label">Upload Image</label>
                                 <input type="file" id="image" class="form-control" wire:model="image">
@@ -118,11 +129,27 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
+
+                            <!-- Upload Video -->
+                            <div class="mb-3">
+                                <label for="video" class="form-label">Upload Video (optional)</label>
+                                <input type="file" id="video" class="form-control" wire:model="video">
+                                <div wire:loading wire:target="video" class="text-primary mt-2">Uploading Video...
+                                </div>
+                                @if ($video)
+                                    <div class="text-success mt-2">Video Uploaded Successfully!</div>
+                                @endif
+                                @error('video')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
                         </div>
 
+                        <!-- Footer -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn-custom" wire:click="createRaffle">Save Raffle</button>
+                            <button type="button" class="btn-custom" wire:click="createRaffle">Create
+                                Raffle</button>
                         </div>
 
                     </div>
