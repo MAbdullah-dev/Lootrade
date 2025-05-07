@@ -54,19 +54,6 @@
                                 @enderror
                             </div>
 
-                            <!-- Game Type -->
-                            <div class="mb-3">
-                                <label for="game_type" class="form-label">Game Type</label>
-                                <select id="game_type" class="form-control" wire:model.defer="game_type">
-                                    <option value="solo">Solo</option>
-                                    <option value="multiplayer">Multiplayer</option>
-                                    <option value="both">Both</option>
-                                </select>
-                                @error('game_type')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-
                             <!-- Max Entries -->
                             <div class="mb-3">
                                 <label for="max_entries_per_user" class="form-label">Maximum Entries Per User</label>
@@ -107,14 +94,28 @@
                             </div>
 
                             <!-- Prize -->
-                            <div class="mb-3">
-                                <label for="prize" class="form-label">Prize (No of Tickets)</label>
-                                <input type="number" id="prize" class="form-control" wire:model.defer="prize"
-                                    placeholder="Enter prize">
-                                @error('prize')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                            <div id="prizes">
+                                <div class="form-group prize" wire:ignore>
+                                    <h3>Prize 1</h3>
+                                    <label for="prize_name[]">Prize Name</label>
+                                    <input type="text" wire:model.defer="prizes.0.name" class="form-control"
+                                        required>
+
+                                    <label for="prize_description[]">Prize Description</label>
+                                    <input type="text" wire:model.defer="prizes.0.description" class="form-control">
+
+                                    <label for="prize_value[]">Prize Value</label>
+                                    <input type="number" wire:model.defer="prizes.0.value" class="form-control"
+                                        required>
+
+                                    <label for="prize_quantity[]">Prize Quantity</label>
+                                    <input type="number" wire:model.defer="prizes.0.quantity" class="form-control"
+                                        required>
+                                </div>
                             </div>
+
+                            <button type="button" wire:click="addPrize" class="btn btn-primary">Add Another
+                                Prize</button>
 
                             <!-- Upload Image -->
                             <div class="mb-3">

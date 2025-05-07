@@ -25,6 +25,7 @@ use App\Livewire\Pages\Tickets;
 use App\Livewire\Welcome;
 use App\Livewire\Pages\Raffles;
 use App\Livewire\Pages\RaffleDetail;
+use App\Livewire\Pages\RaffleForm;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,11 @@ Route::get('/admin/transaction', Transaction::class)->name('admin.transaction');
 Route::get('/admin/ticketsPackeges', TicketPackages::class)->name('admin.ticketsPackeges');
 Route::get('/admin/packageTypes', PackageType::class)->name('admin.packageTypes');
 Route::get('/admin/newsletter', NewsletterSubscription::class)->name('admin.newsletter');
+
+// admin raffle create update
+Route::get('/admin/raffle/create', RaffleForm::class)->name('raffle.create');
+Route::get('/admin/raffle/edit/{id}', RaffleForm::class)->name('raffle.edit');
+// end admin raffle create update
 
 //auth
 Route::get('/login', Login::class)->name('login');

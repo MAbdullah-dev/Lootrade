@@ -13,6 +13,7 @@ class Raffle extends Model
         'title',
         'description',
         'image_path',
+        'video_path',
         'entry_cost',
         'max_entries_per_user',
         'prize',

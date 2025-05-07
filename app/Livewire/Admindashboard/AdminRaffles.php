@@ -33,6 +33,15 @@ class AdminRaffles extends Component
      $this->image = null;
     }
 
+    public $prizes = [
+    ['name' => '', 'description' => '', 'value' => '', 'quantity' => 1]
+    ];
+
+    public function addPrize()
+    {
+        $this->prizes[] = ['name' => '', 'description' => '', 'value' => '', 'quantity' => 1];
+    }
+
     public function createRaffle()
     {
         $this->validate([
@@ -41,7 +50,11 @@ class AdminRaffles extends Component
             'entry_cost' => 'required|integer|min:1',
             'max_entries_per_user' => 'required|integer|min:1|gte:entry_cost',
             'date_range' => 'required|string',
-            'prize' => 'required|integer|min:1',
+            'prizes' => 'required|array',
+            'prizes.*.name' => 'required|string',
+            'prizes.*.description' => 'nullable|string',
+            'prizes.*.value' => 'required|numeric|min:1',
+            'prizes.*.quantity' => 'required|integer|min:1',
             'slots' => 'required|integer|min:1',
             'image' => 'required|image|max:2048',
         ]);
@@ -67,6 +80,8 @@ class AdminRaffles extends Component
 
         $path = $this->image->store('raffles', 'public');
 
+        $prize_info = json_encode($this->prizes);
+
         Raffle::create([
             'title' => $this->title,
             'description' => $this->description,
@@ -74,13 +89,13 @@ class AdminRaffles extends Component
             'max_entries_per_user' => $this->max_entries_per_user,
             'start_date' => $start_date,
             'end_date' => $end_date,
-            'prize' => $this->prize,
+            'prize_info' => $prize_info,
             'slots' => $this->slots,
             'image_path' => $path,
         ]);
 
-         $message = "Raffle '{$this->title}' has been created with a prize of {$this->prize} tickets!";
-         CreateNotificationsJob::dispatch('global', $message);
+        $message = "Raffle '{$this->title}' has been created with prizes: " . json_encode($this->prizes);
+        CreateNotificationsJob::dispatch('global', $message);
         //  for dev: use aftercommit() to send notification if inside a transaction after dispatching the job;
 
         $this->reset();
@@ -102,7 +117,6 @@ class AdminRaffles extends Component
             return;
         }
 
-        // Set all your fields from the raffle data
         $this->raffle_id = $raffle->id;
         $this->title = $raffle->title;
         $this->description = $raffle->description;
@@ -111,7 +125,7 @@ class AdminRaffles extends Component
         $this->prize = $raffle->prize;
         $this->slots = $raffle->slots;
         $this->date_range = $raffle->start_date->format('Y-m-d H:i') . ' to ' . $raffle->end_date->format('Y-m-d H:i');
-        $this->image = null; // Empty because uploading a new one is optional
+        $this->image = null;
 
         $this->dispatch('showEditModal');
 
@@ -155,7 +169,7 @@ class AdminRaffles extends Component
             $raffle->update(['image' => $path]);
         }
 
-        $this->dispatch('hideEditModal'); // To close the modal after update (optional if you have a listener)
+        $this->dispatch('hideEditModal');
         alert_success('Raffle updated successfully!');
     }
 

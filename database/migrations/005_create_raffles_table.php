@@ -19,9 +19,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('image_path')->nullable();
             $table->string('video_path')->nullable();
-            $table->enum('game_type', ['solo', 'multiplayer', 'both'])->default('solo');
             $table->integer('max_entries_per_user')->nullable();
-            $table->integer('prize')->nullable();
+            $table->json('prize')->nullable();
             $table->integer('slots')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
