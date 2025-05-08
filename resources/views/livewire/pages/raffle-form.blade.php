@@ -75,10 +75,10 @@
                                     <label for="imageInput" class="form-label">Upload Image</label>
                                     <input type="file" class="form-control" id="imageInput" accept="image/*"
                                         wire:model="image">
-                                    @error('imageInput')
+                                    @error('image')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
-                                    <div id="imagePreview" class="mt-3" style="display: none;">
+                                    <div id="imagePreview" class="mt-3" style="display: none;" wire:ignore>
                                         <div class="spinner-border text-primary" id="imageLoader" role="status"></div>
                                         <div class="d-flex justify-content-center">
                                             <img id="previewImage" src="" class="img-fluid mt-2 rounded shadow"
@@ -90,7 +90,10 @@
                                     <label for="videoInput" class="form-label">Upload Video (Optional)</label>
                                     <input type="file" class="form-control" id="videoInput" accept="video/*"
                                         wire:model="video">
-                                    <div id="videoPreview" class="mt-3" style="display: none;">
+                                    @error('video')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                    <div id="videoPreview" class="mt-3" style="display: none;" wire:ignore>
                                         <div class="spinner-border text-success" id="videoLoader" role="status"></div>
                                         <div class="d-flex justify-content-center">
                                             <video id="previewVideo" class="mt-2 rounded shadow"

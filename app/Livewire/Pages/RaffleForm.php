@@ -24,22 +24,42 @@ class RaffleForm extends Component
         ['name' => '', 'description' => '', 'value' => null, 'quantity' => null],
     ];
 
-        protected $rules = [
-        'title' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'max_entries_per_user' => 'required|integer|min:1',
-        'start_date' => 'required|date',
-        'end_date' => 'required|date|after_or_equal:start_date',
-        'slots' => 'required|integer|min:1',
-        'image' => 'nullable|image|max:2048',
-        'video' => 'nullable|mimetypes:video/mp4,video/x-msvideo|max:10240',
+    public function rules()
+    {
+        return [
+
+        'title' => 'required|string|min:5|max:255|unique:raffles,title,' . $this->raffleId,
+        'description' => 'required|string|min:10',
+        'max_entries_per_user' => 'required|integer|min:1|max:1000',
+        'start_date' => 'required|date|after_or_equal:today',
+        'end_date' => 'required|date|after:start_date',
+        'slots' => 'required|integer|min:1|max:10000',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        'video' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo|max:10240',
+
+        'prizes' => 'required|array|min:1',
         'prizes.*.name' => 'required|string|max:255',
         'prizes.*.description' => 'required|string',
         'prizes.*.value' => 'nullable|numeric',
         'prizes.*.quantity' => 'nullable|integer',
+
     ];
+    }
+
+
 
     protected $listeners = ['setDateRange'];
+
+    public function messages()
+    {
+        return [
+            'prizes.0.name.required' => 'The prize name is mandatory.',
+            'prizes.0.description.required' => 'Please provide a description for the prize.',
+            'prizes.0.value.numeric' => 'The prize value must be a number.',
+            'prizes.0.quantity.integer' => 'The prize quantity must be an integer.',
+        ];
+    }
+
 
     public function mount($raffle = null)
     {
@@ -51,22 +71,14 @@ class RaffleForm extends Component
             $this->start_date = $raffle->start_date;
             $this->end_date = $raffle->end_date;
             $this->slots = $raffle->slots;
-            $this->prizes = $raffle->prizes->map(function ($prize) {
-                return [
-                    'name' => $prize->name,
-                    'description' => $prize->description,
-                    'value' => $prize->value,
-                    'quantity' => $prize->quantity,
-                ];
-            })->toArray();
+            $this->prizes = is_array($raffle->prize) ? $raffle->prize : [];
         }
     }
 
-    public function setDateRange($range)
+    public function setDateRange($start, $end)
     {
-        $this->start_date = $range['start'];
-        $this->end_date = $range['end'];
-        dd($this->start_date, $this->end_date);
+        $this->start_date = $start;
+        $this->end_date = $end;
     }
 
     public function save()
@@ -82,6 +94,7 @@ class RaffleForm extends Component
                 'start_date' => $this->start_date,
                 'end_date' => $this->end_date,
                 'slots' => $this->slots,
+                'prize' => json_encode($this->prizes)
             ]
         );
 
@@ -95,12 +108,11 @@ class RaffleForm extends Component
 
         $raffle->save();
 
-        $raffle->prizes()->delete();
-        foreach ($this->prizes as $prizeData) {
-            $raffle->prizes()->create($prizeData);
-        }
+        alert_success('Raffle saved successfully!');
 
-        alert_success('success', 'Raffle saved successfully!');
+        $this->reset();
+
+        return redirect('/raffle/' . $raffle->id);
     }
 
 
