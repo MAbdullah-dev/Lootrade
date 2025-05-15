@@ -7,8 +7,8 @@
 
 body {
     /* overflow-x: hidden; */
-    background: linear-gradient(to right, #efadff, #a3d0ff);
-    color: #ffffff;
+    background: linear-gradient(135deg, #440640, #29084F, #1A0C48);
+    color: #fff;
 }
 
 a {
@@ -21,7 +21,7 @@ li {
 }
 
 .btn-custom {
-    background: linear-gradient(to right, #A347BA, #2E8AEA);
+    background: linear-gradient(to right, #a347ba, #2e8aea);
     color: white;
     border: none;
     padding: 16px 24px;
@@ -34,7 +34,7 @@ li {
     /* background-color: #fd2828; */
     transform: translateY(-2px);
     /* Lift effect on hover */
-    box-shadow: 0 4px 15px #1F0B46;
+    box-shadow: 0 4px 15px #1f0b46;
     /* Red shadow on hover */
 }
 
@@ -88,9 +88,8 @@ ul.pagination {
 
 /* Active page */
 .page-item.active .page-link {
-    background-color: #fe3839;
-    /* blue-600 */
-    border-color: #fe3839;
+    background-color: #1f0b46;
+    border-color: #1f0b46;
     color: #ffffff;
     font-weight: bold;
 }
@@ -132,7 +131,7 @@ ul.pagination {
 }
 
 .gradient {
-    background: linear-gradient(to right, #A347BA, #2E8AEA);
+    background: linear-gradient(to right, #a347ba, #2e8aea);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -150,10 +149,10 @@ ul.pagination {
 
 /* Scrollbar Thumb (the draggable part) */
 ::-webkit-scrollbar-thumb {
-    background: #39FF14;
+    background: #39ff14;
     /* Neon Green color */
     border-radius: 10px;
-    box-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14;
+    box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
     /* Glow effect */
 }
 
@@ -164,15 +163,18 @@ ul.pagination {
 }
 
 .table-neon {
-    background-color: #1E1E2D;
-    color: #FFFFFF;
+    background-color: #1e1e2d;
+    /* Soft dark background */
+    color: #ffffff;
+    /* White text */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .table-neon th {
-    background-color: #1F0B46;
+    background-color: #1f0b46;
+    /* Dark purple for header */
     color: #d58be7;
     font-weight: 600;
     border: none;
@@ -180,7 +182,8 @@ ul.pagination {
 
 .table-neon td {
     font-size: 14px;
-    border-top: 1px solid #2E8AEA;
+    border-top: 1px solid #2e8aea;
+    /* Thin neon blue borders between rows */
 }
 
 .table-neon tr:hover td {
@@ -189,7 +192,8 @@ ul.pagination {
 }
 
 .table-neon thead th {
-    border-bottom: 2px solid #2E8AEA;
+    border-bottom: 2px solid #2e8aea;
+    /* Neon blue bottom border on header */
 }
 
 .table-neon .btn-secondary {
@@ -198,11 +202,11 @@ ul.pagination {
 }
 
 .table-neon .btn-primary {
-    background: linear-gradient(to right, #A347BA, #2E8AEA);
+    background: linear-gradient(to right, #a347ba, #2e8aea);
     border: none;
 }
 
 .table-neon .btn-danger {
-    background-color: #FF1744;
+    background-color: #ff1744;
     border: none;
 }

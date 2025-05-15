@@ -37,7 +37,7 @@
     </section>
     <section class="revenueSection my-5">
         <div class="inner">
-            <h4 class="my-4 text-center">Revenue</h4>
+            <h4 class="my-4 text-center gradient">Revenue</h4>
             <div id="revenueChart"></div> <!-- This is the actual chart container -->
         </div>
     </section>

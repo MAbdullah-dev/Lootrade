@@ -1,5 +1,5 @@
 <div class="user-raffles">
-    <h2 class="mb-3">Your Raffles</h2>
+    <h5 class="mb-3 gradient">Your Raffles</h5>
 
     <div class="body table-responsive rounded shadow">
         <table class="table table-neon  table-hover mb-0">

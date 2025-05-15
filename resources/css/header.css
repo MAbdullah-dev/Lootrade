@@ -1,10 +1,10 @@
 header {
     padding: 20px 0;
-    background-color: #5B267C;
+    background-color: #1f0b46;
 
     .btn-custom span {
-        background-color: #C0C2FF;
-        color: #1F0B46;
+        background-color: #c0c2ff;
+        color: #1f0b46;
     }
 }
 
@@ -22,7 +22,10 @@ header .header-btns a {
 }
 
 header .nav-item .nav-link:hover {
-    color: rgb(253, 40, 40) !important;
+    /* color: rgb(253, 40, 40) !important; */
+    background: linear-gradient(to right, #a347ba, #2e8aea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 header .user-avatar {
@@ -61,8 +64,10 @@ header .user-avatar .dropdown-item {
 }
 
 header .user-avatar .dropdown-item:hover {
-    background-color: #fd2828;
+    background: linear-gradient(to right, #a347ba, #2e8aea);
     color: #fff !important;
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
 }
 
 header nav ul li {
@@ -76,7 +81,7 @@ header .desktop-nav ul li::before {
     left: 0;
     height: 2px;
     width: 0%;
-    background-color: #fd2828;
+    background-image: linear-gradient(to right, #a347ba, #2e8aea);
     transition: all 0.4s ease-in-out;
 }
 
@@ -157,7 +162,6 @@ header .mobile-nav {
 
 .hamburger.open .bar:nth-child(3) {
     transform: translateY(-10px) rotate(-45deg);
-
 }
 
 .mobile-nav.show {

@@ -1,7 +1,7 @@
-<div class="mytickets" >
-    <h5 class="mb-4">My Tickets</h5>
+<div class="mytickets">
+    <h5 class="mb-4 gradient">My Tickets</h5>
 
-    <div class="mb-4 px-4">
+    <div class="mb-4">
         <input type="text" wire:model.live="search" class="form-control" placeholder="Search by ticket number...">
     </div>
 
@@ -49,7 +49,7 @@
         </table>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-2">
         {{ $tickets->links() }}
     </div>
 </div>
