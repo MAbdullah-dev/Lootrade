@@ -17,23 +17,24 @@ class RaffleDetail extends Component
 
     public function mount()
     {
-        $this->raffle = Raffle::findOrFail($this->id);
-        $this->raffle->prize = json_decode($this->raffle->prize, true);
-        $usersJoined = RaffleTicket::where('raffle_id', $this->id)
-        ->select('user_id')
-        ->distinct()
+    $this->raffle = Raffle::findOrFail($this->id);
+    $this->raffle->prize = json_decode($this->raffle->prize, true);
+
+    $userIds = RaffleTicket::where('raffle_id', $this->id)
+        ->pluck('user_id')
+        ->unique();
+
+    $this->usersJoined = \App\Models\User::whereIn('id', $userIds)->get();
+
+    $this->uniqueUsersCount = $this->usersJoined->count();
+
+    $this->lastUserJoined = RaffleTicket::where('raffle_id', $this->id)
+        ->latest()
         ->with('user')
-        ->get();
+        ->first()
+        ?->user;
 
-        $uniqueUsersCount = $usersJoined->count();
-
-        $this->lastUserJoined = RaffleTicket::where('raffle_id', $this->id)
-            ->latest()
-            ->with('user')
-            ->first()
-            ?->user;
-
-        $this->alreadyJoined = RaffleTicket::where('raffle_id', $this->id)
+    $this->alreadyJoined = RaffleTicket::where('raffle_id', $this->id)
         ->where('user_id', auth()->id())
         ->exists();
     }
@@ -43,15 +44,15 @@ class RaffleDetail extends Component
      if ($this->raffle->status !== 'active') {
          return alert_error('This raffle is not active yet. Please check back later.');
      }
- 
+
      if ($mode === 'solo') {
          return redirect()->route('game.solo', ['raffle' => $this->raffle->id]);
      }
- 
+
      if ($mode === 'battle') {
          return redirect()->route('game.battle', ['raffle' => $this->raffle->id]);
      }
- 
+
      return alert_error('Invalid game mode selected.');
     }
 

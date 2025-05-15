@@ -38,11 +38,11 @@
                                             <h3>Prize</h3>
                                             <ul>
                                                 @if (is_array($raffle->prize))
-                                                        @foreach ($raffle->prize as $prize)
-                                                    <li><strong>{{ $prize['name'] }}</strong></li>
-                                                    <li><b>Description:</b> {{ $prize['description'] }}</li>
-                                                    <li><b>Value:</b> {{ $prize['value'] }}</li>
-                                                    <li><b>Quantity:</b> {{ $prize['quantity'] }}</li>
+                                                    @foreach ($raffle->prize as $prize)
+                                                        <li><strong>{{ $prize['name'] }}</strong></li>
+                                                        <li><b>Description:</b> {{ $prize['description'] }}</li>
+                                                        <li><b>Value:</b> {{ $prize['value'] }}</li>
+                                                        <li><b>Quantity:</b> {{ $prize['quantity'] }}</li>
                                                     @endforeach
                                                 @else
                                                     <p>No prizes available.</p>
@@ -107,7 +107,7 @@
                                         tickets in the Ticket Tower. Only those who defeat the bot earn 5 bonus entries.
                                     </p>
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn-custom px-5 py-2" wire:click="startGame('solo')">Play
+                                        <button class="btn-custom px-5 py-2" wire:click="startGame('battle')">Play
                                             Battle</button>
                                     </div>
                                 </div>
@@ -124,33 +124,20 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="my-4">Users gando</h3>
+                <h3 class="my-4">Users</h3>
                 <div class="users-wrapper">
-                    <div class="user-profile">
-                        <div>
-                            <img src="{{ asset('assets/images/dummy-profile-photo.png') }}" alt="">
+                    @foreach ($usersJoined ?? [] as $entry)
+                        <div class="user-profile text-center">
+                            <div>
+                                <img style="object-fit: cover"
+                                    src="{{ $entry->profile_picture
+                                        ? asset('storage/' . $entry->profile_picture)
+                                        : asset('assets/images/dummy-profile-photo.png') }}"
+                                    alt="{{ $entry->username ?? 'User' }}" alt="">
+                            </div>
+                            <h6>{{ $entry->username ?? 'Unknown' }}</h6>
                         </div>
-                        <h6>ma0621450</h6>
-                    </div>
-                    <div class="user-profile">
-                        <div>
-                            <img src="{{ asset('assets/images/dummy-profile-photo.png') }}" alt="">
-                        </div>
-                        <h6>ma0621450</h6>
-                    </div>
-                    <div class="user-profile">
-                        <div>
-                            <img src="{{ asset('assets/images/dummy-profile-photo.png') }}" alt="">
-                        </div>
-                        <h6>ma0621450</h6>
-                    </div>
-                    <div class="user-profile">
-                        <div>
-                            <img src="{{ asset('assets/images/dummy-profile-photo.png') }}" alt="">
-                        </div>
-                        <h6>ma0621450</h6>
-                    </div>
+                    @endforeach
                 </div>
     </section>
 </div>
-

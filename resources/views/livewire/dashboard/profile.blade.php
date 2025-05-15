@@ -148,33 +148,6 @@
 
 @push('js')
     <script>
-        // function initFlatpickr() {
-        //     $("#dob").flatpickr({
-        //         dateFormat: "Y-m-d",
-        //         maxDate: "today",
-        //         defaultDate: @json($date_of_birth),
-        //         minDate: "1900-01-01",
-        //         enableTime: false,
-        //         altInput: true,
-        //         altFormat: "F j, Y",
-        //         allowInput: true,
-        //         clickOpens: true,
-        //         disableMobile: false,
-        //         onChange: function(selectedDates, dateStr) {
-        //             @this.set('date_of_birth', dateStr);
-        //         }
-        //     });
-        // }
-
-        // document.addEventListener('livewire:load', function() {
-        //     console.log("livewire loaded")
-        //     initFlatpickr();
-        // });
-
-        // Livewire.hook('message.processed', (message, component) => {
-        //     initFlatpickr();
-        // });
-
         // Update file input label
         document.querySelector('#profile-image').addEventListener('change', function() {
             const fileName = this.files[0]?.name || 'Choose file';

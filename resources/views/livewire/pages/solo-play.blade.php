@@ -12,18 +12,18 @@
                     </div> --}}
                 </div>
                 @if (!empty($raffle->prize))
-                                        <div class="prize-wrapper text-center" wire:ignore>
-                                                @if (is_array($raffle->prize))
-                                                        @foreach ($raffle->prize as $prize)
-                                                    <p><strong>Prize: </strong> {{ $prize['name'] }}</p>
-                                                    @endforeach
-                                                @else
-                                                    <p>No prizes available.</p>
-                                                @endif
-                                        </div>
-                                    @else
-                                        <p>No prizes available.</p>
-                                    @endif
+                    <div class="prize-wrapper text-center" wire:ignore>
+                        @if (is_array($raffle->prize))
+                            @foreach ($raffle->prize as $prize)
+                                <p><strong>Prize: </strong> {{ $prize['name'] }}</p>
+                            @endforeach
+                        @else
+                            <p>No prizes available.</p>
+                        @endif
+                    </div>
+                @else
+                    <p>No prizes available.</p>
+                @endif
                 <div class="grid-wrapper d-flex flex-column justify-content-center align-items-center mt-4">
                     <button class="p-3 w-100 rounded mb-6 flex items-center justify-center my-3">
                         Play to win entries in the giveaway!
@@ -46,7 +46,7 @@
                             @endforeach
                         @endforeach
                     </div>
-                    <div class="playing-btn" wire:click="startGame" data-sound="play">
+                    <div class="playing-btn btn-custom w-100" wire:click="startGame" data-sound="play">
                         {{ $gameActive ? 'Playing' : 'Play' }}
                     </div>
                 </div>
@@ -57,30 +57,31 @@
         <audio id="wrong-sound" src="{{ asset('sounds/wrong-tile.wav') }}"></audio>
         <audio id="play-sound" src="{{ asset('sounds/play.wav') }}"></audio>
     </div>
-@if ($awaitingDecision)
-    <div class="modal-backdrop fade show"></div>
-    <div class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true" style="background: rgba(0,0,0,0.5);">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center p-4 rounded-4">
-                {{-- Heading --}}
-                <h3 class="mb-3 fw-bold">You've reached this level! 🎉</h3>
-                
-                {{-- Subtext --}}
-                <p>
-                  Do you want to secure <strong>{{ $earnedEntries }}</strong> 
-                  {{ $earnedEntries === 1 ? 'entry' : 'entries' }} in the raffle or continue?
-                </p>
+    @if ($awaitingDecision)
+        <div class="modal-backdrop fade show"></div>
+        <div class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true"
+            style="background: rgba(0,0,0,0.5);">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center p-4 rounded-4">
+                    {{-- Heading --}}
+                    <h3 class="mb-3 fw-bold">You've reached this level! 🎉</h3>
+
+                    {{-- Subtext --}}
+                    <p>
+                        Do you want to secure <strong>{{ $earnedEntries }}</strong>
+                        {{ $earnedEntries === 1 ? 'entry' : 'entries' }} in the raffle or continue?
+                    </p>
 
 
-                {{-- Buttons --}}
-                <div class="d-flex justify-content-center gap-3 mt-4">
-                    <button wire:click="secureEntries" class="btn btn-success px-4 py-2">✅ Secure</button>
-                    <button wire:click="continueGame" class="btn btn-warning px-4 py-2">🚀 Continue</button>
+                    {{-- Buttons --}}
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <button wire:click="secureEntries" class="btn btn-success px-4 py-2">✅ Secure</button>
+                        <button wire:click="continueGame" class="btn btn-warning px-4 py-2">🚀 Continue</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endif
+    @endif
 
 
 </div>

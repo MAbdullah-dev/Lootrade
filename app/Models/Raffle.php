@@ -29,9 +29,9 @@ class Raffle extends Model
     ];
 
 
-    public function tickets()
+    public function raffleTickets()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(RaffleTicket::class);
     }
 
 

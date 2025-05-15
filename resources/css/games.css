@@ -1,10 +1,11 @@
+.soloplayer {
+    height: 100%;
+}
 .soloplayer .inner {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100%;
-    height: 100vh;
 }
 
 .soloplayer .inner .game-box {
@@ -41,22 +42,23 @@
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 15px; */
 
-
 .grid-wrapper {
     padding: 20px;
-    border: 2px solid #7100BD;
-    box-shadow: 0 0 1px #7100BD, 0 0 20px #7100BD, 0 0 0px #7100BD, 0 0 5px #7100BD;
+    border: 2px solid #7100bd;
+    box-shadow: 0 0 1px #7100bd, 0 0 20px #7100bd, 0 0 0px #7100bd,
+        0 0 5px #7100bd;
     border-radius: 10px;
 }
 
-.grid-wrapper>button {
+.grid-wrapper > button {
     background-color: #000;
-    border: 2px solid #7100BD;
+    border: 2px solid #7100bd;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
     cursor: unset;
-    box-shadow: 0 0 1px #7100BD, 0 0 10px #7100BD, 0 0 0px #7100BD, 0 0 5px #7100BD;
+    box-shadow: 0 0 1px #7100bd, 0 0 10px #7100bd, 0 0 0px #7100bd,
+        0 0 5px #7100bd;
 }
 
 .grid-wrapper .tile-grid {
@@ -67,7 +69,7 @@
 }
 
 .tile {
-    background: #0A002F;
+    background: #0a002f;
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     width: 100%;
@@ -76,23 +78,24 @@
     justify-content: center;
     align-items: center;
     transition: background 0.3s, border 0.3s;
-    box-shadow: 0 0 1px #7100BD, 0 0 5px #7100BD, 0 0 0px #7100BD, 0 0 5px #7100BD;
+    box-shadow: 0 0 1px #7100bd, 0 0 5px #7100bd, 0 0 0px #7100bd,
+        0 0 5px #7100bd;
 }
 
 .tile:hover:not([disabled]) {
-    background: #7100BD;
-    border-color: #7100BD;
+    background: #7100bd;
+    border-color: #7100bd;
     cursor: pointer;
 
     i {
-        color: #0A002F;
+        color: #0a002f;
         transition: color 0.3s;
         /* rotate: 0deg; */
     }
 }
 
 .tile.correct {
-    background-color: #39FF14;
+    background-color: #39ff14;
     color: white;
     /* border-color: #39FF14; */
 }
@@ -100,15 +103,15 @@
 .tile.wrong {
     background: #ff073980;
     color: white;
-    border-color: #FF073A;
+    border-color: #ff073a;
 
     i {
-        color: #FF073A;
+        color: #ff073a;
     }
 }
 
 .tile i {
-    color: #7100BD;
+    color: #7100bd;
     font-size: 1.8rem;
     transition: color 0.3s;
     rotate: -30deg;
@@ -116,9 +119,9 @@
 
 .playing-btn {
     /* background: linear-gradient(to right, #2c6b5f, #1a3c34); */
-    border: 2px solid #7100BD;
+    border: 2px solid #7100bd;
     border-radius: 10px;
-    color: #7100BD;
+    color: #7100bd;
     font-weight: bold;
     padding: 15px;
     text-align: center;
@@ -126,7 +129,8 @@
     font-size: 1.2rem;
     letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: 0 0 1px #7100BD, 0 0 10px #7100BD, 0 0 0px #7100BD, 0 0 5px #7100BD;
+    box-shadow: 0 0 1px #7100bd, 0 0 10px #7100bd, 0 0 0px #7100bd,
+        0 0 5px #7100bd;
 }
 
 .ticket-count {
@@ -165,10 +169,10 @@
 }
 
 .battlefield-game .tower-footer .footer-btn {
-    border: 2px solid #7100BD;
+    border: 2px solid #7100bd;
     background: transparent;
     border-radius: 10px;
-    color: #7100BD;
+    color: #7100bd;
     font-weight: bold;
     padding: 15px;
     text-align: center;
@@ -176,5 +180,6 @@
     font-size: 1.2rem;
     letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: 0 0 1px #7100BD, 0 0 10px #7100BD, 0 0 0px #7100BD, 0 0 5px #7100BD;
+    box-shadow: 0 0 1px #7100bd, 0 0 10px #7100bd, 0 0 0px #7100bd,
+        0 0 5px #7100bd;
 }

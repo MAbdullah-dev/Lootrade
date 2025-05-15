@@ -3,11 +3,17 @@
 namespace App\Livewire\Pages;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\Raffle;
+use App\Models\RaffleTicket;
+
 
 class Battlefield extends Component
 {
-        public $gameStarted = false;
-    public $tickets = 100;
+    public $gameStarted = false;
+    public $tickets;
     public $currentRound = 0;
     public $userScore = 0;
     public $botScore = 0;
@@ -22,43 +28,117 @@ class Battlefield extends Component
     public $gameWinner = null;
     public $userRowStates = [];
     public $botRowStates = [];
+    public $raffle;
+    public $user;
+    public $usedTicketIds;
 
     protected $listeners = [
         'botTurn' => 'handleBotTurn',
         'endRound' => 'endRound',
     ];
 
-    public function mount()
+    public function mount(Raffle $raffle)
     {
-        $this->tickets = 100;
+        $this->user = Auth::user();
+        $this->raffle = $raffle;
+        $this->raffle->prize = json_decode($this->raffle->prize, true);
+        $this->tickets = auth()->user()->ticket_balance;
         $this->userRowStates = [];
         $this->botRowStates = [];
-        Log::debug('Game mounted with initial tickets: ' . $this->tickets);
     }
+
+    public function redirectBackToRaffle()
+    {
+        return redirect("raffle/{$this->raffle->id}");
+    }
+
 
     public function startGame()
     {
-        if ($this->tickets < 10) {
-            session()->flash('message', 'Not enough tickets!');
-            Log::debug('Not enough tickets to start game.');
+        $user = $this->user;
+
+        $alreadySecured = RaffleTicket::where('user_id', $user->id)
+            ->where('raffle_id', $this->raffle->id)
+            ->count();
+
+        $maxAllowed = $this->raffle->max_entries_per_user ?? PHP_INT_MAX;
+        $remainingAllowed = $maxAllowed - $alreadySecured;
+
+        if ($remainingAllowed < 5) {
+            alert_error("🎟️ Winning this game secures 5 entries in the raffle, and you currently have {$remainingAllowed} entries left.");
             return;
         }
 
-        $this->tickets -= 10;
-        $this->gameStarted = true;
-        $this->currentRound = 1;
-        $this->userScore = 0;
-        $this->botScore = 0;
-        $this->progress = [];
-        $this->gameWinner = null;
-        $this->firstPlayer = rand(0, 1) ? 'user' : 'bot';
-        $this->turn = $this->firstPlayer;
-        Log::debug('Game started. First player: ' . $this->firstPlayer . ', New ticket count: ' . $this->tickets);
-        $this->initializeRound();
+        $userHasEntries = RaffleTicket::where('raffle_id', $this->raffle->id)
+            ->where('user_id', $user->id)
+            ->exists();
 
-        if ($this->turn == 'bot') {
-            // $this->handleBotTurn();
-            $this->dispatch('bot-move', ['continue' => true]);
+        if (!$userHasEntries && $this->raffle->slots <= 0) {
+            alert_error('Raffle is full. No slots left.');
+            return;
+        }
+
+        if ($this->tickets < 10) {
+            alert_error('Not enough tickets!');
+            return;
+        }
+
+        DB::beginTransaction();
+
+        try {
+            // Lock and get 10 available user tickets
+            $tickets = \App\Models\UserTicket::where('user_id', $user->id)
+                ->where('status', 'available')
+                ->lockForUpdate()
+                ->limit(10)
+                ->get();
+
+            if ($tickets->count() < 10) {
+                DB::rollBack();
+                alert_error('You do not have 10 available tickets to start this game.');
+                return;
+            }
+
+            // Mark all 10 tickets as consumed
+            \App\Models\UserTicket::whereIn('id', $tickets->pluck('id'))
+                ->update(['status' => 'consumed']);
+
+            // Store IDs if needed
+            $this->usedTicketIds = $tickets->pluck('id')->toArray();
+
+            $user->decrement('ticket_balance', 10);
+
+            if (!$userHasEntries) {
+                $this->raffle->decrement('slots');
+            }
+
+            DB::commit();
+
+            $this->tickets = $user->fresh()->ticket_balance;
+
+            // INIT Battlefield game
+            $this->gameStarted = true;
+            $this->currentRound = 1;
+            $this->userScore = 0;
+            $this->botScore = 0;
+            $this->progress = [];
+            $this->gameWinner = null;
+            $this->firstPlayer = rand(0, 1) ? 'user' : 'bot';
+            $this->turn = $this->firstPlayer;
+
+            Log::debug('Game started. First player: ' . $this->firstPlayer . ', New ticket count: ' . $this->tickets);
+
+            $this->initializeRound();
+
+            if ($this->turn == 'bot') {
+                $this->dispatch('bot-move', ['continue' => true]);
+            }
+
+            $this->dispatch('play-sound', sound: 'play');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            alert_error('Failed to start game. Try again.');
         }
     }
 
@@ -94,83 +174,51 @@ class Battlefield extends Component
         return $tower;
     }
 
-    // public function selectTicket($player, $row, $ticketIndex)
-    // {
-    //     if ($this->gameWinner || $this->turn != $player || $this->{$player . 'CurrentRow'} != $row) {
-    //         return;
-    //     }
-
-    //     $tower = $player . 'Tower';
-    //     $rowStatesProp = $player . 'RowStates';
-
-    //     if (!isset($this->$rowStatesProp[$row])) {
-    //         $this->$rowStatesProp[$row] = false;
-    //     }
-
-    //     $this->$tower[$row][$ticketIndex]['selected'] = true;
-
-    //     if ($this->$tower[$row][$ticketIndex]['correct']) {
-    //         $this->$tower[$row][0]['selected'] = true;
-    //         $this->$tower[$row][1]['selected'] = true;
-    //         $this->$rowStatesProp[$row] = true;
-    //         $this->{$player . 'CurrentRow'}++;
-
-    //         if ($this->{$player . 'CurrentRow'} == 5) {
-    //             $this->endTurn($player);
-    //             return;
-    //         }
-    //         if ($player == 'bot') {
-    //             $this->dispatch('bot-move', ['continue' => true]);
-    //         }
-    //     } else {
-    //         $this->$tower[$row][$ticketIndex]['wrong'] = true;
-    //         $this->$rowStatesProp[$row] = false;
-    //         $this->endTurn($player);
-    //     }
-    // }
-
     public function selectTicket($player, $row, $ticketIndex)
-{
-    if ($this->gameWinner || $this->turn != $player || $this->{$player . 'CurrentRow'} != $row) {
-        return;
-    }
-
-    $tower = $player . 'Tower';
-    $rowStatesProp = $player . 'RowStates';
-
-    if (!isset($this->$rowStatesProp[$row])) {
-        $this->$rowStatesProp[$row] = false;
-    }
-
-    $this->$tower[$row][$ticketIndex]['selected'] = true;
-
-    $isCorrect = $this->$tower[$row][$ticketIndex]['correct'];
-
-    if ($player === 'user') {
-        // Override to give user 40% chance of winning regardless of actual correctness
-        $isCorrect = rand(1, 100) <= 40;
-    }
-
-    if ($isCorrect) {
-        $this->$tower[$row][0]['selected'] = true;
-        $this->$tower[$row][1]['selected'] = true;
-        $this->$rowStatesProp[$row] = true;
-        $this->{$player . 'CurrentRow'}++;
-
-        if ($this->{$player . 'CurrentRow'} == 5) {
-            $this->gameWinner = $player;
-            // $this->endTurn($player);
+    {
+        if ($this->gameWinner || $this->turn != $player || $this->{$player . 'CurrentRow'} != $row) {
             return;
         }
-        if ($player == 'bot') {
-            $this->dispatch('bot-move', ['continue' => true]);
+
+        $tower = $player . 'Tower';
+        $rowStatesProp = $player . 'RowStates';
+
+        if (!isset($this->$rowStatesProp[$row])) {
+            $this->$rowStatesProp[$row] = false;
         }
-    } else {
-        $this->$tower[$row][$ticketIndex]['wrong'] = true;
-        $this->$rowStatesProp[$row] = false;
-        $this->endTurn($player);
+
+        $this->$tower[$row][$ticketIndex]['selected'] = true;
+
+        $isCorrect = $this->$tower[$row][$ticketIndex]['correct'];
+
+        if ($player === 'user') {
+            $isCorrect = rand(1, 100) <= 40;
+        }
+
+        if ($isCorrect) {
+            $this->$tower[$row][0]['selected'] = true;
+            $this->$tower[$row][1]['selected'] = true;
+            $this->$rowStatesProp[$row] = true;
+            $this->dispatch('play-sound', sound: 'correct');
+            $this->{$player . 'CurrentRow'}++;
+
+            if ($this->{$player . 'CurrentRow'} == 5) {
+                $this->gameWinner = $player;
+                if ($player === 'user') {
+                    $this->awardRaffleTickets();
+                }
+                return;
+            }
+            if ($player == 'bot') {
+                $this->dispatch('bot-move', ['continue' => true]);
+            }
+        } else {
+            $this->$tower[$row][$ticketIndex]['wrong'] = true;
+            $this->$rowStatesProp[$row] = false;
+            $this->dispatch('play-sound', sound: 'wrong');
+            $this->endTurn($player);
+        }
     }
-}
 
 
     private function botSelectTicket()
@@ -217,9 +265,55 @@ class Battlefield extends Component
 
         if ($this->currentRound == 20) {
             $this->gameWinner = $this->userScore > $this->botScore ? 'user' : ($this->botScore > $this->userScore ? 'bot' : 'tie');
+            if ($this->gameWinner === 'user') {
+            $this->awardRaffleTickets();
+            }
         } else {
             $this->currentRound++;
             $this->initializeRound();
+        }
+    }
+
+    private function awardRaffleTickets()
+    {
+        $user = $this->user;
+
+        $alreadySecured = RaffleTicket::where('user_id', $user->id)
+            ->where('raffle_id', $this->raffle->id)
+            ->count();
+
+        $maxAllowed = $this->raffle->max_entries_per_user ?? PHP_INT_MAX;
+        $remainingAllowed = $maxAllowed - $alreadySecured;
+
+        $entriesToGive = min(5, $remainingAllowed);
+
+        if ($entriesToGive <= 0) {
+            return;
+        }
+
+        $userHasEntries = $alreadySecured > 0;
+
+        $availableTicketIds = array_slice($this->usedTicketIds ?? [], 0, $entriesToGive);
+        $userTickets = \App\Models\UserTicket::whereIn('id', $availableTicketIds)->get()->keyBy('id');
+
+        $entries = [];
+
+        foreach ($availableTicketIds as $id) {
+            $ticket = $userTickets[$id] ?? null;
+            $entries[] = [
+                'raffle_id' => $this->raffle->id,
+                'user_id' => $user->id,
+                'ticket_number' => $ticket?->ticket_number,
+                'user_ticket_id' => $ticket?->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        RaffleTicket::insert($entries);
+
+        if (!$userHasEntries) {
+            $this->raffle->decrement('slots');
         }
     }
 

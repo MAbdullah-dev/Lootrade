@@ -20,6 +20,8 @@ class SoloPlay extends Component
     public $raffle;
     public $earnedEntries = 0;
     public $awaitingDecision = false;
+    public $usedTicketId = null;
+
 
     public function mount(Raffle $raffle)
     {
@@ -41,11 +43,23 @@ class SoloPlay extends Component
     {
         $user = auth()->user();
 
+        $alreadySecured = RaffleTicket::where('user_id', $user->id)
+            ->where('raffle_id', $this->raffle->id)
+            ->count();
+
+        $maxAllowed = $this->raffle->max_entries_per_user ?? PHP_INT_MAX;
+        $remainingAllowed = $maxAllowed - $alreadySecured;
+
+        if ($remainingAllowed <= 0) {
+            alert_error("🎟️ You've reached the maximum entries allowed for this raffle.");
+            return;
+        }
+
         $userHasEntries = RaffleTicket::where('raffle_id', $this->raffle->id)
             ->where('user_id', $user->id)
             ->exists();
 
-        if (!$userHasEntries && $this->raffle->available_slots <= 0) {
+        if (!$userHasEntries && $this->raffle->slots <= 0) {
             alert_error('Raffle is full. No slots left.');
             return;
         }
@@ -63,6 +77,8 @@ class SoloPlay extends Component
                 ->lockForUpdate()
                 ->first();
 
+                // dd($ticket);
+
             if (!$ticket) {
                 DB::rollBack();
                 alert_error('No available user ticket to start the game.');
@@ -70,9 +86,10 @@ class SoloPlay extends Component
             }
 
             $ticket->update(['status' => 'consumed']);
+            $this->usedTicketId = $ticket->id;
             $user->decrement('ticket_balance');
             if (!$userHasEntries) {
-            $this->raffle->decrement('available_slots');
+            $this->raffle->decrement('slots');
             }
 
             DB::commit();
@@ -157,23 +174,23 @@ class SoloPlay extends Component
 
         $toSecure = min($this->earnedEntries, $remainingAllowed);
 
-        if ($user->ticket_balance < $toSecure) {
-            alert_error("Not enough tickets available to secure entries.");
-            return;
-        }
-
         DB::beginTransaction();
 
         try {
-            $availableUserTickets = UserTicket::where('user_id', $user->id)
-                ->where('status', 'available')
-                ->limit($toSecure)
-                ->lockForUpdate()
-                ->get();
-
-            if ($availableUserTickets->count() < $toSecure) {
+            if (!$this->usedTicketId) {
                 DB::rollBack();
-                alert_error("Not enough available user tickets found.");
+                alert_error("No ticket available from this session to secure entries.");
+                return;
+            }
+
+            $userTicket = UserTicket::where('id', $this->usedTicketId)
+                ->where('user_id', $user->id)
+                ->lockForUpdate()
+                ->first();
+
+            if (!$userTicket) {
+                DB::rollBack();
+                alert_error("Used ticket not found.");
                 return;
             }
 
@@ -181,17 +198,15 @@ class SoloPlay extends Component
                 ->where('raffle_id', $this->raffle->id)
                 ->exists();
 
-            foreach ($availableUserTickets as $userTicket) {
-                RaffleTicket::create([
-                    'user_id' => $user->id,
-                    'raffle_id' => $this->raffle->id,
-                    'user_ticket_id' => $userTicket->id,
-                    'ticket_number' => $userTicket->ticket_number,
-                ]);
-                $userTicket->update(['status' => 'assigned']);
-            }
+            RaffleTicket::create([
+                'user_id' => $user->id,
+                'raffle_id' => $this->raffle->id,
+                'user_ticket_id' => $userTicket->id,
+                'ticket_number' => $userTicket->ticket_number,
+            ]);
 
-            $user->decrement('ticket_balance', $toSecure);
+            $userTicket->update(['status' => 'assigned']);
+
 
             if ($newToRaffle && $this->raffle->available_slots > 0) {
                 $this->raffle->decrement('available_slots');
@@ -199,15 +214,12 @@ class SoloPlay extends Component
 
             DB::commit();
 
-            $message = "🎉 Secured {$toSecure} entries in the raffle!";
-            if ($toSecure < $this->earnedEntries) {
-                $message .= " (Only {$toSecure} out of {$this->earnedEntries} due to max entry limit.)";
-            }
-            alert_success($message);
+            alert_success("🎉 Secured 1 entry in the raffle!");
 
             $this->earnedEntries = 0;
             $this->awaitingDecision = false;
             $this->gameActive = false;
+            $this->usedTicketId = null;
             $this->initializeGame();
             $this->updateViewData();
 
@@ -216,6 +228,7 @@ class SoloPlay extends Component
             alert_error("Failed to secure entries. Please try again.");
         }
     }
+
 
     public function continueGame()
     {
