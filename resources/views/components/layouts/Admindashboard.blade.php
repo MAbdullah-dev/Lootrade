@@ -23,7 +23,7 @@
     <livewire:inc.header />
     <main>
         <div class="container">
-            <div class="inner d-flex dashboard-main gap-4 pt-5">
+            <div class="inner d-flex dashboard-main gap-4 pt-5 Admindashboardlayout">
                 <livewire:inc.Admindashboardsidebar />
                 {{ $slot }}
             </div>

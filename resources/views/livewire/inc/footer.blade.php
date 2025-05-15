@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <p class="text-md-end m-0">© 2025 Ghitloot | All Rights Reserved.</p>
+                        <p class="text-md-end m-0">© 2025 Lootraiders | All Rights Reserved.</p>
                     </div>
                 </div>
             </div>

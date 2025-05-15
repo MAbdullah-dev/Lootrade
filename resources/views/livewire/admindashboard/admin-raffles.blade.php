@@ -1,4 +1,4 @@
-<div style="flex: 1;">
+<div class="raffleadminDashboard">
     <section class="admin-raffles">
         <div class="inner">
             <div class="head mb-4">

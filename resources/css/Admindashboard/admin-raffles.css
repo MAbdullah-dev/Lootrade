@@ -1,3 +1,8 @@
+.raffleadminDashboard {
+    flex: 1;
+    min-width: 0;
+}
+
 .admin-raffles .inner .head {
     display: flex;
     align-items: center;
@@ -71,4 +76,16 @@
 .admin-raffles .modal .modal-content .form-control:focus::placeholder {
     opacity: 0.5;
     /* Fade placeholder on focus */
+}
+
+@media(max-width: 999px) {
+
+    .side-nav-icons {
+        padding: 10px 5px;
+        justify-content: center;
+
+        i {
+            margin: 0;
+        }
+    }
 }

@@ -9,6 +9,7 @@ body {
     /* overflow-x: hidden; */
     background: linear-gradient(135deg, #440640, #29084F, #1A0C48);
     color: #fff;
+    /* min-height: 100vh; */
 }
 
 a {
@@ -209,4 +210,9 @@ ul.pagination {
 .table-neon .btn-danger {
     background-color: #ff1744;
     border: none;
+}
+
+.dashboardlayout,
+.Admindashboardlayout .inner {
+    min-height: 100vh;
 }

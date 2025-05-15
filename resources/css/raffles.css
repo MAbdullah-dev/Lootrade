@@ -12,9 +12,9 @@
 }
 
 .raffles .nav-tabs .nav-link.active {
-    background-color: #fe3839;
+    background: linear-gradient(to right, #a347ba, #2e8aea);
     color: #fff;
-    border-color: #fe3839;
+    border-color: #a347ba;
 }
 
 /* Raffle Card */
