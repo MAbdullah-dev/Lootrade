@@ -10,7 +10,7 @@ if (!function_exists('alert_success')) {
      * @param int $delay (in milliseconds)
      * @return void
      */
-    function alert_success(string $message, int $delay = 3000)
+    function alert_success(string $message, int $delay = 1000)
     {
         LivewireAlert::title($message)
             ->success()

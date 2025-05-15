@@ -20,11 +20,14 @@ use App\Livewire\Dashboard\Support;
 use App\Livewire\Dashboard\UserRaffles;
 use App\Livewire\Dashboard\UserTransaction;
 use App\Livewire\Faq;
+use App\Livewire\Pages\Battlefield;
 use App\Livewire\Pages\Home;
 use App\Livewire\Pages\Tickets;
 use App\Livewire\Welcome;
 use App\Livewire\Pages\Raffles;
 use App\Livewire\Pages\RaffleDetail;
+use App\Livewire\Pages\RaffleForm;
+use App\Livewire\Pages\SoloPlay;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +45,10 @@ Route::get('/tickets', Tickets::class)->name('tickets');
 Route::get('/user/transactions',UserTransaction::class)->name('user.transactions');
 Route::get('/user/raffles',UserRaffles::class)->name('user.raffles');
 Route::get('/user/change/password',ChangePassword::class)->name('user.change.password');
+//game
+Route::get('/raffle/{raffle}/game/solo', SoloPlay::class)->name('game.solo');
+Route::get('/raffle/{raffle}/game/battle', Battlefield::class)->name('game.battle');
+//game end
 
 
 //Admin Dashboard Routes
@@ -55,6 +62,11 @@ Route::get('/admin/transaction', Transaction::class)->name('admin.transaction');
 Route::get('/admin/ticketsPackeges', TicketPackages::class)->name('admin.ticketsPackeges');
 Route::get('/admin/packageTypes', PackageType::class)->name('admin.packageTypes');
 Route::get('/admin/newsletter', NewsletterSubscription::class)->name('admin.newsletter');
+
+// admin raffle create update
+Route::get('/admin/raffle/create', RaffleForm::class)->name('raffle.create');
+Route::get('/admin/raffle/edit/{id}', RaffleForm::class)->name('raffle.edit');
+// end admin raffle create update
 
 //auth
 Route::get('/login', Login::class)->name('login');

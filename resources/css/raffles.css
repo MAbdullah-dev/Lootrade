@@ -23,12 +23,12 @@
     border: none;
     border-radius: 8px;
     overflow: hidden;
-    background-color: #222222;
+    background-color: #1f0b46;
 }
 
 .raffles .raffle-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(254, 56, 57, 0.3);
+    /* box-shadow: 0 4px 15px rgba(254, 56, 57, 0.3); */
 }
 
 .raffles .raffle-card .card-img-top {

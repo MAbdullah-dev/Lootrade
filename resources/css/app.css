@@ -15,7 +15,6 @@
 @import "./tickets.css";
 @import "./changepassword.css";
 
-
 @import "./raffles.css";
 @import "./raffle-details.css";
 @import "./support.css";
@@ -24,6 +23,8 @@
 @import "./resetpassword.css";
 @import "./faq.css";
 @import "./user-raffles.css";
+@import "./raffle-form.css";
+@import "./games.css";
 
 /* admindashboard styles */
 @import "./Admindashboard/users.css";

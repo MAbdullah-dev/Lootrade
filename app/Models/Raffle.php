@@ -13,6 +13,7 @@ class Raffle extends Model
         'title',
         'description',
         'image_path',
+        'video_path',
         'entry_cost',
         'max_entries_per_user',
         'prize',
@@ -24,12 +25,13 @@ class Raffle extends Model
     protected $casts = [
         'start_date' => 'datetime',
         'end_date'   => 'datetime',
+        'prizes'     => 'array'
     ];
 
 
-    public function tickets()
+    public function raffleTickets()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(RaffleTicket::class);
     }
 
 
