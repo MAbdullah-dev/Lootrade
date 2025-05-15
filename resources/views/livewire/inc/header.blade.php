@@ -4,7 +4,7 @@
          <!-- Logo -->
          <div class="d-flex align-items-center">
              <a href="#" class="me-3">
-                 <img src="{{ asset('assets/images/Logo.png') }}" alt="Logo" height="40">
+                 <img src="{{ asset('assets/images/new logo.png') }}" alt="Logo" height="40">
              </a>
          </div>
 
