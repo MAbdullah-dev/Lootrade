@@ -2,9 +2,15 @@
     <div class="form-wrapper mx-auto">
         <h5 class="mb-5 gradient">Profile Form</h5>
         <ol class="d-flex align-items-center text-center gap-4 mb-4 ">
-            <li><span>Login everyday to receive a ticket each day.</span></li>
-            <li><span>Complete the profile to receive 10 tickets.</span></li>
-            <li><span>Connect Social Account to receive 10 tickets.</span></li>
+            <li class="gradient">
+                <span>Login everyday to receive a ticket each day.</span>
+            </li>
+            <li class="gradient">
+                <span>Complete the profile to receive 10 tickets.</span>
+            </li>
+            <li class="gradient">
+                <span>Connect Social Account to receive 10 tickets.</span>
+            </li>
         </ol>
         <form wire:submit="save">
             <div class="row mb-3">

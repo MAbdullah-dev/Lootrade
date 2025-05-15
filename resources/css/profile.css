@@ -2,7 +2,7 @@
     flex: 1;
 
     ol li {
-        color: #1a0c48;
+        /* color: #c700ff; */
     }
 }
 
@@ -18,7 +18,7 @@
     content: "";
     width: 60px;
     height: 3px;
-    background: #1f0b46;
+    background: #39FF14;
     position: absolute;
     bottom: -10px;
     left: 50%;
@@ -132,10 +132,10 @@
 .profile .divider span {
     display: inline-block;
     padding: 0 15px;
-    background-color: #c0c2ff;
+    background-color: #24094D;
     position: relative;
     z-index: 1;
-    color: #1f0b46;
+    /* color: #1f0b46; */
 }
 
 .profile .divider::before {
@@ -145,7 +145,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #1f0b46;
+    background-color: #39FF14;
     z-index: 0;
 }
 
