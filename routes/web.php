@@ -20,12 +20,14 @@ use App\Livewire\Dashboard\Support;
 use App\Livewire\Dashboard\UserRaffles;
 use App\Livewire\Dashboard\UserTransaction;
 use App\Livewire\Faq;
+use App\Livewire\Pages\Battlefield;
 use App\Livewire\Pages\Home;
 use App\Livewire\Pages\Tickets;
 use App\Livewire\Welcome;
 use App\Livewire\Pages\Raffles;
 use App\Livewire\Pages\RaffleDetail;
 use App\Livewire\Pages\RaffleForm;
+use App\Livewire\Pages\SoloPlay;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +45,10 @@ Route::get('/tickets', Tickets::class)->name('tickets');
 Route::get('/user/transactions',UserTransaction::class)->name('user.transactions');
 Route::get('/user/raffles',UserRaffles::class)->name('user.raffles');
 Route::get('/user/change/password',ChangePassword::class)->name('user.change.password');
+//game
+Route::get('/raffle/{raffle}/game/solo', SoloPlay::class)->name('game.solo');
+Route::get('/raffle/{raffle}/game/battle', Battlefield::class)->name('game.battle');
+//game end
 
 
 //Admin Dashboard Routes

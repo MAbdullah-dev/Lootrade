@@ -38,6 +38,24 @@ class RaffleDetail extends Component
         ->exists();
     }
 
+    public function startGame($mode)
+    {
+     if ($this->raffle->status !== 'active') {
+         return alert_error('This raffle is not active yet. Please check back later.');
+     }
+ 
+     if ($mode === 'solo') {
+         return redirect()->route('game.solo', ['raffle' => $this->raffle->id]);
+     }
+ 
+     if ($mode === 'battle') {
+         return redirect()->route('game.battle', ['raffle' => $this->raffle->id]);
+     }
+ 
+     return alert_error('Invalid game mode selected.');
+    }
+
+
     public function render()
     {
         return view('livewire.pages.raffle-detail')

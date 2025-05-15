@@ -32,17 +32,21 @@
                                     <i class="fas fa-users me-2"></i>
                                     <strong>Slots Available:</strong> {{ $raffle->slots }}
                                 </div>
-                                <div class="col-6 mb-3">
+                                <div class="col-6 mb-3" wire:ignore>
                                     @if (!empty($raffle->prize))
                                         <div class="prize-wrapper">
                                             <h3>Prize</h3>
                                             <ul>
-                                                @foreach ($raffle->prize as $prize)
+                                                @if (is_array($raffle->prize))
+                                                        @foreach ($raffle->prize as $prize)
                                                     <li><strong>{{ $prize['name'] }}</strong></li>
                                                     <li><b>Description:</b> {{ $prize['description'] }}</li>
                                                     <li><b>Value:</b> {{ $prize['value'] }}</li>
                                                     <li><b>Quantity:</b> {{ $prize['quantity'] }}</li>
-                                                @endforeach
+                                                    @endforeach
+                                                @else
+                                                    <p>No prizes available.</p>
+                                                @endif
                                             </ul>
                                         </div>
                                     @else
@@ -63,7 +67,7 @@
                         <img src="{{ Storage::url($raffle->image_path) }}" class="img-fluid rounded-4"
                             alt="{{ $raffle->title }}">
                     </div>
-                    <div class="battle-details col-md-7 ps-md-5">
+                    <div class="battle-details col-md-7 ps-md-5" wire:ignore>
                         <div class="tab-wrapper">
                             <h4 class="text-center gradient">Tower Ticket</h4>
                             <ul class="nav nav-tabs justify-content-center gap-3 my-4" id="myTabs" role="tablist">
@@ -92,7 +96,7 @@
                                         back to the bottom.</p>
 
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn-custom px-5 py-2">Play
+                                        <button class="btn-custom px-5 py-2" wire:click="startGame('solo')">Play
                                             Solo</button>
                                     </div>
                                 </div>
@@ -103,7 +107,7 @@
                                         tickets in the Ticket Tower. Only those who defeat the bot earn 5 bonus entries.
                                     </p>
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn-custom px-5 py-2">Play
+                                        <button class="btn-custom px-5 py-2" wire:click="startGame('solo')">Play
                                             Battle</button>
                                     </div>
                                 </div>
@@ -149,3 +153,4 @@
                 </div>
     </section>
 </div>
+
