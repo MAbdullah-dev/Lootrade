@@ -15,7 +15,9 @@
         "laravel/socialite": "^5.19",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.6",
+        "maatwebsite/excel": "^3.1",
         "socialiteproviders/discord": "^4.2",
+        "spatie/laravel-backup": "^9.3",
         "stripe/stripe-php": "^17.1"
     },
     "require-dev": {

@@ -19,6 +19,9 @@ class Winner extends Model
 
     protected $dates = ['awarded_at'];
 
+    protected $casts = ['awarded_at' => 'datetime'];
+
+
     public function raffle()
     {
         return $this->belongsTo(Raffle::class);

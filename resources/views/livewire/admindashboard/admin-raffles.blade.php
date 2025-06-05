@@ -40,7 +40,12 @@
                             <tr>
                                 <td>{{ $raffles->firstItem() + $index }}</td>
                                 <td>{{ $raffle->title }}</td>
-                                <td>{{ $raffle->prize ?? '-' }}</td>
+                                @php
+                                    $prizes = json_decode($raffle->prize);
+                                @endphp
+
+                                <td>{{ $prizes[0]->name ?? '-' }}</td>
+
                                 <td>{{ $raffle->entry_cost }} Min / {{ $raffle->max_entries_per_user }} Max</td>
                                 <td>{{ $raffle->start_date->format('M d, Y') }}</td>
                                 <td>{{ $raffle->end_date->format('M d, Y') }}</td>

@@ -5,10 +5,15 @@
                 <div class="col-md-6 mb-3 mb-md-0">
                     <input type="text" placeholder="Search" class="form-control search-bar">
                 </div>
-                <div class="col-md-6">
+                {{-- <div class="col-md-6">
                     <input type="text" placeholder="Date Range" class="form-control date-range">
-                </div>
+                </div> --}}
             </div>
+
+            <div class="d-flex justify-content-end mb-3">
+                <button wire:click="export" class="btn-custom p-2">Export to Excel</button>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-neon  table-hover">
                     <thead>
@@ -17,28 +22,28 @@
                             <th>Title</th>
                             <th>Prize</th>
                             <th>Winner</th>
+                            <th>Awarded At</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Art Contest 2025</td>
-                            <td>$500</td>
-                            <td>Jane Doe</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Coding Challenge</td>
-                            <td>$1000</td>
-                            <td>John Smith</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Photography Award</td>
-                            <td>$750</td>
-                            <td>Emily Johnson</td>
-                        </tr>
+                        @forelse ($winners as $winner)
+                            <tr>
+                                <td>{{ $winner->id }}</td>
+                                <td>{{ $winner->raffle?->title ?? 'N/A' }}</td>
+                                <td>{{ $winner->prize }}</td>
+                                <td>{{ $winner->user?->username ?? 'N/A' }}</td>
+                                <td>
+                                    {{ $winner->awarded_at?->format('F j, Y g:i A') ?? 'N/A' }}
+                                </td>
+
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">No winners found.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
+
                 </table>
             </div>
         </div>
