@@ -1,29 +1,48 @@
-<div class="mytickets">
-    <h5 class="mb-4 gradient">My Tickets</h5>
+<section class="mytickets" aria-labelledby="myTicketsHeading">
+    <header>
+        <h2 id="myTicketsHeading" class="mb-4 gradient">My Tickets</h2>
+    </header>
 
     <div class="mb-4">
-        <input type="text" wire:model.live="search" class="form-control" placeholder="Search by ticket number...">
+        <label for="searchTickets" class="form-label visually-hidden">Search by ticket number</label>
+        <input
+            type="text"
+            id="searchTickets"
+            wire:model.live="search"
+            class="form-control"
+            placeholder="Search by ticket number..."
+            aria-label="Search by ticket number"
+        >
     </div>
 
-    <!-- Responsive wrapper -->
-    <div class="table-responsive rounded">
-        <table class="table table-neon  table-hover mb-0">
+    <div class="table-responsive rounded" role="region" aria-labelledby="myTicketsHeading">
+        <table class="table table-neon table-hover mb-0">
             <thead class="thead-light">
                 <tr>
-                    <th wire:click="sortBy('ticket_number')" style="cursor: pointer;">
+                    <th
+                        scope="col"
+                        wire:click="sortBy('ticket_number')"
+                        style="cursor: pointer;"
+                        aria-sort="{{ $sortField === 'ticket_number' ? ($sortDirection === 'asc' ? 'ascending' : 'descending') : 'none' }}"
+                    >
                         Ticket Number
                         @if ($sortField === 'ticket_number')
                             {{ $sortDirection === 'asc' ? '▲' : '▼' }}
                         @endif
                     </th>
-                    <th wire:click="sortBy('created_at')" style="cursor: pointer;">
+                    <th
+                        scope="col"
+                        wire:click="sortBy('created_at')"
+                        style="cursor: pointer;"
+                        aria-sort="{{ $sortField === 'created_at' ? ($sortDirection === 'asc' ? 'ascending' : 'descending') : 'none' }}"
+                    >
                         Date
                         @if ($sortField === 'created_at')
                             {{ $sortDirection === 'asc' ? '▲' : '▼' }}
                         @endif
                     </th>
-                    <th>Status</th>
-                    <th>Acquisition Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Acquisition Type</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,9 +52,9 @@
                         <td>{{ $ticket->created_at->format('Y-m-d') }}</td>
                         <td>
                             @if ($ticket->status === 'available')
-                                <span class="badge bg-success">Available</span>
+                                <span class="badge bg-success" role="status" aria-label="Ticket Available">Available</span>
                             @else
-                                <span class="badge bg-secondary">Assigned</span>
+                                <span class="badge bg-secondary" role="status" aria-label="Ticket Assigned">Assigned</span>
                             @endif
                         </td>
                         <td>{{ ucfirst($ticket->acquisition_type) }}</td>
@@ -49,7 +68,7 @@
         </table>
     </div>
 
-    <div class="mt-2">
+    <nav class="mt-2" aria-label="Ticket pagination">
         {{ $tickets->links() }}
-    </div>
-</div>
+    </nav>
+</section>

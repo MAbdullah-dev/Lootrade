@@ -1,8 +1,9 @@
-<div class="dahsboard mx-4">
+<div class="dahsboard mx-4" role="main" aria-label="Admin Dashboard">
+    <h1 class="visually-hidden">Admin Dashboard Overview</h1>
     <section class="Stats">
         <div class="row">
             <!-- Total Users Section -->
-            <div class="col-12 col-md-6 col-xl-4 mb-4">
+            <div class="col-12 col-md-6 col-xl-4 mb-4" aria-label="Total Users">
                 <div class="card py-5">
                     <div class="card-body text-center">
                         <i class="fas fa-users fa-2x mb-4 "></i>
@@ -13,7 +14,7 @@
             </div>
 
             <!-- Active Raffles Section -->
-            <div class="col-12 col-md-6 col-xl-4 mb-4">
+            <div class="col-12 col-md-6 col-xl-4 mb-4" aria-label="Active Raffles">
                 <div class="card py-5">
                     <div class="card-body text-center">
                         <i class="fas fa-gift fa-2x mb-4 "></i> <!-- Changed icon -->
@@ -24,7 +25,7 @@
             </div>
 
             <!-- Tickets Sold Section -->
-            <div class="col-12 col-md-6 col-xl-4 mb-4">
+            <div class="col-12 col-md-6 col-xl-4 mb-4" aria-label="Tickets Sold">
                 <div class="card py-5">
                     <div class="card-body text-center">
                         <i class="fas fa-ticket fa-2x mb-4 "></i>
@@ -35,10 +36,11 @@
             </div>
         </div>
     </section>
-    <section class="revenueSection my-5">
+    <section class="revenueSection my-5" aria-label="Monthly Revenue Chart">
         <div class="inner">
             <h4 class="my-4 text-center gradient">Revenue</h4>
-            <div id="revenueChart"></div> <!-- This is the actual chart container -->
+            <div id="revenueChart" role="img" aria-label="Bar chart showing monthly revenue trends" tabindex="0">
+            </div>
         </div>
     </section>
 </div>
