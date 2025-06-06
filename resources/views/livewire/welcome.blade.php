@@ -21,8 +21,14 @@
                             <button wire:click="redirectToTwitterLogin" class="X-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/x-white.svg') }}" alt="">Continue with X
                             </button>
+                            <button wire:click="redirectToTwitchLogin" class="X-btn login-btn w-100">
+                                <img src="{{ asset('assets/svg/twitch.svg') }}" alt="">Continue with Twitch
+                            </button>
                             <button wire:click="redirectToGoogleLogin" class="google-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/google.svg') }}" alt="">Continue with Google
+                            </button>
+                            <button wire:click="redirectToKickLogin" class="google-btn login-btn w-100">
+                                <img src="{{ asset('assets/svg/kick.svg') }}" alt="">Continue with Kick
                             </button>
 
                             <button wire:click="redirectToDiscordLogin" class="discord-btn login-btn w-100">

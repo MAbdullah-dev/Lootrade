@@ -73,10 +73,10 @@ Route::get('/login', Login::class)->name('login');
 //social auth
 Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])
     ->name('auth.redirect')
-    ->where('provider', 'google|twitter|discord');
+    ->where('provider', 'google|twitter|discord|kick|twitch');
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])
     ->name('auth.callback')
-    ->where('provider', 'google|twitter|discord');
+    ->where('provider', 'google|twitter|discord|kick|twitch');
 
 Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
