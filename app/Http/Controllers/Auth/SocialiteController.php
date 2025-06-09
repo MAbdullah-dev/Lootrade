@@ -27,12 +27,11 @@ class SocialiteController extends Controller
         }
 
         // ─── KICK: Just build the /oauth/authorize URL and redirect ───
-            if ($provider === 'kick') {
+        if ($provider === 'kick') {
         $codeVerifier = $this->generateCodeVerifier();
         $codeChallenge = $this->generateCodeChallenge($codeVerifier);
         $state = $this->generateState();
 
-        // Store these in session to verify later
         session([
             'kick_oauth_state' => $state,
             'kick_code_verifier' => $codeVerifier,
@@ -50,6 +49,11 @@ class SocialiteController extends Controller
             'code_challenge_method' => 'S256',
         ]);
 
+        Log::debug('Redirecting to Kick URL:', [
+        'url' => "https://id.kick.com/oauth/authorize?$query"
+        ]);
+
+
         return redirect("https://id.kick.com/oauth/authorize?$query");
     }
 
@@ -62,7 +66,6 @@ class SocialiteController extends Controller
             $driver = Socialite::driver($driverName);
 
             if ($provider === 'twitter') {
-                // only twitter needs these extra scopes:
                 $driver->scopes(['users.read', 'tweet.read', 'offline.access']);
             }
 
@@ -83,12 +86,13 @@ class SocialiteController extends Controller
         }
 
         // ─── KICK callback: exchange code → token → userinfo here ───
-        if ($provider === 'kick') {
+        if ($provider === 'kick') 
+        {
         $state = request('state');
         $savedState = session('kick_oauth_state');
         $codeVerifier = session('kick_code_verifier');
 
-Log::debug('Kick callback state in session:', ['saved_state' => $savedState]);
+        Log::debug('Kick callback state in session:', ['saved_state' => $savedState]);
 
         if (!$state || !$savedState || $state !== $savedState) {
             Log::error("Kick OAuth state mismatch or missing");
@@ -120,7 +124,7 @@ Log::debug('Kick callback state in session:', ['saved_state' => $savedState]);
 
         // Fetch user info from Kick's API
         $userResponse = \Http::withToken($tokenData['access_token'])
-            ->get('https://api.kick.com/public/v1/users/me'); // Make sure this endpoint matches Kick's current API
+            ->get('https://api.kick.com/public/v1/users'); // Make sure this endpoint matches Kick's current API
 
         if (!$userResponse->successful()) {
             Log::error("Kick user fetch failed", ['response' => $userResponse->body()]);
@@ -129,10 +133,12 @@ Log::debug('Kick callback state in session:', ['saved_state' => $savedState]);
 
         $userInfo = $userResponse->json();
 
+        $kickdata = $userInfo['data'][0];
+
         $providerUser = (object)[
-            'id' => $userInfo['id'],
-            'email' => $userInfo['email'] ?? null,
-            'name' => $userInfo['username'] ?? 'KickUser_' . \Str::random(4),
+            'id' => $kickdata['user_id'],
+            'email' => $kickdata['email'] ?? null,
+            'name' => $kickdata['name'] ?? 'KickUser_' . \Str::random(4),
             'token' => $tokenData['access_token'],
             'refreshToken' => $tokenData['refresh_token'] ?? null,
         ];
@@ -165,18 +171,18 @@ Log::debug('Kick callback state in session:', ['saved_state' => $savedState]);
         }
     }
     protected function generateCodeVerifier(): string
-{
-    return bin2hex(random_bytes(64)); // 128 chars hex string
-}
+    {
+        return bin2hex(random_bytes(64)); 
+    }
 
-protected function generateCodeChallenge(string $codeVerifier): string
-{
-    return rtrim(strtr(base64_encode(hash('sha256', $codeVerifier, true)), '+/', '-_'), '=');
-}
-
-protected function generateState(): string
-{
-    return bin2hex(random_bytes(16)); // 32 chars hex string
-}
+    protected function generateCodeChallenge(string $codeVerifier): string
+    {
+        return rtrim(strtr(base64_encode(hash('sha256', $codeVerifier, true)), '+/', '-_'), '=');
+    }
+    
+    protected function generateState(): string
+    {
+        return bin2hex(random_bytes(16)); 
+    }
 
 }

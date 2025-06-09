@@ -77,7 +77,6 @@ Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider']
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])
     ->name('auth.callback')
     ->where('provider', 'google|twitter|discord|kick|twitch');
-
 Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
 
