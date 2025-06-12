@@ -1,61 +1,89 @@
 <aside>
     <div class="sidebar">
-        <div class="nav d-flex flex-column">
+        <nav class="nav d-flex flex-column" role="navigation" aria-label="Admin Sidebar Navigation">
             <ul>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('admin.dashboard') }}" wire:navigate>
-                        <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                        href="{{ route('admin.dashboard') }}"
+                        wire:navigate
+                        aria-label="Go to Dashboard"
+                        @if(Route::currentRouteName() == 'admin.dashboard') aria-current="page" @endif>
+                        <i class="fas fa-tachometer-alt" aria-hidden="true"></i> <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.raffles' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('admin.raffles') }}" wire:navigate>
-                        <i class="fas fa-gift"></i> <span>Raffles</span>
+                        href="{{ route('admin.raffles') }}"
+                        wire:navigate
+                        aria-label="Go to Raffles"
+                        @if(Route::currentRouteName() == 'admin.raffles') aria-current="page" @endif>
+                        <i class="fas fa-gift" aria-hidden="true"></i> <span>Raffles</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.users' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('admin.users') }}" wire:navigate>
-                        <i class="fas fa-users"></i> <span>Users</span>
+                        href="{{ route('admin.users') }}"
+                        wire:navigate
+                        aria-label="Go to Users"
+                        @if(Route::currentRouteName() == 'admin.users') aria-current="page" @endif>
+                        <i class="fas fa-users" aria-hidden="true"></i> <span>Users</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.winners' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('admin.winners') }}" wire:navigate>
-                        <i class="fas fa-trophy"></i> <span>Winner</span>
+                        href="{{ route('admin.winners') }}"
+                        wire:navigate
+                        aria-label="Go to Winners"
+                        @if(Route::currentRouteName() == 'admin.winners') aria-current="page" @endif>
+                        <i class="fas fa-trophy" aria-hidden="true"></i> <span>Winner</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.transactions' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('admin.transaction') }}" wire:navigate>
-                        <i class="fas fa-exchange-alt"></i> <span>Transaction</span>
+                        href="{{ route('admin.transaction') }}"
+                        wire:navigate
+                        aria-label="Go to Transactions"
+                        @if(Route::currentRouteName() == 'admin.transactions') aria-current="page" @endif>
+                        <i class="fas fa-exchange-alt" aria-hidden="true"></i> <span>Transaction</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.ticketsPackeges' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('admin.ticketsPackeges') }}" wire:navigate>
-                        <i class="fa-solid fa-box"></i> <span>Ticket packages</span>
+                        href="{{ route('admin.ticketsPackeges') }}"
+                        wire:navigate
+                        aria-label="Go to Ticket Packages"
+                        @if(Route::currentRouteName() == 'admin.ticketsPackeges') aria-current="page" @endif>
+                        <i class="fa-solid fa-box" aria-hidden="true"></i> <span>Ticket packages</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.packageTypes' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('admin.packageTypes') }}" wire:navigate>
-                        <i class="fa-solid fa-box"></i> <span>Ticket packages type</span>
+                        href="{{ route('admin.packageTypes') }}"
+                        wire:navigate
+                        aria-label="Go to Ticket Packages Type"
+                        @if(Route::currentRouteName() == 'admin.packageTypes') aria-current="page" @endif>
+                        <i class="fa-solid fa-box" aria-hidden="true"></i> <span>Ticket packages type</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.newsletter' ? 'active' : '' }}"
-                        aria-current="page" href="{{ route('admin.newsletter') }}" wire:navigate>
-                        <i class="fa-solid fa-envelope"></i> <span>News Letter subscribers</span>
+                        href="{{ route('admin.newsletter') }}"
+                        wire:navigate
+                        aria-label="Go to Newsletter Subscribers"
+                        @if(Route::currentRouteName() == 'admin.newsletter') aria-current="page" @endif>
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i> <span>News Letter subscribers</span>
                     </a>
                 </li>
-                <li style="cursor: pointer" class="nav-item">
-                    <a class="d-flex align-items-center side-nav-icons" wire:click="logout()">
-                        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                <li class="nav-item" style="cursor: pointer">
+                    <a class="d-flex align-items-center side-nav-icons"
+                        wire:click="logout()"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Logout from admin panel">
+                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i> <span>Logout</span>
                     </a>
                 </li>
             </ul>
-        </div>
+        </nav>
     </div>
 </aside>

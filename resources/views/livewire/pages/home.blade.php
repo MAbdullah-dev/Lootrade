@@ -1,179 +1,75 @@
 <div>
-    <section class="hero">
+    <section class="hero" aria-label="Current Raffle Section">
         <div class="inner my-5">
             <div class="container">
                 <div class="current-raffle d-flex flex-column justify-content-center align-items-center"
-                    style="background-image: url('{{ asset('assets/images/dummy-current-raffle.jpg') }}');">
-                    <div class="overlay"></div>
-                    <div class="hero-raffle-content text-center">
-                        <h5 class="display-6 mb-3">Current Raffle</h1>
-                            <p class="h3 mb-4">00:00:00</p>
-                            <a href="#" class="btn-custom">Enter Now</a>
+                    style="background-image: url('{{ asset('assets/images/dummy-current-raffle.jpg') }}');"
+                    role="region" aria-label="Current Raffle Banner">
+                    <div class="overlay" aria-hidden="true"></div>
+                    <div class="hero-raffle-content text-center text-white">
+                        <h2 class="display-6 mb-3">Current Raffle</h2>
+                        <p class="h3 mb-4" aria-live="polite" aria-label="Countdown Timer">00:00:00</p>
+                        <a href="#" class="btn-custom" role="button" aria-label="Enter the current raffle now">Enter Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="featured-raffles">
+
+    <section class="featured-raffles" aria-labelledby="featuredRafflesHeading">
         <div class="inner my-5">
             <div class="container">
-                <h1 class="text-center mb-5">Featured Raffles</h1>
-                <div class="swiper featuredRaffleSwiper">
+                <h2 id="featuredRafflesHeading" class="text-center mb-5">Featured Raffles</h2>
+                <div class="swiper featuredRaffleSwiper" aria-label="Featured raffles carousel">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
+                        @for ($i = 0; $i < 10; $i++)
+                            <div class="swiper-slide" role="group" aria-label="Featured raffle {{ $i + 1 }}">
+                                <div class="raffle-card position-relative overflow-hidden rounded">
+                                    <img src="{{ asset('assets/images/card-raffle.jpg') }}"
+                                         class="w-100 h-100 object-fit-cover"
+                                         alt="Spin & Win Raffle Image {{ $i + 1 }}">
+                                    <div class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
+                                        <h3 class="fw-bold">Spin & Win</h3>
+                                        <p class="mb-0">Solo or Multiplayer</p>
+                                        <button class="btn-custom" aria-label="View details for Spin & Win raffle">View Raffle</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="raffle-card position-relative overflow-hidden rounded">
-                                <img src="{{ asset('assets/images/card-raffle.jpg') }}"
-                                    class="w-100 h-100 object-fit-cover" alt="Raffle Image">
-                                <div
-                                    class="raffle-info d-flex flex-column justify-content-center align-items-center text-white text-center gap-2">
-                                    <h5 class="fw-bold">Spin & Win</h5>
-                                    <h6>Solo/Multiplayer</h6>
-                                    <button class="btn-custom">View Raffle</button>
-                                </div>
-                            </div>
-                        </div>
+                        @endfor
                     </div>
-                    <div class="swiper-pagination mt-5"></div>
+                    <div class="swiper-pagination mt-5" aria-hidden="true"></div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="how-it-works-section">
+
+    <section class="how-it-works-section" aria-labelledby="howItWorksHeading">
         <div class="how-it-works-inner">
             <div class="container text-center">
-                <h4 class="section-title">How it Works</h4>
+                <h2 id="howItWorksHeading" class="section-title">How it Works</h2>
 
-                <div class="row justify-content-center">
-
-                    <div class="col-12 text-center col-md-4">
+                <div class="row justify-content-center" role="list">
+                    <div class="col-12 text-center col-md-4" role="listitem">
                         <div class="step-item">
-                            <div class="step-icon rounded-circle mx-auto">1</div>
-                            <h6 class="step-title">Step 1</h6>
-                            <p class="step-description text-secondary">Choose a raffle<br>that you like</p>
+                            <div class="step-icon rounded-circle mx-auto" aria-hidden="true">1</div>
+                            <h3 class="step-title">Step 1</h3>
+                            <p class="step-description text-secondary">Choose a raffle that you like</p>
                         </div>
                     </div>
 
-                    <div class="col-12 text-center col-md-4">
+                    <div class="col-12 text-center col-md-4" role="listitem">
                         <div class="step-item">
-                            <div class="step-icon rounded-circle mx-auto">2</div>
-                            <h6 class="step-title">Step 2</h6>
-                            <p class="step-description text-secondary">Buy your ticket<br>before it sells out</p>
+                            <div class="step-icon rounded-circle mx-auto" aria-hidden="true">2</div>
+                            <h3 class="step-title">Step 2</h3>
+                            <p class="step-description text-secondary">Buy your ticket before it sells out</p>
                         </div>
                     </div>
 
-                    <div class="col-12 text-center col-md-4">
+                    <div class="col-12 text-center col-md-4" role="listitem">
                         <div class="step-item">
-                            <div class="step-icon rounded-circle mx-auto">3</div>
-                            <h6 class="step-title">Step 3</h6>
-                            <p class="step-description text-secondary">Wait for the draw<br>and get notified</p>
+                            <div class="step-icon rounded-circle mx-auto" aria-hidden="true">3</div>
+                            <h3 class="step-title">Step 3</h3>
+                            <p class="step-description text-secondary">Wait for the draw and get notified</p>
                         </div>
                     </div>
                 </div>
@@ -181,6 +77,7 @@
         </div>
     </section>
 </div>
+
 <script>
     function initializeSwiper() {
         if (window.featuredRaffleSwiper instanceof Swiper) {
@@ -214,11 +111,11 @@
         });
     }
 
-    document.addEventListener('livewire:navigated', function() {
+    document.addEventListener('livewire:navigated', function () {
         initializeSwiper();
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         initializeSwiper();
     });
 </script>
