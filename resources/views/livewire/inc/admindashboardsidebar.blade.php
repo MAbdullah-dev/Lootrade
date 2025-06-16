@@ -50,6 +50,12 @@
                         <i class="fa-solid fa-envelope"></i> <span>News Letter subscribers</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.logs' ? 'active' : '' }}"
+                        aria-current="page" href="{{ route('admin.logs') }}" wire:navigate>
+                        <i class="fa-solid fa-log"></i> <span>Admin Logs</span>
+                    </a>
+                </li>
                 <li style="cursor: pointer" class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons" wire:click="logout()">
                         <i class="fas fa-sign-out-alt"></i> <span>Logout</span>

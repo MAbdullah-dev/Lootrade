@@ -18,6 +18,7 @@
         "maatwebsite/excel": "3.1.63",
         "socialiteproviders/discord": "^4.2",
         "socialiteproviders/twitch": "^5.4",
+        "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-backup": "^9.3",
         "stripe/stripe-php": "^17.1"
     },

@@ -22,11 +22,20 @@ class Users extends Component
         $this->users = User::withTrashed()->with('role')->get();
     }
     public function blockUser($id)
-    {
-        $user = User::find($id);
-        $user?->delete();
-        $this->loaduserdata();
+{
+    $user = User::find($id);
+    if ($user) {
+        
+        adminLog('Blocked user', [
+            'target_user_id' => $user->id,
+            'target_user_name' => $user->first_name . ' ' . $user->last_name,
+        ]);
+        $user->delete();
     }
+
+    $this->loaduserdata();
+}
+
 
     public function unblockUser($id)
     {
