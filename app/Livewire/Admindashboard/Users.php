@@ -4,6 +4,7 @@ namespace App\Livewire\Admindashboard;
 
 use App\Jobs\GenerateTicketsJob;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Users extends Component
@@ -11,21 +12,27 @@ class Users extends Component
     public $users;
     public $selectedUser = null;
     public $ticketCount, $ticketUserId;
+    public $isSuperAdmin = false;
 
     public function mount()
     {
         $this->loaduserdata();
+        $this->isSuperAdmin = Auth::user()->role_id == 3;
     }
 
     public function loaduserdata()
     {
-        $this->users = User::withTrashed()->with('role')->get();
+        if(Auth::user()->role_id == 2) {
+        $this->users = User::withTrashed()->with('role')->where('role_id', 1)->get();
+        }elseif(Auth::user()->role_id == 3) {
+        $this->users = User::withTrashed()->with('role')->whereIn('role_id', [1,2])->get();
     }
+}
     public function blockUser($id)
 {
     $user = User::find($id);
     if ($user) {
-        
+
         adminLog('Blocked user', [
             'target_user_id' => $user->id,
             'target_user_name' => $user->first_name . ' ' . $user->last_name,

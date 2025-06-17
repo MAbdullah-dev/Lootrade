@@ -22,7 +22,9 @@
                     <th scope="col">Email</th>
                     <th scope="col">Role</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Promote</th>
+                    @if ($isSuperAdmin)
+                        <th scope="col">Promote</th>
+                    @endif
                     <th scope="col">Give ticket</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -41,19 +43,21 @@
                                 <span class="badge bg-success">Active</span>
                             @endif
                         </td>
-                        <td>
-                            @if ($user->role_id == 1)
-                                <button class="btn btn-sm btn-warning mx-content"
-                                    wire:click="promoteToAdmin({{ $user->id }})">
-                                    Promote to Admin
-                                </button>
-                            @elseif ($user->role_id == 2)
-                                <button class="btn btn-sm btn-secondary"
-                                    wire:click="reassignToUser({{ $user->id }})">
-                                    Reassign to User
-                                </button>
-                            @endif
-                        </td>
+                        @if ($isSuperAdmin)
+                            <td>
+                                @if ($user->role_id == 1)
+                                    <button class="btn btn-sm btn-warning mx-content"
+                                        wire:click="promoteToAdmin({{ $user->id }})">
+                                        Promote to Admin
+                                    </button>
+                                @elseif ($user->role_id == 2)
+                                    <button class="btn btn-sm btn-secondary"
+                                        wire:click="reassignToUser({{ $user->id }})">
+                                        Reassign to User
+                                    </button>
+                                @endif
+                            </td>
+                        @endif
                         <td>
                             <button class="btn btn-sm btn-success mx-content" data-bs-toggle="modal"
                                 data-bs-target="#giveTicketModal"

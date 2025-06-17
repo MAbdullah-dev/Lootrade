@@ -19,8 +19,8 @@
                 <button wire:click="export" class="btn-custom p-2">Export to Excel</button>
             </div>
 
-            <div class="table-responsive">
-                <table class="table table-neon  table-hover">
+            <div class="table-responsive rounded shadow">
+                <table class="table table-neon  table-hover mb-0">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -44,7 +44,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="text-center">No winners found.</td>
+                                <td colspan="5" class="text-center">No winners found.</td>
                             </tr>
                         @endforelse
                     </tbody>

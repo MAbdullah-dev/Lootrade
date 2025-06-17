@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\CheckoutController;
-use App\Livewire\Admindashboard\AdminLogs;
 use App\Livewire\Admindashboard\AdminWinners;
 use App\Livewire\Admindashboard\AdminRaffles;
 use App\Livewire\Admindashboard\AdminRaffleUsers;
@@ -63,7 +62,6 @@ Route::get('/admin/transaction', Transaction::class)->name('admin.transaction');
 Route::get('/admin/ticketsPackeges', TicketPackages::class)->name('admin.ticketsPackeges');
 Route::get('/admin/packageTypes', PackageType::class)->name('admin.packageTypes');
 Route::get('/admin/newsletter', NewsletterSubscription::class)->name('admin.newsletter');
-Route::get('/admin/logs', AdminLogs::class)->name('admin.logs');
 
 // admin raffle create update
 Route::get('/admin/raffle/create', RaffleForm::class)->name('raffle.create');
