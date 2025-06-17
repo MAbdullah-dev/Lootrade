@@ -1,9 +1,10 @@
 <div class="news-letter p-3">
     <div class="d-flex justify-content-end mb-3">
         {{-- <h2>Newsletter Subscribers</h2> --}}
-        <button wire:click="exportCsv" class="btn-custom p-2">
+        <button wire:click="exportCsv" class="btn-custom p-2" aria-label="Download subscriber list as CSV">
             Download CSV
         </button>
+
     </div>
 
     @if ($subscribers->isEmpty())

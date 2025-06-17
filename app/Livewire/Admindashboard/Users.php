@@ -41,7 +41,7 @@ class Users extends Component
     {
         $user = User::withTrashed()->find($id);
         $user?->restore();
-        $this->loaduserdata(); 
+        $this->loaduserdata();
     }
     public function viewUser($id)
     {
@@ -59,7 +59,7 @@ class Users extends Component
         $user = User::withTrashed()->find($id);
         if ($user) {
             $this->ticketUserId = $user->id;
-            $this->selectedUser = $user->toArray(); 
+            $this->selectedUser = $user->toArray();
             $this->ticketCount = '';
         }
     }
@@ -70,7 +70,7 @@ class Users extends Component
             'ticketCount' => 'required|integer|min:1',
         ]);
 
-        $user = User::withTrashed()->find($this->ticketUserId);  
+        $user = User::withTrashed()->find($this->ticketUserId);
 
         if ($user) {
             GenerateTicketsJob::dispatch($user->id, $this->ticketCount, 'earned');
@@ -81,11 +81,31 @@ class Users extends Component
 
             $this->dispatch('close-modal');
             alert_success('Tickets successfully given!');
-            $this->resetForm();  
+            $this->resetForm();
 
             $this->loaduserdata();
         }
     }
+    public function promoteToAdmin($id)
+    {
+        $user = User::withTrashed()->find($id);
+        if ($user) {
+            $user->update(['role_id' => 2]);
+            alert_success($user->first_name . ' promoted to admin successfully!');
+            $this->loaduserdata();
+        }
+    }
+
+    public function reassignToUser($id)
+    {
+        $user = User::withTrashed()->find($id);
+        if ($user) {
+            $user->update(['role_id' => 1]);
+            alert_success($user->first_name . ' reassigned to user role successfully!');
+            $this->loaduserdata();
+        }
+    }
+
 
     public function resetForm()
     {

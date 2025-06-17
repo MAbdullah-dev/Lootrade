@@ -2,10 +2,10 @@
     <div class="head mb-4">
         <div class="row g-3 align-items-center">
             <div class="col-12 col-md-6">
-                <input type="text" class="form-control" placeholder="Search raffles...">
+                <input type="text" class="form-control" placeholder="Search raffles..." aria-label="Search raffles">
             </div>
             <div class="col-12 col-md-3">
-                <select class="form-select">
+                <select class="form-select" aria-label="Sort raffles">
                     <option value="desc">Newest First</option>
                     <option value="asc">Oldest First</option>
                 </select>
@@ -17,12 +17,14 @@
         <table class="table table-neon  table-hover mb-0">
             <thead class="thead">
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Promote</th>
+                    <th scope="col">Give ticket</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,12 +42,27 @@
                             @endif
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-success" data-bs-toggle="modal"
+                            @if ($user->role_id == 1)
+                                <button class="btn btn-sm btn-warning mx-content"
+                                    wire:click="promoteToAdmin({{ $user->id }})">
+                                    Promote to Admin
+                                </button>
+                            @elseif ($user->role_id == 2)
+                                <button class="btn btn-sm btn-secondary"
+                                    wire:click="reassignToUser({{ $user->id }})">
+                                    Reassign to User
+                                </button>
+                            @endif
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-success mx-content" data-bs-toggle="modal"
                                 data-bs-target="#giveTicketModal"
                                 wire:click="prepareToGiveTickets({{ $user->id }})">
                                 Give Ticket
                             </button>
+                        </td>
 
+                        <td class="text-nowrap">
                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#userDetailModal" wire:click="viewUser({{ $user->id }})">
                                 View
@@ -68,8 +85,8 @@
     </div>
 
     <!-- User Detail Modal -->
-    <div wire:ignore.self class="modal fade" id="userDetailModal" tabindex="-1" aria-labelledby="userDetailModalLabel"
-        aria-hidden="true">
+    <div wire:ignore.self wire:ignore.self class="modal fade" id="userDetailModal" tabindex="-1"
+        aria-labelledby="userDetailModalLabel" aria-modal="true" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content shadow">
                 <div class="modal-header text-white">
@@ -104,8 +121,8 @@
     </div>
 
     <!-- Give Ticket Modal -->
-    <div wire:ignore.self class="modal fade" id="giveTicketModal" tabindex="-1" aria-labelledby="giveTicketModalLabel"
-        aria-hidden="true">
+    <div wire:ignore.self wire:ignore.self class="modal fade" id="giveTicketModal" tabindex="-1"
+        aria-labelledby="giveTicketModalLabel" aria-modal="true" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <form wire:submit.prevent="giveTickets" class="modal-content shadow">
                 <div class="modal-header bg-success text-white">
@@ -116,10 +133,13 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="ticketCount" class="form-label">Number of Tickets</label>
-                        <input type="number" min="1" wire:model="ticketCount" class="form-control"
-                            id="ticketCount" placeholder="Enter number of tickets">
+                        <input type="number" min="1" wire:model="ticketCount"
+                            class="form-control @error('ticketCount') is-invalid @enderror" id="ticketCount"
+                            placeholder="Enter number of tickets" aria-required="true"
+                            aria-invalid="{{ $errors->has('ticketCount') ? 'true' : 'false' }}"
+                            @error('ticketCount') aria-describedby="ticketCountError" @enderror>
                         @error('ticketCount')
-                            <span class="text-danger">{{ $message }}</span>
+                            <span id="ticketCountError" class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>

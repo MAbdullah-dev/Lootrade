@@ -4,14 +4,24 @@
             <div class="tab-wrapper">
                 <ul class="nav nav-tabs" id="myTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link {{ $activeTab === 'login' ? 'active' : '' }}" id="tab1-tab"
-                            wire:click="$set('activeTab', 'login')" type="button" role="tab">
+                        <button class="nav-link {{ $activeTab === 'login' ? 'active' : '' }}"
+                            id="tab1-tab"
+                            wire:click="$set('activeTab', 'login')"
+                            type="button"
+                            role="tab"
+                            aria-controls="tab1"
+                            aria-selected="{{ $activeTab === 'login' ? 'true' : 'false' }}">
                             Login
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link {{ $activeTab === 'register' ? 'active' : '' }}" id="tab2-tab"
-                            wire:click="$set('activeTab', 'register')" type="button" role="tab">
+                        <button class="nav-link {{ $activeTab === 'register' ? 'active' : '' }}"
+                            id="tab2-tab"
+                            wire:click="$set('activeTab', 'register')"
+                            type="button"
+                            role="tab"
+                            aria-controls="tab2"
+                            aria-selected="{{ $activeTab === 'register' ? 'true' : 'false' }}">
                             Register
                         </button>
                     </li>
@@ -19,21 +29,21 @@
 
                 <div class="tab-content" id="myTabsContent">
                     {{-- Login Tab --}}
-                    <div class="tab-pane fade {{ $activeTab === 'login' ? 'show active' : '' }}" id="tab1"
-                        role="tabpanel">
+                    <div class="tab-pane fade {{ $activeTab === 'login' ? 'show active' : '' }}"
+                        id="tab1"
+                        role="tabpanel"
+                        aria-labelledby="tab1-tab">
                         <form wire:submit.prevent="login">
                             <div class="form-group">
                                 <label for="login_email">Email</label>
-                                <input type="email" id="login_email" wire:model.defer="login_email"
-                                    name="login_email">
+                                <input type="email" id="login_email" wire:model.defer="login_email" name="login_email">
                                 @error('login_email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="login_password">Password</label>
-                                <input type="password" id="login_password" wire:model.defer="login_password"
-                                    name="login_password">
+                                <input type="password" id="login_password" wire:model.defer="login_password" name="login_password">
                                 @error('login_password')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -42,15 +52,12 @@
                                 <button type="submit">Login</button>
                             </div>
                             <div class="text-end mt-2">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"
-                                    class="text-sm text-white">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" class="text-sm text-white">
                                     Forgot your password?
                                 </a>
                             </div>
 
-                            <div class="divider">
-                                <span>OR</span>
-                            </div>
+                            <div class="divider"><span>OR</span></div>
 
                             <div class="social-login">
                                 <button wire:click="redirectToGoogleLogin" type="button" class="social-btn google">
@@ -67,8 +74,10 @@
                     </div>
 
                     {{-- Register Tab --}}
-                    <div class="tab-pane fade {{ $activeTab === 'register' ? 'show active' : '' }}" id="tab2"
-                        role="tabpanel">
+                    <div class="tab-pane fade {{ $activeTab === 'register' ? 'show active' : '' }}"
+                        id="tab2"
+                        role="tabpanel"
+                        aria-labelledby="tab2-tab">
                         <form wire:submit.prevent="register">
                             <div class="row">
                                 <div class="col-md-6">
@@ -163,9 +172,7 @@
                                     Forgot your password?
                                 </a>
                             </div>
-                            <div class="divider">
-                                <span>OR</span>
-                            </div>
+                            <div class="divider"><span>OR</span></div>
 
                             <div class="social-login">
                                 <button wire:click="redirectToGoogleLogin" type="button" class="social-btn google">
@@ -174,8 +181,7 @@
                                 <button wire:click="redirectToTwitterLogin" type="button" class="social-btn x">
                                     <i class="fab fa-x-twitter"></i>
                                 </button>
-                                <button wire:click="redirectToDiscordLogin" type="button"
-                                    class="social-btn discord">
+                                <button wire:click="redirectToDiscordLogin" type="button" class="social-btn discord">
                                     <i class="fab fa-discord"></i>
                                 </button>
                             </div>
@@ -187,20 +193,33 @@
     </div>
     <livewire:auth.forgot-password />
 </section>
+
 <script>
-    document.addEventListener('livewire:initialized', () => {
-        flatpickr('#register_date_of_birth', {
-            altInput: true,
-            altFormat: 'F j, Y',
-            dateFormat: 'Y-m-d',
-            maxDate: 'today',
-            defaultDate: @json($this->register_date_of_birth),
-            onChange: function(selectedDates, dateStr) {
-                @this.set('register_date_of_birth', dateStr);
-            }
+    document.addEventListener('DOMContentLoaded', () => {
+        function initFlatpickr() {
+            flatpickr('#register_date_of_birth', {
+                altInput: true,
+                altFormat: 'F j, Y',
+                dateFormat: 'Y-m-d',
+                maxDate: 'today',
+                defaultDate: @json($register_date_of_birth ?? null),
+                onChange: function (selectedDates, dateStr) {
+                    Livewire.dispatch('input', {
+                        name: 'register_date_of_birth',
+                        value: dateStr
+                    });
+                }
+            });
+        }
+
+        initFlatpickr();
+
+        Livewire.hook('message.processed', () => {
+            initFlatpickr();
         });
     });
 </script>
+
 @push('js')
     <script>
         window.addEventListener('close-modal', () => {

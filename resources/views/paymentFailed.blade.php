@@ -57,19 +57,26 @@
             transition: background-color 0.3s ease;
         }
 
-        .btn-go-back:hover {
+        .btn-go-back:hover,
+        .btn-go-back:focus {
             background-color: #e60000;
+            outline: 2px solid #fff;
+            outline-offset: 2px;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Payment Failed</h1>
-        <img src="{{ asset('assets/images/paymentfailed.gif') }}" alt="Payment Failed">
-        <p>There was an issue processing your payment. Please try again or contact support.</p>
-        <a href="/" class="btn-go-back">Go Back</a>
-    </div>
+    <main role="main" aria-labelledby="payment-failed-heading">
+        <section class="container" role="alertdialog" aria-describedby="payment-failed-description">
+            <h1 id="payment-failed-heading">Payment Failed</h1>
+            <img src="{{ asset('assets/images/paymentfailed.gif') }}" alt="An animation showing a failed payment status">
+            <p id="payment-failed-description">
+                There was an issue processing your payment. Please try again or contact support.
+            </p>
+            <a href="/" class="btn-go-back" role="button" aria-label="Go back to homepage">Go Back</a>
+        </section>
+    </main>
 </body>
 
 </html>

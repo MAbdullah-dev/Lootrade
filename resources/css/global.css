@@ -211,3 +211,7 @@ ul.pagination {
 .Admindashboardlayout .inner {
     min-height: 100vh;
 }
+
+.mx-content{
+width: max-content;
+}

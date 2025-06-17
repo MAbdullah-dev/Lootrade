@@ -58,7 +58,7 @@
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            color: #fff;
+            color: #000;
             background-color: #4dff4d;
             border: none;
             border-radius: 5px;
@@ -67,23 +67,36 @@
             transition: background-color 0.3s ease;
         }
 
-        .btn-go-to:hover {
+        .btn-go-to:hover,
+        .btn-go-to:focus {
             background-color: #00cc00;
+            outline: 2px solid #fff;
+            outline-offset: 2px;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Payment Successful</h1>
-        <img src="{{ asset('assets/images/paymentsuccess.gif') }}" alt="Payment Successful">
-        <p>Thank you! Your payment has been processed successfully.</p>
+    <main role="main" aria-labelledby="payment-success-heading">
+        <section class="container" role="status" aria-describedby="payment-success-description">
+            <h1 id="payment-success-heading">Payment Successful</h1>
+            <img src="{{ asset('assets/images/paymentsuccess.gif') }}" alt="Animated confirmation of a successful payment">
+            <p id="payment-success-description">Thank you! Your payment has been processed successfully.</p>
 
-        <p><strong>Transaction ID:</strong> {{ Str::limit($transaction->stripe_transaction_id, 20, '...') }}</p>
-        <p><strong>Total Amount Paid:</strong> ${{ number_format($transaction->total_price, 2) }}</p>
+            <p>
+                <strong>Transaction ID:</strong>
+                {{ Str::limit($transaction->stripe_transaction_id, 20, '...') }}
+            </p>
+            <p>
+                <strong>Total Amount Paid:</strong>
+                ${{ number_format($transaction->total_price, 2) }}
+            </p>
 
-        <a href="{{ route('tickets') }}" class="btn-go-to" wire:navigate>Go to </a>
-    </div>
+            <a href="{{ route('tickets') }}" class="btn-go-to" role="button" aria-label="Go to your tickets" wire:navigate>
+                Go to Tickets
+            </a>
+        </section>
+    </main>
 </body>
 
 </html>

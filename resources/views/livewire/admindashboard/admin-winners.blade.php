@@ -1,9 +1,14 @@
-<section class="admin-winners">
+<section class="admin-winners" aria-label="Admin Winners Section">
     <div class="container">
         <div class="inner">
-            <div class="row filter-section mb-4">
+            <h2 class="visually-hidden">List of Contest Winners</h2>
+
+            <!-- Filter Inputs -->
+            <div class="row filter-section mb-4" role="search" aria-label="Filter Winners">
                 <div class="col-md-6 mb-3 mb-md-0">
-                    <input type="text" placeholder="Search" class="form-control search-bar">
+                    <label for="searchInput" class="visually-hidden">Search Winners</label>
+                    <input type="text" id="searchInput" placeholder="Search" class="form-control search-bar"
+                        aria-label="Search Winners by Name or Title">
                 </div>
                 {{-- <div class="col-md-6">
                     <input type="text" placeholder="Date Range" class="form-control date-range">
