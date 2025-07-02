@@ -30,60 +30,65 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->role->name ?? 'N/A' }}</td>
-                        <td>
-                            @if ($user->trashed())
-                                <span class="badge bg-secondary">Inactive</span>
-                            @else
-                                <span class="badge bg-success">Active</span>
-                            @endif
-                        </td>
-                        @if ($isSuperAdmin)
+                @if (!empty($users))
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $user->first_name }} {{ $user->last_name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->role->name ?? 'N/A' }}</td>
                             <td>
-                                @if ($user->role_id == 1)
-                                    <button class="btn btn-sm btn-warning mx-content"
-                                        wire:click="promoteToAdmin({{ $user->id }})">
-                                        Promote to Admin
+                                @if ($user->trashed())
+                                    <span class="badge bg-secondary">Inactive</span>
+                                @else
+                                    <span class="badge bg-success">Active</span>
+                                @endif
+                            </td>
+                            @if ($isSuperAdmin)
+                                <td>
+                                    @if ($user->role_id == 1)
+                                        <button class="btn btn-sm btn-warning mx-content"
+                                            wire:click="promoteToAdmin({{ $user->id }})">
+                                            Promote to Admin
+                                        </button>
+                                    @elseif ($user->role_id == 2)
+                                        <button class="btn btn-sm btn-secondary"
+                                            wire:click="reassignToUser({{ $user->id }})">
+                                            Reassign to User
+                                        </button>
+                                    @endif
+                                </td>
+                            @endif
+                            <td>
+                                <button class="btn btn-sm btn-success mx-content" data-bs-toggle="modal"
+                                    data-bs-target="#giveTicketModal"
+                                    wire:click="prepareToGiveTickets({{ $user->id }})">
+                                    Give Ticket
+                                </button>
+                            </td>
+
+                            <td class="text-nowrap">
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#userDetailModal" wire:click="viewUser({{ $user->id }})">
+                                    View
+                                </button>
+
+                                @if ($user->trashed())
+                                    <button class="btn btn-sm btn-success"
+                                        wire:click="unblockUser({{ $user->id }})">
+                                        Unblock
                                     </button>
-                                @elseif ($user->role_id == 2)
-                                    <button class="btn btn-sm btn-secondary"
-                                        wire:click="reassignToUser({{ $user->id }})">
-                                        Reassign to User
+                                @else
+                                    <button class="btn btn-sm btn-danger" wire:click="blockUser({{ $user->id }})">
+                                        Block
                                     </button>
                                 @endif
                             </td>
-                        @endif
-                        <td>
-                            <button class="btn btn-sm btn-success mx-content" data-bs-toggle="modal"
-                                data-bs-target="#giveTicketModal"
-                                wire:click="prepareToGiveTickets({{ $user->id }})">
-                                Give Ticket
-                            </button>
-                        </td>
-
-                        <td class="text-nowrap">
-                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#userDetailModal" wire:click="viewUser({{ $user->id }})">
-                                View
-                            </button>
-
-                            @if ($user->trashed())
-                                <button class="btn btn-sm btn-success" wire:click="unblockUser({{ $user->id }})">
-                                    Unblock
-                                </button>
-                            @else
-                                <button class="btn btn-sm btn-danger" wire:click="blockUser({{ $user->id }})">
-                                    Block
-                                </button>
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
+                        </tr>
+                    @endforeach
+                @else
+                    <td class="text-center" colspan="8">N/A</td>
+                @endif
             </tbody>
         </table>
     </div>

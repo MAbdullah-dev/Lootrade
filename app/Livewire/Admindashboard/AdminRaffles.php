@@ -82,7 +82,7 @@ class AdminRaffles extends Component
 
         $prize_info = json_encode($this->prizes);
 
-        Raffle::create([
+        $raffle = Raffle::create([
             'title' => $this->title,
             'description' => $this->description,
             'entry_cost' => $this->entry_cost,
@@ -93,6 +93,20 @@ class AdminRaffles extends Component
             'slots' => $this->slots,
             'image_path' => $path,
         ]);
+
+        adminLog('Admin created a new raffle.', [
+        'action' => 'create_raffle',
+        'raffle_id' => $raffle->id,
+        'title' => $raffle->title,
+        'start_date' => $raffle->start_date,
+        'end_date' => $raffle->end_date,
+        'entry_cost' => $raffle->entry_cost,
+        'slots' => $raffle->slots,
+        'prizes' => $this->prizes,
+        'performed_by_admin_id' => auth()->id(),
+        'performed_by_admin_email' => auth()->user()->email,
+        'timestamp' => now()->toDateTimeString(),
+    ]);
 
         $message = "Raffle '{$this->title}' has been created with prizes: " . json_encode($this->prizes);
         CreateNotificationsJob::dispatch('global', $message);
@@ -153,6 +167,8 @@ class AdminRaffles extends Component
 
         [$startDate, $endDate] = explode(' to ', $this->date_range);
 
+        $original = $raffle->toArray();
+
         $raffle->update([
             'title' => $this->title,
             'description' => $this->description,
@@ -168,6 +184,25 @@ class AdminRaffles extends Component
             $path = $this->image->store('raffle-images', 'public');
             $raffle->update(['image' => $path]);
         }
+
+        adminLog('Admin updated a raffle.', [
+        'action' => 'update_raffle',
+        'raffle_id' => $raffle->id,
+        'original' => $original,
+        'updated' => [
+            'title' => $this->title,
+            'description' => $this->description,
+            'entry_cost' => $this->entry_cost,
+            'max_entries_per_user' => $this->max_entries_per_user,
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+            'slots' => $this->slots,
+            'prize' => $this->prize,
+        ],
+        'performed_by_admin_id' => auth()->id(),
+        'performed_by_admin_email' => auth()->user()->email,
+        'timestamp' => now()->toDateTimeString(),
+    ]);
 
         $this->dispatch('hideEditModal');
         alert_success('Raffle updated successfully!');

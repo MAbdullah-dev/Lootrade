@@ -25,36 +25,17 @@
                             <button wire:click="redirectToTwitchLogin" class="X-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/twitch.svg') }}" alt="">Continue with Twitch
                             </button>
+                            <button wire:click="redirectToDiscordLogin" class="discord-btn login-btn w-100"
+                                aria-label="Continue with Discord">
+                                <img src="{{ asset('assets/svg/discord-white.svg') }}" alt="Discord Icon"> Continue
+                                with Discord
+                            </button>
                             <button wire:click="redirectToGoogleLogin" class="google-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/google.svg') }}" alt="">Continue with Google
                             </button>
                             <button wire:click="redirectToKickLogin" class="google-btn login-btn w-100">
                                 <img src="{{ asset('assets/svg/kick.svg') }}" alt="">Continue with Kick
                             </button>
-
-                            <div class="option-btns w-100 d-flex flex-column align-items-center px-4" role="group"
-                                aria-label="Social login options">
-                                <button wire:click="redirectToLogin" class="login-btn google-btn w-100"
-                                    aria-label="Continue with Email">
-                                    <img src="{{ asset('assets/svg/email-1-svgrepo-com.svg') }}" alt="Email Icon">
-                                    Continue with Email
-                                </button>
-                                <button wire:click="redirectToTwitterLogin" class="X-btn login-btn w-100"
-                                    aria-label="Continue with X (Twitter)">
-                                    <img src="{{ asset('assets/svg/x-white.svg') }}" alt="X (Twitter) Icon"> Continue
-                                    with X
-                                </button>
-                                <button wire:click="redirectToGoogleLogin" class="google-btn login-btn w-100"
-                                    aria-label="Continue with Google">
-                                    <img src="{{ asset('assets/svg/google.svg') }}" alt="Google Icon"> Continue with
-                                    Google
-                                </button>
-                                <button wire:click="redirectToDiscordLogin" class="discord-btn login-btn w-100"
-                                    aria-label="Continue with Discord">
-                                    <img src="{{ asset('assets/svg/discord-white.svg') }}" alt="Discord Icon"> Continue
-                                    with Discord
-                                </button>
-                            </div>
 
                             <p class="text-center px-3">By continuing, you accept our
                                 <a class="text-red" href="/terms-and-conditions">Terms of Condition</a>. For our
