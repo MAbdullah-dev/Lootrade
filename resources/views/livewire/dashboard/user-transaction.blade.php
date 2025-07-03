@@ -1,6 +1,4 @@
-<section class="transaction" aria-labelledby="transactions-heading">
-    <h2 id="transactions-heading" class="mb-3 gradient">Transactions</h2>
-
+<section class="transaction mt-2" aria-labelledby="transactions-heading">
     <label for="search" class="visually-hidden">Search by package</label>
     <input type="text" id="search" wire:model.live="search" class="form-control mb-3" placeholder="Search by package..." />
 

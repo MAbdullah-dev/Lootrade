@@ -8,8 +8,8 @@
                             alt="Loot Raiders Cover Image">
                     </div>
                 </div>
-                <div class="col-md-6 p-0 social-login-main">
-                    <div class="login-options pt-5 d-flex flex-column align-items-center justify-content-center gap-4">
+                <div class="col-md-6 p-0 social-login-main ">
+                    <div class="login-options pt-5 d-flex flex-column align-items-center justify-content-center gap-4 mt-5">
                         <h2 class="fs-5 fw-semibold text-center gradient">Unlock the Portal to Wealth!</h2>
                         <p class="text-left fs-6 text-center">Sign in now with your favored platform—the treasure vaults
                             of EOAS

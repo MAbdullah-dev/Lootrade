@@ -3,28 +3,29 @@
         .card {
             border-radius: 16px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+            background: transparent
         }
     </style>
     <div class="row mt-5">
         <!-- 1. New Users -->
         <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card bg-dark text-white p-3">
+            <div class="card text-white p-3">
                 <h5>New Users - Last 7 Days</h5>
-                <canvas id="newUsersChart" height="200"></canvas>
+                <canvas id="newUsersChart" height="270"></canvas>
             </div>
         </div>
 
         <!-- 2. Daily Active Users -->
         <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card bg-dark text-white p-3">
+            <div class="card text-white p-3">
                 <h5>Daily Active Users</h5>
-                <canvas id="activeUsersChart" height="200"></canvas>
+                <canvas id="activeUsersChart" height="270"></canvas>
             </div>
         </div>
 
         <!-- 3. Raffles by Status -->
         <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card bg-dark text-white p-3">
+            <div class="card text-white p-3">
                 <h5>Raffles by Status</h5>
                 <canvas id="raffleStatusChart" height="200"></canvas>
             </div>
@@ -34,7 +35,7 @@
     <div class="row mt-3">
         <!-- 4. Average Login Frequency -->
         <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card bg-dark text-white p-3">
+            <div class="card text-white p-3">
                 <h5>Average Login Frequency</h5>
                 <canvas id="loginFrequencyChart" height="200"></canvas>
             </div>
@@ -42,7 +43,7 @@
 
         <!-- 5. Tickets Earned vs Used -->
         <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card bg-dark text-white p-3">
+            <div class="card text-white p-3">
                 <h5>Tickets Earned vs Used</h5>
                 <canvas id="ticketsChart" height="200"></canvas>
             </div>
@@ -50,7 +51,7 @@
 
         <!-- 6. Top Active Users -->
         <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card bg-dark text-white p-3">
+            <div class="card text-white p-3">
                 <h5>Top Active Users</h5>
                 <canvas id="topUsersChart" height="200"></canvas>
             </div>
@@ -60,7 +61,7 @@
     <div class="row mt-3">
         <!-- 7. Raffle Participation -->
         <div class="col-md-12 mb-4">
-            <div class="card bg-dark text-white p-3">
+            <div class="card text-white p-3">
                 <h5>Total Raffle Participation</h5>
                 <canvas id="raffleParticipationChart" height="200"></canvas>
             </div>

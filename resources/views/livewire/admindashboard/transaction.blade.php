@@ -1,9 +1,5 @@
 {{-- Transaction Table – Accessible Version --}}
-<section class="transaction" aria-labelledby="transactionHeading">
-    <header>
-        <h2 id="transactionHeading" class="visually-hidden">User Package Transactions</h2>
-    </header>
-
+<section class="transaction mt-2" aria-labelledby="transactionHeading">
     {{-- Search input --}}
     <div class="mb-3">
         <label for="transactionSearch" class="form-label visually-hidden">

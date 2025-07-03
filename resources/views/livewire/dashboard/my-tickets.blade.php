@@ -1,8 +1,4 @@
-<section class="mytickets" aria-labelledby="myTicketsHeading">
-    <header>
-        <h2 id="myTicketsHeading" class="mb-4 gradient">My Tickets</h2>
-    </header>
-
+<section class="mytickets mt-2" aria-labelledby="myTicketsHeading">
     <div class="mb-4">
         <label for="searchTickets" class="form-label visually-hidden">Search by ticket number</label>
         <input

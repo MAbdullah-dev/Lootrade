@@ -4,8 +4,9 @@
             <ul>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}"
-                        href="{{ route('admin.dashboard') }}" wire:navigate aria-label="Go to Dashboard"
-                        @if (Route::currentRouteName() == 'admin.dashboard') aria-current="page" @endif>
+                        href="{{ route('admin.dashboard') }}"
+                        aria-label="Go to Dashboard"
+                        @if(Route::currentRouteName() == 'admin.dashboard') aria-current="page" @endif>
                         <i class="fas fa-tachometer-alt" aria-hidden="true"></i> <span>Dashboard</span>
                     </a>
                 </li>
@@ -31,9 +32,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.transactions' ? 'active' : '' }}"
+                    <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.transaction' ? 'active' : '' }}"
                         href="{{ route('admin.transaction') }}" wire:navigate aria-label="Go to Transactions"
-                        @if (Route::currentRouteName() == 'admin.transactions') aria-current="page" @endif>
+                        @if (Route::currentRouteName() == 'admin.transaction') aria-current="page" @endif>
                         <i class="fas fa-exchange-alt" aria-hidden="true"></i> <span>Transaction</span>
                     </a>
                 </li>

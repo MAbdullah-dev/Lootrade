@@ -1,8 +1,6 @@
-<section class="support-section" aria-labelledby="support-ticket-heading">
+<section class="support-section mt-2" aria-labelledby="support-ticket-heading">
     <div class="inner">
         <div class="form-wrapper mx-auto">
-            <h2 id="support-ticket-heading" class="text-center mb-4 gradient">Support Ticket</h2>
-
             <form class="mx-auto" wire:submit.prevent="submit" aria-describedby="form-description">
                 <p id="form-description" class="visually-hidden">
                     Fill out the subject and description to submit a support ticket.
