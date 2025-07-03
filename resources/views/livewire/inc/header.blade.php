@@ -63,7 +63,7 @@
                         @endif
                         @if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}" wire:navigate>
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                     <i class="fas fa-tachometer-alt"></i> Dashboard
                                 </a>
                             </li>
@@ -138,17 +138,20 @@
                 mobileNav.classList.toggle('show');
 
                 <<
-                << << < HEAD
+                <<
+                << < HEAD
                 // Update ARIA state
                 const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
                 hamburger.setAttribute('aria-expanded', !isExpanded);
             }); ===
-            === =
+            ===
+            =
             // // Update ARIA state
             // const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
             // hamburger.setAttribute('aria-expanded', !isExpanded);
             >>>
-            >>> > 39279 c71c6e3422a5c4db05d18a3a63ff988d1a0
+            >>>
+            > 39279 c71c6e3422a5c4db05d18a3a63ff988d1a0
         });
     </script>
 @endpush
