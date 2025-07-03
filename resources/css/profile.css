@@ -124,13 +124,13 @@
 }
 
 .profile .custom-file-label:hover {
-    border-color: #fe3839;
-    background-color: #444;
+    border-color: #444;
+    /* background-color: #444; */
 }
 
 .profile .custom-file-label i {
     font-size: 18px;
-    color: #1f0b46;
+    color: #ff;
 }
 
 .profile .btn-custom {

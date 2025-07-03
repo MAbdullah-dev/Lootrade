@@ -25,7 +25,7 @@
         <!-- Ticket Count + Login/Profile -->
         <div class="d-flex align-items-center gap-4 header-btns">
             @if ($isNotAdmin)
-                <button class="btn-custom position-relative" aria-label="My Ticket Count">
+                <button class="btn-custom position-relative" >
                     <i class="fa-solid fa-ticket me-1"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
                         {{ $ticketCount }}
@@ -34,16 +34,15 @@
             @endif
 
             @if (!Auth::check())
-                <a href="{{ route('login') }}" class="btn-custom" aria-label="Login">Login</a>
+                <a href="{{ route('login') }}" class="btn-custom">Login</a>
             @endif
 
             <!-- Hamburger for mobile -->
-            <button class="hamburger d-block d-lg-none" id="hamburger"
-                aria-label="Toggle mobile navigation" aria-expanded="false" aria-controls="mobileNav">
+            <div class="hamburger d-block d-lg-none" id="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </button>
+            </div>
 
             <!-- User Avatar Dropdown (Desktop) -->
             @if (Auth::check())
@@ -73,7 +72,7 @@
     </div>
 
     <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+    <div class="mobile-nav" id="mobileNav">
         <nav>
             <ul class="nav gap-4 d-flex flex-column">
                 @if (Auth::check())
@@ -125,9 +124,9 @@
             hamburger.classList.toggle('open');
             mobileNav.classList.toggle('show');
 
-            // Update ARIA state
-            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-            hamburger.setAttribute('aria-expanded', !isExpanded);
+            // // Update ARIA state
+            // const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            // hamburger.setAttribute('aria-expanded', !isExpanded);
         });
     });
 </script>

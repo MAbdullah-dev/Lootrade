@@ -4,20 +4,19 @@
             <h2 class="visually-hidden">List of Contest Winners</h2>
 
             <!-- Filter Inputs -->
-            <div class="row filter-section mb-4" role="search" aria-label="Filter Winners">
+            <div class="row align-items-center mb-4" role="search" aria-label="Filter Winners">
                 <div class="col-md-6 mb-3 mb-md-0">
-                    <label for="searchInput" class="visually-hidden">Search Winners</label>
                     <input type="text" id="searchInput" placeholder="Search" class="form-control search-bar"
                         aria-label="Search Winners by Name or Title">
                 </div>
-                {{-- <div class="col-md-6">
-                    <input type="text" placeholder="Date Range" class="form-control date-range">
-                </div> --}}
+
+                <div class="col-md-6 text-md-end">
+                    <button wire:click="export" class="btn-custom p-2">
+                        Export to Excel
+                    </button>
+                </div>
             </div>
 
-            <div class="d-flex justify-content-end mb-3">
-                <button wire:click="export" class="btn-custom p-2">Export to Excel</button>
-            </div>
 
             <div class="table-responsive rounded shadow">
                 <table class="table table-neon  table-hover mb-0">

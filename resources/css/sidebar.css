@@ -1,4 +1,5 @@
 aside {
+    width: 250px;
     height: 780px;
     padding: 10px 0px;
     position: sticky;
@@ -6,10 +7,6 @@ aside {
     top: 0;
     background: #1f0b46;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-
-    @media (max-width: 999px) {
-        max-width: 15%;
-    }
 
     .nav-item {
         margin-bottom: 5px;
@@ -27,12 +24,6 @@ aside {
         display: flex;
         align-items: center;
         margin: 0 10px;
-
-        @media (max-width: 999px) {
-            display: block;
-            padding: 10px 10px;
-            text-align: center;
-        }
     }
 
     a:hover {
@@ -65,7 +56,11 @@ aside {
 }
 
 @media (max-width: 999px) {
-    aside .sidebar ul li a span {
+    aside {
+        width: 15%;
+    }
+
+    aside ul li a span {
         display: none;
     }
 }
