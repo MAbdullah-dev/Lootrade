@@ -38,8 +38,8 @@
             @endif
 
             <!-- Hamburger for mobile -->
-            <button class="hamburger d-block d-lg-none" id="hamburger"
-                aria-label="Toggle mobile navigation" aria-expanded="false" aria-controls="mobileNav">
+            <button class="hamburger d-block d-lg-none" id="hamburger" aria-label="Toggle mobile navigation"
+                aria-expanded="false" aria-controls="mobileNav">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -48,19 +48,30 @@
             <!-- User Avatar Dropdown (Desktop) -->
             @if (Auth::check())
                 <div class="user-avatar dropdown d-none d-lg-block">
-                    <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown"
-                        aria-expanded="false" aria-haspopup="true" aria-label="User menu">
+                    <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false"
+                        aria-haspopup="true" aria-label="User menu">
                         <img src="{{ Auth::user()->profile_picture ? Storage::url(Auth::user()->profile_picture) : asset('assets/images/dummy-profile-photo.png') }}"
-                             alt="User Profile Picture">
+                            alt="User Profile Picture">
                         <i class="fa-solid fa-sort-down ms-2"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
+                        @if (Auth::user()->role_id == 1)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile') }}" wire:navigate>
+                                    <i class="fas fa-user"></i> Profile
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}" wire:navigate>
+                                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                                </a>
+                            </li>
+                        @endif
                         <li>
-                            <a class="dropdown-item" href="{{ route('profile') }}" wire:navigate>
-                                <i class="fas fa-user"></i> Profile
-                            </a>
+                            <hr class="dropdown-divider">
                         </li>
-                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <a class="dropdown-item" wire:click="logout()">
                                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -82,7 +93,7 @@
                             <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown"
                                 aria-expanded="false" aria-haspopup="true" aria-label="User menu">
                                 <img src="{{ Auth::user()->profile_picture ? Storage::url(Auth::user()->profile_picture) : asset('assets/images/dummy-profile-photo.png') }}"
-                                     alt="User Profile Picture">
+                                    alt="User Profile Picture">
                                 <i class="fa-solid fa-sort-down ms-2"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
@@ -91,7 +102,9 @@
                                         <i class="fas fa-user"></i> Profile
                                     </a>
                                 </li>
-                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                                 <li>
                                     <a class="dropdown-item" wire:click="logout()">
                                         <i class="fas fa-sign-out-alt"></i> Logout
@@ -116,19 +129,19 @@
 </header>
 
 @push('js')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobileNav');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
 
-        hamburger.addEventListener('click', function () {
-            hamburger.classList.toggle('open');
-            mobileNav.classList.toggle('show');
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('open');
+                mobileNav.classList.toggle('show');
 
-            // Update ARIA state
-            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-            hamburger.setAttribute('aria-expanded', !isExpanded);
+                // Update ARIA state
+                const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', !isExpanded);
+            });
         });
-    });
-</script>
+    </script>
 @endpush
