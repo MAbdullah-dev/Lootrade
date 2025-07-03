@@ -1,8 +1,4 @@
-<section class="change-password" aria-labelledby="resetPasswordHeading">
-    <header>
-        <h2 id="resetPasswordHeading" class="mb-3 gradient">Reset Password</h2>
-    </header>
-
+<section class="change-password mt-3" aria-labelledby="resetPasswordHeading">
     <div class="row">
         <div class="col-md-6">
             <form wire:submit="changePassword" aria-describedby="passwordFormInstructions">
