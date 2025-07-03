@@ -47,6 +47,9 @@
                                 @error('login_password')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
+                                @error('login_credentials')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-btn">
                                 <button type="submit">Login</button>
