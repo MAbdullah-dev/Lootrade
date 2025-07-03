@@ -14,7 +14,7 @@ class Transaction extends Component
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
 
-    protected $paginationTheme = 'bootstrap'; // if you're using Bootstrap pagination
+    protected $paginationTheme = 'bootstrap'; 
 
     public function updatingSearch()
     {

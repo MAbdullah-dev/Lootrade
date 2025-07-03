@@ -29,6 +29,14 @@ class Welcome extends Component
     {
         return redirect('auth/twitter', 'twitter');
     }
+    public function redirectToTwitchLogin()
+    {
+        return redirect('auth/twitch', 'twitch');
+    }
+    public function redirectToKickLogin()
+    {
+        return redirect('auth/kick', 'kick');
+    }
     public function subscribe()
     {
         $this->validate();

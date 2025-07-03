@@ -39,11 +39,22 @@ class TicketPackages extends Component
     {
         $this->validate();
 
-        TicketPackage::create([
+        $package = TicketPackage::create([
             'type' => $this->type,
             'tickets' => $this->tickets,
             'price' => $this->price,
         ]);
+
+        adminLog('Created a new ticket package.', [
+        'action' => 'create_ticket_package',
+        'package_id' => $package->id,
+        'type' => $package->type,
+        'tickets' => $package->tickets,
+        'price' => $package->price,
+        'performed_by_admin_id' => auth()->id(),
+        'performed_by_admin_email' => auth()->user()->email,
+        'timestamp' => now()->toDateTimeString(),
+    ]);
 
         $this->reset(['type', 'tickets', 'price']);
         $this->loadPackages();
@@ -69,11 +80,26 @@ class TicketPackages extends Component
         ]);
 
         $package = TicketPackage::findOrFail($this->package_id);
+        $original = $package->toArray();
         $package->update([
             'type' => $this->editType,
             'tickets' => $this->editTickets,
             'price' => $this->editPrice,
         ]);
+
+        adminLog('Updated a ticket package.', [
+        'action' => 'update_ticket_package',
+        'package_id' => $package->id,
+        'original' => $original,
+        'updated' => [
+            'type' => $this->editType,
+            'tickets' => $this->editTickets,
+            'price' => $this->editPrice,
+        ],
+        'performed_by_admin_id' => auth()->id(),
+        'performed_by_admin_email' => auth()->user()->email,
+        'timestamp' => now()->toDateTimeString(),
+    ]);
 
         $this->resetForm();
         $this->loadPackages();
@@ -89,26 +115,30 @@ class TicketPackages extends Component
     }
 
     public function confirmDelete()
-    {
-        TicketPackage::destroy($this->package_id);
-        $this->resetForm();
-        $this->loadPackages();
+{
+    $package = TicketPackage::find($this->package_id);
 
-        session()->flash('success', 'Package deleted successfully!');
-        $this->dispatch('close-modal');
-    }
-    public function resetForm()
-    {
-        $this->reset([
-            'type',
-            'tickets',
-            'price', // for create form
-            'editType',
-            'editTickets',
-            'editPrice', // for edit modal
-            'package_id'
+    if ($package) {
+        adminLog('Deleted a ticket package.', [
+            'action' => 'delete_ticket_package',
+            'package_id' => $package->id,
+            'type' => $package->type,
+            'tickets' => $package->tickets,
+            'price' => $package->price,
+            'performed_by_admin_id' => auth()->id(),
+            'performed_by_admin_email' => auth()->user()->email,
+            'timestamp' => now()->toDateTimeString(),
         ]);
     }
+
+    TicketPackage::destroy($this->package_id);
+
+    $this->resetForm();
+    $this->loadPackages();
+
+    session()->flash('success', 'Package deleted successfully!');
+    $this->dispatch('close-modal');
+}
 
     public function render()
     {

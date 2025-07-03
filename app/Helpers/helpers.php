@@ -39,3 +39,21 @@ if (!function_exists('alert_error')) {
             ->show();
     }
 }
+
+// admin log
+if (!function_exists('adminLog')) {
+    function adminLog(string $description, array $properties = []): void
+    {
+        $user = auth()->user();
+        
+        if ($user && $user->role_id === 2) {
+            activity()
+                ->causedBy($user)
+                ->withProperties(array_merge([
+                    'role' => 'admin',
+                    'ip' => request()->ip(),
+                ], $properties))
+                ->log($description);
+        }
+    }
+}

@@ -96,6 +96,7 @@ class Login extends Component
             return match ($user->role_id) {
                 1 => redirect('/home'),
                 2 => redirect('/admin/dashboard'),
+                3 => redirect('/admin/dashboard'),
                 default => redirect('/'), // fallback if role_id is unexpected
             };
         } else {

@@ -76,11 +76,6 @@ class User extends Authenticatable implements AuthMustVerifyEmail
         return $this->hasMany(Notification::class);
     }
 
-    public function auditLogs()
-    {
-        return $this->hasMany(AuditLog::class);
-    }
-
     public function supportTickets()
     {
         return $this->hasMany(SupportTicket::class);
