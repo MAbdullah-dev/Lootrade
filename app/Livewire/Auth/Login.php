@@ -101,6 +101,7 @@ class Login extends Component
             };
         } else {
             alert_error('Login failed!');
+            $this->addError('login_credentials', 'Invalid email or password.');
         }
     }
 

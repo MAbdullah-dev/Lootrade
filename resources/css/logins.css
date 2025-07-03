@@ -44,12 +44,13 @@
     color: #fff !important;
     transition: all 0.3s ease;
     background: #0E0026;
-    border: 2px solid #A347BA;
+    /* border: 2px solid #A347BA; */
 }
 
 .logins .nav-link.active {
     background: linear-gradient(to right, #A347BA, #2E8AEA);
     color: #fff;
+    border: unset;
 }
 
 /* Form */
@@ -69,7 +70,7 @@
     border-radius: 8px;
     border: 1px solid #333;
     /* background-color: #; */
-    color: #A347BA;
+    /* color: #A347BA; */
 }
 
 /* Submit Button */
@@ -144,11 +145,9 @@
 
 .logins .social-btn.x {
     color: #fff;
-    border: 1px solid #333;
 }
 
 .logins .social-btn.discord {
-    background: #5865F2;
     color: #fff;
 }
 
