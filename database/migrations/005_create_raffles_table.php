@@ -24,16 +24,11 @@ return new class extends Migration
             $table->integer('slots')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->string('status', 20)->virtualAs("
-                CASE
-                    WHEN start_date <= NOW() AND end_date >= NOW() THEN 'active'
-                    WHEN start_date > NOW() THEN 'upcoming'
-                    ELSE 'past'
-                END
-            ")->stored();
+            // Removed generated column here
             $table->timestamps();
         });
     }
+
 
     public function down()
     {
