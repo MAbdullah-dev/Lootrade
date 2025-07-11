@@ -50,7 +50,12 @@ jobs:
 
             echo "🎯 Running npm install/build..."
             npm install
-            npm run build
+
+            echo "🔧 Making vite executable..."
+            chmod +x node_modules/.bin/vite || true
+
+            echo "🚀 Building with vite..."
+            npx vite build
 
             echo "✅ Deployment finished successfully"
           EOF
