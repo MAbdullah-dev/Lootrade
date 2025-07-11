@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ✅ Checkout code
+      - name: ✅ Checkout Code
         uses: actions/checkout@v3
 
       - name: 🔐 Setup SSH Agent
@@ -18,44 +18,37 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: 🧪 Test SSH and Deploy Laravel
+      - name: 🚀 Deploy to Azure VM
         run: |
-          ssh -vvv -o StrictHostKeyChecking=no azureuser@20.84.51.30 << 'EOF'
+          ssh -o StrictHostKeyChecking=no azureuser@20.84.51.30 << 'EOF'
             set -e
-            echo "✅ Connected to Azure VM"
 
-            # Ensure PATH is set for non-login shell
-            export PATH=$PATH:/usr/local/bin:/usr/bin:/bin
-
-            echo "🔍 PHP version:" && php -v || echo "❌ PHP not found"
-            echo "🔍 Composer version:" && composer -V || echo "❌ Composer not found"
-            echo "🔍 Node version:" && node -v || echo "❌ Node not found"
-            echo "🔍 NPM version:" && npm -v || echo "❌ NPM not found"
-
-            cd /var/www/html/Lootrade || exit 1
+            echo "📂 Changing to project directory..."
+            cd /var/www/html/Lootrade
 
             echo "📥 Pulling latest code..."
             git pull origin main
 
-            echo "📦 Running Composer install..."
+            echo "📦 Installing PHP dependencies..."
             composer install --no-interaction --prefer-dist --optimize-autoloader
 
-            echo "🧱 Running migrations..."
+            echo "🧱 Running Laravel migrations..."
             php artisan migrate --force
 
-            echo "🧹 Caching config..."
+            echo "🧹 Caching Laravel config, routes, and views..."
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
 
-            echo "🎯 Running npm install/build..."
+            echo "📦 Installing Node modules..."
             npm install
 
-            echo "🔧 Making vite executable..."
+            echo "🔧 Fixing esbuild & vite permissions..."
+            chmod +x node_modules/@esbuild/linux-x64/bin/esbuild
             chmod +x node_modules/.bin/vite || true
 
-            echo "🚀 Building with vite..."
-            npx vite build
+            echo "🚀 Building frontend with Vite..."
+            npm run build
 
-            echo "✅ Deployment finished successfully"
+            echo "✅ Deployment completed successfully!"
           EOF
