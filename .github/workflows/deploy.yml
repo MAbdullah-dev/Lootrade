@@ -18,32 +18,39 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: 🚀 Deploy to Azure VM
+      - name: 🧪 Test SSH and Deploy Laravel
         run: |
-          ssh -o StrictHostKeyChecking=no azureuser@20.84.51.30 << 'EOF'
+          ssh -vvv -o StrictHostKeyChecking=no azureuser@20.84.51.30 << 'EOF'
             set -e
+            echo "✅ Connected to Azure VM"
+
+            # Ensure PATH is set for non-login shell
             export PATH=$PATH:/usr/local/bin:/usr/bin:/bin
 
-            echo "📂 Changing to project directory..."
-            cd /var/www/html/Lootrade
+            echo "🔍 PHP version:" && php -v || echo "❌ PHP not found"
+            echo "🔍 Composer version:" && composer -V || echo "❌ Composer not found"
+            echo "🔍 Node version:" && node -v || echo "❌ Node not found"
+            echo "🔍 NPM version:" && npm -v || echo "❌ NPM not found"
+
+            cd /var/www/html/Lootrade || exit 1
 
             echo "📥 Pulling latest code..."
             git pull origin main
 
-            echo "📦 Installing PHP dependencies..."
+            echo "📦 Running Composer install..."
             composer install --no-interaction --prefer-dist --optimize-autoloader
 
             echo "🧱 Running migrations..."
             php artisan migrate --force
 
-            echo "🧹 Caching config, routes, and views..."
+            echo "🧹 Caching config..."
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
 
-            echo "📦 Installing Node modules and building frontend..."
+            echo "🎯 Running npm install/build..."
             npm install
             npm run build
 
-            echo "✅ Deployment complete!"
+            echo "✅ Deployment finished successfully"
           EOF
