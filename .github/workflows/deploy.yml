@@ -10,24 +10,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: ✅ Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+      - name: 🔐 Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-    - name: Deploy over SSH
-      run: |
-        ssh -o StrictHostKeyChecking=no azureuser@20.84.51.30 << 'EOF'
-          cd /var/www/html/Lootrade
-          git pull origin main
-          composer install --no-interaction --prefer-dist --optimize-autoloader
-          php artisan migrate --force
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-          npm install
-          npm run build
-        EOF
+      - name: 🚀 Deploy to Azure VM
+        run: |
+          ssh -o StrictHostKeyChecking=no azureuser@20.84.51.30 << 'EOF'
+            set -e
+            export PATH=$PATH:/usr/local/bin:/usr/bin:/bin
+
+            echo "📂 Changing to project directory..."
+            cd /var/www/html/Lootrade
+
+            echo "📥 Pulling latest code..."
+            git pull origin main
+
+            echo "📦 Installing PHP dependencies..."
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+
+            echo "🧱 Running migrations..."
+            php artisan migrate --force
+
+            echo "🧹 Caching config, routes, and views..."
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            echo "📦 Installing Node modules and building frontend..."
+            npm install
+            npm run build
+
+            echo "✅ Deployment complete!"
+          EOF
