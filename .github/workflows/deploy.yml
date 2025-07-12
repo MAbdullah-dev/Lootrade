@@ -50,5 +50,8 @@ jobs:
             echo "🚀 Building frontend with Vite..."
             npm run build
 
+            echo "🔁 Restarting Laravel queue workers..."
+            php artisan queue:restart
+
             echo "✅ Deployment completed successfully!"
           EOF

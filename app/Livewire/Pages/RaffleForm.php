@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages;
 
+use App\Jobs\SendRaffleCreatedEmailsJob;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Raffle;
@@ -28,22 +29,22 @@ class RaffleForm extends Component
     {
         return [
 
-        'title' => 'required|string|min:5|max:255|unique:raffles,title,' . $this->raffleId,
-        'description' => 'required|string|min:10',
-        'max_entries_per_user' => 'required|integer|min:1|max:1000',
-        'start_date' => 'required|date|after_or_equal:today',
-        'end_date' => 'required|date|after:start_date',
-        'slots' => 'required|integer|min:1|max:10000',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        'video' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo|max:10240',
+            'title' => 'required|string|min:5|max:255|unique:raffles,title,' . $this->raffleId,
+            'description' => 'required|string|min:10',
+            'max_entries_per_user' => 'required|integer|min:1|max:1000',
+            'start_date' => 'required|date|after_or_equal:today',
+            'end_date' => 'required|date|after:start_date',
+            'slots' => 'required|integer|min:1|max:10000',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'video' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo|max:10240',
 
-        'prizes' => 'required|array|min:1',
-        'prizes.*.name' => 'required|string|max:255',
-        'prizes.*.description' => 'required|string',
-        'prizes.*.value' => 'nullable|numeric',
-        'prizes.*.quantity' => 'nullable|integer',
+            'prizes' => 'required|array|min:1',
+            'prizes.*.name' => 'required|string|max:255',
+            'prizes.*.description' => 'required|string',
+            'prizes.*.value' => 'nullable|numeric',
+            'prizes.*.quantity' => 'nullable|integer',
 
-    ];
+        ];
     }
 
 
@@ -107,7 +108,7 @@ class RaffleForm extends Component
         }
 
         $raffle->save();
-
+        dispatch(new SendRaffleCreatedEmailsJob($raffle));
         alert_success('Raffle saved successfully!');
 
         $this->reset();
