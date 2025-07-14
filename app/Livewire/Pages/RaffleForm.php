@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages;
 
+use App\Jobs\SendRaffleCreatedEmailsJob;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Raffle;
@@ -112,8 +113,10 @@ class RaffleForm extends Component
         }
 
         $raffle->save();
+        dispatch(new SendRaffleCreatedEmailsJob($raffle));
+        alert_success('Raffle saved successfully!');
 
-        alert_success($this->raffleId ? 'Raffle updated successfully!' : 'Raffle created successfully!');
+        $this->reset();
 
         return redirect('/raffle/' . $raffle->id);
     }

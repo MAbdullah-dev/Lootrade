@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as AuthMustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Notifications\CustomVerifyEmail;
 
 class User extends Authenticatable implements AuthMustVerifyEmail
 {
@@ -91,4 +92,9 @@ class User extends Authenticatable implements AuthMustVerifyEmail
     {
         return $this->belongsToMany(Task::class)->withTimestamps()->withPivot('completed_at');
     }
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomVerifyEmail);
+    }
 }
+
