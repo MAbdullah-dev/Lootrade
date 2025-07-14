@@ -62,16 +62,23 @@ class Home extends Component
 
     public function render()
     {
-        return view('livewire.pages.home', [
-            'activeRaffles' => Raffle::where('status', 'active')
-                ->latest()
-                ->paginate(3),
-            'upcomingRaffles' => Raffle::where('status', 'upcoming')
-                ->latest()
-                ->paginate(3),
-            'pastRaffles' => Raffle::where('status', 'past')
-                ->latest()
-                ->paginate(3),
-        ]);
+$now = now();
+
+return view('livewire.pages.home', [
+    'activeRaffles' => Raffle::where('start_date', '<=', $now)
+        ->where('end_date', '>=', $now)
+        ->latest()
+        ->paginate(3),
+
+    'upcomingRaffles' => Raffle::where('start_date', '>', $now)
+        ->latest()
+        ->paginate(3),
+
+    'pastRaffles' => Raffle::where('end_date', '<', $now)
+        ->latest()
+        ->paginate(3),
+]);
+
+
     }
 }
