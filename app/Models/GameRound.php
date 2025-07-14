@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class GameRound extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'game_session_id',
         'round_number',

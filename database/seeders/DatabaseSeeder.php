@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             TicketPackageSeeder::class,
             TicketPackagesTypeSeeder::class,
             UserSeeder::class,
+            TaskSeeder::class
         ]);
     }
 }

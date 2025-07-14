@@ -137,21 +137,11 @@
                 hamburger.classList.toggle('open');
                 mobileNav.classList.toggle('show');
 
-                <<
-                <<
-                << < HEAD
+
                 // Update ARIA state
                 const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
                 hamburger.setAttribute('aria-expanded', !isExpanded);
-            }); ===
-            ===
-            =
-            // // Update ARIA state
-            // const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-            // hamburger.setAttribute('aria-expanded', !isExpanded);
-            >>>
-            >>>
-            > 39279 c71c6e3422a5c4db05d18a3a63ff988d1a0
+            });
         });
     </script>
 @endpush

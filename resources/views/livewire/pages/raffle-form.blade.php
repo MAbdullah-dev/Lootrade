@@ -27,7 +27,8 @@
                             <div class="raffle-form">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title</label>
-                                    <input type="text" class="form-control" id="title" placeholder="Title" wire:model="title" aria-describedby="titleError">
+                                    <input type="text" class="form-control" id="title" placeholder="Title"
+                                        wire:model="title" aria-describedby="titleError">
                                     @error('title')
                                         <small class="text-danger" id="titleError">{{ $message }}</small>
                                     @enderror
@@ -35,15 +36,19 @@
 
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea id="description" placeholder="Description" name="description" class="form-control" wire:model="description" aria-describedby="descriptionError"></textarea>
+                                    <textarea id="description" placeholder="Description" name="description" class="form-control" wire:model="description"
+                                        aria-describedby="descriptionError"></textarea>
                                     @error('description')
                                         <small class="text-danger" id="descriptionError">{{ $message }}</small>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="max_entries_per_user" class="form-label">Maximum Entries Per User</label>
-                                    <input type="number" class="form-control" id="max_entries_per_user" placeholder="Max Entries" wire:model="max_entries_per_user" aria-describedby="maxEntriesError">
+                                    <label for="max_entries_per_user" class="form-label">Maximum Entries Per
+                                        User</label>
+                                    <input type="number" class="form-control" id="max_entries_per_user"
+                                        placeholder="Max Entries" wire:model="max_entries_per_user"
+                                        aria-describedby="maxEntriesError">
                                     @error('max_entries_per_user')
                                         <small class="text-danger" id="maxEntriesError">{{ $message }}</small>
                                     @enderror
@@ -52,7 +57,8 @@
                                 <div class="date-range mb-3">
                                     <div wire:ignore>
                                         <label for="raffle_date_range" class="form-label">Start Date & End Date</label>
-                                        <input id="raffle_date_range" class="form-control" placeholder="Start Date & End Date" aria-describedby="dateError">
+                                        <input id="raffle_date_range" class="form-control"
+                                            placeholder="Start Date & End Date" aria-describedby="dateError">
                                     </div>
                                     @error('start_date')
                                         <small class="text-danger" id="dateError">{{ $message }}</small>
@@ -64,7 +70,8 @@
 
                                 <div class="mb-3">
                                     <label for="slots" class="form-label">Slots (Max Players)</label>
-                                    <input type="number" id="slots" class="form-control" placeholder="Enter slots" wire:model="slots" aria-describedby="slotsError">
+                                    <input type="number" id="slots" class="form-control" placeholder="Enter slots"
+                                        wire:model="slots" aria-describedby="slotsError">
                                     @error('slots')
                                         <small class="text-danger" id="slotsError">{{ $message }}</small>
                                     @enderror
@@ -72,31 +79,62 @@
 
                                 <div class="mb-4">
                                     <label for="imageInput" class="form-label">Upload Image</label>
-                                    <input type="file" class="form-control" id="imageInput" accept="image/*" wire:model="image" aria-describedby="imageError">
+                                    <input type="file" class="form-control" id="imageInput" accept="image/*"
+                                        wire:model="image" aria-describedby="imageError">
+
                                     @error('image')
                                         <small class="text-danger" id="imageError">{{ $message }}</small>
                                     @enderror
-                                    <div id="imagePreview" class="mt-3" style="display: none;" wire:ignore aria-live="polite">
-                                        <div class="spinner-border text-primary" id="imageLoader" role="status" aria-label="Loading image preview"></div>
-                                        <div class="d-flex justify-content-center">
-                                            <img id="previewImage" src="" class="img-fluid mt-2 rounded shadow" style="max-width: 300px; display: none;" alt="Preview of selected image" />
+
+                                    {{-- Existing Image Preview --}}
+                                    @if ($image)
+                                        {{-- Show new uploaded preview from Livewire --}}
+                                        <div class="mt-3">
+                                            <img src="{{ $image->temporaryUrl() }}"
+                                                class="img-fluid mt-2 rounded shadow" style="max-width: 300px;"
+                                                alt="New image preview">
                                         </div>
-                                    </div>
+                                    @elseif (!empty($raffleId) && ($raffle = \App\Models\Raffle::find($raffleId)))
+                                        {{-- Show existing saved image --}}
+                                        <div class="mt-3">
+                                            <img src="{{ Storage::url($raffle->image_path) }}"
+                                                class="img-fluid mt-2 rounded shadow" style="max-width: 300px;"
+                                                alt="Current raffle image">
+                                        </div>
+                                    @endif
                                 </div>
+
 
                                 <div class="mb-4">
                                     <label for="videoInput" class="form-label">Upload Video (Optional)</label>
-                                    <input type="file" class="form-control" id="videoInput" accept="video/*" wire:model="video" aria-describedby="videoError">
+                                    <input type="file" class="form-control" id="videoInput" accept="video/*"
+                                        wire:model="video" aria-describedby="videoError">
+
                                     @error('video')
                                         <small class="text-danger" id="videoError">{{ $message }}</small>
                                     @enderror
-                                    <div id="videoPreview" class="mt-3" style="display: none;" wire:ignore aria-live="polite">
-                                        <div class="spinner-border text-success" id="videoLoader" role="status" aria-label="Loading video preview"></div>
-                                        <div class="d-flex justify-content-center">
-                                            <video id="previewVideo" class="mt-2 rounded shadow" style="width: 100%; max-width: 500px; height: 280px; display: none;" controls aria-label="Preview of selected video"></video>
+
+                                    {{-- Existing Video Preview --}}
+                                    @if ($video)
+                                        <div class="mt-3">
+                                            <video class="mt-2 rounded shadow"
+                                                style="width: 100%; max-width: 500px; height: 280px;" controls>
+                                                <source src="{{ $video->temporaryUrl() }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
                                         </div>
-                                    </div>
+                                    @elseif (!empty($raffleId) && ($raffle = \App\Models\Raffle::find($raffleId) && $raffle->video_path))
+                                        <div class="mt-3">
+                                            <video class="mt-2 rounded shadow"
+                                                style="width: 100%; max-width: 500px; height: 280px;" controls>
+                                                <source src="{{ Storage::url($raffle->video_path) }}"
+                                                    type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
+                                    @endif
                                 </div>
+
                             </div>
 
                             <div class="price-form">
@@ -104,30 +142,35 @@
                                 <div class="form-group prize p-3 mb-3 rounded">
                                     <div class="mb-3">
                                         <label for="prize_name" class="mb-2">Prize Name</label>
-                                        <input type="text" class="form-control" id="prize_name" wire:model="prizes.0.name" aria-describedby="prizeNameError">
+                                        <input type="text" class="form-control" id="prize_name"
+                                            wire:model="prizes.0.name" aria-describedby="prizeNameError">
                                         @error('prizes.0.name')
                                             <small class="text-danger" id="prizeNameError">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="prize_description" class="mb-2">Prize Description</label>
-                                        <textarea id="prize_description" class="form-control" wire:model="prizes.0.description" aria-describedby="prizeDescError"></textarea>
+                                        <textarea id="prize_description" class="form-control" wire:model="prizes.0.description"
+                                            aria-describedby="prizeDescError"></textarea>
                                         @error('prizes.0.description')
                                             <small class="text-danger" id="prizeDescError">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="prize_value" class="mb-2">Prize Value (Optional)</label>
-                                        <input type="number" id="prize_value" class="form-control" wire:model="prizes.0.value" aria-describedby="prizeValueError">
+                                        <input type="number" id="prize_value" class="form-control"
+                                            wire:model="prizes.0.value" aria-describedby="prizeValueError">
                                         @error('prizes.0.value')
                                             <small class="text-danger" id="prizeValueError">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="prize_quantity" class="mb-2">Prize Quantity (Optional)</label>
-                                        <input type="number" id="prize_quantity" class="form-control" wire:model="prizes.0.quantity" aria-describedby="prizeQuantityError">
+                                        <input type="number" id="prize_quantity" class="form-control"
+                                            wire:model="prizes.0.quantity" aria-describedby="prizeQuantityError">
                                         @error('prizes.0.quantity')
-                                            <small class="text-danger" id="prizeQuantityError">{{ $message }}</small>
+                                            <small class="text-danger"
+                                                id="prizeQuantityError">{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>
@@ -135,7 +178,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <button class="btn-custom w-100 p-2 mt-4" type="submit" aria-label="Create Raffle">Create Raffle</button>
+                            <button class="btn-custom w-100 p-2 mt-4" type="submit"
+                                aria-label="Create Raffle">Create Raffle</button>
                         </div>
                     </div>
                 </form>
@@ -144,8 +188,14 @@
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            flatpickr("#raffle_date_range", {
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById("raffle_date_range");
+            if (!input) return;
+
+            const start = @json($start_date ?? null);
+            const end = @json($end_date ?? null);
+
+            flatpickr(input, {
                 mode: "range",
                 enableTime: true,
                 time_24hr: true,
@@ -153,7 +203,9 @@
                 altInput: true,
                 altFormat: "F j, Y H:i",
                 allowInput: true,
-                onChange: function (selectedDates) {
+                defaultDate: start && end ? [start, end] :
+                null, // <-- this line makes it work for edit mode too
+                onChange: function(selectedDates) {
                     if (selectedDates.length === 2) {
                         Livewire.dispatch('setDateRange', {
                             start: selectedDates[0].toISOString().slice(0, 16),

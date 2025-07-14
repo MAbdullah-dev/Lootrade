@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -7,10 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as AuthMustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable implements AuthMustVerifyEmail
 {
-    use HasFactory, Notifiable,SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'first_name',
@@ -84,5 +86,9 @@ class User extends Authenticatable implements AuthMustVerifyEmail
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+    public function completedTasks(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class)->withTimestamps()->withPivot('completed_at');
     }
 }

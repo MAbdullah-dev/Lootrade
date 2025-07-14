@@ -69,9 +69,8 @@
                                             aria-label="View raffle details">
                                             <i class="fa-solid fa-user" aria-hidden="true"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#editRaffleModal"
-                                            wire:click="viewForEditRaffle({{ $raffle->id }})"
+                                        <button class="btn btn-sm btn-primary"
+                                            wire:click="editRaffle({{ $raffle->id }})"
                                             aria-label="Edit raffle">
                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                         </button>
@@ -97,8 +96,6 @@
             </div>
         </div>
     </section>
-    <!-- Optional utility class for screen-reader-only elements -->
-
     <style>
         .visually-hidden {
             position: absolute !important;

@@ -65,7 +65,7 @@ Route::get('/admin/newsletter', NewsletterSubscription::class)->name('admin.news
 
 // admin raffle create update
 Route::get('/admin/raffle/create', RaffleForm::class)->name('raffle.create');
-Route::get('/admin/raffle/edit/{id}', RaffleForm::class)->name('raffle.edit');
+Route::get('/admin/raffle/{raffle}', RaffleForm::class)->name('raffle.edit');
 // end admin raffle create update
 
 //auth

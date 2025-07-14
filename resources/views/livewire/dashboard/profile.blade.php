@@ -46,14 +46,16 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6" wire:ignore>
                         <label for="dob" class="form-label">Date of Birth</label>
-                        <input type="date" id="dob" class="form-control" wire:model="date_of_birth"
+                        <input type="text" id="dob" class="form-control"
+                            value="{{ old('date_of_birth', $date_of_birth) }}"
                             aria-describedby="{{ $errors->has('date_of_birth') ? 'dob-error' : '' }}">
                         @error('date_of_birth')
                             <span id="dob-error" class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+
                 </div>
 
                 <!-- Profile Picture Upload -->
@@ -177,3 +179,35 @@
             </div>
         </div>
     </div>
+
+
+<script>
+    function initDobFlatpickr() {
+        let input = document.querySelector('#dob');
+        if (!input) return;
+
+        if (input._flatpickr) {
+            input._flatpickr.destroy(); // clean up if already initialized
+        }
+
+        flatpickr(input, {
+            altInput: true,
+            altFormat: 'F j, Y',
+            dateFormat: 'Y-m-d',
+            maxDate: 'today',
+            defaultDate: "{{ $date_of_birth }}",
+            onChange: function (selectedDates, dateStr) {
+                @this.set('date_of_birth', dateStr);
+            }
+        });
+    }
+
+    // Initial load
+    document.addEventListener('livewire:load', initDobFlatpickr);
+
+    // Re-run after Livewire navigation (wire:navigate)
+    document.addEventListener('livewire:navigated', initDobFlatpickr);
+
+    // Re-run after DOM updates (form interaction etc.)
+    Livewire.hook('message.processed', initDobFlatpickr);
+</script>

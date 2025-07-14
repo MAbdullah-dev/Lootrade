@@ -20,7 +20,7 @@
             <tbody>
                 @forelse($transactions as $index => $transaction)
                     <tr>
-                        <th scope="row">{{ $loop->iteration + ($transactions->firstItem() - 1) }}</th>
+                        <td scope="row">{{ $loop->iteration + ($transactions->firstItem() - 1) }}</td>
                         <td>{{ $transaction->ticketPackage->type ?? 'N/A' }}</td>
                         <td>{{ $transaction->package_quantity }}</td>
                         <td>{{ $transaction->total_tickets }}</td>

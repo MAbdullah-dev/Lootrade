@@ -1,52 +1,42 @@
 <div role="main">
     <section class="banner" aria-label="Login Section">
-        <div class="inner">
-            <div class="row">
-                <div class="col-md-6 p-0">
-                    <div class="cover-image">
-                        <img src="{{ asset('assets/images/lootraiders-cover-photo.png') }}"
-                            alt="Loot Raiders Cover Image">
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 social-login-main ">
-                    <div class="login-options pt-5 d-flex flex-column align-items-center justify-content-center gap-4 mt-5">
-                        <h2 class="fs-5 fw-semibold text-center gradient">Unlock the Portal to Wealth!</h2>
-                        <p class="text-left fs-6 text-center">Sign in now with your favored platform—the treasure vaults
-                            of EOAS
-                            awaits, and the right ticket will change your destiny forever!.</p>
-                        <div class="option-btns w-100 d-flex flex-column align-items-center px-4">
-                            <button wire:click="redirectToLogin" class="login-btn google-btn w-100">
-                                <img src="{{ asset('assets/svg/email-1-svgrepo-com.svg') }}" alt="">Continue
-                                with Email
-                            </button>
-                            <button wire:click="redirectToTwitterLogin" class="X-btn login-btn w-100">
-                                <img src="{{ asset('assets/svg/x-white.svg') }}" alt="">Continue with X
-                            </button>
-                            <button wire:click="redirectToTwitchLogin" class="X-btn login-btn w-100">
-                                <img src="{{ asset('assets/svg/twitch.svg') }}" alt="">Continue with Twitch
-                            </button>
-                            <button wire:click="redirectToDiscordLogin" class="discord-btn login-btn w-100"
-                                aria-label="Continue with Discord">
-                                <img src="{{ asset('assets/svg/discord-white.svg') }}" alt="Discord Icon"> Continue
-                                with Discord
-                            </button>
-                            <button wire:click="redirectToGoogleLogin" class="google-btn login-btn w-100">
-                                <img src="{{ asset('assets/svg/google.svg') }}" alt="">Continue with Google
-                            </button>
-                            <button wire:click="redirectToKickLogin" class="google-btn login-btn w-100">
-                                <img src="{{ asset('assets/svg/kick.svg') }}" alt="">Continue with Kick
-                            </button>
-
-                            <p class="text-center px-3">By continuing, you accept our
-                                <a class="text-red" href="/terms-and-conditions">Terms of Condition</a>. For our
-                                <a class="text-red" href="/privacy-policy">Privacy Policy</a>, click here.
-                            </p>
-                        </div>
-                    </div>
+    <div class="container-fluid p-0">
+        <div class="row g-0 min-vh-100">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="position-relative h-100">
+                    <img src="{{ asset('assets/images/lootraiders-cover-photo.png') }}" class="w-100 h-100 object-fit-cover position-absolute" alt="Loot Raiders Cover Image">
                 </div>
             </div>
+            <div class="col-lg-6 d-flex align-items-center justify-content-center social-login-main">
+                <div class="social-login-main-content text-white px-3 py-5 py-md-8 px-md-5 w-100">
+                    <h2 class="fw-bold mb-4 text-center fs-3 fs-md-2 gradient">Unlock the Portal to Wealth!</h2>
+                    <p class="text-center mb-5 fs-6 fs-md-5">Sign in now with your favored platform—the treasure vaults of EOAS awaits, and the right ticket will change your destiny forever!</p>
+                    <div class="d-flex flex-column gap-1 mb-5">
+                        <button wire:click="redirectToLogin" class="email-btn login-btn">
+                            <img src="{{ asset('assets/svg/email-1-svgrepo-com.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Email Icon">Continue with Email
+                        </button>
+                        <button wire:click="redirectToTwitterLogin" class="x-btn login-btn">
+                            <img src="{{ asset('assets/svg/x-white.svg') }}" class="position-absolute start-0 ms-3 img-fluid"  alt="X Icon">Continue with X
+                        </button>
+                        <button wire:click="redirectToTwitchLogin" class="twitch-btn login-btn">
+                            <img src="{{ asset('assets/svg/twitch.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Twitch Icon">Continue with Twitch
+                        </button>
+                        <button wire:click="redirectToDiscordLogin" class="discord-btn login-btn" aria-label="Continue with Discord">
+                            <img src="{{ asset('assets/svg/discord-white.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Discord Icon">Continue with Discord
+                        </button>
+                        <button wire:click="redirectToGoogleLogin" class="google-btn login-btn">
+                            <img src="{{ asset('assets/svg/google.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Google Icon">Continue with Google
+                        </button>
+                        <button wire:click="redirectToKickLogin" class="kick-btn login-btn">
+                            <img src="{{ asset('assets/svg/kick.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Kick Icon">Continue with Kick
+                        </button>
+                    </div>
+                    <p class="text-center fs-6">By continuing, you accept our <a class="gradient text-decoration-none hover-underline" href="/terms-and-conditions">Terms of Condition</a>. For our <a class="gradient text-decoration-none hover-underline" href="/privacy-policy">Privacy Policy</a>, click here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     </section>
-
     <section class="intro-section" aria-labelledby="tickets-key">
         <div class="container">
             <div class="inner">

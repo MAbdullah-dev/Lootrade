@@ -8,21 +8,21 @@
 
                         <div class="raffle-info mt-4" role="region" aria-label="Raffle Information">
                             <div class="row">
-                                <div class="col-6 mb-3">
+                                <div class="col-12 col-md-6 mb-3">
                                     <i class="fas fa-calendar-alt me-2" aria-hidden="true"></i>
                                     <strong>Start Date:</strong> <time
                                         datetime="{{ $raffle->start_date }}">{{ $raffle->start_date->format('M d, Y') }}</time>
                                 </div>
-                                <div class="col-6 mb-3">
+                                <div class="col-12 col-md-6 mb-3">
                                     <i class="fas fa-calendar-check me-2" aria-hidden="true"></i>
                                     <strong>End Date:</strong> <time
                                         datetime="{{ $raffle->end_date }}">{{ $raffle->end_date->format('M d, Y') }}</time>
                                 </div>
-                                <div class="col-6 mb-3">
+                                <div class="col-12 col-md-6 mb-3">
                                     <i class="fas fa-user-lock me-2" aria-hidden="true"></i>
                                     <strong>Max Entries Per User:</strong> {{ $raffle->max_entries_per_user }}
                                 </div>
-                                <div class="col-6 mb-3">
+                                <div class="col-12 col-md-6 mb-3">
                                     <i class="fas fa-user-check me-2" aria-hidden="true"></i>
                                     <strong>Slots Used:</strong>
                                     @if ($uniqueUsersCount == 0)
@@ -36,7 +36,7 @@
                                     <strong>Slots Available:</strong> {{ $raffle->slots }}
                                 </div>
 
-                                <div class="col-6 mb-3" wire:ignore>
+                                <div class="col-12 col-md-6 mb-3" wire:ignore>
                                     @if (!empty($raffle->prize))
                                         <section class="prize-wrapper" aria-label="Prize Information">
                                             <h3>Prize</h3>
@@ -58,7 +58,7 @@
                                     @endif
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 mb-3">
                                     <h3>Description</h3>
                                     <p class="raffle-description text-secondary">{{ $raffle->description }}</p>
                                 </div>
@@ -128,7 +128,7 @@
                     </div>
                 </div>
 
-                @if ($raffle->video)
+                @if (!empty($raffle->video_path))
                     <div class="row text-center">
                         <div class="col-12">
                             <div class="frame-wrapper" role="region" aria-label="Raffle Video">

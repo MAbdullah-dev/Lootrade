@@ -1,47 +1,11 @@
-.banner {
-    border-bottom: 1px solid linear-gradient(#A347BA, #2E8AEA);
-}
-
-.banner .inner {
-    min-height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
-}
-
-.cover-image {
-    min-height: 100vh;
-    width: 100%;
-
-    img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-}
-
 .social-login-main {
     background: linear-gradient(to bottom, #1A0C48, #440640);
 }
-
-.login-options {
-    height: 100vh;
-    width: 100%;
-
-    p {
-        width: 70%;
-        max-width: 100%;
-    }
-
-    .option-btns {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+.social-login-main-content{
+    max-width: 500px;
 }
 
 .login-btn {
-    width: 80%;
     max-width: 450px;
     padding: 15px;
     margin: 10px 0;
@@ -60,8 +24,6 @@
 
 .login-btn img {
     height: 24px;
-    position: absolute;
-    left: 15px;
 }
 
 .intro-section {

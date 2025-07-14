@@ -1,126 +1,155 @@
-.hero .inner .current-raffle{
-    position: relative;
-    background-image: url('../images/dummy-current-raffle.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: 400px;
-    border-radius: 20px;
+.banner .inner .banner-wrapper img {
+    max-width: 100%;
 }
 
-.hero .inner .current-raffle .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-    border-radius: 0.5rem;
+
+.raffles .inner {
+    min-height: 50vh;
 }
 
-.hero .inner .current-raffle .hero-raffle-content{
-    z-index: 2;
+.raffles .nav-tabs .nav-link {
+    border-radius: 0;
+    padding: 10px 20px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #222222;
+    border: 1px solid #444;
 }
 
-.hero .inner .current-raffle .hero-raffle-content .btn-custom{
-    padding: 10px 30px;
-}
-
-.featured-raffles .inner {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
-
-.featured-raffles .container {
-    text-align: center;
-}
-
-.featured-raffles .swiper-pagination {
-    margin-top: 3rem;
-}
-
-.featured-raffles .raffle-card {
-    height: 200px;
-    background-color: #f9f9f9;
-    position: relative;
-    cursor: pointer;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.featured-raffles .raffle-card img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    transition: 0.3s ease;
-}
-
-.featured-raffles .raffle-card .raffle-info {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    background: rgba(0, 0, 0, 0.6);
-    transition: 0.3s ease;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    text-align: center;
+.raffles .nav-tabs .nav-link.active {
+    background: linear-gradient(to right, #a347ba, #2e8aea);
     color: #fff;
 }
 
-.featured-raffles .raffle-card .raffle-info .btn-custom {
-    padding: 6px 20px;
+/* Raffle Card */
+.raffles .raffle-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #1f0b46;
 }
 
-.featured-raffles .raffle-card:hover .raffle-info {
-    opacity: 1;
+.raffles .raffle-card:hover {
+    transform: translateY(-5px);
+    /* box-shadow: 0 4px 15px rgba(254, 56, 57, 0.3); */
 }
 
-.how-it-works-section {
-    padding: 60px 0;
+.raffles .raffle-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
 }
 
-.how-it-works-section .how-it-works-inner .container {
+.raffles .raffle-card .card-body {
     text-align: center;
+    padding: 16px;
 }
 
-.how-it-works-section .section-title {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 40px;
+.raffles .raffle-card .card-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #fff;
 }
 
-.how-it-works-section .step-item {
-    padding: 20px;
+.raffles .raffle-card .raffle-type {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ccc;
+    margin-bottom: 8px;
 }
 
-.how-it-works-section .step-item .step-icon {
-    width: 100px;
-    height: 100px;
-    background-color: #e9ecef;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #6c757d;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+.raffles .raffle-card .raffle-description {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.raffles .raffle-card .card-text {
+    font-size: 14px;
+    color: #ccc;
+    margin: 0;
+}
+
+.raffles .raffle-card .text-muted {
+    color: #aaa !important;
+}
+
+.raffles .raffle-card .raffle-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin-bottom: 16px;
-    border-radius: 50%;
+    color: #ccc;
 }
 
-.how-it-works-section .step-item .step-title {
-    margin-bottom: 10px;
+.raffles .raffle-card .btn-custom {
+    padding: 10px 20px;
+}
+
+.tasks-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #a347ba, #2e8aea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.task-grid {
+    columns: 3;
+    column-gap: 2rem;
+}
+
+@media (max-width: 1200px) {
+    .task-grid {
+        columns: 3;
+    }
+}
+
+@media (max-width: 992px) {
+    .task-grid {
+        columns: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .task-grid {
+        columns: 1;
+    }
+}
+
+.task-card {
+    break-inside: avoid;
+    background-color: #1f0b46;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    gap: 10px;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px #a347ba55;
+}
+
+.task-icon i {
+    width: 24px;
+    font-size: 1.25rem;
+}
+
+.task-action {
+    color: #39ff14 !important;
     font-weight: 500;
 }
 
-.how-it-works-section .step-item .step-description {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #6c757d;
+.task-tickets {
+    background: #a347ba;
+    color: #fff;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
 }
