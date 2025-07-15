@@ -105,5 +105,5 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
     return redirect()->route('login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-// Send verification email after registration
+// Send verification mail after registration
 Route::get('/email/resend', 'Auth\VerificationController@resend')->middleware(['auth'])->name('verification.resend');
