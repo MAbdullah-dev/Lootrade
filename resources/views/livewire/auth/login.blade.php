@@ -4,24 +4,16 @@
             <div class="tab-wrapper">
                 <ul class="nav nav-tabs" id="myTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link {{ $activeTab === 'login' ? 'active' : '' }}"
-                            id="tab1-tab"
-                            wire:click="$set('activeTab', 'login')"
-                            type="button"
-                            role="tab"
-                            aria-controls="tab1"
+                        <button class="nav-link {{ $activeTab === 'login' ? 'active' : '' }}" id="tab1-tab"
+                            wire:click="$set('activeTab', 'login')" type="button" role="tab" aria-controls="tab1"
                             aria-selected="{{ $activeTab === 'login' ? 'true' : 'false' }}">
                             Login
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link {{ $activeTab === 'register' ? 'active' : '' }}"
-                            id="tab2-tab"
-                            wire:click="$set('activeTab', 'register')"
-                            type="button"
-                            role="tab"
-                            aria-controls="tab2"
-                            aria-selected="{{ $activeTab === 'register' ? 'true' : 'false' }}">
+                        <button class="nav-link {{ $activeTab === 'register' ? 'active' : '' }}" id="tab2-tab"
+                            wire:click="$set('activeTab', 'register')" type="button" role="tab"
+                            aria-controls="tab2" aria-selected="{{ $activeTab === 'register' ? 'true' : 'false' }}">
                             Register
                         </button>
                     </li>
@@ -29,21 +21,21 @@
 
                 <div class="tab-content" id="myTabsContent">
                     {{-- Login Tab --}}
-                    <div class="tab-pane fade {{ $activeTab === 'login' ? 'show active' : '' }}"
-                        id="tab1"
-                        role="tabpanel"
-                        aria-labelledby="tab1-tab">
+                    <div class="tab-pane fade {{ $activeTab === 'login' ? 'show active' : '' }}" id="tab1"
+                        role="tabpanel" aria-labelledby="tab1-tab">
                         <form wire:submit.prevent="login">
                             <div class="form-group">
                                 <label for="login_email">Email</label>
-                                <input type="email" id="login_email" wire:model.defer="login_email" name="login_email">
+                                <input type="email" id="login_email" wire:model.defer="login_email"
+                                    name="login_email">
                                 @error('login_email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="login_password">Password</label>
-                                <input type="password" id="login_password" wire:model.defer="login_password" name="login_password">
+                                <input type="password" id="login_password" wire:model.defer="login_password"
+                                    name="login_password">
                                 @error('login_password')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -52,10 +44,19 @@
                                 @enderror
                             </div>
                             <div class="form-btn">
-                                <button type="submit">Login</button>
+                                <button type="submit" class="btn-custom" wire:loading.attr="disabled">
+                                    <span wire:loading.remove wire:target="login">Login</span>
+                                    <span wire:loading wire:target="login">
+                                        <span class="spinner-border spinner-border-sm me-1" role="status"
+                                            aria-hidden="true"></span>
+                                        Logging in...
+                                    </span>
+                                </button>
+
                             </div>
                             <div class="text-end mt-2">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" class="text-sm">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"
+                                    class="text-sm">
                                     Forgot your password?
                                 </a>
                             </div>
@@ -77,10 +78,8 @@
                     </div>
 
                     {{-- Register Tab --}}
-                    <div class="tab-pane fade {{ $activeTab === 'register' ? 'show active' : '' }}"
-                        id="tab2"
-                        role="tabpanel"
-                        aria-labelledby="tab2-tab">
+                    <div class="tab-pane fade {{ $activeTab === 'register' ? 'show active' : '' }}" id="tab2"
+                        role="tabpanel" aria-labelledby="tab2-tab">
                         <form wire:submit.prevent="register">
                             <div class="row">
                                 <div class="col-md-6">
@@ -154,27 +153,38 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div wire:ignore class="form-group">
-                                        <label for="register_date_of_birth">Date of Birth</label>
-                                        <input type="text" id="register_date_of_birth"
-                                            wire:model.debounce.500ms="register_date_of_birth" class="form-control"
-                                            placeholder="Select your birth date">
-                                    </div>
-                                    @error('register_date_of_birth')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <div class="form-group">
+
+                                        <div wire:ignore>
+                                            <label for="register_date_of_birth">Date of Birth</label>
+                                            <input type="text" id="register_date_of_birth"
+                                                wire:model.debounce.500ms="register_date_of_birth"
+                                                class="form-control" placeholder="Select your birth date">
+                                        </div>
+                                        @error('register_date_of_birth')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                 </div>
                             </div>
 
                             <div class="form-btn">
-                                <button type="submit">Register</button>
+                                <button type="submit" class="btn-custom" wire:loading.attr="disabled">
+                                    <span wire:loading.remove wire:target="register">Register</span>
+                                    <span wire:loading wire:target="register">
+                                        <span class="spinner-border spinner-border-sm me-1" role="status"
+                                            aria-hidden="true"></span>
+                                        Registering...
+                                    </span>
+                                </button>
+
                             </div>
-                            <div class="text-end mt-2">
+                            {{-- <div class="text-end mt-2">
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"
                                     class="text-sm text-white">
                                     Forgot your password?
                                 </a>
-                            </div>
+                            </div> --}}
                             <div class="divider"><span>OR</span></div>
 
                             <div class="social-login">
@@ -184,7 +194,8 @@
                                 <button wire:click="redirectToTwitterLogin" type="button" class="social-btn x">
                                     <i class="fab fa-x-twitter"></i>
                                 </button>
-                                <button wire:click="redirectToDiscordLogin" type="button" class="social-btn discord">
+                                <button wire:click="redirectToDiscordLogin" type="button"
+                                    class="social-btn discord">
                                     <i class="fab fa-discord"></i>
                                 </button>
                             </div>
@@ -206,7 +217,7 @@
                 dateFormat: 'Y-m-d',
                 maxDate: 'today',
                 defaultDate: @json($register_date_of_birth ?? null),
-                onChange: function (selectedDates, dateStr) {
+                onChange: function(selectedDates, dateStr) {
                     Livewire.dispatch('input', {
                         name: 'register_date_of_birth',
                         value: dateStr

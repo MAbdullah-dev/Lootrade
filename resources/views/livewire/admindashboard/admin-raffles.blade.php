@@ -6,18 +6,10 @@
             <!-- Search and Filter Controls -->
             <div class="head mb-4">
                 <div class="row g-3 align-items-center" role="search" aria-label="Search and Sort Raffles">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-9">
                         <label for="searchRaffles" class="visually-hidden">Search Raffles</label>
                         <input type="text" id="searchRaffles" class="form-control" placeholder="Search raffles..."
                             wire:model.live="search" aria-label="Search raffles by title or prize">
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <label for="sortDirection" class="visually-hidden">Sort Raffles</label>
-                        <select id="sortDirection" class="form-select" wire:model.live="sortDirection"
-                            aria-label="Sort raffles by newest or oldest">
-                            <option value="desc">Newest First</option>
-                            <option value="asc">Oldest First</option>
-                        </select>
                     </div>
                     <div class="col-12 col-md-3 text-md-end">
                         <a href="{{ route('raffle.create') }}" type="button" class="btn-custom" role="button"
@@ -58,7 +50,7 @@
 
                                 <td>{{ $prizes[0]->name ?? '-' }}</td>
 
-                                <td>{{ $raffle->entry_cost }} Min / {{ $raffle->max_entries_per_user }} Max</td>
+                                <td>{{ $raffle->max_entries_per_user }} Max</td>
                                 <td>{{ $raffle->start_date->format('M d, Y') }}</td>
                                 <td>{{ $raffle->end_date->format('M d, Y') }}</td>
                                 <td>{{ ucfirst($raffle->status) }}</td>
@@ -70,8 +62,7 @@
                                             <i class="fa-solid fa-user" aria-hidden="true"></i>
                                         </button>
                                         <button class="btn btn-sm btn-primary"
-                                            wire:click="editRaffle({{ $raffle->id }})"
-                                            aria-label="Edit raffle">
+                                            wire:click="editRaffle({{ $raffle->id }})" aria-label="Edit raffle">
                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                         </button>
                                         <button class="btn btn-sm btn-danger"

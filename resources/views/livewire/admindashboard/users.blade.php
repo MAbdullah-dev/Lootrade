@@ -2,14 +2,14 @@
     <div class="head mb-4">
         <div class="row g-3 align-items-center">
             <div class="col-12 col-md-6">
-                <input type="text" class="form-control" placeholder="Search raffles..." aria-label="Search raffles">
+                <input type="text" class="form-control" placeholder="Search users..." aria-label="Search users">
             </div>
-            <div class="col-12 col-md-3">
+            {{-- <div class="col-12 col-md-3">
                 <select class="form-select" aria-label="Sort raffles">
                     <option value="desc">Newest First</option>
                     <option value="asc">Oldest First</option>
                 </select>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -134,7 +134,7 @@
         aria-labelledby="giveTicketModalLabel" aria-modal="true" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <form wire:submit.prevent="giveTickets" class="modal-content shadow">
-                <div class="modal-header bg-success text-white">
+                <div class="modal-header text-white">
                     <h5 class="modal-title" id="giveTicketModalLabel">Give Tickets to
                         {{ $selectedUser['first_name'] ?? '' }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="resetForm"></button>

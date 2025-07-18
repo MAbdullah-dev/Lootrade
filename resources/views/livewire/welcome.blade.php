@@ -15,12 +15,12 @@
                         <button wire:click="redirectToLogin" class="email-btn login-btn">
                             <img src="{{ asset('assets/svg/email-1-svgrepo-com.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Email Icon">Continue with Email
                         </button>
-                        <button wire:click="redirectToTwitterLogin" class="x-btn login-btn">
+                        {{-- <button wire:click="redirectToTwitterLogin" class="x-btn login-btn">
                             <img src="{{ asset('assets/svg/x-white.svg') }}" class="position-absolute start-0 ms-3 img-fluid"  alt="X Icon">Continue with X
-                        </button>
-                        <button wire:click="redirectToTwitchLogin" class="twitch-btn login-btn">
+                        </button> --}}
+                        {{-- <button wire:click="redirectToTwitchLogin" class="twitch-btn login-btn">
                             <img src="{{ asset('assets/svg/twitch.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Twitch Icon">Continue with Twitch
-                        </button>
+                        </button> --}}
                         <button wire:click="redirectToDiscordLogin" class="discord-btn login-btn" aria-label="Continue with Discord">
                             <img src="{{ asset('assets/svg/discord-white.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Discord Icon">Continue with Discord
                         </button>

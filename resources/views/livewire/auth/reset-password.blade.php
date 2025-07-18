@@ -11,14 +11,9 @@
 
                             <div class="mb-3">
                                 <label for="password" class="form-label text-white">{{ __('Password') }}</label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    wire:model="password"
-                                    class="form-control @error('password') is-invalid @enderror"
-                                    required
-                                    aria-required="true"
-                                    placeholder="Enter new password"
+                                <input type="password" id="password" wire:model="password"
+                                    class="form-control @error('password') is-invalid @enderror" required
+                                    aria-required="true" placeholder="Enter new password"
                                     aria-describedby="passwordHelp">
                                 @error('password')
                                     <div id="passwordHelp" class="invalid-feedback">{{ $message }}</div>
@@ -26,20 +21,24 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="password_confirmation" class="form-label text-white">{{ __('Confirm Password') }}</label>
-                                <input
-                                    type="password"
-                                    id="password_confirmation"
-                                    wire:model="password_confirmation"
-                                    class="form-control"
-                                    required
-                                    aria-required="true"
+                                <label for="password_confirmation"
+                                    class="form-label text-white">{{ __('Confirm Password') }}</label>
+                                <input type="password" id="password_confirmation" wire:model="password_confirmation"
+                                    class="form-control" required aria-required="true"
                                     placeholder="Confirm new password">
                             </div>
 
                             <div class="d-grid">
-                                <button type="submit" class="btn-custom py-2" aria-label="Submit new password">
-                                    {{ __('Reset Password') }}
+                                <button type="submit" class="btn-custom py-2" wire:loading.attr="disabled"
+                                    aria-label="Submit new password">
+                                    <span wire:loading.remove wire:target="resetPassword">
+                                        {{ __('Reset Password') }}
+                                    </span>
+                                    <span wire:loading wire:target="resetPassword">
+                                        <span class="spinner-border spinner-border-sm me-1" role="status"
+                                            aria-hidden="true"></span>
+                                        Resetting...
+                                    </span>
                                 </button>
                             </div>
                         </form>

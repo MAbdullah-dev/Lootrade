@@ -124,7 +124,6 @@ class AdminRaffles extends Component
     public function render()
     {
         $raffles = Raffle::where('title', 'like', '%' . $this->search . '%')
-            ->orderByRaw("status = 'Active' DESC")
             ->paginate(10);
 
         return view('livewire.admindashboard.admin-raffles', compact('raffles'))

@@ -21,11 +21,9 @@ class ForgotPassword extends Component
         ]);
 
         if ($status === Password::RESET_LINK_SENT) {
-            // Follow your project style
             alert_success('Password reset link sent successfully!');
             $this->dispatch('close-modal');
             $this->resetForm();
-            // No need for loaduserdata() here, but if needed, you can call a refresh function
         } else {
             alert_error('Failed to send reset link. Please try again.');
         }

@@ -65,9 +65,10 @@ class RaffleForm extends Component
     }
 
 
-    public function mount(Raffle $raffle = null)
+    public function mount($raffle = null)
     {
         if ($raffle) {
+            $raffle = Raffle::findOrFail($raffle);
             $this->raffle = $raffle;
             $this->raffleId = $raffle->id;
 
@@ -118,7 +119,7 @@ class RaffleForm extends Component
 
         $this->reset();
 
-        return redirect('/raffle/' . $raffle->id);
+        $this->dispatch('raffleCreated', id: $raffle->id);
     }
 
 

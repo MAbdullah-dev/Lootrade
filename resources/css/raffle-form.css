@@ -32,3 +32,9 @@
     padding: 20px 15px;
     border-radius: 120px 0 120px 0;
 }
+
+@media (max-width: 991px) {
+  .raffle-form {
+    max-width: 100% !important;
+  }
+}

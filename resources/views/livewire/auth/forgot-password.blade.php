@@ -34,9 +34,15 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn-custom">
-                        Send Reset Link
+                    <button type="submit" class="btn-custom py-2" wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="sendResetLink">Send Reset Link</span>
+                        <span wire:loading wire:target="sendResetLink">
+                            <span class="spinner-border spinner-border-sm me-1" role="status"
+                                aria-hidden="true"></span>
+                            Sending...
+                        </span>
                     </button>
+
                 </div>
             </form>
         </div>

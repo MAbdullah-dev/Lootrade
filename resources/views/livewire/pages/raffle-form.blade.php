@@ -23,7 +23,7 @@
                 <h2 id="raffleFormHeading">Raffle Form</h2>
                 <form wire:submit.prevent="save" role="form" aria-describedby="formHelp">
                     <div class="form-wrapper">
-                        <div class="form-inner">
+                        <div class="form-inner flex-column flex-lg-row">
                             <div class="raffle-form">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title</label>
@@ -178,8 +178,22 @@
                         </div>
 
                         <div class="mb-3">
-                            <button class="btn-custom w-100 p-2 mt-4" type="submit"
-                                aria-label="Create Raffle">Create Raffle</button>
+                            <button class="btn-custom w-100 p-2 mt-4" type="submit" wire:loading.attr="disabled"
+                                wire:target="save" wire:click.prevent="save" aria-label="Create Raffle">
+
+                                <span wire:loading.remove wire:target="save">
+                                    Create Raffle
+                                </span>
+
+                                <span wire:loading wire:target="save">
+                                    <span class="spinner-border spinner-border-sm" role="status"
+                                        aria-hidden="true"></span>
+                                    Loading...
+                                </span>
+
+                            </button>
+
+
                         </div>
                     </div>
                 </form>
@@ -203,8 +217,7 @@
                 altInput: true,
                 altFormat: "F j, Y H:i",
                 allowInput: true,
-                defaultDate: start && end ? [start, end] :
-                null, // <-- this line makes it work for edit mode too
+                defaultDate: start && end ? [start, end] : null,
                 onChange: function(selectedDates) {
                     if (selectedDates.length === 2) {
                         Livewire.dispatch('setDateRange', {
@@ -258,6 +271,14 @@
                 previewVideo.style.display = 'block';
             }, 1000);
         });
+            window.addEventListener('raffleCreated', function (event) {
+        const raffleId = event.detail.id;
+        setTimeout(() => {
+            window.location.href = '/raffle/' + raffleId;
+            console.log(window.location.href);
+
+        }, 1000);
+    });
     </script>
 
 </div>
