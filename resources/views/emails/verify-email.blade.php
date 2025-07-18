@@ -20,7 +20,7 @@
             <!-- Header -->
             <tr>
                 <td style="padding: 0;">
-                    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/assets/images/email-banner.png"
+                    <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('assets/images/email-banner.png'))) }}"
                         alt="Welcome to Lootraiders"
                         style="width: 100%; max-width: 600px; display: block; border-radius: 8px 8px 0 0; border-bottom: 1px solid #e0e0e0;">
                 </td>
