@@ -32,41 +32,10 @@ use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
+//no auth required
 
 Route::get('/', Welcome::class)->name('welcome');
 Route::get('/faq', Faq::class)->name('faq');
-Route::get('/profile', Profile::class)->name('profile');
-Route::get('/mytickets', MyTickets::class)->name('myTickets');
-Route::get('/support', Support::class)->name('support');
-Route::get('/home', Home::class)->name('home');
-Route::get('/raffles', Raffles::class)->name('raffles');
-Route::get('/raffle/{id}', RaffleDetail::class)->name('raffle');
-Route::get('/tickets', Tickets::class)->name('tickets');
-Route::get('/user/transactions',UserTransaction::class)->name('user.transactions');
-Route::get('/user/raffles',UserRaffles::class)->name('user.raffles');
-Route::get('/user/change/password',ChangePassword::class)->name('user.change.password');
-//game
-Route::get('/raffle/{raffle}/game/solo', SoloPlay::class)->name('game.solo');
-Route::get('/raffle/{raffle}/game/battle', Battlefield::class)->name('game.battle');
-//game end
-
-
-//Admin Dashboard Routes
-Route::get('/admin/users', Users::class)->name('admin.users');
-Route::get('/admin/dashboard', Dashboard::class)->name('admin.dashboard');
-Route::get('/admin/raffle', AdminRaffles::class)->name('admin.raffles');
-Route::get('/admin/raffles/{raffleId}/users', AdminRaffleUsers::class)
-->name('admin.raffle.users');
-Route::get('/admin/winners', AdminWinners::class)->name('admin.winners');
-Route::get('/admin/transaction', Transaction::class)->name('admin.transaction');
-Route::get('/admin/ticketsPackeges', TicketPackages::class)->name('admin.ticketsPackeges');
-Route::get('/admin/packageTypes', PackageType::class)->name('admin.packageTypes');
-Route::get('/admin/newsletter', NewsletterSubscription::class)->name('admin.newsletter');
-
-// admin raffle create update
-Route::get('/admin/raffle/create', RaffleForm::class)->name('raffle.create');
-Route::get('/admin/raffle/{raffle}', RaffleForm::class)->name('raffle.edit');
-// end admin raffle create update
 
 //auth
 Route::get('/login', Login::class)->name('login');
@@ -107,3 +76,47 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
 
 // Send verification mail after registration
 Route::get('/email/resend', 'Auth\VerificationController@resend')->middleware(['auth'])->name('verification.resend');
+
+//no auth required end
+
+// raffle view
+Route::middleware(['auth'])->group(function () {
+    Route::get('/raffle/{id}', RaffleDetail::class)->name('raffle');
+});
+// raffle view end
+
+
+//user routes
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/profile', Profile::class)->name('profile');
+    Route::get('/mytickets', MyTickets::class)->name('myTickets');
+    Route::get('/support', Support::class)->name('support');
+    Route::get('/home', Home::class)->name('home');
+    Route::get('/raffles', Raffles::class)->name('raffles');
+    Route::get('/tickets', Tickets::class)->name('tickets');
+    Route::get('/user/transactions', UserTransaction::class)->name('user.transactions');
+    Route::get('/user/raffles', UserRaffles::class)->name('user.raffles');
+    Route::get('/user/change/password', ChangePassword::class)->name('user.change.password');
+
+    // Game
+    Route::get('/raffle/{raffle}/game/solo', SoloPlay::class)->name('game.solo');
+    Route::get('/raffle/{raffle}/game/battle', Battlefield::class)->name('game.battle');
+});
+//user routes end
+
+//Admin Dashboard Routes
+Route::middleware(['auth', 'role:admin|super-admin'])->prefix('admin')->group(function () {
+    Route::get('/users', Users::class)->name('admin.users');
+    Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
+    Route::get('/raffle', AdminRaffles::class)->name('admin.raffles');
+    Route::get('/raffles/{raffleId}/users', AdminRaffleUsers::class)->name('admin.raffle.users');
+    Route::get('/winners', AdminWinners::class)->name('admin.winners');
+    Route::get('/transaction', Transaction::class)->name('admin.transaction');
+    Route::get('/ticketsPackeges', TicketPackages::class)->name('admin.ticketsPackeges');
+    Route::get('/packageTypes', PackageType::class)->name('admin.packageTypes');
+    Route::get('/newsletter', NewsletterSubscription::class)->name('admin.newsletter');
+
+    // raffle create/edit
+    Route::get('/raffle/create', RaffleForm::class)->name('raffle.create');
+    Route::get('/raffle/{raffle}', RaffleForm::class)->name('raffle.edit');
+});
