@@ -25,10 +25,12 @@ class SendRaffleCreatedEmailsJob implements ShouldQueue
 
     public function handle()
     {
-        User::where('role_id', 1)->select('email')->chunk(100, function ($users) {
-            foreach ($users as $user) {
-                Mail::to($user->email)->queue(new RaffleCreatedMail($this->raffle));
-            }
-        });
+        User::role('user')
+            ->select('email')
+            ->chunk(100, function ($users) {
+                foreach ($users as $user) {
+                    Mail::to($user->email)->queue(new RaffleCreatedMail($this->raffle));
+                }
+            });
     }
 }

@@ -17,56 +17,65 @@ class Users extends Component
     public function mount()
     {
         $this->loaduserdata();
-        $this->isSuperAdmin = Auth::user()->role_id == 3;
+        $this->isSuperAdmin = Auth::user()->hasRole('super-admin');
     }
 
     public function loaduserdata()
     {
-        if(Auth::user()->role_id == 2) {
-        $this->users = User::withTrashed()->with('role')->where('role_id', 1)->get();
-        }elseif(Auth::user()->role_id == 3) {
-        $this->users = User::withTrashed()->with('role')->whereIn('role_id', [1,2])->get();
+        $authUser = Auth::user();
+
+        if ($authUser->hasRole('admin')) {
+            $this->users = User::withTrashed()
+                ->role('user')
+                ->with('roles')
+                ->get();
+        } elseif ($authUser->hasRole('super-admin')) {
+            $this->users = User::withTrashed()
+                ->role(['user', 'admin'])
+                ->with('roles')
+                ->get();
+        }
     }
-}
+
     public function blockUser($id)
-{
-    $user = User::find($id);
-    if ($user) {
+    {
+        $user = User::find($id);
+        if ($user) {
 
-        adminLog('Admin blocked a user account.', [
-            'action' => 'block_user',
-            'target_user_id' => $user->id,
-            'target_user_name' => $user->first_name . ' ' . $user->last_name,
-            'target_user_email' => $user->email,
-            'performed_by_admin_id' => auth()->id(),
-            'performed_by_admin_email' => auth()->user()->email,
-            'timestamp' => now()->toDateTimeString(),
-        ]);
-        $user->delete();
+            adminLog('Admin blocked a user account.', [
+                'action' => 'block_user',
+                'target_user_id' => $user->id,
+                'target_user_name' => $user->first_name . ' ' . $user->last_name,
+                'target_user_email' => $user->email,
+                'performed_by_admin_id' => auth()->id(),
+                'performed_by_admin_email' => auth()->user()->email,
+                'timestamp' => now()->toDateTimeString(),
+            ]);
+            $user->delete();
+        }
+
+        $this->loaduserdata();
     }
-
-    $this->loaduserdata();
-}
 
 
     public function unblockUser($id)
-{
-    $user = User::withTrashed()->find($id);
+    {
+        $user = User::withTrashed()->find($id);
 
-    if ($user?->restore()) {
-        adminLog("Admin unblocked a user account.", [
-            'action' => 'unblock_user',
-            'target_user_id' => $user->id,
-            'target_user_name' => $user->name,
-            'target_user_email' => $user->email,
-            'performed_by_admin_id' => auth()->id(),
-            'performed_by_admin_email' => auth()->user()->email,
-            'timestamp' => now()->toDateTimeString(),
-        ]);
+        if ($user?->restore()) {
+            adminLog("Admin unblocked a user account.", [
+                'action' => 'unblock_user',
+                'target_user_id' => $user->id,
+                'target_user_name' => $user->name,
+                'target_user_email' => $user->email,
+                'performed_by_admin_id' => auth()->id(),
+                'performed_by_admin_email' => auth()->user()->email,
+                'timestamp' => now()->toDateTimeString(),
+            ]);
+        }
+
+        $this->loaduserdata();
     }
-
-    $this->loaduserdata();
-}
     public function viewUser($id)
     {
         $user = User::withTrashed()->with('role')->find($id);
@@ -104,16 +113,16 @@ class Users extends Component
             ]);
 
             adminLog('Admin gave tickets to user.', [
-            'action' => 'give_tickets',
-            'ticket_count' => $this->ticketCount,
-            'target_user_id' => $user->id,
-            'target_user_name' => $user->first_name . ' ' . $user->last_name,
-            'target_user_email' => $user->email,
-            'new_ticket_balance' => $user->ticket_balance,
-            'performed_by_admin_id' => auth()->id(),
-            'performed_by_admin_email' => auth()->user()->email,
-            'timestamp' => now()->toDateTimeString(),
-        ]);
+                'action' => 'give_tickets',
+                'ticket_count' => $this->ticketCount,
+                'target_user_id' => $user->id,
+                'target_user_name' => $user->first_name . ' ' . $user->last_name,
+                'target_user_email' => $user->email,
+                'new_ticket_balance' => $user->ticket_balance,
+                'performed_by_admin_id' => auth()->id(),
+                'performed_by_admin_email' => auth()->user()->email,
+                'timestamp' => now()->toDateTimeString(),
+            ]);
 
             $this->dispatch('close-modal');
             alert_success('Tickets successfully given!');
@@ -122,25 +131,31 @@ class Users extends Component
             $this->loaduserdata();
         }
     }
+
     public function promoteToAdmin($id)
     {
         $user = User::withTrashed()->find($id);
+
         if ($user) {
-            $user->update(['role_id' => 2]);
+            $user->syncRoles(['admin']);
+
             alert_success($user->first_name . ' promoted to admin successfully!');
             $this->loaduserdata();
         }
     }
 
+
     public function reassignToUser($id)
     {
         $user = User::withTrashed()->find($id);
+
         if ($user) {
-            $user->update(['role_id' => 1]);
+            $user->syncRoles(['user']);
             alert_success($user->first_name . ' reassigned to user role successfully!');
             $this->loaduserdata();
         }
     }
+
 
 
     public function resetForm()

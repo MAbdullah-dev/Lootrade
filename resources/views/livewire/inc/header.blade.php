@@ -54,20 +54,22 @@
                         <i class="fa-solid fa-sort-down ms-2"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        @if (Auth::user()->role_id == 1)
+                        @if (Auth::user()->hasRole('user'))
                             <li>
                                 <a class="dropdown-item" href="{{ route('profile') }}" wire:navigate>
                                     <i class="fas fa-user"></i> Profile
                                 </a>
                             </li>
                         @endif
-                        @if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
+
+                        @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('super-admin'))
                             <li>
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                     <i class="fas fa-tachometer-alt"></i> Dashboard
                                 </a>
                             </li>
                         @endif
+
                         <li>
                             <hr class="dropdown-divider">
                         </li>

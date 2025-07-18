@@ -4,9 +4,8 @@
             <ul>
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}"
-                        href="{{ route('admin.dashboard') }}"
-                        aria-label="Go to Dashboard"
-                        @if(Route::currentRouteName() == 'admin.dashboard') aria-current="page" @endif>
+                        href="{{ route('admin.dashboard') }}" aria-label="Go to Dashboard"
+                        @if (Route::currentRouteName() == 'admin.dashboard') aria-current="page" @endif>
                         <i class="fas fa-tachometer-alt" aria-hidden="true"></i> <span>Dashboard</span>
                     </a>
                 </li>
@@ -59,7 +58,7 @@
                         <i class="fa-solid fa-envelope" aria-hidden="true"></i> <span>News Letter subscribers</span>
                     </a>
                 </li>
-                @if (Auth::user()->role_id == 3)
+                @if (Auth::user()->hasRole('super-admin'))
                     <li style="cursor: pointer" class="nav-item">
                         <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.logs' ? 'active' : '' }}"
                             aria-current="page" wire:click=exportLogs>

@@ -93,12 +93,15 @@ class Login extends Component
 
             alert_success('Login successful!');
 
-            return match ($user->role_id) {
-                1 => redirect('/home'),
-                2 => redirect('/admin/dashboard'),
-                3 => redirect('/admin/dashboard'),
-                default => redirect('/'), // fallback if role_id is unexpected
-            };
+            if ($user->hasRole('super-admin')) {
+                return redirect('/admin/dashboard');
+            } elseif ($user->hasRole('admin')) {
+                return redirect('/admin/dashboard');
+            } elseif ($user->hasRole('user')) {
+                return redirect('/home');
+            } else {
+                return redirect('/');
+            }
         } else {
             alert_error('Login failed!');
             $this->addError('login_credentials', 'Invalid email or password.');
@@ -120,11 +123,14 @@ class Login extends Component
             'password' => Hash::make($this->register_password),
             'date_of_birth' => $this->register_date_of_birth,
             'joined_date' => now(),
-            'role_id' => 1,
             'ticket_balance' => 0,
             'profile_completion_awarded' => false,
             'last_login_award_date' => null,
         ]);
+
+
+        $user->assignRole('user');
+
 
         $user->notifications()->create([
             'type' => 'registration',

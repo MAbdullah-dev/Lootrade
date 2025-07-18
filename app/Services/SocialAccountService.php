@@ -81,13 +81,13 @@ class SocialAccountService
                     'email' => $email,
                     'password' => null,
                     'joined_date' => now(),
-                    'role_id' => 1,
                     'ticket_balance' => 0,
                     'profile_completion_awarded' => false,
                     'last_login_award_date' => null,
                     'date_of_birth' => null,
                     'last_login_at' => now(),
                 ]);
+                $user->assignRole('user');
             }
 
 

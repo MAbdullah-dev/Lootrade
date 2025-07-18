@@ -10,10 +10,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as AuthMustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Notifications\CustomVerifyEmail;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable implements AuthMustVerifyEmail
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, HasRoles;
 
     protected $fillable = [
         'first_name',
@@ -24,7 +26,6 @@ class User extends Authenticatable implements AuthMustVerifyEmail
         'profile_picture',
         'date_of_birth',
         'joined_date',
-        'role_id',
         'email_verified_at',
         'ticket_balance',
         'profile_completion_awarded',
@@ -48,11 +49,6 @@ class User extends Authenticatable implements AuthMustVerifyEmail
     protected $casts = [
         'date_of_birth' => 'date:Y-m-d',
     ];
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
 
     public function socialAccounts()
     {

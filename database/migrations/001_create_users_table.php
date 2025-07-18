@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('profile_picture')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->date('joined_date');
-            $table->foreignId('role_id')->constrained('roles')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('role_id')->constrained('roles')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('ticket_balance')->default(0);
             $table->boolean('profile_completion_awarded')->default(false);

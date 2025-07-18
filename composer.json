@@ -20,6 +20,7 @@
         "socialiteproviders/twitch": "^5.4",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-backup": "^9.3",
+        "spatie/laravel-permission": "^6.20",
         "stripe/stripe-php": "^17.1"
     },
     "require-dev": {

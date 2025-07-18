@@ -36,7 +36,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->role->name ?? 'N/A' }}</td>
+                            <td>{{ $user->getRoleNames()->first() ?? 'N/A' }}</td>
                             <td>
                                 @if ($user->trashed())
                                     <span class="badge bg-secondary">Inactive</span>
@@ -46,12 +46,12 @@
                             </td>
                             @if ($isSuperAdmin)
                                 <td>
-                                    @if ($user->role_id == 1)
+                                    @if ($user->hasRole('user'))
                                         <button class="btn btn-sm btn-warning mx-content"
                                             wire:click="promoteToAdmin({{ $user->id }})">
                                             Promote to Admin
                                         </button>
-                                    @elseif ($user->role_id == 2)
+                                    @elseif ($user->hasRole('admin'))
                                         <button class="btn btn-sm btn-secondary"
                                             wire:click="reassignToUser({{ $user->id }})">
                                             Reassign to User

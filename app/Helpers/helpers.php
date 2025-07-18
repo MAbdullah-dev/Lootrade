@@ -46,7 +46,7 @@ if (!function_exists('adminLog')) {
     {
         $user = auth()->user();
 
-        if ($user && $user->role_id === 2) {
+        if ($user && $user->hasRole('admin')) {
             activity()
                 ->causedBy($user)
                 ->withProperties(array_merge([
@@ -57,6 +57,7 @@ if (!function_exists('adminLog')) {
         }
     }
 }
+
 
 //task icons
 function getPlatformIcon($platform): string

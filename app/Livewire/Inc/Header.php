@@ -15,7 +15,8 @@ class Header extends Component
     public function mount()
     {
         $this->ticketCount = Auth::user()->ticket_balance;
-        $this->isNotAdmin = Auth::user()->role_id == 1 ? true : false;
+        $this->isNotAdmin = Auth::user()->hasRole('user') ? true : false;
+
     }
 
     public function logout()
