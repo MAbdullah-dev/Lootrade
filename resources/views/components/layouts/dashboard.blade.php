@@ -14,12 +14,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('head')
 
 
     <title>@yield('title', 'Page Title')</title>
 </head>
 
 <body>
+    @include('partials.gtm')
+    @stack('body-start')
     <livewire:inc.header />
     <main>
         <div class="container dashboardlayout">

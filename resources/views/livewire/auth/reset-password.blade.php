@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="d-grid">
-                                <button type="submit" class="btn-custom" aria-label="Submit new password">
+                                <button type="submit" class="btn-custom py-2" aria-label="Submit new password">
                                     {{ __('Reset Password') }}
                                 </button>
                             </div>

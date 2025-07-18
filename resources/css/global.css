@@ -215,3 +215,16 @@ ul.pagination {
 .mx-content {
     width: max-content;
 }
+
+.modal-content {
+    background: linear-gradient(135deg, #2e185c, #3d1170);
+    border-radius: 20px;
+    border: 1px solid #2e8aea;
+    color: white;
+    box-shadow: 0 0 10px rgba(48, 184, 35, 0.4);
+}
+
+.modal-header,
+.modal-footer {
+    border: none;
+}

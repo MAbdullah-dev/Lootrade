@@ -55,7 +55,7 @@
                                 <button type="submit">Login</button>
                             </div>
                             <div class="text-end mt-2">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" class="text-sm text-white">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" class="text-sm">
                                     Forgot your password?
                                 </a>
                             </div>

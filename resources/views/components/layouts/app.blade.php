@@ -14,12 +14,15 @@
     <script src="{{ asset('assets/js/jqery_min.js') }}"></script>
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('head')
 
 
     <title> @yield('title', 'Page Title') </title>
 </head>
 
 <body>
+    @include('partials.gtm')
+    @stack('body-start')
     <livewire:inc.header />
     <main>
         {{ $slot }}

@@ -20,14 +20,13 @@ class ResetPassword extends Component
     public function mount($token, $email)
     {
         $this->token = $token;
-        $this->email = $email;  // You don't need the user to enter this again
+        $this->email = $email;
     }
 
     public function resetPassword()
     {
         $this->validate();
 
-        // Attempt to reset the password
         $status = Password::reset(
             [
                 'email' => $this->email,
@@ -43,10 +42,10 @@ class ResetPassword extends Component
         );
 
         if ($status == Password::PASSWORD_RESET) {
-            session()->flash('message', 'Your password has been successfully reset!');
+            alert_success('Your password has been successfully reset!');
             return redirect()->route('login');
         } else {
-            session()->flash('error', 'There was an error resetting your password. Please try again.');
+            alert_error('There was an error resetting your password. Please try again.');
         }
     }
 
