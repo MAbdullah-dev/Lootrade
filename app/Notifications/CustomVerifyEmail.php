@@ -11,11 +11,11 @@ class CustomVerifyEmail extends VerifyEmail
     {
         $verifyUrl = $this->verificationUrl($notifiable);
 
-        return (new MailMessage)
-            ->view('emails.verify-email', [
-                'verifyUrl' => $verifyUrl,
-                'user' => $notifiable,
-            ])
-            ->subject('Verify Your Lootraiders Email');
+      return (new MailMessage)
+    ->view('emails.verify-email', [
+        'verifyUrl' => $verifyUrl,
+        'user' => $notifiable, // you're passing it here
+    ])
+    ->subject('Verify Your Lootraiders Email');
     }
 }

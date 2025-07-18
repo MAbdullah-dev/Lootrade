@@ -29,7 +29,7 @@
             <tr>
                 <td style="background-color: #140033; padding: 30px;">
                     <h2 style="margin-top: 0; font-size: 24px; color: #ffffff;">
-                        Hey <span style="color: #00cfff;">{{ $user->first_name }}</span>,
+                        {{-- Hey <span style="color: #00cfff;">{{ $user->first_name }}</span>, --}}
                     </h2>
 
                     <p style="font-size: 16px; line-height: 1.6; margin-bottom: 25px; color: #ffffff;">
@@ -50,7 +50,7 @@
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin: 30px 0;">
                         <tr>
                             <td align="center">
-                                {{-- <a href="{{ $verifyUrl }}"
+                                <a href="{{ $verifyUrl }}"
                                     style="background-color: #ae00ff;
                                           color: white;
                                           padding: 14px 28px;
@@ -60,7 +60,7 @@
                                           font-size: 16px;
                                           display: inline-block;">
                                     Verify My Email Now
-                                </a> --}}
+                                </a>
                             </td>
                         </tr>
                     </table>
