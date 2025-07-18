@@ -20,7 +20,8 @@
             <!-- Header -->
             <tr>
                 <td style="padding: 0;">
-                    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/assets/images/email-banner.png" alt="Welcome to Lootraiders"
+                    <img src="http://{{ $_SERVER['HTTP_HOST'] }}/assets/images/email-banner.png"
+                        alt="Welcome to Lootraiders"
                         style="width: 100%; max-width: 600px; display: block; border-radius: 8px 8px 0 0; border-bottom: 1px solid #e0e0e0;">
                 </td>
             </tr>
@@ -29,7 +30,7 @@
             <tr>
                 <td style="background-color: #140033; padding: 30px;">
                     <h2 style="margin-top: 0; font-size: 24px; color: #ffffff;">
-                        {{-- Hey <span style="color: #00cfff;">{{ $user->first_name }}</span>, --}}
+                        Hey <span style="color: #00cfff;">{{ $user->first_name ?? 'Gamer' }}</span>,
                     </h2>
 
                     <p style="font-size: 16px; line-height: 1.6; margin-bottom: 25px; color: #ffffff;">
