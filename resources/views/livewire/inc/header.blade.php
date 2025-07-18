@@ -13,12 +13,12 @@
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link" wire:navigate>Home</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ route('raffles') }}" class="nav-link" wire:navigate>Raffles</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('tickets') }}" class="nav-link" wire:navigate>Tickets</a>
-                </li>
+                </li> --}}
             </ul>
         </nav>
 
@@ -118,12 +118,12 @@
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link" wire:navigate>Home</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ route('raffles') }}" class="nav-link" wire:navigate>Raffles</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('tickets') }}" class="nav-link" wire:navigate>Tickets</a>
-                </li>
+                </li> --}}
             </ul>
         </nav>
     </div>
