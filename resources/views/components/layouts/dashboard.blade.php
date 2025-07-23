@@ -43,6 +43,7 @@
                     page_path: window.location.pathname,
                     page_title: document.title,
                 });
+                console.log("sent event to GA")
             }
         });
     </script>
