@@ -27,6 +27,17 @@
     <livewire:inc.footer />
     @livewireScripts
     @stack('js')
+    <script>
+        document.addEventListener('livewire:navigated', function() {
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_location: window.location.href,
+                    page_path: window.location.pathname,
+                    page_title: document.title,
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

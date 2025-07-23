@@ -30,7 +30,17 @@
     <livewire:inc.footer />
     @livewireScripts
     @stack('js')
-    <script></script>
+    <script>
+        document.addEventListener('livewire:navigated', function() {
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_location: window.location.href,
+                    page_path: window.location.pathname,
+                    page_title: document.title,
+                });
+            }
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
