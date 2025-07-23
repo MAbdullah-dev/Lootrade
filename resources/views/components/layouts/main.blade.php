@@ -27,18 +27,36 @@
     <livewire:inc.footer />
     @livewireScripts
     @stack('js')
-    <script>
-        document.addEventListener('livewire:navigated', function() {
-            if (typeof gtag === 'function') {
-                gtag('event', 'page_view', {
-                    page_location: window.location.href,
-                    page_path: window.location.pathname,
-                    page_title: document.title,
-                });
-                console.log("sent event to GA")
-            }
-        });
-    </script>
+<script>
+    function sendGAEvent() {
+        if (typeof gtag === 'function') {
+            gtag('event', 'page_view', {
+                page_location: window.location.href,
+                page_path: window.location.pathname,
+                page_title: document.title,
+            });
+            console.log("✅ GA page_view sent");
+        } else {
+            console.warn("⚠️ gtag is not defined");
+        }
+    }
+
+    // Best case: Livewire SPA navigation detected
+    document.addEventListener('livewire:navigated', function () {
+        console.log("✅ livewire:navigated triggered");
+        sendGAEvent();
+    });
+
+    // Fallback for when @livewireNavigable is missing
+    document.addEventListener('livewire:navigate', function () {
+        console.log("⏳ livewire:navigate started...");
+        setTimeout(() => {
+            console.log("⏱ fallback GA page_view triggered");
+            sendGAEvent();
+        }, 500); // wait for DOM update
+    });
+</script>
+
 </body>
 
 </html>
