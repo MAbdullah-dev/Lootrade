@@ -36,33 +36,24 @@
     @livewireScripts
     @stack('js')
 <script>
-    function sendGAEvent() {
-        if (typeof gtag === 'function') {
-            gtag('event', 'page_view', {
-                page_location: window.location.href,
-                page_path: window.location.pathname,
-                page_title: document.title,
-            });
-            console.log("✅ GA page_view sent");
-        } else {
-            console.warn("⚠️ gtag is not defined");
-        }
+  function sendGTMPageView() {
+    if (window.dataLayer) {
+      dataLayer.push({
+        event: 'page_view',
+        page_path: window.location.pathname,
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+      console.log("✅ GTM page_view pushed to dataLayer");
+    } else {
+      console.warn("⚠️ dataLayer is not defined");
     }
+  }
 
-    // Best case: Livewire SPA navigation detected
-    document.addEventListener('livewire:navigated', function () {
-        console.log("✅ livewire:navigated triggered");
-        sendGAEvent();
-    });
-
-    // Fallback for when @livewireNavigable is missing
-    document.addEventListener('livewire:navigate', function () {
-        console.log("⏳ livewire:navigate started...");
-        setTimeout(() => {
-            console.log("⏱ fallback GA page_view triggered");
-            sendGAEvent();
-        }, 500); // wait for DOM update
-    });
+  document.addEventListener('livewire:navigated', function () {
+    console.log("✅ livewire:navigated triggered");
+    sendGTMPageView();
+  });
 </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
