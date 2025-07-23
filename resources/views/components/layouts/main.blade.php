@@ -27,21 +27,6 @@
     <livewire:inc.footer />
     @livewireScripts
     @stack('js')
-    <script>
-        document.addEventListener('livewire:navigated', () => {
-            console.log("✅ livewire:navigated triggered");
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: "page_view",
-                page_path: window.location.pathname,
-                page_location: window.location.href,
-                page_title: document.title
-            });
-            console.log("✅ GTM page_view pushed to dataLayer");
-        });
-    </script>
-
-
 </body>
 
 </html>
