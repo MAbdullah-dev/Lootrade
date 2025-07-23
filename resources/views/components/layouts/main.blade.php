@@ -27,26 +27,20 @@
     <livewire:inc.footer />
     @livewireScripts
     @stack('js')
-<script>
-  function sendGTMPageView() {
-    if (window.dataLayer) {
-      dataLayer.push({
-        event: 'page_view',
-        page_path: window.location.pathname,
-        page_title: document.title,
-        page_location: window.location.href,
-      });
-      console.log("✅ GTM page_view pushed to dataLayer");
-    } else {
-      console.warn("⚠️ dataLayer is not defined");
-    }
-  }
+    <script>
+        document.addEventListener('livewire:navigated', () => {
+            console.log("✅ livewire:navigated triggered");
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "page_view",
+                page_path: window.location.pathname,
+                page_location: window.location.href,
+                page_title: document.title
+            });
+            console.log("✅ GTM page_view pushed to dataLayer");
+        });
+    </script>
 
-  document.addEventListener('livewire:navigated', function () {
-    console.log("✅ livewire:navigated triggered");
-    sendGTMPageView();
-  });
-</script>
 
 </body>
 
