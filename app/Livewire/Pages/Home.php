@@ -48,7 +48,8 @@ class Home extends Component
             $task->reward,
             acquisitionType: 'earned'
         );
-
+        // 🔥 Dispatch Livewire event to update ticket count in Header
+        $this->dispatch('ticket-balance-updated');
         $this->earnedReward = $task->reward;
         $this->showRewardModal = true;
 
