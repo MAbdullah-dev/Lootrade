@@ -33,11 +33,6 @@ class AwardDailyLoginTicket
                 'type' => 'daily_login_award',
                 'message' => 'You have earned your daily 1 ticket for logging in today!',
             ]);
-
-            // ✅ Fire Livewire event to update header component (if user is on the app already)
-            if (Livewire::isLivewireRequest()) {
-                Livewire::dispatch('ticket-balance-updated');
-            }
         }
     }
 }

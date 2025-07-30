@@ -77,8 +77,6 @@ class SoloPlay extends Component
                 ->lockForUpdate()
                 ->first();
 
-                // dd($ticket);
-
             if (!$ticket) {
                 DB::rollBack();
                 alert_error('No available user ticket to start the game.');
@@ -88,8 +86,9 @@ class SoloPlay extends Component
             $ticket->update(['status' => 'consumed']);
             $this->usedTicketId = $ticket->id;
             $user->decrement('ticket_balance');
+            $this->dispatch('ticket-balance-updated');
             if (!$userHasEntries) {
-            $this->raffle->decrement('slots');
+                $this->raffle->decrement('slots');
             }
 
             DB::commit();
@@ -98,7 +97,6 @@ class SoloPlay extends Component
             $this->initializeGame();
             $this->gameActive = true;
             $this->dispatch('play-sound', sound: 'play');
-
         } catch (\Exception $e) {
             DB::rollBack();
             alert_error('Failed to start game. Try again.');
@@ -142,6 +140,7 @@ class SoloPlay extends Component
             }
         } else {
             $this->tiles[$index] = 'empty';
+            $this->revealedTiles[] = $index;
             $this->gameActive = false;
             $this->awaitingDecision = false;
             alert_error('💥 Wrong tile! Game over. Try again.');
@@ -222,7 +221,6 @@ class SoloPlay extends Component
             $this->usedTicketId = null;
             $this->initializeGame();
             $this->updateViewData();
-
         } catch (\Exception $e) {
             DB::rollBack();
             alert_error("Failed to secure entries. Please try again.");
