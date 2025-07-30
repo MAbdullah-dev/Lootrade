@@ -53,4 +53,8 @@ class Raffle extends Model
             }
         });
     }
+    public function tickets()
+    {
+        return $this->hasMany(RaffleTicket::class);
+    }
 }

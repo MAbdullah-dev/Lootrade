@@ -68,18 +68,18 @@ class RaffleForm extends Component
     public function mount($raffle = null)
     {
         if ($raffle) {
-            $raffle = Raffle::findOrFail($raffle);
-            $this->raffle = $raffle;
-            $this->raffleId = $raffle->id;
+            $this->raffle = Raffle::findOrFail($raffle);
+            $this->raffleId = $this->raffle->id;
 
-            $this->title = $raffle->title;
-            $this->description = $raffle->description;
-            $this->max_entries_per_user = $raffle->max_entries_per_user;
-            $this->start_date = $raffle->start_date->format('Y-m-d H:i');
-            $this->end_date = $raffle->end_date->format('Y-m-d H:i');
-            $this->slots = $raffle->slots;
-
-            $this->prizes = is_array(json_decode($raffle->prize, true)) ? json_decode($raffle->prize, true) : $this->prizes;
+            $this->title = $this->raffle->title;
+            $this->description = $this->raffle->description;
+            $this->max_entries_per_user = $this->raffle->max_entries_per_user;
+            $this->start_date = $this->raffle->start_date->format('Y-m-d H:i');
+            $this->end_date = $this->raffle->end_date->format('Y-m-d H:i');
+            $this->slots = $this->raffle->slots;
+            $this->prizes = json_decode($this->raffle->prize, true) ?: $this->prizes;
+        } else {
+            $this->raffle = new Raffle(); // for create mode
         }
     }
 
@@ -114,13 +114,13 @@ class RaffleForm extends Component
         }
 
         $raffle->save();
-        dispatch(new SendRaffleCreatedEmailsJob($raffle));
-        alert_success('Raffle saved successfully!');
 
-        $this->reset();
+        dispatch(new SendRaffleCreatedEmailsJob($raffle));
+        alert_success($this->raffleId ? 'Raffle updated successfully!' : 'Raffle created successfully!');
 
         $this->dispatch('raffleCreated', id: $raffle->id);
     }
+
 
 
 

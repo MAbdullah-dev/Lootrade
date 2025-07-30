@@ -109,7 +109,7 @@
                     @if ($selectedUser)
                         <p><strong>Username:</strong> {{ $selectedUser['username'] }}</p>
                         <p><strong>Email:</strong> {{ $selectedUser['email'] }}</p>
-                        <p><strong>Role:</strong> {{ $selectedUser['role']['name'] ?? 'N/A' }}</p>
+                        <p><strong>Role:</strong> {{ $selectedUser['roles'][0] ?? 'N/A' }}</p>
                         <p><strong>Status:</strong>
                             @if ($selectedUser['deleted_at'])
                                 <span class="badge bg-secondary">Inactive</span>
