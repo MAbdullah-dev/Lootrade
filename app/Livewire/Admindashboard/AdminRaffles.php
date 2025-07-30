@@ -15,6 +15,8 @@ class AdminRaffles extends Component
     public $title, $description, $entry_cost, $max_entries_per_user, $date_range, $start_date, $end_date, $image, $slots;
     public $search = '';
     public $sortDirection = 'desc';
+    public $showDeleteModal = false;
+    public $raffleToDeleteId = null;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -119,6 +121,20 @@ class AdminRaffles extends Component
     public function editRaffle($raffleId)
     {
         return redirect()->route('raffle.edit', $raffleId);
+    }
+
+    public function deleteRaffle($id)
+    {
+        $this->raffleToDeleteId = $id;
+        $this->showDeleteModal = true;
+    }
+    public function confirmDeleteRaffle($raffleId)
+    {
+        dispatch(new \App\Jobs\DeleteRaffleJob($raffleId));
+
+        alert_success('Raffle deletion initiated. Users will be refunded.');
+        $this->showDeleteModal = false;
+        $this->resetPage();
     }
 
     public function render()

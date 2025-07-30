@@ -56,11 +56,11 @@
                                 <td>{{ ucfirst($raffle->status) }}</td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <button class="btn btn-sm btn-secondary"
+                                        {{-- <button class="btn btn-sm btn-secondary"
                                             wire:click="viewRaffle({{ $raffle->id }})"
                                             aria-label="View raffle details">
                                             <i class="fa-solid fa-user" aria-hidden="true"></i>
-                                        </button>
+                                        </button> --}}
                                         <button class="btn btn-sm btn-primary"
                                             wire:click="editRaffle({{ $raffle->id }})" aria-label="Edit raffle">
                                             <i class="fa fa-edit" aria-hidden="true"></i>
@@ -79,6 +79,32 @@
                         @endforelse
                     </tbody>
                 </table>
+                @if ($showDeleteModal)
+                    <div class="modal fade show d-block" tabindex="-1" role="dialog"
+                        style="background: rgba(0,0,0,0.5);">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Confirm Delete</h5>
+                                    {{-- <button type="button" class="btn-close"
+                                        wire:click="$set('showDeleteModal', false)"></button> --}}
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this raffle? Participants will be notified and
+                                    tickets will be returned.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        wire:click="$set('showDeleteModal', false)">Cancel</button>
+                                    <button type="button" class="btn btn-danger"
+                                        wire:click="confirmDeleteRaffle({{ $raffle->id }})">Confirm
+                                        Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
 
                 <!-- Pagination -->
                 <div class="mt-3" role="navigation" aria-label="Pagination Navigation">
