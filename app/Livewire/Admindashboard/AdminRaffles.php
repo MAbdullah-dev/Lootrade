@@ -17,8 +17,15 @@ class AdminRaffles extends Component
     public $sortDirection = 'desc';
     public $showDeleteModal = false;
     public $raffleToDeleteId = null;
+    public $deletedRaffleIds = []; // New property to track deleted raffle IDs
 
     protected $paginationTheme = 'bootstrap';
+
+    public function mount()
+    {
+        // Initialize deletedRaffleIds as an empty array
+        $this->deletedRaffleIds = [];
+    }
 
     public function resetForm()
     {
@@ -118,6 +125,7 @@ class AdminRaffles extends Component
     {
         return redirect()->route('admin.raffle.users', $raffleId);
     }
+
     public function editRaffle($raffleId)
     {
         return redirect()->route('raffle.edit', $raffleId);
@@ -128,18 +136,24 @@ class AdminRaffles extends Component
         $this->raffleToDeleteId = $id;
         $this->showDeleteModal = true;
     }
+
     public function confirmDeleteRaffle($raffleId)
     {
         dispatch(new \App\Jobs\DeleteRaffleJob($raffleId));
 
+        // Add the raffle ID to the deletedRaffleIds array
+        $this->deletedRaffleIds[] = $raffleId;
+
         alert_success('Raffle deletion initiated. Users will be refunded.');
         $this->showDeleteModal = false;
-        $this->resetPage();
+        $this->resetPage(); // Refresh the paginated data
     }
 
     public function render()
     {
         $raffles = Raffle::where('title', 'like', '%' . $this->search . '%')
+            ->whereNotIn('id', $this->deletedRaffleIds) // Exclude deleted raffles
+            ->orderBy('created_at', $this->sortDirection)
             ->paginate(10);
 
         return view('livewire.admindashboard.admin-raffles', compact('raffles'))

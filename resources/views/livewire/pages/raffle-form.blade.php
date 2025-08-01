@@ -8,7 +8,7 @@
                         <img src="{{ asset('assets/images/new logo.png') }}" alt="Company Logo" height="40">
                     </div>
                     <div>
-                        <a href="#" aria-label="Close form" role="button">
+                        <a href="javascript:history.back()" aria-label="Close form" role="button">
                             <i class="px-2 fa-solid fa-xmark fs-3" aria-hidden="true"></i>
                         </a>
                     </div>
