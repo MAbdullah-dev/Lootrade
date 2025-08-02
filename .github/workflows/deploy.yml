@@ -27,26 +27,24 @@ jobs:
             cd /var/www/html/Lootrade
 
             echo "📥 Pulling latest code..."
-            git reset --hard
             git pull origin main
 
             echo "📦 Installing PHP dependencies..."
             composer install --no-interaction --prefer-dist --optimize-autoloader
 
-            echo "🔧 Fixing Laravel permissions..."
-            bash /var/www/html/Lootrade/fix-perms.sh
-
             echo "🧱 Running Laravel migrations..."
             php artisan migrate --force
 
-            echo "🧹 Optimizing Laravel..."
-            php artisan optimize
+            echo "🧹 Caching Laravel config, routes, and views..."
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
 
             echo "📦 Installing Node modules..."
-            npm ci --only=production
+            npm install
 
             echo "🔧 Fixing esbuild & vite permissions..."
-            chmod +x node_modules/@esbuild/linux-x64/bin/esbuild || true
+            chmod +x node_modules/@esbuild/linux-x64/bin/esbuild
             chmod +x node_modules/.bin/vite || true
 
             echo "🚀 Building frontend with Vite..."
