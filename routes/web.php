@@ -38,7 +38,7 @@ Route::get('/', Welcome::class)->name('welcome');
 Route::get('/faq', Faq::class)->name('faq');
 
 //auth
-Route::get('/login', Login::class)->name('login');
+Route::get('/login', Login::class)->middleware('guest')->name('login');
 //social auth
 Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])
     ->name('auth.redirect')

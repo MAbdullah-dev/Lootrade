@@ -5,8 +5,11 @@ namespace App\Livewire\Pages;
 use App\Jobs\GenerateTicketsJob;
 use App\Models\Raffle;
 use App\Models\Task;
+use App\Models\User;
+use App\Services\TaskVerificationService;
 use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
@@ -15,6 +18,7 @@ class Home extends Component
     public $tasks;
     public $showRewardModal = false;
     public $earnedReward = 0;
+    public TaskVerificationService $taskVerifier;
 
     public function mount()
     {
@@ -26,32 +30,67 @@ class Home extends Component
         $this->tasks = Task::where('is_active', true)->get();
     }
 
+    #[On('checkTaskAccess')]
+    public function checkTaskAccess($taskId)
+    {
+        $user = Auth::user();
+        $task = Task::findOrFail($taskId);
+
+        $type = "{$task->platform}:{$task->action}";
+
+        $social = match ($type) {
+            'discord:join_server' => $user->socialAccounts()->where('provider', 'discord')->first(),
+            'youtube:like_video',  => $user->socialAccounts()->where('provider', 'google')->first(),
+            'youtube:watch_timer' => true,
+            default => true,
+        };
+
+        if (!$social) {
+            alert_error("Please connect your {$task->platform} account first.");
+            return;
+        }
+
+        $taskId = json_encode($taskId);
+        $url = json_encode($task->link);
+        $meta = json_encode(json_decode($task->meta ?? '[]'));
+
+        $this->js(<<<JS
+    window.dispatchEvent(new CustomEvent('task-access-granted', {
+        detail: {
+            taskId: {$taskId},
+            url: {$url},
+            meta: {$meta}
+        }
+    }));
+JS);
+    }
+
+
     #[On('completeTask')]
     public function rewardUser($taskId)
     {
         $user = Auth::user();
-        Log::info("User {$user->id} is attempting to complete Task {$taskId}");
+        $task = Task::findOrFail($taskId);
 
-        if ($user->completedTasks->contains($taskId)) {
+        if ($user->completedTasks->contains($task->id)) {
             return;
         }
 
-        $task = Task::findOrFail($taskId);
-        Log::info("Task found: {$task->platform} for user {$user->id}");
+        $verifier = app(TaskVerificationService::class);
 
-        $user->completedTasks()->attach($task->id, [
-            'completed_at' => now()
-        ]);
+        if (!$verifier->verify($task, $user)) {
+            Log::warning("Task verification failed for user {$user->id}, task {$task->id}");
+            alert_error('Verification failed');
+            return;
+        }
 
-        GenerateTicketsJob::dispatch(
-            $user->id,
-            $task->reward,
-            acquisitionType: 'earned'
-        );
+        $user->completedTasks()->attach($task->id, ['completed_at' => now()]);
+        GenerateTicketsJob::dispatch($user->id, $task->reward, acquisitionType: 'earned');
 
+        $user->update(['ticket_balance' => $user->ticket_balance + $task->reward]);
+        $this->dispatch('ticket-balance-updated');
         $this->earnedReward = $task->reward;
         $this->showRewardModal = true;
-
         $this->fetchTasks();
     }
 

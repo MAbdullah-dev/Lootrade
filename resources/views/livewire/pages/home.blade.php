@@ -3,7 +3,7 @@
         <div class="inner">
             <div class="container py-5">
                 <div class="banner-wrapper"><img class="rounded-5"
-                        src="https://lh3.googleusercontent.com/fife/ALs6j_EnnA4SqdDMZKLowGbim-ysChrQIR0x6I4PUpTP893EE6OoT2z5BO9lkLQw0IFwFaaNLae34bKV61QR3aeM5o9obc9FWTzD2atIgSc3N2tbESsRvDz9Zosz-izsI-9xyMN_JBuoQIaBJ8_-ww2HDUR61q19FYrqRc1tSpi0j4jcsmdImoz9Vnj35xWBu7R8tohNqGnDZrYnOozsOeyJh5ZL-m_uAaG0hn7BZGAG428TQ1WpfdTUYBbK-1c6H-h4hbESx1-KueRyQlbdZeN8v2Ig3KjIAxiW76zITAed3Vwzs8rtVVYdREhA8zxh0atQsBEpB_IdJkM0XTygJllc_fL-40HDSjconwyBHJB4eQsBzsEmEiB6UzuJS4qvU5QwKM1Mrf6Rt0Wnzpyi75IGbNDHw3AT0uwvblAN0MA0sG3a_iF1jb-2aJPXwU2DYA_Frp2BBf0BUMl8JClOTbCpythD3QxTW4G6rSu7HtwJ4BRTlPfNlysfXEk_Mgwn_zlJJ_031j1OwTIDHNVmkwF07VTb2RTZBZKQSrOUjxXnBGFJI47EYHOtIAZuZfiLxVcLkwQEHQZjbE3bGM9uBoTzcS6l2Hh-HQzYCmKNwLdNaVPHlQeh1SwAQmww0m8Lb4oI8Df6Wt8cuvWXfqMt0pXSFFfwlpCQXunOAm-7Xjz6F7TqpXnL5UzPZUXUvhCQE6ST4wuSI12Lq2YZPDleyiQuZd2L_nNRXyP5lfdGPkLomzLo5wdb2LIJ8zJWx88WoQwTcm7K7xUjOt6Npw6KhIqxAT2cBrMLUa3-_jIPmxRLfzBUnCyyWhBRbbFluYUPlK9Na9pOFSHpYRDyyzF0XogKKfeIPkzTJn1zZ00nfhUomuPFcubwN_1t6qDhbgYe2I27gywIVrS7RTuGn19OwrRfvyPJlosBnT5dkwlJDao2U1YhhlrIk_JWzdSru9kjsQbCNhrJi_RWNpak0JqxyLUg7-cZHCT_HyTbY5q--e5FyKf8LW_HAfBmCuN_OJC9iv1EVFIKJ_LHUFEmJpR6C3zeqEh4fGldHDsvLbCxKeiYd43PP7tYWT1L80oNGiRTygvLxLcUd05sJMlJZAPM_C9GeeYSxwzHonsC45IeXxjMfgD3ghejm18OHUTaqcZAnFiBDhIgZomzlv6tKNMimjVdIPoy405il1TSJ4uIXQu50GpEiPS6CvIywgRxoYNbEvZ4auob2pFTKKPDmSsXRy4AjLARirivwYZg0roXMP_oUnqhB2WcwQNxyHIqva8iGcsWjujv9gnC8CJb1f0uAeD-lFaoLV_2ThYmnslQF6m67URp03duPdoHoUoEWLM25FEfym62idoYwjdG_e7hYnK5QhP1MfmjSksr-dW5aMNZq0U5YqoWr_1XmP4soWIvLZEdORJF9zH3TDL_ddaDgkGIrBDRhLTEtIR6zmZ3B9YH6YG81JQhgHAxqNkxQ8wWNhP2jL1ZWHJTJuKVm21NAX6QoPWIMAAyYAtljb1WelKEUCd0ek0cfjAf9f11VngfMhe0Ne1E52y8aD2JIoPHMAWLRUFe-wyJV-Bgc3551INqp4zqRHi2vVYtoAEipP9EGT2GCUTapO7pq1fqFZyRzhSETqslYZ6Ar93A3Qx-PA=w2000-h884?auditContext=forDisplay"
+                        src="{{asset("assets/images/home-page-banner.png")}}"
                         alt=""></div>
             </div>
         </div>
@@ -18,7 +18,7 @@
                     <div class="task-card d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center gap-2">
                             {!! getPlatformIcon($task->platform) !!}
-                            <span class="task-username">{{ $task->username }}</span>
+                            <span class="task-username"> {{ $task->username }}</span>
                         </div>
                         <div class="d-flex align-items-center gap-2">
                             @php
@@ -38,6 +38,15 @@
         </div>
     </section>
 
+    {{-- <section class="tasks-section">
+        <div class="container">
+            <h3 class="tasks-title mb-4">Ways To Get Extra Tickets</h3>
+
+            <div id="92183-pb7ls0dg" class="sw_container">
+                <script type="text/javascript" src="https://sweepwidget.com/w/j/w_init.js"></script>
+            </div>
+        </div>
+    </section> --}}
 
     <section class="raffles">
         <div class="container">
@@ -222,39 +231,150 @@
             </div>
         </div>
     </section>
-@if ($showRewardModal)
-    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.6);">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title w-100">🎉 Task Completed!</h5>
-                </div>
-                <div class="modal-body">
-                    <p>You earned <strong>{{ $earnedReward }}</strong> tickets!</p>
-                </div>
-                <div class="modal-footer border-0 justify-content-center">
-                    <button wire:click="closeRewardModal" class="btn btn-primary px-4">
-                        Close
-                    </button>
+    @if ($showRewardModal)
+        <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.6);">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title w-100">🎉 Task Completed!</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>You earned <strong>{{ $earnedReward }}</strong> tickets!</p>
+                    </div>
+                    <div class="modal-footer border-0 justify-content-center">
+                        <button wire:click="closeRewardModal" class="btn btn-primary px-4">
+                            Close
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endif
+    @endif
 
 
 </div>
 
 
 <script>
+    let player = null;
+    let watchTimer = null;
+    let watchedSeconds = 0;
+    let requiredDuration = 0;
+
+    function injectModalHTML() {
+        if (document.getElementById('watchModal')) return;
+
+        const modal = document.createElement('div');
+        modal.id = 'watchModal';
+        modal.className = 'modal fade show';
+        modal.style.display = 'block';
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('role', 'dialog');
+        modal.innerHTML = `
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Watch Video</h5>
+                        <button type="button" class="btn-close" onclick="closeWatchModal()"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div id="youtube-player" style="width:100%; height:360px;"></div>
+                    </div>
+                    <p class="text-center">Watch full video to get reward!</p>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        const backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop fade show';
+        backdrop.id = 'modal-backdrop';
+        document.body.appendChild(backdrop);
+        document.body.classList.add('modal-open');
+    }
+
+    function closeWatchModal() {
+        const modal = document.getElementById('watchModal');
+        const backdrop = document.getElementById('modal-backdrop');
+
+        if (modal) modal.remove();
+        if (backdrop) backdrop.remove();
+        document.body.classList.remove('modal-open');
+
+        if (player) {
+            player.stopVideo();
+            player.destroy();
+            player = null;
+        }
+
+        clearInterval(watchTimer);
+        watchTimer = null;
+    }
+
+    function loadYoutubePlayer(videoId, duration, taskId) {
+        requiredDuration = duration;
+        watchedSeconds = 0;
+
+        player = new YT.Player('youtube-player', {
+            height: '360',
+            width: '640',
+            videoId: videoId,
+            events: {
+                'onStateChange': (event) => {
+                    console.log("🎬 Player state changed:", event.data);
+                    if (event.data === YT.PlayerState.PLAYING && !watchTimer) {
+                        watchTimer = setInterval(() => {
+                            watchedSeconds++;
+
+                            console.log("⏱️ Watching seconds:", watchedSeconds);
+
+                            if (watchedSeconds >= requiredDuration) {
+                                console.log("🎯 Dispatching task completion");
+                                clearInterval(watchTimer);
+                                watchTimer = null;
+
+                                console.log("dispatch");
+
+                                Livewire.dispatch('completeTask', {taskId});
+                                closeWatchModal();
+                            }
+                        }, 1000);
+                    } else if (event.data !== YT.PlayerState.PLAYING && watchTimer) {
+                        clearInterval(watchTimer);
+                        watchTimer = null;
+                    }
+                }
+            }
+        });
+    }
+
     function openTask(taskId, url) {
-        const button = document.querySelector(`.task-action[data-id="${taskId}"]`);
+        Livewire.dispatch('checkTaskAccess', { taskId, url });
+    }
+
+    window.addEventListener('task-access-granted', e => {
+        const { taskId, url, meta } = e.detail;
+
+        const taskIdStr = String(taskId);
+        const button = document.querySelector(`.task-action[data-id="${taskIdStr}"]`);
+
         if (!button) return;
 
         const originalText = button.innerText;
         button.innerText = 'Verifying...';
         button.classList.add('disabled');
 
+        // If it's a YouTube watch task
+        if (meta?.video_id && meta?.duration) {
+            injectModalHTML();
+            setTimeout(() => {
+                loadYoutubePlayer(meta.video_id, meta.duration, taskId);
+            }, 500);
+            return;
+        }
+
+        // Otherwise, open normal link and verify on return
         localStorage.setItem(`task_${taskId}_started`, Date.now());
         window.open(url, '_blank');
 
@@ -265,12 +385,19 @@
 
             const elapsed = (Date.now() - started) / 1000;
 
-            if (elapsed >= 5) {
+            if (elapsed >= 1) {
                 Livewire.dispatch('completeTask', { taskId });
             } else {
                 button.innerText = originalText;
                 button.classList.remove('disabled');
             }
         }, { once: true });
+    });
+
+    // Load YouTube iframe API
+    if (!window.YT || !YT.Player) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
     }
 </script>

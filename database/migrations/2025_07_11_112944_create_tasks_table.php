@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('platform');
             $table->string('action');
             $table->string('link');
+            $table->json('meta')->nullable();
             $table->integer('reward')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

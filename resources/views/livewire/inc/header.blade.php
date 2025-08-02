@@ -2,7 +2,7 @@
     <div class="container d-flex align-items-center justify-content-between">
         <!-- Logo -->
         <div class="d-flex align-items-center">
-            <a href="{{ route('home') }}" class="me-3" aria-label="Go to Homepage">
+            <a href="{{ $isNotAdmin ? route('home') : '#' }}" class="me-3" aria-label="Go to Homepage">
                 <img src="{{ asset('assets/images/new logo.png') }}" alt="Lootraiders Logo" height="40">
             </a>
         </div>
@@ -10,9 +10,11 @@
         <!-- Desktop Navigation -->
         <nav class="d-none d-lg-block desktop-nav" role="navigation" aria-label="Main navigation">
             <ul class="nav gap-4">
+                @if ($isNotAdmin)
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link" wire:navigate>Home</a>
                 </li>
+                @endif
                 {{-- <li class="nav-item">
                     <a href="{{ route('raffles') }}" class="nav-link" wire:navigate>Raffles</a>
                 </li>

@@ -44,6 +44,7 @@ return [
         'client_id' => env('DISCORD_CLIENT_ID'),
         'client_secret' => env('DISCORD_CLIENT_SECRET'),
         'redirect' => env('DISCORD_REDIRECT_URI'),
+        'bot_token' => env('DISCORD_BOT_TOKEN'),
     ],
     'twitter-oauth-2' => [
         'client_id' => env('TWITTER_CLIENT_ID'),

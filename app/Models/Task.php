@@ -15,6 +15,11 @@ class Task extends Model
         'reward',
         'is_active',
     ];
+
+    protected $casts = [
+        'meta' => 'array',
+    ];
+
     public function usersCompleted(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withTimestamps()->withPivot('completed_at');
