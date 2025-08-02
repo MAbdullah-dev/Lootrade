@@ -107,6 +107,7 @@ class Battlefield extends Component
             $this->usedTicketIds = $tickets->pluck('id')->toArray();
 
             $user->decrement('ticket_balance', 10);
+            $this->dispatch('ticket-balance-updated');
 
             if (!$userHasEntries) {
                 $this->raffle->decrement('slots');

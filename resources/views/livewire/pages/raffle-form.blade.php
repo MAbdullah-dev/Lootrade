@@ -8,7 +8,7 @@
                         <img src="{{ asset('assets/images/new logo.png') }}" alt="Company Logo" height="40">
                     </div>
                     <div>
-                        <a href="#" aria-label="Close form" role="button">
+                        <a href="javascript:history.back()" aria-label="Close form" role="button">
                             <i class="px-2 fa-solid fa-xmark fs-3" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -86,16 +86,14 @@
                                         <small class="text-danger" id="imageError">{{ $message }}</small>
                                     @enderror
 
-                                    {{-- Existing Image Preview --}}
+                                    {{-- Image Preview --}}
                                     @if ($image)
-                                        {{-- Show new uploaded preview from Livewire --}}
                                         <div class="mt-3">
                                             <img src="{{ $image->temporaryUrl() }}"
                                                 class="img-fluid mt-2 rounded shadow" style="max-width: 300px;"
                                                 alt="New image preview">
                                         </div>
-                                    @elseif (!empty($raffleId) && ($raffle = \App\Models\Raffle::find($raffleId)))
-                                        {{-- Show existing saved image --}}
+                                    @elseif (!empty($raffleId) && $raffle->image_path)
                                         <div class="mt-3">
                                             <img src="{{ Storage::url($raffle->image_path) }}"
                                                 class="img-fluid mt-2 rounded shadow" style="max-width: 300px;"
@@ -103,8 +101,6 @@
                                         </div>
                                     @endif
                                 </div>
-
-
                                 <div class="mb-4">
                                     <label for="videoInput" class="form-label">Upload Video (Optional)</label>
                                     <input type="file" class="form-control" id="videoInput" accept="video/*"
@@ -123,7 +119,7 @@
                                                 Your browser does not support the video tag.
                                             </video>
                                         </div>
-                                    @elseif (!empty($raffleId) && ($raffle = \App\Models\Raffle::find($raffleId) && $raffle->video_path))
+                                    @elseif (!empty($raffleId) && $raffle->video_path)
                                         <div class="mt-3">
                                             <video class="mt-2 rounded shadow"
                                                 style="width: 100%; max-width: 500px; height: 280px;" controls>
@@ -133,6 +129,7 @@
                                             </video>
                                         </div>
                                     @endif
+
                                 </div>
 
                             </div>
@@ -178,21 +175,16 @@
                         </div>
 
                         <div class="mb-3">
-                            <button class="btn-custom w-100 p-2 mt-4" type="submit" wire:loading.attr="disabled"
-                                wire:target="save" wire:click.prevent="save" aria-label="Create Raffle">
-
-                                <span wire:loading.remove wire:target="save">
-                                    Create Raffle
+                            <button class="btn-custom w-100 p-2 mt-4" type="submit" wire:loading.attr="disabled">
+                                <span wire:loading.remove>
+                                    {{ $raffleId ? 'Update Raffle' : 'Create Raffle' }}
                                 </span>
-
-                                <span wire:loading wire:target="save">
+                                <span wire:loading>
                                     <span class="spinner-border spinner-border-sm" role="status"
                                         aria-hidden="true"></span>
                                     Loading...
                                 </span>
-
                             </button>
-
 
                         </div>
                     </div>
@@ -271,14 +263,14 @@
                 previewVideo.style.display = 'block';
             }, 1000);
         });
-            window.addEventListener('raffleCreated', function (event) {
-        const raffleId = event.detail.id;
-        setTimeout(() => {
-            window.location.href = '/raffle/' + raffleId;
-            console.log(window.location.href);
+        window.addEventListener('raffleCreated', function(event) {
+            const raffleId = event.detail.id;
+            setTimeout(() => {
+                window.location.href = '/raffle/' + raffleId;
+                console.log(window.location.href);
 
-        }, 1000);
-    });
+            }, 1000);
+        });
     </script>
 
 </div>

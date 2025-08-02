@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Jobs\GenerateTicketsJob;
 use Illuminate\Auth\Events\Login;
 use Carbon\Carbon;
+use Livewire\Livewire;
 
 class AwardDailyLoginTicket
 {
@@ -32,7 +33,6 @@ class AwardDailyLoginTicket
                 'type' => 'daily_login_award',
                 'message' => 'You have earned your daily 1 ticket for logging in today!',
             ]);
-
         }
     }
 }

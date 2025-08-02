@@ -3,7 +3,7 @@
 namespace App\Livewire\Inc;
 
 use Illuminate\Support\Facades\Auth;
-
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Header extends Component
@@ -16,7 +16,12 @@ class Header extends Component
     {
         $this->ticketCount = Auth::user()->ticket_balance;
         $this->isNotAdmin = Auth::user()->hasRole('user') ? true : false;
+    }
 
+    #[On('ticket-balance-updated')]
+    public function refreshTicketCount()
+    {
+        $this->ticketCount = Auth::user()->fresh()->ticket_balance;
     }
 
     public function logout()

@@ -50,7 +50,7 @@ class Profile extends Component
             ->pluck('provider')
             ->toArray();
 
-            $this->loadnotifications();
+        $this->loadnotifications();
     }
 
     public function updatedUsername()
@@ -60,66 +60,66 @@ class Profile extends Component
     }
 
     public function save()
-{
-    $this->rules['username'] = 'required|string|max:255|unique:users,username,' . Auth::id();
-    $this->validate();
+    {
+        $this->rules['username'] = 'required|string|max:255|unique:users,username,' . Auth::id();
+        $this->validate();
 
-    $user = Auth::user();
+        $user = Auth::user();
 
-    if ($this->profile_picture) {
-        if ($user->profile_picture && Storage::disk('public')->exists($user->profile_picture)) {
-            Storage::disk('public')->delete($user->profile_picture);
+        if ($this->profile_picture) {
+            if ($user->profile_picture && Storage::disk('public')->exists($user->profile_picture)) {
+                Storage::disk('public')->delete($user->profile_picture);
+            }
+            $path = $this->profile_picture->store('profile‑pictures', 'public');
+            $user->profile_picture = $path;
         }
-        $path = $this->profile_picture->store('profile‑pictures', 'public');
-        $user->profile_picture = $path;
-    }
 
-    $user->update([
-        'first_name' => $this->first_name,
-        'last_name'  => $this->last_name,
-        'username'   => $this->username,
-        'date_of_birth' => $this->date_of_birth,
-    ]);
+        $user->update([
+            'first_name' => $this->first_name,
+            'last_name'  => $this->last_name,
+            'username'   => $this->username,
+            'date_of_birth' => $this->date_of_birth,
+        ]);
 
-    if (! $user->profile_completion_awarded
-        && $user->first_name
-        && $user->last_name
-        && $user->username
-        && $user->date_of_birth
-        && $user->profile_picture
-    ) {
+        if (
+            ! $user->profile_completion_awarded
+            && $user->first_name
+            && $user->last_name
+            && $user->username
+            && $user->date_of_birth
+            && $user->profile_picture
+        ) {
 
             GenerateTicketsJob::dispatch($user->id, 10, 'earned');
 
             $user->notifications()->create([
                 'type' => 'profile_completion_awarded',
-                'message' => "You have been awarded 10 tickets for completing your profile.", 
+                'message' => "You have been awarded 10 tickets for completing your profile.",
             ]);
 
-        $user->update([
-            'profile_completion_awarded' => true,
-            'ticket_balance'             => $user->ticket_balance + 10,
-        ]);
+            $user->update([
+                'profile_completion_awarded' => true,
+                'ticket_balance'             => $user->ticket_balance + 10,
+            ]);
 
-        alert_success('🎉 You’ve earned 10 tickets for completing your profile!');
+            alert_success('🎉 You’ve earned 10 tickets for completing your profile!');
+        } else {
+            alert_success('Profile updated successfully!');
+        }
+        $this->loadnotifications();
+        $this->dispatch('ticket-balance-updated');
     }
-    else{
-        alert_success('Profile updated successfully!');
-    }
 
-    $this->loadnotifications();
-
-}
-
-    public function redirectToGoogleLogin(){
-         return redirect('auth/google', 'google');
+    public function redirectToGoogleLogin()
+    {
+        return redirect('auth/google', 'google');
     }
     public function redirectToDiscordLogin()
     {
         return redirect('auth/discord', 'discord');
     }
 
-        public function redirectToTwitterLogin()
+    public function redirectToTwitterLogin()
     {
         return redirect('auth/twitter', 'twitter');
     }
@@ -145,12 +145,12 @@ class Profile extends Component
             $notification->update(['is_read' => true]);
         }
 
-         $this->loadnotifications();
+        $this->loadnotifications();
     }
 
 
     public function render()
     {
-        return view('livewire.dashboard.profile', ['connected_providers' => $this->connected_providers, 'notifications' => $this->notifications,] )->layout('components.layouts.dashboard');
+        return view('livewire.dashboard.profile', ['connected_providers' => $this->connected_providers, 'notifications' => $this->notifications,])->layout('components.layouts.dashboard');
     }
 }

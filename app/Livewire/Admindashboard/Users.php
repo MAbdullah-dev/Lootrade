@@ -78,9 +78,10 @@ class Users extends Component
     }
     public function viewUser($id)
     {
-        $user = User::withTrashed()->with('role')->find($id);
+        $user = User::withTrashed()->find($id);
         if ($user) {
             $this->selectedUser = $user->toArray();
+            $this->selectedUser['roles'] = $user->getRoleNames()->toArray();
         }
     }
     public function resetSelectedUser()
