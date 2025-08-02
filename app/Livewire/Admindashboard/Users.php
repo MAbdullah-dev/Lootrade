@@ -13,27 +13,37 @@ class Users extends Component
     public $selectedUser = null;
     public $ticketCount, $ticketUserId;
     public $isSuperAdmin = false;
+    public $searchQuery = ''; // New property for search
 
     public function mount()
     {
-        $this->loaduserdata();
         $this->isSuperAdmin = Auth::user()->hasRole('super-admin');
+        $this->loaduserdata();
+    }
+
+    public function updatedSearchQuery()
+    {
+        $this->loaduserdata();
     }
 
     public function loaduserdata()
     {
         $authUser = Auth::user();
+        $query = User::withTrashed()->with('roles');
+
+        // Apply search filter
+        if (!empty($this->searchQuery)) {
+            $query->where(function ($q) {
+                $q->where('first_name', 'like', '%' . $this->searchQuery . '%')
+                  ->orWhere('last_name', 'like', '%' . $this->searchQuery . '%')
+                  ->orWhere('email', 'like', '%' . $this->searchQuery . '%');
+            });
+        }
 
         if ($authUser->hasRole('admin')) {
-            $this->users = User::withTrashed()
-                ->role('user')
-                ->with('roles')
-                ->get();
+            $this->users = $query->role('user')->get();
         } elseif ($authUser->hasRole('super-admin')) {
-            $this->users = User::withTrashed()
-                ->role(['user', 'admin'])
-                ->with('roles')
-                ->get();
+            $this->users = $query->role(['user', 'admin'])->get();
         }
     }
 
@@ -41,7 +51,6 @@ class Users extends Component
     {
         $user = User::find($id);
         if ($user) {
-
             adminLog('Admin blocked a user account.', [
                 'action' => 'block_user',
                 'target_user_id' => $user->id,
@@ -57,7 +66,6 @@ class Users extends Component
         $this->loaduserdata();
     }
 
-
     public function unblockUser($id)
     {
         $user = User::withTrashed()->find($id);
@@ -66,7 +74,7 @@ class Users extends Component
             adminLog("Admin unblocked a user account.", [
                 'action' => 'unblock_user',
                 'target_user_id' => $user->id,
-                'target_user_name' => $user->name,
+                'target_user_name' => $user->first_name . ' ' . $user->last_name,
                 'target_user_email' => $user->email,
                 'performed_by_admin_id' => auth()->id(),
                 'performed_by_admin_email' => auth()->user()->email,
@@ -76,18 +84,23 @@ class Users extends Component
 
         $this->loaduserdata();
     }
+
     public function viewUser($id)
     {
         $user = User::withTrashed()->find($id);
         if ($user) {
             $this->selectedUser = $user->toArray();
             $this->selectedUser['roles'] = $user->getRoleNames()->toArray();
+            $this->selectedUser['joined_date'] = $user->created_at->toDateString();
+            $this->selectedUser['ticket_balance'] = $user->ticket_balance ?? 0;
         }
     }
+
     public function resetSelectedUser()
     {
         $this->selectedUser = null;
     }
+
     public function prepareToGiveTickets($id)
     {
         $user = User::withTrashed()->find($id);
@@ -139,12 +152,10 @@ class Users extends Component
 
         if ($user) {
             $user->syncRoles(['admin']);
-
             alert_success($user->first_name . ' promoted to admin successfully!');
             $this->loaduserdata();
         }
     }
-
 
     public function reassignToUser($id)
     {
@@ -157,14 +168,13 @@ class Users extends Component
         }
     }
 
-
-
     public function resetForm()
     {
         $this->ticketCount = null;
         $this->ticketUserId = null;
         $this->selectedUser = null;
     }
+
     public function render()
     {
         return view('livewire.admindashboard.users')->layout('components.layouts.Admindashboard');

@@ -126,7 +126,7 @@
                         </p>
                         <p>No purchase. No cost. Just pure opportunity.</p>
                         <p>Build the next generation gaming future with us. Let the victories begin.</p>
-                        <button class="btn-custom mt-3" onclick="window.location.href='mailto:join@ghitloot.com'"
+                        <button class="btn-custom mt-3" onclick="window.location.href='jan.elementsofasoul@gmail.com'"
                             aria-label="Join us via email">
                             Join us
                         </button>
