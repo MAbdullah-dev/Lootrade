@@ -32,13 +32,16 @@ jobs:
             echo "📦 Installing PHP dependencies..."
             composer install --no-interaction --prefer-dist --optimize-autoloader
 
+            echo "🔧 Fixing Laravel permissions..."
+            bash /var/www/html/Lootrade/fix-perms.sh
+
             echo "🧱 Running Laravel migrations..."
-            php artisan migrate --force
+            sudo -u www-data php artisan migrate --force
 
             echo "🧹 Caching Laravel config, routes, and views..."
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
+            sudo -u www-data php artisan config:cache
+            sudo -u www-data php artisan route:cache
+            sudo -u www-data php artisan view:cache
 
             echo "📦 Installing Node modules..."
             npm install
@@ -51,7 +54,7 @@ jobs:
             npm run build
 
             echo "🔁 Restarting Laravel queue workers..."
-            php artisan queue:restart
+            sudo -u www-data php artisan queue:restart
 
             echo "✅ Deployment completed successfully!"
           EOF
