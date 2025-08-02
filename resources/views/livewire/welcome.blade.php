@@ -144,8 +144,8 @@
                         <h2 id="newsletter-heading" class="text-uppercase fs-5">RAIDERS INTEL — DIRECT TO YOUR EMAIL
                         </h2>
                         <p class="mt-4">
-                            In Loot Raiders, knowledge is power.
-                            Join our newsletter and get frontline updates on new giveaways, prize pools, and community
+                            In Loot Raiders, knowledge is power
+                            Join our newsletter and get frontline updates on new giveaways - prize pools, and community
                             quests — all delivered straight to your inbox. Be ready before the rest.
                         </p>
                         <form wire:submit.prevent="subscribe" aria-label="Newsletter Subscription Form">
