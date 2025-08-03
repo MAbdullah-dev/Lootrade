@@ -88,7 +88,73 @@
         </table>
     </div>
 
-    <!-- User Detail Modal and Give Ticket Modal remain unchanged -->
+    <!-- User Detail Modal -->
+    <div wire:ignore.self wire:ignore.self class="modal fade" id="userDetailModal" tabindex="-1"
+        aria-labelledby="userDetailModalLabel" aria-modal="true" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content shadow">
+                <div class="modal-header text-white">
+                    <h5 class="modal-title" id="userDetailModalLabel">
+                        User Details - {{ $selectedUser['first_name'] ?? '' }} {{ $selectedUser['last_name'] ?? '' }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        wire:click="resetSelectedUser"></button>
+                </div>
+                <div class="modal-body">
+                    @if ($selectedUser)
+                        <p><strong>Username:</strong> {{ $selectedUser['username'] }}</p>
+                        <p><strong>Email:</strong> {{ $selectedUser['email'] }}</p>
+                        <p><strong>Role:</strong> {{ $selectedUser['roles'][0] ?? 'N/A' }}</p>
+                        <p><strong>Status:</strong>
+                            @if ($selectedUser['deleted_at'])
+                                <span class="badge bg-secondary">Inactive</span>
+                            @else
+                                <span class="badge bg-success">Active</span>
+                            @endif
+                        </p>
+                        <p><strong>Joined Date:</strong> {{ $selectedUser['joined_date'] }}</p>
+                        <p><strong>Ticket Balance:</strong> {{ $selectedUser['ticket_balance'] }}</p>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        wire:click="resetSelectedUser">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Give Ticket Modal -->
+    <div wire:ignore.self wire:ignore.self class="modal fade" id="giveTicketModal" tabindex="-1"
+        aria-labelledby="giveTicketModalLabel" aria-modal="true" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <form wire:submit.prevent="giveTickets" class="modal-content shadow">
+                <div class="modal-header text-white">
+                    <h5 class="modal-title" id="giveTicketModalLabel">Give Tickets to
+                        {{ $selectedUser['first_name'] ?? '' }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="resetForm"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="ticketCount" class="form-label">Number of Tickets</label>
+                        <input type="number" min="1" wire:model="ticketCount"
+                            class="form-control @error('ticketCount') is-invalid @enderror" id="ticketCount"
+                            placeholder="Enter number of tickets" aria-required="true"
+                            aria-invalid="{{ $errors->has('ticketCount') ? 'true' : 'false' }}"
+                            @error('ticketCount') aria-describedby="ticketCountError" @enderror>
+                        @error('ticketCount')
+                            <span id="ticketCountError" class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        wire:click="resetForm">Cancel</button>
+                    <button type="submit" class="btn btn-success">Give</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 @push('js')
