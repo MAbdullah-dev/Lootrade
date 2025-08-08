@@ -29,6 +29,7 @@ use App\Livewire\Pages\Raffles;
 use App\Livewire\Pages\RaffleDetail;
 use App\Livewire\Pages\RaffleForm;
 use App\Livewire\Pages\SoloPlay;
+use App\Livewire\Pages\TermsConditions;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Welcome::class)->name('welcome');
 Route::get('/faq', Faq::class)->name('faq');
 Route::get('/privacy-policy', PrivacyPolicy::class)->name('privacy.policy');
+Route::get('/terms-and-conditions', TermsConditions::class)->name('terms.conditions');
 
 //auth
 Route::get('/login', Login::class)->middleware('guest')->name('login');

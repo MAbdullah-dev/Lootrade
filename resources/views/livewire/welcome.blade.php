@@ -42,9 +42,10 @@
                             </button>
                         </div>
                         <p class="text-center fs-6">By continuing, you accept our <a
-                                class="gradient text-decoration-none hover-underline" href="/terms-and-conditions">Terms
+                                class="gradient text-decoration-none hover-underline"
+                                href="{{ route('terms.conditions') }}" wire:navigate>Terms
                                 of Condition</a>. For our <a class="gradient text-decoration-none hover-underline"
-                                href="{{ route('privacy.policy') }}">Privacy Policy</a>, click here.</p>
+                                href="{{ route('privacy.policy') }} " wire:navigate>Privacy Policy</a>, click here.</p>
                     </div>
                 </div>
             </div>

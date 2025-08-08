@@ -16,8 +16,8 @@
                             target="_blank" aria-label="Privacy Policy (opens in a new tab)">
                             Privacy
                         </a>
-                        <a href="#" class="text-white text-decoration-none" target="_blank"
-                            aria-label="Terms and Conditions (opens in a new tab)">
+                        <a href="{{ route('terms.conditions') }}" wire:navigate class="text-white text-decoration-none"
+                            target="_blank" aria-label="Terms and Conditions (opens in a new tab)">
                             Terms
                         </a>
                     </nav>
