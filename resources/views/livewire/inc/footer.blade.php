@@ -12,8 +12,8 @@
                             aria-label="Legal Information (opens in a new tab)">
                             Legal
                         </a> --}}
-                        <a href="{{ route('privacy.policy') }}" class="text-white text-decoration-none" target="_blank"
-                            aria-label="Privacy Policy (opens in a new tab)">
+                        <a href="{{ route('privacy.policy') }}" wire:navigate class="text-white text-decoration-none"
+                            target="_blank" aria-label="Privacy Policy (opens in a new tab)">
                             Privacy
                         </a>
                         <a href="#" class="text-white text-decoration-none" target="_blank"
