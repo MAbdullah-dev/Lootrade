@@ -22,6 +22,7 @@ use App\Livewire\Dashboard\UserTransaction;
 use App\Livewire\Faq;
 use App\Livewire\Pages\Battlefield;
 use App\Livewire\Pages\Home;
+use App\Livewire\Pages\PrivacyPolicy;
 use App\Livewire\Pages\Tickets;
 use App\Livewire\Welcome;
 use App\Livewire\Pages\Raffles;
@@ -36,6 +37,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Welcome::class)->name('welcome');
 Route::get('/faq', Faq::class)->name('faq');
+Route::get('/privacy-policy', PrivacyPolicy::class)->name('privacy.policy');
 
 //auth
 Route::get('/login', Login::class)->middleware('guest')->name('login');
