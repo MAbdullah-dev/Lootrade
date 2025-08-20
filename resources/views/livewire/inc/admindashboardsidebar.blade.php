@@ -30,14 +30,14 @@
                         <i class="fas fa-trophy" aria-hidden="true"></i> <span>Winners</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.transaction' ? 'active' : '' }}"
                         href="{{ route('admin.transaction') }}" wire:navigate aria-label="Go to Transactions"
                         @if (Route::currentRouteName() == 'admin.transaction') aria-current="page" @endif>
                         <i class="fas fa-exchange-alt" aria-hidden="true"></i> <span>Transactions</span>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{-- <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.ticketsPackeges' ? 'active' : '' }}"
                         href="{{ route('admin.ticketsPackeges') }}" wire:navigate aria-label="Go to Ticket Packages"
                         @if (Route::currentRouteName() == 'admin.ticketsPackeges') aria-current="page" @endif>
@@ -50,7 +50,7 @@
                         @if (Route::currentRouteName() == 'admin.packageTypes') aria-current="page" @endif>
                         <i class="fa-solid fa-box" aria-hidden="true"></i> <span>Ticket packages type</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.newsletter' ? 'active' : '' }}"
                         href="{{ route('admin.newsletter') }}" wire:navigate aria-label="Go to Newsletter Subscribers"

@@ -78,12 +78,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="membersHeadingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#membersCollapseTwo" aria-expanded="false" aria-controls="membersCollapseTwo">
-                                    Is Ghitloot legal?
+                                    Is lootraider legal?
                                 </button>
                             </h2>
                             <div id="membersCollapseTwo" class="accordion-collapse collapse" aria-labelledby="membersHeadingTwo" data-bs-parent="#membersAccordion">
                                 <div class="accordion-body">
-                                    Yes, Ghitloot operates in compliance with all applicable laws and regulations to ensure a fair and transparent platform for all users.
+                                    Yes, lootraider operates in compliance with all applicable laws and regulations to ensure a fair and transparent platform for all users.
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                             </h2>
                             <div id="membersCollapseSix" class="accordion-collapse collapse" aria-labelledby="membersHeadingSix" data-bs-parent="#membersAccordion">
                                 <div class="accordion-body">
-                                    Tickets remain valid as long as your Ghitloot account is active.
+                                    Tickets remain valid as long as your lootraider account is active.
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                             </h2>
                             <div id="membersCollapseEight" class="accordion-collapse collapse" aria-labelledby="membersHeadingEight" data-bs-parent="#membersAccordion">
                                 <div class="accordion-body">
-                                    A community is a space on Ghitloot where members can participate in Giveaways and engage in various community activities.
+                                    A community is a space on lootraider where members can participate in Giveaways and engage in various community activities.
                                 </div>
                             </div>
                         </div>
@@ -208,12 +208,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="membersHeadingTwelve">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#membersCollapseTwelve" aria-expanded="false" aria-controls="membersCollapseTwelve">
-                                    Do I have to pay for Ghitloot?
+                                    Do I have to pay for lootraider?
                                 </button>
                             </h2>
                             <div id="membersCollapseTwelve" class="accordion-collapse collapse" aria-labelledby="membersHeadingTwelve" data-bs-parent="#membersAccordion">
                                 <div class="accordion-body">
-                                    No, Ghitloot is free for members. You can join and participate in Giveaways without any cost.
+                                    No, lootraider is free for members. You can join and participate in Giveaways without any cost.
                                 </div>
                             </div>
                         </div>
@@ -252,7 +252,7 @@
                             </h2>
                             <div id="membersCollapseFifteen" class="accordion-collapse collapse" aria-labelledby="membersHeadingFifteen" data-bs-parent="#membersAccordion">
                                 <div class="accordion-body">
-                                    No, purchasing entries is illegal and prohibited on Ghitloot.
+                                    No, purchasing entries is illegal and prohibited on lootraider.
                                 </div>
                             </div>
                         </div>
@@ -299,12 +299,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="membersHeadingNineteen">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#membersCollapseNineteen" aria-expanded="false" aria-controls="membersCollapseNineteen">
-                                    How to contact Ghitloot?
+                                    How to contact lootraider?
                                 </button>
                             </h2>
                             <div id="membersCollapseNineteen" class="accordion-collapse collapse" aria-labelledby="membersHeadingNineteen" data-bs-parent="#membersAccordion">
                                 <div class="accordion-body">
-                                    You can contact us at support@ghitloot.com for any inquiries or support needs.
+                                    You can contact us at support@lootraider.com for any inquiries or support needs.
                                 </div>
                             </div>
                         </div>
@@ -317,7 +317,7 @@
                             </h2>
                             <div id="membersCollapseTwenty" class="accordion-collapse collapse" aria-labelledby="membersHeadingTwenty" data-bs-parent="#membersAccordion">
                                 <div class="accordion-body">
-                                    If you encounter a bug, please email us at support@ghitloot.com with details of the issue.
+                                    If you encounter a bug, please email us at support@lootraider.com with details of the issue.
                                 </div>
                             </div>
                         </div>
@@ -331,12 +331,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="communityHeadingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#communityCollapseOne" aria-expanded="true" aria-controls="communityCollapseOne">
-                                    What is Ghitloot?
+                                    What is lootraider?
                                 </button>
                             </h2>
                             <div id="communityCollapseOne" class="accordion-collapse collapse show" aria-labelledby="communityHeadingOne" data-bs-parent="#communityAccordion">
                                 <div class="accordion-body">
-                                    We make brands excited to give back and connect with their amazing community. By running giveaways and rewards campaigns effortlessly. It makes member interactions fun and engaging through gamification. Ghitloot values transparency and fairness.
+                                    We make brands excited to give back and connect with their amazing community. By running giveaways and rewards campaigns effortlessly. It makes member interactions fun and engaging through gamification. lootraider values transparency and fairness.
                                 </div>
                             </div>
                         </div>
@@ -344,12 +344,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="communityHeadingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#communityCollapseTwo" aria-expanded="false" aria-controls="communityCollapseTwo">
-                                    How easy is it to use Ghitloot?
+                                    How easy is it to use lootraider?
                                 </button>
                             </h2>
                             <div id="communityCollapseTwo" class="accordion-collapse collapse" aria-labelledby="communityHeadingTwo" data-bs-parent="#communityAccordion">
                                 <div class="accordion-body">
-                                    Ghitloot is incredibly user-friendly and doesn't require any special skills. Use ready-made templates.
+                                    lootraider is incredibly user-friendly and doesn't require any special skills. Use ready-made templates.
                                 </div>
                             </div>
                         </div>
@@ -357,7 +357,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="communityHeadingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#communityCollapseThree" aria-expanded="false" aria-controls="communityCollapseThree">
-                                    How does Ghitloot ensure the selection of winners is fair?
+                                    How does lootraider ensure the selection of winners is fair?
                                 </button>
                             </h2>
                             <div id="communityCollapseThree" class="accordion-collapse collapse" aria-labelledby="communityHeadingThree" data-bs-parent="#communityAccordion">
@@ -370,12 +370,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="communityHeadingFour">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#communityCollapseFour" aria-expanded="false" aria-controls="communityCollapseFour">
-                                    Is Ghitloot in Beta phase?
+                                    Is lootraider in Beta phase?
                                 </button>
                             </h2>
                             <div id="communityCollapseFour" class="accordion-collapse collapse" aria-labelledby="communityHeadingFour" data-bs-parent="#communityAccordion">
                                 <div class="accordion-body">
-                                    Yes, Ghitloot is currently in its exclusive beta phase. We're selectively inviting brands that align with our vision, ensuring a curated experience for our early users. This allows us to refine the platform in partnership with forward-thinking brands while we gather invaluable feedback to perfect Ghitloot for the broader community.
+                                    Yes, lootraider is currently in its exclusive beta phase. We're selectively inviting brands that align with our vision, ensuring a curated experience for our early users. This allows us to refine the platform in partnership with forward-thinking brands while we gather invaluable feedback to perfect lootraider for the broader community.
                                 </div>
                             </div>
                         </div>
@@ -396,12 +396,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="communityHeadingSix">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#communityCollapseSix" aria-expanded="false" aria-controls="communityCollapseSix">
-                                    Is Ghitloot mobile-friendly?
+                                    Is lootraider mobile-friendly?
                                 </button>
                             </h2>
                             <div id="communityCollapseSix" class="accordion-collapse collapse" aria-labelledby="communityHeadingSix" data-bs-parent="#communityAccordion">
                                 <div class="accordion-body">
-                                    Absolutely! Ghitloot is fully mobile-friendly. You and your members can easily access and interact with campaigns on any mobile device.
+                                    Absolutely! lootraider is fully mobile-friendly. You and your members can easily access and interact with campaigns on any mobile device.
                                 </div>
                             </div>
                         </div>
@@ -409,12 +409,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="communityHeadingSeven">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#communityCollapseSeven" aria-expanded="false" aria-controls="communityCollapseSeven">
-                                    What kind of promotions can I run with Ghitloot?
+                                    What kind of promotions can I run with lootraider?
                                 </button>
                             </h2>
                             <div id="communityCollapseSeven" class="accordion-collapse collapse" aria-labelledby="communityHeadingSeven" data-bs-parent="#communityAccordion">
                                 <div class="accordion-body">
-                                    With Ghitloot, you can run various promotions such as giveaways, sweepstakes, and more, all designed to boost engagement and customer interaction.
+                                    With lootraider, you can run various promotions such as giveaways, sweepstakes, and more, all designed to boost engagement and customer interaction.
                                 </div>
                             </div>
                         </div>
@@ -427,7 +427,7 @@
                             </h2>
                             <div id="communityCollapseEight" class="accordion-collapse collapse" aria-labelledby="communityHeadingEight" data-bs-parent="#communityAccordion">
                                 <div class="accordion-body">
-                                    Our support team is always ready to help. Additionally, check our newsletter for expert advice and tips on running successful giveaway campaigns. Feel free to reach out to us at support@ghitloot.com
+                                    Our support team is always ready to help. Additionally, check our newsletter for expert advice and tips on running successful giveaway campaigns. Feel free to reach out to us at support@lootraider.com
                                 </div>
                             </div>
                         </div>
@@ -440,7 +440,7 @@
                             </h2>
                             <div id="communityCollapseNine" class="accordion-collapse collapse" aria-labelledby="communityHeadingNine" data-bs-parent="#communityAccordion">
                                 <div class="accordion-body">
-                                    We provide comprehensive support through email. Our team is here to ensure your campaigns run smoothly. For assistance, feel free to reach out to us at support@ghitloot.com.
+                                    We provide comprehensive support through email. Our team is here to ensure your campaigns run smoothly. For assistance, feel free to reach out to us at support@lootraider.com.
                                 </div>
                             </div>
                         </div>
@@ -453,7 +453,7 @@
                             </h2>
                             <div id="communityCollapseTen" class="accordion-collapse collapse" aria-labelledby="communityHeadingTen" data-bs-parent="#communityAccordion">
                                 <div class="accordion-body">
-                                    No, there are no additional fees. All costs are clearly stated in our pricing plans, ensuring complete transparency. For assistance, feel free to reach out to us at support@ghitloot.com.
+                                    No, there are no additional fees. All costs are clearly stated in our pricing plans, ensuring complete transparency. For assistance, feel free to reach out to us at support@lootraider.com.
                                 </div>
                             </div>
                         </div>

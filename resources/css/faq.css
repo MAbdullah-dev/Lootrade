@@ -1,12 +1,12 @@
 .faq .card {
-    background-color: #1B1B1B;
+    background: linear-gradient(to right, #A347BA, #2E8AEA);
     color: #fff;
 }
 
 .faq .card .card-head {
     i {
         font-size: 22px;
-        color: #FF0000;
+        color: #fff;
     }
 }
 
@@ -25,14 +25,14 @@
 
 
 .accordion-item {
-    background-color: #000;
+    background: linear-gradient(to right, #A347BA, #2E8AEA)s;
     border: none;
     margin-bottom: 0.5rem;
 }
 
 
 .accordion-button {
-    background-color: #000 !important;
+    background: linear-gradient(to right, #A347BA, #2E8AEA) !important;
     color: #fff !important;
     font-size: 1.125rem;
     font-weight: 600;
@@ -59,7 +59,7 @@
 
 
 .accordion-body {
-    background-color: #000;
+    background: linear-gradient(to right, #A347BA, #2E8AEA);
     color: #fff;
     padding: 1rem;
 }

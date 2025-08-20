@@ -2,19 +2,16 @@
     <div class="head mb-4">
         <div class="row g-3 align-items-center">
             <div class="col-12 col-md-6">
-                <input type="text" class="form-control" placeholder="Search users..." aria-label="Search users">
+                <input type="text" class="form-control" placeholder="Search users..."
+                       aria-label="Search users" wire:model.live="searchQuery">
             </div>
-            {{-- <div class="col-12 col-md-3">
-                <select class="form-select" aria-label="Sort raffles">
-                    <option value="desc">Newest First</option>
-                    <option value="asc">Oldest First</option>
-                </select>
-            </div> --}}
+            {{-- Sorting select (uncomment if needed) --}}
         </div>
     </div>
 
+    <!-- Rest of your table and modals remain unchanged -->
     <div class="table-responsive rounded shadow">
-        <table class="table table-neon  table-hover mb-0">
+        <table class="table table-neon table-hover mb-0">
             <thead class="thead">
                 <tr>
                     <th scope="col">#</th>
@@ -66,13 +63,11 @@
                                     Give Ticket
                                 </button>
                             </td>
-
                             <td class="text-nowrap">
                                 <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#userDetailModal" wire:click="viewUser({{ $user->id }})">
                                     View
                                 </button>
-
                                 @if ($user->trashed())
                                     <button class="btn btn-sm btn-success"
                                         wire:click="unblockUser({{ $user->id }})">
@@ -87,7 +82,7 @@
                         </tr>
                     @endforeach
                 @else
-                    <td class="text-center" colspan="8">N/A</td>
+                    <td class="text-center" colspan="8">No users found</td>
                 @endif
             </tbody>
         </table>

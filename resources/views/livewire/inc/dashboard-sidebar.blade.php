@@ -30,14 +30,14 @@
                         <i class="fas fa-gift" aria-hidden="true"></i> <span>Raffles</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'user.transactions' ? 'active' : '' }}"
                         href="{{ route('user.transactions') }}" wire:navigate aria-label="Go to Transactions"
                         @if (Route::currentRouteName() == 'user.transactions') aria-current="page" @endif>
                         <i class="fas fa-exchange-alt" aria-hidden="true"></i>
                         <span>Transaction</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a class="d-flex d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'user.change.password' ? 'active' : '' }}"

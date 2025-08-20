@@ -1,20 +1,20 @@
 
-# Ghitloot 🎮💰
+# lootraider 🎮💰
 
-Welcome to the **Ghitloot** project! This is a Laravel-based web application designed for [brief project description, e.g., gaming, e-commerce, etc.]. Follow the instructions below to set up your local development environment. 🚀
+Welcome to the **lootraider** project! This is a Laravel-based web application designed for [brief project description, e.g., gaming, e-commerce, etc.]. Follow the instructions below to set up your local development environment. 🚀
 
 ---
 
 ## Getting Started 🚀
 
-To get started with the **Ghitloot** project, follow these steps:
+To get started with the **lootraider** project, follow these steps:
 
 ### 1. Clone the Repository 📂
 
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/MAbdullah-dev/Ghitloot.git
+git clone https://github.com/MAbdullah-dev/lootraider.git
 ```
 
 ### 2. Setup Environment File 🌱
@@ -168,8 +168,8 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Contributing 🤝
 
-We welcome contributions to improve **Ghitloot**. If you have suggestions or bug fixes, feel free to fork the repo and submit a pull request. Please follow the [Code of Conduct](CODE_OF_CONDUCT.md) and adhere to the project's [contribution guidelines](CONTRIBUTING.md).
+We welcome contributions to improve **lootraider**. If you have suggestions or bug fixes, feel free to fork the repo and submit a pull request. Please follow the [Code of Conduct](CODE_OF_CONDUCT.md) and adhere to the project's [contribution guidelines](CONTRIBUTING.md).
 
 ---
 
-**Enjoy coding with Ghitloot!** Happy developing! 💻🎮
+**Enjoy coding with lootraider!** Happy developing! 💻🎮
