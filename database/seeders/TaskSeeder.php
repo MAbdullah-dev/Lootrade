@@ -14,7 +14,7 @@ class TaskSeeder extends Seeder
                 'username'   => 'lootraiders',
                 'platform'   => 'discord',
                 'action'     => 'join_server',
-                'link'       => 'https://discord.gg/KZjWU4ub',
+                'link'       => 'https://discord.gg/2z7sTcKCxv',
                 'meta'       => json_encode([
                     'guild_id' => '1399726973202202757',
                     'invite_link' => 'https://discord.gg/KZjWU4ub'
@@ -38,20 +38,61 @@ class TaskSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            // [
-            //     'username'   => 'lootraiders',
-            //     'platform'   => 'youtube',
-            //     'action'     => 'like_video',
-            //     'link'       => 'https://www.youtube.com/watch?v=1ZsjaURJgzc',
-            //     'meta'       => json_encode([
-            //         'video_id' => '1ZsjaURJgzc',
-            //         'duration' => 60,
-            //     ]),
-            //     'reward'     => 5,
-            //     'is_active'  => true,
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ],
+            [
+                'username'   => 'lootraiders',
+                'platform'   => 'x',
+                'action'     => 'follow_user',
+                'link'       => 'https://x.com/ElementsofaSoul',
+                'meta'       => json_encode([
+                    'username' => 'ElementsofaSoul',
+                    "target_user_id" => "1775079366243794944"
+                ]),
+                'reward'     => 8,
+                'is_active'  => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'username'   => 'lootraiders',
+                'platform'   => 'x',
+                'action'     => 'like_tweet',
+                'link'       => 'https://x.com/ElementsofaSoul/status/1868963256809013474',
+                'meta'       => json_encode([
+                    'tweet_id' => '1868963256809013474',
+                    'author'   => 'ElementsofaSoul'
+                ]),
+                'reward'     => 5,
+                'is_active'  => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'username'   => 'lootraiders',
+                'platform'   => 'x',
+                'action'     => 'repost_tweet',
+                'link'       => 'https://x.com/ElementsofaSoul/status/1868963256809013474',
+                'meta'       => json_encode([
+                    'tweet_id' => '1868963256809013474',
+                    'username' => 'ElementsofaSoul',
+                ]),
+                'reward'     => 8,
+                'is_active'  => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'username'   => 'lootraiders',
+                'platform'   => 'youtube',
+                'action'     => 'like_video',
+                'link'       => 'https://www.youtube.com/watch?v=1ZsjaURJgzc',
+                'meta'       => json_encode([
+                    'video_id' => '1ZsjaURJgzc',
+                ]),
+                'reward'     => 5,
+                'is_active'  => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         foreach ($tasks as $task) {

@@ -374,7 +374,6 @@
             return;
         }
 
-        // Otherwise, open normal link and verify on return
         localStorage.setItem(`task_${taskId}_started`, Date.now());
         window.open(url, '_blank');
 
@@ -394,7 +393,6 @@
         }, { once: true });
     });
 
-    // Load YouTube iframe API
     if (!window.YT || !YT.Player) {
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";

@@ -1,5 +1,5 @@
 <div role="main">
-    <section class="banner" aria-label="Login Section">
+   <section class="banner" aria-label="Login Section">
     <div class="container-fluid p-0">
         <div class="row g-0 min-vh-100">
             <div class="col-lg-6 d-none d-lg-block">
@@ -15,9 +15,9 @@
                         <button wire:click="redirectToLogin" class="email-btn login-btn">
                             <img src="{{ asset('assets/svg/email-1-svgrepo-com.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Email Icon">Continue with Email
                         </button>
-                        {{-- <button wire:click="redirectToTwitterLogin" class="x-btn login-btn">
+                        <button wire:click="redirectToTwitterLogin" class="x-btn login-btn">
                             <img src="{{ asset('assets/svg/x-white.svg') }}" class="position-absolute start-0 ms-3 img-fluid"  alt="X Icon">Continue with X
-                        </button> --}}
+                        </button>
                         {{-- <button wire:click="redirectToTwitchLogin" class="twitch-btn login-btn">
                             <img src="{{ asset('assets/svg/twitch.svg') }}" class="position-absolute start-0 ms-3 img-fluid" alt="Twitch Icon">Continue with Twitch
                         </button> --}}
@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    </section>
+   </section>
     <section class="intro-section" aria-labelledby="tickets-key">
         <div class="container">
             <div class="inner">

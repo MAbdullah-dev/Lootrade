@@ -66,7 +66,7 @@ class SocialiteController extends Controller
             $driver = Socialite::driver($driverName);
 
             if ($provider === 'twitter') {
-                $driver->scopes(['users.read', 'tweet.read', 'offline.access']);
+                $driver->scopes(['users.read', 'tweet.read', 'follows.read', 'follows.write', 'like.read', 'offline.access']);
             }
 
             if ($provider === 'google') {
@@ -165,6 +165,13 @@ class SocialiteController extends Controller
         try {
             $driverName   = $provider === 'twitter' ? 'twitter-oauth-2' : $provider;
             $providerUser = Socialite::driver($driverName)->user();
+
+            Log::debug('OAuth Tokens (raw user):', [
+                'token'         => $providerUser->token,
+                'refreshToken'  => $providerUser->refreshToken,
+                'expiresIn'     => $providerUser->expiresIn,
+                'raw'           => $providerUser->user, // <-- this shows full JSON from X
+            ]);
 
             $user = $this->socialAccountService->createOrGetUser($providerUser, $provider);
             $user->update(['last_login_at' => now()]);

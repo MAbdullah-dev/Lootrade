@@ -41,6 +41,9 @@ class Home extends Component
         $social = match ($type) {
             'discord:join_server' => $user->socialAccounts()->where('provider', 'discord')->first(),
             'youtube:like_video',  => $user->socialAccounts()->where('provider', 'google')->first(),
+            'x:like_tweet' => $user->socialAccounts()->where('provider', 'twitter')->first(),
+            'x:follow_user' => $user->socialAccounts()->where('provider', 'twitter')->first(),
+            'x:repost_tweet' => $user->socialAccounts()->where('provider', 'twitter')->first(),
             'youtube:watch_timer' => true,
             default => true,
         };

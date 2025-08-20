@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+
 
 class TaskVerificationService
 {
@@ -17,6 +19,9 @@ class TaskVerificationService
             'discord:join_server' => $this->verifyDiscordJoin($task, $user),
             'youtube:watch_timer' => $this->verifyTimerOnly($task, $user),
             'youtube:like_video' => $this->verifyYouTubeLike($task, $user),
+            'x:follow_user'       => $this->verifyXFollow($task, $user),
+            'x:repost_tweet'       => $this->verifyXRepost($task, $user),
+            'x:like_tweet'        => $this->verifyXLike($task, $user),
             default => true,
         };
     }
@@ -70,56 +75,177 @@ class TaskVerificationService
     }
 
     private function verifyYouTubeLike(Task $task, User $user): bool
-{
-    Log::info("verifyYouTubeLike() called for user {$user->id}, task {$task->id}");
+    {
+        Log::info("verifyYouTubeLike() called for user {$user->id}, task {$task->id}");
 
-    $social = $user->socialAccounts()->where('provider', 'google')->first();
+        $social = $user->socialAccounts()->where('provider', 'google')->first();
 
-    if (!$social || !$social->access_token) {
-        Log::warning("No Google social account or access token found for user {$user->id}");
-        return false;
-    }
-
-    $meta = is_string($task->meta) ? json_decode($task->meta, true) : $task->meta;
-    $videoId = $meta['video_id'] ?? null;
-
-    if (!$videoId) {
-        Log::warning("No video_id found in task meta for task {$task->id}");
-        return false;
-    }
-
-    try {
-        $url = "https://www.googleapis.com/youtube/v3/videos";
-        $response = Http::withToken($social->access_token)
-            ->get($url, [
-                'part' => 'id',
-                'myRating' => 'like',
-                'maxResults' => 50
-            ]);
-
-        Log::info("YouTube API Response: " . $response->body());
-
-        if (!$response->ok()) {
-            Log::warning("YouTube API call failed");
+        if (!$social || !$social->access_token) {
+            Log::warning("No Google social account or access token found for user {$user->id}");
             return false;
         }
 
-        $likedVideos = $response->json('items') ?? [];
-        foreach ($likedVideos as $video) {
-            if (($video['id'] ?? null) === $videoId) {
-                Log::info("Video $videoId found in liked videos.");
-                return true;
-            }
+        $meta = is_string($task->meta) ? json_decode($task->meta, true) : $task->meta;
+        $videoId = $meta['video_id'] ?? null;
+
+        if (!$videoId) {
+            Log::warning("No video_id found in task meta for task {$task->id}");
+            return false;
         }
 
-        Log::info("Video $videoId not found in liked videos.");
-        return false;
+        try {
+            $url = "https://www.googleapis.com/youtube/v3/videos";
+            $response = Http::withToken($social->access_token)
+                ->get($url, [
+                    'part' => 'id',
+                    'myRating' => 'like',
+                    'maxResults' => 50
+                ]);
 
-    } catch (\Exception $e) {
-        Log::error("YouTube like verification failed: " . $e->getMessage());
-        return false;
+            Log::info("YouTube API Response: " . $response->body());
+
+            if (!$response->ok()) {
+                Log::warning("YouTube API call failed");
+                return false;
+            }
+
+            $likedVideos = $response->json('items') ?? [];
+            foreach ($likedVideos as $video) {
+                if (($video['id'] ?? null) === $videoId) {
+                    Log::info("Video $videoId found in liked videos.");
+                    return true;
+                }
+            }
+
+            Log::info("Video $videoId not found in liked videos.");
+            return false;
+        } catch (\Exception $e) {
+            Log::error("YouTube like verification failed: " . $e->getMessage());
+            return false;
+        }
     }
-}
 
+    private function verifyXLike(Task $task, User $user): bool
+    {
+        $social = $user->socialAccounts()->where('provider', 'twitter')->first();
+        if (!$social || !$social->access_token) {
+            return false;
+        }
 
+        $meta = json_decode($task->meta, true);
+        $tweetId = $meta['tweet_id'] ?? null;
+
+        if (!$tweetId) return false;
+
+        try {
+            $url = "https://api.x.com/2/users/{$social->provider_id}/liked_tweets?max_results=100";
+
+            $response = Http::withToken($social->access_token)
+                ->withHeaders(['Accept' => 'application/json'])
+                ->get($url);
+
+            if (!$response->ok()) return false;
+
+            return collect($response->json('data') ?? [])
+                ->contains(fn($tweet) => $tweet['id'] === $tweetId);
+        } catch (\Exception $e) {
+            Log::error("X like verification failed: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    private function verifyXFollow(Task $task, User $user): bool
+    {
+        $social = $user->socialAccounts()->where('provider', 'twitter')->first();
+
+        if (!$social || !$social->access_token) {
+            Log::warning("No X account or token for user {$user->id}");
+            return false;
+        }
+
+        $meta = is_string($task->meta) ? json_decode($task->meta, true) : $task->meta;
+        $targetUserId = $meta['target_user_id'] ?? null;
+
+        if (!$targetUserId) {
+            Log::warning("No target user id in task {$task->id}");
+            return false;
+        }
+
+        $token = $social->access_token;
+        $url = "https://api.x.com/2/users/{$social->provider_id}/following";
+
+        try {
+            $postResponse = Http::withToken($token)
+                ->withHeaders(['Accept' => 'application/json'])
+                ->post($url, ['target_user_id' => $targetUserId]);
+
+            $following = false;
+
+            if ($postResponse->ok()) {
+                $data = $postResponse->json();
+                $following = $data['data']['following'] ?? false;
+                $pendingFollow = $data['data']['pending_follow'] ?? false;
+
+                Log::info("Temporary follow response for user {$user->id}", [
+                    'following' => $following,
+                    'pending' => $pendingFollow,
+                ]);
+
+                if ($following && !$pendingFollow) {
+                    $deleteUrl = "https://api.x.com/2/users/{$social->provider_id}/following?target_user_id={$targetUserId}";
+
+                    Http::withToken($token)
+                        ->withHeaders(['Accept' => 'application/json'])
+                        ->delete($deleteUrl);
+                }
+            } else {
+                Log::error("Temporary follow request failed", [
+                    'status' => $postResponse->status(),
+                    'body' => $postResponse->body(),
+                ]);
+            }
+
+            return $following;
+        } catch (\Exception $e) {
+            Log::error("X follow verification exception for user {$user->id}: {$e->getMessage()}", [
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return false;
+        }
+    }
+
+    private function verifyXRepost(Task $task, User $user): bool
+    {
+        $social = $user->socialAccounts()->where('provider', 'twitter')->first();
+        if (!$social || !$social->access_token) {
+            return false;
+        }
+
+        $meta = json_decode($task->meta, true);
+        $tweetId = $meta['tweet_id'] ?? null;
+
+        if (!$tweetId) return false;
+
+        try {
+            $url = "https://api.x.com/2/tweets/{$tweetId}/retweeted_by";
+
+            $response = Http::withToken($social->access_token)->get($url);
+
+            if (!$response->ok()) {
+                Log::error("X repost verification failed: " . $response->body());
+                return false;
+            }
+
+            foreach ($response->json('data') ?? [] as $account) {
+                if ($account['id'] === $social->provider_id) {
+                    return true;
+                }
+            }
+
+            return false;
+        } catch (\Exception $e) {
+            Log::error("X repost verification exception: " . $e->getMessage());
+            return false;
+        }
+    }
 }
