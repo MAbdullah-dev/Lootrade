@@ -32,6 +32,13 @@ class DiscordNativeTaskController extends Controller
 
     public function store(Request $request)
     {
+
+        Log::info('DiscordNativeTaskController@store hit', [
+            'time' => now()->toDateTimeString(),
+            'ip'   => $request->ip(),
+            'headers' => $request->headers->all(),
+        ]);
+
         $signature = $request->header('X-Bot-Signature');
         $payload   = $request->getContent();
         $expected  = hash_hmac('sha256', $payload, env('BOT_SECRET'));
