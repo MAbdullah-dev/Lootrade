@@ -43,6 +43,13 @@ class DiscordNativeTaskController extends Controller
         $payload   = $request->getContent();
         $expected  = hash_hmac('sha256', $payload, env('BOT_SECRET'));
 
+        Log::info('🔑 Signature check', [
+            'expected'  => $expected,
+            'received'  => $signature,
+            'matches'   => hash_equals($expected, $signature),
+            'secret_len' => strlen(env('BOT_SECRET')),
+        ]);
+
         if (!hash_equals($expected, $signature)) {
             return response()->json(['success' => false, 'error' => 'Invalid signature', 'code' => 'INVALID_SIGNATURE'], 401);
         }
