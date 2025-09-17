@@ -39,14 +39,16 @@ class DiscordNativeTaskController extends Controller
             'headers' => $request->headers->all(),
         ]);
 
+        $secret   = config('services.bot.secret');
         $signature = $request->header('X-Bot-Signature');
         $payload   = $request->getContent();
-        $expected  = hash_hmac('sha256', $payload, env('BOT_SECRET'));
+        $expected  = hash_hmac('sha256', $payload, $secret);
 
         Log::info('🔑 Signature check', [
             'expected'  => $expected,
             'received'  => $signature,
             'matches'   => hash_equals($expected, $signature),
+            'secret'    => $secret,
             'secret_len' => strlen(env('BOT_SECRET')),
         ]);
 
