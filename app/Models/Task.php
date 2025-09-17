@@ -12,12 +12,14 @@ class Task extends Model
         'platform',
         'action',
         'link',
+        'meta',
         'reward',
         'is_active',
     ];
 
     protected $casts = [
         'meta' => 'array',
+        'is_active' => 'boolean',
     ];
 
     public function usersCompleted(): BelongsToMany

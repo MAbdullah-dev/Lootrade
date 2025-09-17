@@ -5,16 +5,18 @@ namespace App\Livewire\Pages;
 use App\Jobs\GenerateTicketsJob;
 use App\Models\Raffle;
 use App\Models\Task;
-use App\Models\User;
 use App\Services\TaskVerificationService;
 use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class Home extends Component
 {
+    public $normalTasks = [];
+    public $discordNativeTasks = [];
+    public $hasDiscordNativeTasks = false;
+    public $hasJoinedServer = false;
     public $tasks;
     public $showRewardModal = false;
     public $earnedReward = 0;
@@ -27,7 +29,19 @@ class Home extends Component
 
     public function fetchTasks()
     {
-        $this->tasks = Task::where('is_active', true)->get();
+        $user = Auth::user();
+
+        $allTasks = Task::where('is_active', true)->get();
+
+        $this->hasJoinedServer = $user->completedTasks()
+            ->where('platform', 'discord')
+            ->where('action', 'join_server')
+            ->exists();
+
+        $this->normalTasks = $allTasks->filter(fn($t) => $t->platform !== 'discord_native');
+        $this->discordNativeTasks = $allTasks->filter(fn($t) => $t->platform === 'discord_native');
+        // dd($this->discordNativeTasks);
+        $this->hasDiscordNativeTasks = $this->discordNativeTasks->isNotEmpty();
     }
 
     #[On('checkTaskAccess')]

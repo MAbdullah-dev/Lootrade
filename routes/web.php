@@ -8,6 +8,7 @@ use App\Livewire\Admindashboard\AdminRaffleUsers;
 use App\Livewire\Admindashboard\Dashboard;
 use App\Livewire\Admindashboard\NewsletterSubscription;
 use App\Livewire\Admindashboard\PackageType;
+use App\Livewire\Admindashboard\Tasks;
 use App\Livewire\Admindashboard\TicketPackages;
 use App\Livewire\Admindashboard\Transaction;
 use App\Livewire\Admindashboard\Users;
@@ -79,7 +80,7 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
 })->middleware(['signed'])->name('verification.verify');
 
 // Send verification mail after registration
-Route::get('/email/resend', 'Auth\VerificationController@resend')->middleware(['auth'])->name('verification.resend');
+// Route::get('/email/resend', 'Auth\VerificationController@resend')->middleware(['auth'])->name('verification.resend');
 
 //no auth required end
 
@@ -119,6 +120,7 @@ Route::middleware(['auth', 'role:admin|super-admin'])->prefix('admin')->group(fu
     Route::get('/ticketsPackeges', TicketPackages::class)->name('admin.ticketsPackeges');
     Route::get('/packageTypes', PackageType::class)->name('admin.packageTypes');
     Route::get('/newsletter', NewsletterSubscription::class)->name('admin.newsletter');
+    Route::get('/tasks', Tasks::class)->name('admin.tasks');
 
     // raffle create/edit
     Route::get('/raffle/create', RaffleForm::class)->name('raffle.create');

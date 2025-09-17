@@ -2,8 +2,7 @@
     <section class="banner">
         <div class="inner">
             <div class="container py-5">
-                <div class="banner-wrapper"><img class="rounded-5"
-                        src="{{asset("assets/images/home-page-banner.png")}}"
+                <div class="banner-wrapper"><img class="rounded-5" src="{{ asset('assets/images/home-page-banner.png') }}"
                         alt=""></div>
             </div>
         </div>
@@ -14,27 +13,25 @@
             <h3 class="tasks-title mb-4">Ways To Get Extra Tickets</h3>
 
             <div class="task-grid">
-                @foreach ($tasks as $task)
-                    <div class="task-card d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-2">
-                            {!! getPlatformIcon($task->platform) !!}
-                            <span class="task-username"> {{ $task->username }}</span>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            @php
-                                $user = auth()->user();
-                                $isCompleted = $user->completedTasks->contains($task->id);
-                            @endphp
-                            <a href="#" data-id="{{ $task->id }}"
-                                class="task-action {{ $isCompleted ? 'opacity-50 cursor-not-allowed' : '' }}"
-                                onclick="{{ $isCompleted ? 'return false;' : "openTask({$task->id}, '{$task->link}')" }}">
-                                {{ $isCompleted ? 'Completed' : ucfirst($task->action) }}
-                            </a>
-                            <span class="task-tickets">+{{ $task->reward }}</span>
-                        </div>
-                    </div>
+                @foreach ($normalTasks as $task)
+                    @include('partials.task-card', ['task' => $task])
                 @endforeach
             </div>
+            @if ($hasDiscordNativeTasks)
+                {{-- Discord native section --}}
+                @if ($hasJoinedServer)
+                    <h4 class="tasks-title my-4">Discord Exclusive Tasks</h4>
+                    <div class="task-grid-discord">
+                        @foreach ($discordNativeTasks as $task)
+                            @include('partials.task-card', ['task' => $task])
+                        @endforeach
+                    </div>
+                @else
+                    <div class="locked-tasks notice mt-5">
+                        🔒 Join our Discord server to unlock exclusive tasks!
+                    </div>
+                @endif
+            @endif
         </div>
     </section>
 
@@ -336,7 +333,9 @@
 
                                 console.log("dispatch");
 
-                                Livewire.dispatch('completeTask', {taskId});
+                                Livewire.dispatch('completeTask', {
+                                    taskId
+                                });
                                 closeWatchModal();
                             }
                         }, 1000);
@@ -350,11 +349,18 @@
     }
 
     function openTask(taskId, url) {
-        Livewire.dispatch('checkTaskAccess', { taskId, url });
+        Livewire.dispatch('checkTaskAccess', {
+            taskId,
+            url
+        });
     }
 
     window.addEventListener('task-access-granted', e => {
-        const { taskId, url, meta } = e.detail;
+        const {
+            taskId,
+            url,
+            meta
+        } = e.detail;
 
         const taskIdStr = String(taskId);
         const button = document.querySelector(`.task-action[data-id="${taskIdStr}"]`);
@@ -366,10 +372,10 @@
         button.classList.add('disabled');
 
         // If it's a YouTube watch task
-        if (meta?.video_id && meta?.duration) {
+        if (meta?.videoId && meta?.duration) {
             injectModalHTML();
             setTimeout(() => {
-                loadYoutubePlayer(meta.video_id, meta.duration, taskId);
+                loadYoutubePlayer(meta.videoId, meta.duration, taskId);
             }, 500);
             return;
         }
@@ -385,12 +391,16 @@
             const elapsed = (Date.now() - started) / 1000;
 
             if (elapsed >= 1) {
-                Livewire.dispatch('completeTask', { taskId });
+                Livewire.dispatch('completeTask', {
+                    taskId
+                });
             } else {
                 button.innerText = originalText;
                 button.classList.remove('disabled');
             }
-        }, { once: true });
+        }, {
+            once: true
+        });
     });
 
     if (!window.YT || !YT.Player) {

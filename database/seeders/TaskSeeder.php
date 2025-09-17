@@ -14,10 +14,10 @@ class TaskSeeder extends Seeder
                 'username'   => 'lootraiders',
                 'platform'   => 'discord',
                 'action'     => 'join_server',
-                'link'       => 'https://discord.gg/2z7sTcKCxv',
+                'link'       => 'https://discord.gg/yBPMajRj3y',
                 'meta'       => json_encode([
                     'guild_id' => '1399726973202202757',
-                    'invite_link' => 'https://discord.gg/KZjWU4ub'
+                    'invite_link' => 'https://discord.gg/yBPMajRj3y'
                 ]),
                 'reward'     => 10,
                 'is_active'  => true,
@@ -28,10 +28,10 @@ class TaskSeeder extends Seeder
                 'username'   => 'lootraiders',
                 'platform'   => 'youtube',
                 'action'     => 'watch_video',
-                'link'       => 'https://www.youtube.com/watch?v=D0UnqGm_miA',
+                'link'       => 'https://www.youtube.com/watch?v=VQWCPdmhY8I',
                 'meta'       => json_encode([
-                    'video_id' => 'D0UnqGm_miA',
-                    'duration' => 12,
+                    'video_id' => 'VQWCPdmhY8I',
+                    'duration' => 60,
                 ]),
                 'reward'     => 5,
                 'is_active'  => true,

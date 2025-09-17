@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('platform');
-            $table->string('action');
-            $table->string('link');
+            $table->string('username')->nullable();
+            $table->string('platform')->nullable();
+            $table->string('action')->nullable();
+            $table->string('link')->nullable();
             $table->json('meta')->nullable();
             $table->integer('reward')->default(0);
             $table->boolean('is_active')->default(true);

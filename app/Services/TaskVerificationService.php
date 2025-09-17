@@ -39,7 +39,7 @@ class TaskVerificationService
         Log::info("Found Discord social account: provider_id = {$social->provider_id}");
 
         $meta = is_string($task->meta) ? json_decode($task->meta, true) : $task->meta;
-        $guildId = $meta['guild_id'] ?? null;
+        $guildId = $meta['guildId'] ?? null;
 
         if (!$guildId) {
             Log::warning("No guild_id found in task meta for task {$task->id}");
@@ -86,7 +86,7 @@ class TaskVerificationService
         }
 
         $meta = is_string($task->meta) ? json_decode($task->meta, true) : $task->meta;
-        $videoId = $meta['video_id'] ?? null;
+        $videoId = $meta['videoId'] ?? null;
 
         if (!$videoId) {
             Log::warning("No video_id found in task meta for task {$task->id}");
@@ -133,7 +133,7 @@ class TaskVerificationService
         }
 
         $meta = json_decode($task->meta, true);
-        $tweetId = $meta['tweet_id'] ?? null;
+        $tweetId = $meta['tweetId'] ?? null;
 
         if (!$tweetId) return false;
 
@@ -164,7 +164,7 @@ class TaskVerificationService
         }
 
         $meta = is_string($task->meta) ? json_decode($task->meta, true) : $task->meta;
-        $targetUserId = $meta['target_user_id'] ?? null;
+        $targetUserId = $meta['targetUserId'] ?? null;
 
         if (!$targetUserId) {
             Log::warning("No target user id in task {$task->id}");
@@ -222,7 +222,7 @@ class TaskVerificationService
         }
 
         $meta = json_decode($task->meta, true);
-        $tweetId = $meta['tweet_id'] ?? null;
+        $tweetId = $meta['tweetId'] ?? null;
 
         if (!$tweetId) return false;
 

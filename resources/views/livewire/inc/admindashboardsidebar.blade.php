@@ -30,6 +30,13 @@
                         <i class="fas fa-trophy" aria-hidden="true"></i> <span>Winners</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.tasks' ? 'active' : '' }}"
+                        href="{{ route('admin.tasks') }}" wire:navigate aria-label="Go to Tasks"
+                        @if (Route::currentRouteName() == 'admin.tasks') aria-current="page" @endif>
+                        <i class="fas fa-tasks" aria-hidden="true"></i> <span>Tasks</span>
+                    </a>
+                </li>
                 {{-- <li class="nav-item">
                     <a class="d-flex align-items-center side-nav-icons {{ Route::currentRouteName() == 'admin.transaction' ? 'active' : '' }}"
                         href="{{ route('admin.transaction') }}" wire:navigate aria-label="Go to Transactions"
