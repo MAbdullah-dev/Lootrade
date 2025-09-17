@@ -40,6 +40,15 @@ class DiscordNativeTaskController extends Controller
             return response()->json(['success' => false, 'error' => 'Invalid signature', 'code' => 'INVALID_SIGNATURE'], 401);
         }
 
+        Log::info('Signature debug', [
+            'raw_payload'     => $payload,
+            'decoded_payload' => json_decode($payload, true),
+            'signature_sent'  => $signature,
+            'expected'        => $expected,
+            'match'           => hash_equals($expected, (string)$signature),
+            'bot_secret'      => substr(env('BOT_SECRET'), 0, 6) . '...',
+        ]);
+
         $data = json_decode($payload, true);
 
         Log::info('Verified Discord bot payload', $data);
