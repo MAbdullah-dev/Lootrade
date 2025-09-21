@@ -96,58 +96,66 @@
     -webkit-text-fill-color: transparent;
 }
 
+
 .task-grid {
-    columns: 3;
-    column-gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 }
+
 .task-grid-discord {
-    columns: 2;
-    column-gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
 }
+
 
 @media (max-width: 1200px) {
     .task-grid {
-        columns: 3;
+        grid-template-columns: repeat(3, 1fr);
     }
     .task-grid-discord {
-        columns: 2;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 992px) {
     .task-grid {
-        columns: 2;
+        grid-template-columns: repeat(2, 1fr);
     }
     .task-grid-discord {
-        columns: 2;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
     .task-grid {
-        columns: 1;
+        grid-template-columns: 1fr;
     }
     .task-grid-discord {
-        columns: 1;
+        grid-template-columns: 1fr;
     }
 }
 
+
 .task-card {
-    break-inside: avoid;
     background-color: #1f0b46;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     padding: 1rem;
-    margin-bottom: 1rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    /* white-space: nowrap; */
     gap: 10px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .task-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 10px #a347ba55;
 }
+
 
 .task-icon i {
     width: 24px;
