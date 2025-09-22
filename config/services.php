@@ -63,6 +63,8 @@ return [
     'bot' => [
         'secret' => env('BOT_SECRET'),
     ],
+    'node_api_url' => env('NODE_API_URL', 'http://127.0.0.1:4000'),
+    'discord_bot_tasks_api_key' => env('DISCORD_BOT_TASKS_API_KEY'),
 
 
 ];
