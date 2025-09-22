@@ -18,7 +18,7 @@ class SyncDiscordTasksJob implements ShouldQueue
 
     public function handle()
     {
-        $url = env('NODE_API_URL');
+        $url = env('NODE_API_URL') ?: "http://127.0.0.1:4000";
         if (!$url) return;
 
         // Fetch all active Discord Native tasks
