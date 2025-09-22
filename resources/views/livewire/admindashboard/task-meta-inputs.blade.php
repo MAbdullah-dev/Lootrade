@@ -7,13 +7,14 @@
 
 {{-- Discord Native --}}
 @if ($platform === 'discord_native')
-    <input type="text" wire:model="meta.description" wire:key="discord_native-description"
+<div wire:key="discord_native_container">
+    <input type="text" wire:model="meta.description"
         class="form-control mt-2"
         placeholder="Short description (e.g. Go to #general and react 👍 to the pinned post)">
 
     {{-- Message Task --}}
     @if ($action === 'message')
-        <input type="text" wire:model="meta.channelId" wire:key="discord_native-message-channelId"
+        <input type="text" wire:model="meta.channelId"
             class="form-control mt-2" placeholder="Channel ID">
         <input type="text" wire:model="meta.match" wire:key="discord_native-message-match"
             class="form-control mt-2" placeholder="Match Text (trigger)">
@@ -21,47 +22,48 @@
 
     {{-- Reaction Task --}}
     @if ($action === 'reaction')
-        <input type="text" wire:model="meta.messageId" wire:key="discord_native-reaction-messageId"
+        <input type="text" wire:model="meta.messageId"
             class="form-control mt-2" placeholder="Message ID">
-        <input type="text" wire:model="meta.emoji" wire:key="discord_native-reaction-emoji"
+        <input type="text" wire:model="meta.emoji"
             class="form-control mt-2" placeholder="Emoji (e.g. 👍)">
     @endif
 
     {{-- Role Task --}}
     @if ($action === 'role')
-        <input type="text" wire:model="meta.roleId" wire:key="discord_native-role-roleId"
+        <input type="text" wire:model="meta.roleId"
             class="form-control mt-2" placeholder="Role ID">
     @endif
 
     {{-- Attachment Task --}}
     @if ($action === 'attachment')
-        <input type="text" wire:model="meta.channelId" wire:key="discord_native-attachment-channelId"
+        <input type="text" wire:model="meta.channelId"
             class="form-control mt-2" placeholder="Channel ID">
     @endif
 
     {{-- Reply Task --}}
     @if ($action === 'reply')
-        <input type="text" wire:model="meta.parentMessageId" wire:key="discord_native-reply-parentMessageId"
+        <input type="text" wire:model="meta.parentMessageId"
             class="form-control mt-2" placeholder="Parent Message ID">
     @endif
 
     {{-- Thread Participation Task --}}
     @if ($action === 'thread')
-        <input type="text" wire:model="meta.threadId" wire:key="discord_native-thread-threadId"
+        <input type="text" wire:model="meta.threadId"
             class="form-control mt-2" placeholder="Thread ID">
     @endif
 
     {{-- Mention Task --}}
     @if ($action === 'mention')
-        <input type="text" wire:model="meta.channelId" wire:key="discord_native-mention-channelId"
+        <input type="text" wire:model="meta.channelId"
             class="form-control mt-2" placeholder="Channel ID">
     @endif
 
     {{-- Live Event Chat --}}
     @if ($action === 'live_event')
-        <input type="text" wire:model="meta.channelId" wire:key="discord_native-live_event-channelId"
+        <input type="text" wire:model="meta.channelId"
             class="form-control mt-2" placeholder="Channel ID">
     @endif
+</div>
 @endif
 
 
