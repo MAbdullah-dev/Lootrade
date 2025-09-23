@@ -339,12 +339,12 @@
 
 @push('js')
 <script>
-    $(window).on('load', function () {
-        setTimeout(() => {
-            $(".preloader").fadeOut('slow', function () {
-                $(this).remove();
-            });
-        }, 4000); // ⏳ keep preloader for 1 second after load
-    });
-</script>
+//     $(window).on('load', function () {
+//         setTimeout(() => {
+//             $(".preloader").fadeOut('slow', function () {
+//                 $(this).remove();
+//             });
+//         }, 4000); // ⏳ keep preloader for 1 second after load
+//     });
+// </script>
 @endpush
