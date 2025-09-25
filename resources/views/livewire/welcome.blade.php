@@ -37,10 +37,10 @@
                                     class="position-absolute start-0 ms-3 img-fluid" alt="Google Icon">Continue with
                                 Google
                             </button>
-                            <button wire:click="redirectToKickLogin" class="kick-btn login-btn">
+                            {{-- <button wire:click="redirectToKickLogin" class="kick-btn login-btn">
                                 <img src="{{ asset('assets/svg/kick.svg') }}"
                                     class="position-absolute start-0 ms-3 img-fluid" alt="Kick Icon">Continue with Kick
-                            </button>
+                            </button> --}}
                         </div>
                         <p class="text-center fs-6">By continuing, you accept our <a
                                 class="gradient text-decoration-none hover-underline"

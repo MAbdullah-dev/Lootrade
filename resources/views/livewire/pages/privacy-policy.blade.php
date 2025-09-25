@@ -357,7 +357,7 @@
 
         <h3>Exercising Your Rights</h3>
         <p>To exercise any of the rights outlined above, please contact us:</p>
-        <p><strong>Lootraiders@elementsofasoul.com</strong></p>
+        <p><strong>team@elementsofasoul.com</strong></p>
         <p>We will respond to your request in accordance with applicable data protection laws and within legally
             mandated timeframes.</p>
     </div>
@@ -383,7 +383,7 @@
         <h3>Deleting Your User Account</h3>
         <p>To delete your Loot Raiders account:</p>
         <ul>
-            <li>Send an email to <strong>lootraiders@elementsofasoul.com</strong></li>
+            <li>Send an email to <strong>team@elementsofasoul.com</strong></li>
             <li>Use the subject line: "Delete Account"</li>
         </ul>
         <p>Please note that account deletion is final and results in the loss of:</p>
@@ -503,7 +503,7 @@
                 </tr>
                 <tr>
                     <td><strong>Email Address</strong></td>
-                    <td>lootraiders@elementsofasoul.com</td>
+                    <td>team@elementsofasoul.com</td>
                 </tr>
             </table>
         </div>
