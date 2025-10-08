@@ -17,7 +17,7 @@
 
         @if($task->platform === 'discord_native')
             <a
-                href="https://discord.com/channels/1399726973202202757"
+                href="https://discord.com/channels/1238395623720357889"
                 target="_blank"
                 class="task-action {{ $isCompleted ? 'opacity-50 cursor-not-allowed' : '' }}"
                 onclick="{{ $isCompleted ? 'return false;' : "openTask({$task->id}, '')" }}">

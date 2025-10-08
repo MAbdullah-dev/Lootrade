@@ -485,7 +485,7 @@
                 </tr>
                 <tr>
                     <td><strong>Email Address</strong></td>
-                    <td>lootraiders@elementsofasoul.com</td>
+                    <td>team@elementsofasoul.com</td>
                 </tr>
             </table>
         </div>

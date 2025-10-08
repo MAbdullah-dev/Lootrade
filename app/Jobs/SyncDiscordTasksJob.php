@@ -18,10 +18,9 @@ class SyncDiscordTasksJob implements ShouldQueue
 
     public function handle()
     {
-        $url = env('NODE_API_URL');
+        $url = config('services.node_api_url');
         if (!$url) return;
 
-        // Fetch all active Discord Native tasks
         $tasks = Task::where('platform', 'discord_native')
             ->where('is_active', true)
             ->get();
@@ -30,9 +29,9 @@ class SyncDiscordTasksJob implements ShouldQueue
 
         try {
             Http::withHeaders([
-                'Authorization' => 'Bearer ' . env('DISCORD_BOT_TASKS_API_KEY'),
+                'Authorization' => 'Bearer ' . config('services.discord_bot_tasks_api_key'),
             ])->timeout(2)
-              ->post($url . '/update-tasks', $payload);
+                ->post($url . '/update-tasks', $payload);
 
             Log::info('Discord tasks synced', ['count' => count($payload)]);
         } catch (\Throwable $e) {

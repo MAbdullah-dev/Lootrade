@@ -18,7 +18,7 @@
                             <th>Platform</th>
                             <th>Action</th>
                             <th>Reward</th>
-                            <th>Meta</th>
+                            {{-- <th>Meta</th> --}}
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -33,7 +33,7 @@
                                 <td>{{ $task->platform }}</td>
                                 <td>{{ $task->action }}</td>
                                 <td>{{ $task->reward }}</td>
-                                <td><code>{{ Str::limit(json_encode($task->meta), 40) }}</code></td>
+                                {{-- <td><code>{{ Str::limit(json_encode($task->meta), 40) }}</code></td> --}}
                                 <td>
                                     <button wire:click="toggleActive({{ $task->id }})"
                                         class="btn btn-sm {{ $task->is_active ? 'btn-success' : 'btn-danger' }}">

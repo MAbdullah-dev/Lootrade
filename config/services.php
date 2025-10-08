@@ -52,14 +52,19 @@ return [
         'redirect' => env('TWITTER_REDIRECT_URI'),
     ],
     'kick' => [
-    'client_id' => env('KICK_CLIENT_ID'),
-    'client_secret' => env('KICK_CLIENT_SECRET'),
-    'redirect' => env('KICK_REDIRECT_URI'),
+        'client_id' => env('KICK_CLIENT_ID'),
+        'client_secret' => env('KICK_CLIENT_SECRET'),
+        'redirect' => env('KICK_REDIRECT_URI'),
     ],
     'stripe' => [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'bot' => [
+        'secret' => env('BOT_SECRET'),
+    ],
+    'node_api_url' => env('NODE_API_URL', 'http://127.0.0.1:4000'),
+    'discord_bot_tasks_api_key' => env('DISCORD_BOT_TASKS_API_KEY'),
 
 
 ];
