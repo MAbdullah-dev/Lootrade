@@ -193,7 +193,7 @@ class Battlefield extends Component
         $isCorrect = $this->$tower[$row][$ticketIndex]['correct'];
 
         if ($player === 'user') {
-            $isCorrect = rand(1, 100) <= 40;
+            $isCorrect = rand(1, 100) <= 60;
         }
 
         if ($isCorrect) {
@@ -229,7 +229,7 @@ class Battlefield extends Component
         }
 
         $row = $this->botCurrentRow;
-        $knowsCorrect = rand(1, 100) <= 60;
+        $knowsCorrect = rand(1, 100) <= 40;
         $ticketIndex = $knowsCorrect ? array_search(true, array_column($this->botTower[$row], 'correct')) : rand(0, 1);
 
         $this->selectTicket('bot', $row, $ticketIndex);
