@@ -31,7 +31,8 @@ class Profile extends Component
         'last_name' => 'required|string|max:255',
         'username' => 'required|string|max:255|unique:users,   username',
         'date_of_birth' => 'nullable|date|before:today',
-        'profile_picture' => 'nullable|image|max:5120',
+        'profile_picture' => 'nullable|image|max:2048',
+
     ];
 
     public function mount()
