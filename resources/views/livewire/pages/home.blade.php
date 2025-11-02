@@ -408,4 +408,12 @@
         tag.src = "https://www.youtube.com/iframe_api";
         document.head.appendChild(tag);
     }
+
+        document.addEventListener('livewire:load', () => {
+        Livewire.on('redirectAfterDelay', ({ url, delay }) => {
+            console.log("event caught")
+            setTimeout(() => window.location.href = url, delay);
+            console.log("fired")
+        });
+    });
 </script>
