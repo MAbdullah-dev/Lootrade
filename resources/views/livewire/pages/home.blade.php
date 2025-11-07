@@ -7,18 +7,31 @@
             </div>
         </div>
     </section>
-
-    <section class="tasks-section">
+    <section class="why-lootraider">
         <div class="container">
-            <h3 class="tasks-title mb-4">Ways To Get Extra Tickets</h3>
+            <div class="inner text-start">
+                <h2 class="section-title mb-4">What is Lootraider?</h2>
+                <p class="w-50">
+                    We make brands excited to give back and connect with their amazing community by running giveaways
+                    and
+                    rewards campaigns effortlessly. It makes member interactions fun and engaging through gamification.
+                    Lootraider values transparency and fairness.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tasks-section py-5">
+        <div class="container">
+            <h2 class="tasks-title mb-4">Ways To Get Extra Tickets</h2>
 
             <div class="task-grid">
                 @foreach ($normalTasks as $task)
                     @include('partials.task-card', ['task' => $task])
                 @endforeach
             </div>
+
             @if ($hasDiscordNativeTasks)
-                {{-- Discord native section --}}
                 @if ($hasJoinedServer)
                     <h4 class="tasks-title my-4">Discord Exclusive Tasks</h4>
                     <div class="task-grid-discord">
@@ -27,13 +40,14 @@
                         @endforeach
                     </div>
                 @else
-                    <div class="locked-tasks notice mt-5">
+                    <div class="locked-tasks notice mt-5 text-center text-light">
                         🔒 Join our Discord server to unlock exclusive tasks!
                     </div>
                 @endif
             @endif
         </div>
     </section>
+
 
     {{-- <section class="tasks-section">
         <div class="container">

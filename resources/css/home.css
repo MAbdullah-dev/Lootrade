@@ -1,176 +1,212 @@
+/* ===========================
+   Banner Section
+=========================== */
 .banner .inner .banner-wrapper img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
-
+/* ===========================
+   Raffles Section
+=========================== */
 .raffles .inner {
-    min-height: 50vh;
+  min-height: 50vh;
 }
 
 .raffles .nav-tabs .nav-link {
-    border-radius: 0;
-    padding: 10px 20px;
-    font-weight: 500;
-    color: #fff;
-    background-color: #222222;
-    border: 1px solid #444;
+  border-radius: 0;
+  padding: 10px 20px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #222222;
+  border: 1px solid #444;
 }
 
 .raffles .nav-tabs .nav-link.active {
-    background: linear-gradient(to right, #a347ba, #2e8aea);
-    color: #fff;
+  background: linear-gradient(to right, #a347ba, #2e8aea);
+  color: #fff;
 }
 
 /* Raffle Card */
 .raffles .raffle-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: none;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #1f0b46;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #1f0b46;
 }
 
 .raffles .raffle-card:hover {
-    transform: translateY(-5px);
-    /* box-shadow: 0 4px 15px rgba(254, 56, 57, 0.3); */
+  transform: translateY(-5px);
 }
 
 .raffles .raffle-card .card-img-top {
-    height: 200px;
-    object-fit: cover;
+  height: 200px;
+  object-fit: cover;
 }
 
 .raffles .raffle-card .card-body {
-    text-align: center;
-    padding: 16px;
+  text-align: center;
+  padding: 16px;
 }
 
 .raffles .raffle-card .card-title {
-    font-size: 20px;
-    margin-bottom: 8px;
-    color: #fff;
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #fff;
 }
 
 .raffles .raffle-card .raffle-type {
-    font-size: 18px;
-    font-weight: 700;
-    color: #ccc;
-    margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ccc;
+  margin-bottom: 8px;
 }
 
 .raffles .raffle-card .raffle-description {
-    font-size: 14px;
-    color: #ccc;
-    margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 16px;
+  color: #ccc;
+  font-size: 14px;
 }
 
 .raffles .raffle-card .card-text {
-    font-size: 14px;
-    color: #ccc;
-    margin: 0;
+  font-size: 14px;
+  color: #ccc;
+  margin: 0;
 }
 
 .raffles .raffle-card .text-muted {
-    color: #aaa !important;
-}
-
-.raffles .raffle-card .raffle-description {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 16px;
-    color: #ccc;
+  color: #aaa !important;
 }
 
 .raffles .raffle-card .btn-custom {
-    padding: 10px 20px;
+  padding: 10px 20px;
+}
+
+/* ===========================
+   Tasks Section
+=========================== */
+.tasks-section {
+  padding: 60px 0;
 }
 
 .tasks-title {
-    font-size: 1.8rem;
-    font-weight: 800;
-    background: linear-gradient(to right, #a347ba, #2e8aea);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #a347ba, #2e8aea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
 }
 
-
-.task-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
-
+/* Grid Layouts */
+.task-grid,
 .task-grid-discord {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-
+/* Responsive Grids */
 @media (max-width: 1200px) {
-    .task-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .task-grid-discord {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .task-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .task-grid-discord {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 992px) {
-    .task-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .task-grid-discord {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .task-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .task-grid-discord {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-    .task-grid {
-        grid-template-columns: 1fr;
-    }
-    .task-grid-discord {
-        grid-template-columns: 1fr;
-    }
+  .task-grid,
+  .task-grid-discord {
+    grid-template-columns: 1fr;
+  }
+
+  .task-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
 }
 
-
+/* Task Card Styling */
 .task-card {
-    background-color: #1f0b46;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    gap: 10px;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #1f0b46;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 10px;
 }
 
 .task-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px #a347ba55;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px #a347ba55;
 }
 
-
 .task-icon i {
-    width: 24px;
-    font-size: 1.25rem;
+  width: 24px;
+  font-size: 1.25rem;
 }
 
 .task-action {
-    color: #39ff14 !important;
-    font-weight: 500;
+  color: #39ff14 !important;
+  font-weight: 500;
 }
 
 .task-tickets {
-    background: #a347ba;
-    color: #fff;
-    border-radius: 999px;
-    padding: 4px 10px;
-    font-size: 0.8rem;
+  background: #a347ba;
+  color: #fff;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+}
+
+/* ===========================
+   Why Lootraider Section
+=========================== */
+.why-lootraider {
+  padding: 80px 0;
+}
+
+.why-lootraider .inner {
+  text-align: left;
+  /* max-width: 800px;
+  margin: 0 auto; */
+}
+
+.why-lootraider .inner .section-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #a347ba, #2e8aea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+}
+
+.why-lootraider .inner p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 700px;
 }
