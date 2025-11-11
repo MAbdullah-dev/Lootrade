@@ -16,7 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
-    <title>@yield('title', 'Page Title')</title>
+    <title>@yield('title', 'Lootraiders')</title>
 </head>
 
 <body>

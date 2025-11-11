@@ -7,10 +7,23 @@
             </div>
         </div>
     </section>
+    <section class="why-lootraider">
+        <div class="container">
+            <div class="inner text-start py-5">
+                <h2 class="section-title mb-4">What is Lootraider?</h2>
+                <p class="w-50">
+                    We make brands excited to give back and connect with their amazing community by running giveaways
+                    and
+                    rewards campaigns effortlessly. It makes member interactions fun and engaging through gamification.
+                    Lootraider values transparency and fairness.
+                </p>
+            </div>
+        </div>
+    </section>
 
     <section class="tasks-section">
         <div class="container">
-            <h3 class="tasks-title mb-4">Ways To Get Extra Tickets</h3>
+            <h2 class="tasks-title mb-4">Ways To Get Extra Tickets</h2>
 
             <div class="task-grid">
                 @foreach ($normalTasks as $task)

@@ -114,6 +114,7 @@
     .task-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+
     .task-grid-discord {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -123,6 +124,7 @@
     .task-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .task-grid-discord {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -132,6 +134,7 @@
     .task-grid {
         grid-template-columns: 1fr;
     }
+
     .task-grid-discord {
         grid-template-columns: 1fr;
     }
@@ -173,4 +176,12 @@
     border-radius: 999px;
     padding: 4px 10px;
     font-size: 0.8rem;
+}
+
+.why-lootraider .inner .section-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #a347ba, #2e8aea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

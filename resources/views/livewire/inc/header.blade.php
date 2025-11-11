@@ -1,5 +1,6 @@
 <header class="border-bottoms" role="banner">
     <div class="container d-flex align-items-center justify-content-between">
+        <h1 style="position: absolute; left: -9999px;" >Lootraiders</h1>
         <!-- Logo -->
         <div class="d-flex align-items-center">
             <a href="{{ $isNotAdmin ? route('home') : '#' }}" class="me-3" aria-label="Go to Homepage">

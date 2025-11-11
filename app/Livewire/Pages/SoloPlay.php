@@ -118,7 +118,7 @@ class SoloPlay extends Component
             return;
         }
 
-        $isWin = mt_rand(1, 100) <= 40;
+        $isWin = mt_rand(1, 100) <= 60;
 
         if ($isWin) {
             $this->tiles[$rowStart] = 'ticket';
