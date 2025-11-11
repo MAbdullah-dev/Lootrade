@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Task;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -18,7 +19,7 @@ class TaskVerificationService
         return match ($type) {
             'discord:join_server' => $this->verifyDiscordJoin($task, $user),
             'youtube:watch_timer' => $this->verifyTimerOnly($task, $user),
-            'youtube:like_video' => $this->verifyYouTubeLike($task, $user),
+            'youtube:comment_video'     => $this->verifyYouTubeComment($task, $user),
             'x:follow_user'       => $this->verifyXFollow($task, $user),
             'x:repost_tweet'       => $this->verifyXRepost($task, $user),
             'x:like_tweet'        => $this->verifyXLike($task, $user),
@@ -72,57 +73,6 @@ class TaskVerificationService
     private function verifyTimerOnly(Task $task, User $user): bool
     {
         return true;
-    }
-
-    private function verifyYouTubeLike(Task $task, User $user): bool
-    {
-        Log::info("verifyYouTubeLike() called for user {$user->id}, task {$task->id}");
-
-        $social = $user->socialAccounts()->where('provider', 'google')->first();
-
-        if (!$social || !$social->access_token) {
-            Log::warning("No Google social account or access token found for user {$user->id}");
-            return false;
-        }
-
-        $meta = is_string($task->meta) ? json_decode($task->meta, true) : $task->meta;
-        $videoId = $meta['videoId'] ?? null;
-
-        if (!$videoId) {
-            Log::warning("No video_id found in task meta for task {$task->id}");
-            return false;
-        }
-
-        try {
-            $url = "https://www.googleapis.com/youtube/v3/videos";
-            $response = Http::withToken($social->access_token)
-                ->get($url, [
-                    'part' => 'id',
-                    'myRating' => 'like',
-                    'maxResults' => 50
-                ]);
-
-            Log::info("YouTube API Response: " . $response->body());
-
-            if (!$response->ok()) {
-                Log::warning("YouTube API call failed");
-                return false;
-            }
-
-            $likedVideos = $response->json('items') ?? [];
-            foreach ($likedVideos as $video) {
-                if (($video['id'] ?? null) === $videoId) {
-                    Log::info("Video $videoId found in liked videos.");
-                    return true;
-                }
-            }
-
-            Log::info("Video $videoId not found in liked videos.");
-            return false;
-        } catch (\Exception $e) {
-            Log::error("YouTube like verification failed: " . $e->getMessage());
-            return false;
-        }
     }
 
     private function verifyXLike(Task $task, User $user): bool
@@ -247,5 +197,9 @@ class TaskVerificationService
             Log::error("X repost verification exception: " . $e->getMessage());
             return false;
         }
+    }
+
+    private function verifyYouTubeComment()
+    {
     }
 }

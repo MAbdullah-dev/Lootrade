@@ -33,15 +33,19 @@ class Tasks extends Component
             $rules['username'] = 'required|string';
             $rules['link'] = 'required|url';
 
+            // Watch Video
             if ($this->action === 'watch_video') {
                 $rules['meta.videoId'] = 'required|string';
                 $rules['meta.duration'] = 'required|integer|min:1';
             }
 
-            if ($this->action === 'like_video') {
+            // Comment on a Specific Video
+            if ($this->action === 'comment_video') {
                 $rules['meta.videoId'] = 'required|string';
+                $rules['meta.phrase']  = 'required|string';
             }
         }
+
 
         // X (Twitter)
         if ($this->platform === 'x') {
@@ -94,10 +98,56 @@ class Tasks extends Component
         return $rules;
     }
 
+    public function messages()
+    {
+        return [
+            'platform.required' => 'Please select a platform.',
+            'action.required'   => 'Please select an action.',
+            'reward.required'   => 'Reward is required.',
+            'reward.min'        => 'Reward must be at least 1.',
+
+            // Discord
+            'meta.guildId.required' => 'Please provide the Discord server ID.',
+
+            // YouTube
+            'meta.videoId.required'   => 'Please enter the YouTube video ID.',
+            'meta.duration.required'  => 'Please enter the minimum watch duration.',
+            'meta.duration.min'       => 'Duration must be at least 1 second.',
+            'meta.phrase.required'    => 'Please provide a unique phrase or code.',
+            'meta.commentId.required' => 'Please provide the comment ID to reply to.',
+            'meta.channelId.required' => 'Please enter the YouTube channel ID.',
+            'meta.code.required'      => 'Please enter the unique code for playlist verification.',
+            'meta.streamId.required'  => 'Please enter the live stream video ID.',
+
+            // X (Twitter)
+            'meta.username.required'     => 'Please provide the target username.',
+            'meta.targetUserId.required' => 'Please provide the user ID to follow.',
+            'meta.tweetId.required'      => 'Please provide the tweet ID.',
+
+            // Discord Native
+            'meta.description.required' => 'Please add a short description for this task.',
+            'meta.channelId.required'   => 'Please enter the Discord channel ID.',
+            'meta.match.required'       => 'Please specify the message content to match.',
+            'meta.messageId.required'   => 'Please provide the message ID.',
+            'meta.emoji.required'       => 'Please specify the emoji for this reaction.',
+            'meta.roleId.required'      => 'Please provide the Discord role ID.',
+            'meta.parentMessageId.required' => 'Please provide the parent message ID.',
+            'meta.threadId.required'    => 'Please provide the thread ID.',
+        ];
+    }
+
+
     public function mount()
     {
         $this->tasks = Task::latest()->get();
     }
+
+
+    public function updated($propertyName)
+    {
+        $this->resetErrorBag();
+    }
+
 
     public function openModal()
     {
@@ -137,8 +187,8 @@ class Tasks extends Component
         $this->validate();
 
         if ($this->platform === 'youtube' && $this->action === 'watch_video' && isset($this->meta['duration'])) {
-        $this->meta['duration'] = max(1, $this->meta['duration'] - 2); 
-    }
+            $this->meta['duration'] = max(1, $this->meta['duration'] - 2);
+        }
 
 
         $task = Task::create([
