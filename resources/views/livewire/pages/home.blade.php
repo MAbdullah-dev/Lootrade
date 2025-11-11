@@ -7,7 +7,7 @@
             </div>
         </div>
     </section>
-    <section class="why-lootraider">
+    {{-- <section class="why-lootraider">
         <div class="container">
             <div class="inner text-start py-5">
                 <h2 class="section-title mb-4">What is Lootraider?</h2>
@@ -19,7 +19,7 @@
                 </p>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="tasks-section">
         <div class="container">
