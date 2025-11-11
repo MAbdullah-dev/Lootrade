@@ -65,14 +65,20 @@
                                 <button type="button" wire:click="$set('showModal', false)" class="btn-close"></button>
                             </div>
                             <div class="modal-body">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul class="mb-0 mt-1">
+                                            @foreach ($errors->all() as $error)
+                                                <li class="text-danger">{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 {{-- Username --}}
                                 @if ($platform && $platform !== 'discord_native')
                                     <input class="form-control mb-2" type="text"
                                         placeholder="Username of the account used in platform" wire:model="username">
                                 @endif
-                                @error('username')
-                                    <div class="text-danger small">{{ $message }}</div>
-                                @enderror
                                 {{-- Platform --}}
                                 <select class="form-control mb-2" wire:model.lazy="platform">
                                     <option value="">Select Platform</option>
@@ -81,9 +87,6 @@
                                     <option value="youtube">YouTube</option>
                                     <option value="x">X</option>
                                 </select>
-                                @error('platform')
-                                    <div class="text-danger small">{{ $message }}</div>
-                                @enderror
                                 {{-- Action --}}
                                 @if ($platform)
                                     <select class="form-control mb-2" wire:model.lazy="action">
@@ -101,7 +104,7 @@
                                             <option value="live_event">Live Event</option>
                                         @elseif($platform === 'youtube')
                                             <option value="watch_video">Watch Video</option>
-                                            <option value="like_video">Like Video</option>
+                                            <option value="comment_video">Comment on Video</option>
                                         @elseif($platform === 'x')
                                             <option value="follow_user">Follow</option>
                                             <option value="like_tweet">Like Tweet</option>
@@ -112,16 +115,8 @@
 
                                 {{-- Dynamic Meta Inputs --}}
                                 @include('livewire.admindashboard.task-meta-inputs')
-                                @foreach ($errors->get('meta.*') as $field => $messages)
-                                    @foreach ($messages as $message)
-                                        <div class="text-danger small">{{ $message }}</div>
-                                    @endforeach
-                                @endforeach
                                 <input type="number" class="form-control mt-2" wire:model="reward"
                                     placeholder="Reward">
-                                @error('reward')
-                                    <div class="text-danger small">{{ $message }}</div>
-                                @enderror
                             </div>
                             <div class="modal-footer">
                                 <button wire:click="save" class="btn btn-success">Save</button>

@@ -54,16 +54,24 @@ class Home extends Component
 
         $social = match ($type) {
             'discord:join_server' => $user->socialAccounts()->where('provider', 'discord')->first(),
-            'youtube:like_video',  => $user->socialAccounts()->where('provider', 'google')->first(),
+            'youtube:comment_video' => $user->socialAccounts()->where('provider', 'google')->first(),
             'x:like_tweet' => $user->socialAccounts()->where('provider', 'twitter')->first(),
             'x:follow_user' => $user->socialAccounts()->where('provider', 'twitter')->first(),
             'x:repost_tweet' => $user->socialAccounts()->where('provider', 'twitter')->first(),
-            'youtube:watch_timer' => true,
+            'youtube:watch_video' => true,
             default => true,
         };
 
         if (!$social) {
-            alert_error("Please connect your {$task->platform} account first.");
+            $provider = match ($task->platform) {
+                'x' => 'twitter',
+                default => $task->platform,
+            };
+            alert_error("Please connect your {$task->platform} account first.", 2000);
+            $this->dispatch('redirectAfterDelay', [
+                'url' => route('auth.redirect', ['provider' => $task->platform]),
+                'delay' => 2000,
+            ]);
             return;
         }
 

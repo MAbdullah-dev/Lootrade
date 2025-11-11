@@ -73,8 +73,7 @@ class SocialiteController extends Controller
                 $driver->scopes([
                     'openid',
                     'profile',
-                    'email',
-                    'https://www.googleapis.com/auth/youtube.readonly',
+                    'email'
                 ]);
             }
 
