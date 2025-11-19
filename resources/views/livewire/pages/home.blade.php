@@ -278,21 +278,21 @@
 
                         <div class="alert alert-info small">
                             <strong>Prerequisites:</strong>
-                            <ul class="mb-0">
+                            <ol class="mb-0">
                                 <li>Your YouTube channel must already exist.</li>
                                 <li>Your channel must have a @handle assigned.</li>
-                            </ul>
+                            </ol>
                         </div>
 
                         <div class="alert alert-warning small mt-2">
                             <strong>Where to find your handle:</strong>
-                            <ul class="mb-0">
+                            <ol class="mb-0">
                                 <li>Go to <a href="https://www.youtube.com" target="_blank">YouTube</a> and click your
                                     profile icon (top-right).</li>
                                 <li>Below your Gmail or Google account name, you will see your <strong>@handle</strong>.
                                 </li>
                                 <li>Copy that handle or the full channel URL and paste it here.</li>
-                            </ul>
+                            </ol>
                         </div>
 
                         <input type="text" class="form-control mt-2"
