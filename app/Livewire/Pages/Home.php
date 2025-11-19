@@ -8,6 +8,7 @@ use App\Models\Task;
 use App\Services\TaskVerificationService;
 use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
@@ -20,6 +21,10 @@ class Home extends Component
     public $tasks;
     public $showRewardModal = false;
     public $earnedReward = 0;
+    public $showYouTubeHandleModal = false;
+    public $youtubeHandle = '';
+    public $currentTaskId = null;
+
     public TaskVerificationService $taskVerifier;
 
     public function mount()
@@ -52,12 +57,11 @@ class Home extends Component
 
         $type = "{$task->platform}:{$task->action}";
 
+        // Get connected social account
         $social = match ($type) {
             'discord:join_server' => $user->socialAccounts()->where('provider', 'discord')->first(),
             'youtube:comment_video' => $user->socialAccounts()->where('provider', 'google')->first(),
-            'x:like_tweet' => $user->socialAccounts()->where('provider', 'twitter')->first(),
-            'x:follow_user' => $user->socialAccounts()->where('provider', 'twitter')->first(),
-            'x:repost_tweet' => $user->socialAccounts()->where('provider', 'twitter')->first(),
+            'x:like_tweet', 'x:follow_user', 'x:repost_tweet' => $user->socialAccounts()->where('provider', 'twitter')->first(),
             'youtube:watch_video' => true,
             default => true,
         };
@@ -75,20 +79,31 @@ class Home extends Component
             return;
         }
 
-        $taskId = json_encode($taskId);
+        // --- Check YouTube channel ID ---
+        if ($task->platform === 'youtube' && $task->action === 'comment_video') {
+            if (!$social->youtube_channel_id) {
+                // Store current task to open modal after saving handle
+                $this->currentTaskId = $taskId;
+                $this->showYouTubeHandleModal = true;
+                $this->dispatch('open-youtube-handle-modal', [
+                    'taskId' => $taskId,
+                ]);
+                return;
+            }
+        }
+
+        // Grant task access if all checks pass
+        $taskIdJson = json_encode($taskId);
         $url = json_encode($task->link);
         $meta = json_encode(json_decode($task->meta ?? '[]'));
 
         $this->js(<<<JS
-    window.dispatchEvent(new CustomEvent('task-access-granted', {
-        detail: {
-            taskId: {$taskId},
-            url: {$url},
-            meta: {$meta}
-        }
-    }));
+        window.dispatchEvent(new CustomEvent('task-access-granted', {
+            detail: { taskId: {$taskIdJson}, url: {$url}, meta: {$meta} }
+        }));
 JS);
     }
+
 
 
     #[On('completeTask')]
@@ -118,6 +133,79 @@ JS);
         $this->showRewardModal = true;
         $this->fetchTasks();
     }
+
+    public function saveYouTubeHandle()
+    {
+        $this->validate([
+            'youtubeHandle' => ['required', 'string', 'max:100'],
+        ]);
+
+        $user = Auth::user();
+        $rawInput = trim($this->youtubeHandle);
+        Log::info("YouTube handle entered: {$rawInput}");
+
+        // Extract handle from input: either @handle or full URL
+        $handle = null;
+        if (preg_match('/@([\w]+)/', $rawInput, $matches)) {
+            $handle = $matches[1];
+        }
+
+        if (!$handle) {
+            alert_error("Could not extract a valid YouTube handle from '{$rawInput}'");
+            return;
+        }
+
+        Log::info("Normalized handle: {$handle}");
+
+        try {
+            $apiKey = env('YOUTUBE_API_KEY');
+
+            // Use channels.list with forHandle
+            $channelResponse = Http::get("https://www.googleapis.com/youtube/v3/channels", [
+                'part' => 'id',
+                'forHandle' => "@{$handle}",
+                'key' => $apiKey,
+            ]);
+
+            Log::info("YouTube Channels API response: " . $channelResponse->body());
+
+            if ($channelResponse->failed()) {
+                alert_error("Failed to fetch YouTube channel info.");
+                return;
+            }
+
+            $channelData = $channelResponse->json();
+            $items = $channelData['items'] ?? [];
+
+            if (count($items) === 0) {
+                alert_error("Could not resolve a channel ID for '{$rawInput}'. Make sure the URL or handle is correct.");
+                return;
+            }
+
+            $channelId = $items[0]['id'];
+
+            // Save channel_id in user's Google social account
+            $googleAccount = $user->socialAccounts()->where('provider', 'google')->first();
+            $googleAccount->youtube_channel_id = $channelId;
+            $googleAccount->save();
+
+            $this->showYouTubeHandleModal = false;
+            $this->youtubeHandle = '';
+
+            // Re-check the task now that channel ID exists
+            if ($this->currentTaskId) {
+                $this->checkTaskAccess($this->currentTaskId);
+                $this->currentTaskId = null;
+            }
+
+            alert_success("YouTube channel connected successfully!");
+        } catch (\Exception $e) {
+            Log::error("Error saving YouTube channel: " . $e->getMessage());
+            alert_error("An unexpected error occurred. Please try again.");
+        }
+    }
+
+
 
     public function closeRewardModal()
     {

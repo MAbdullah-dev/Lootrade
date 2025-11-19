@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('provider_email', 255)->nullable();
             $table->longText('access_token', 255)->nullable();
             $table->longText('refresh_token', 255)->nullable();
+            $table->string('youtube_channel_id', 255)->nullable();
             $table->timestamps();
 
             $table->unique(['provider', 'provider_id']);

@@ -1,11 +1,20 @@
 <div class="task-card d-flex justify-content-between align-items-center">
-    <div class="d-flex align-items-center gap-2">
-        {!! getPlatformIcon($task->platform) !!}
-        @if($task->platform === 'discord_native')
+        <div class="d-flex flex-column gap-1">
+        <div class="d-flex align-items-center gap-2">
+            {!! getPlatformIcon($task->platform) !!}
+            @if($task->platform === 'discord_native')
+                @php $meta = json_decode($task->meta, true); @endphp
+                <span class="task-desc text-secondary">{{ $meta['description'] ?? 'No description available' }}</span>
+            @else
+                <span class="tasks-username">{{ $task->username }}</span>
+            @endif
+        </div>
+
+        @if($task->platform === 'youtube' && $task->action === 'comment_video')
             @php $meta = json_decode($task->meta, true); @endphp
-            <span class="task-desc text-secondary">{{ $meta['description'] ?? 'No description available' }}</span>
-        @else
-            <span class="tasks-username">{{ $task->username }}</span>
+            @if(!empty($meta['phrase']))
+                <small class="text-secondary">Comment this: "{{ $meta['phrase'] }}"</small>
+            @endif
         @endif
     </div>
 

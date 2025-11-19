@@ -260,6 +260,32 @@
             </div>
         </div>
     @endif
+    @if ($showYouTubeHandleModal)
+        <div class="modal fade show d-block" style="background:rgba(0,0,0,0.5)">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>Connect Your YouTube Channel</h5>
+                        <button type="button" wire:click="$set('showYouTubeHandleModal', false)"
+                            class="btn-close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please enter your YouTube handle or custom URL to continue the task:</p>
+                        <input type="text" class="form-control" placeholder="e.g. @username6231"
+                            wire:model="youtubeHandle">
+                        @error('youtubeHandle')
+                            <span class="text-danger small">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="modal-footer">
+                        <button wire:click="saveYouTubeHandle" class="btn btn-success">Save</button>
+                        <button wire:click="$set('showYouTubeHandleModal', false)"
+                            class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
 
 </div>
@@ -422,8 +448,11 @@
         document.head.appendChild(tag);
     }
 
-        document.addEventListener('livewire:load', () => {
-        Livewire.on('redirectAfterDelay', ({ url, delay }) => {
+    document.addEventListener('livewire:load', () => {
+        Livewire.on('redirectAfterDelay', ({
+            url,
+            delay
+        }) => {
             console.log("event caught")
             setTimeout(() => window.location.href = url, delay);
             console.log("fired")

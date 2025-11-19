@@ -199,7 +199,67 @@ class TaskVerificationService
         }
     }
 
-    private function verifyYouTubeComment()
+    private function verifyYouTubeComment(Task $task, User $user): bool
     {
+        $googleAccount = $user->socialAccounts()->where('provider', 'google')->first();
+
+        if (!$googleAccount || !$googleAccount->youtube_channel_id) {
+            Log::warning("User {$user->id} does not have a connected YouTube channel");
+            return false;
+        }
+
+        $channelId = $googleAccount->youtube_channel_id;
+
+        $meta = is_string($task->meta) ? json_decode($task->meta, true) : $task->meta;
+        $videoId = $meta['videoId'] ?? null;
+        $phrase = strtolower($meta['phrase'] ?? '');
+
+        if (!$videoId) {
+            Log::warning("Task {$task->id} does not have a videoId in meta");
+            return false;
+        }
+
+        $apiKey = env('YOUTUBE_API_KEY');
+
+        try {
+            Log::info("Verifying YouTube comment for user {$user->id}, video {$videoId}, channel {$channelId}");
+
+            $response = Http::get("https://www.googleapis.com/youtube/v3/commentThreads", [
+                'part' => 'snippet',
+                'videoId' => $videoId,
+                'maxResults' => 100,
+                'textFormat' => 'plainText',
+                'key' => $apiKey,
+            ]);
+
+            if ($response->failed()) {
+                Log::error("Failed to fetch YouTube comments: " . $response->body());
+                return false;
+            }
+
+            $comments = $response->json('items') ?? [];
+
+            foreach ($comments as $comment) {
+                $snippet = $comment['snippet']['topLevelComment']['snippet'];
+                $authorChannelId = $snippet['authorChannelId']['value'] ?? null;
+                $text = strtolower($snippet['textOriginal'] ?? '');
+
+                if ($authorChannelId === $channelId && str_contains($text, $phrase)) {
+                    Log::info("YouTube comment verified for user {$user->id}", [
+                        'comment' => $snippet['textOriginal'],
+                        'author_channel_id' => $authorChannelId,
+                    ]);
+                    return true;
+                }
+            }
+
+            Log::info("No matching comment found for user {$user->id} on video {$videoId}");
+            return false;
+        } catch (\Exception $e) {
+            Log::error("YouTube comment verification failed: " . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return false;
+        }
     }
 }
