@@ -11,7 +11,7 @@ class TaskSeeder extends Seeder
     {
         $tasks = [
             [
-                'username'  => 'lootraiders',
+                'username'  => 'Elements of a Soul',
                 'platform'  => 'discord',
                 'action'    => 'join_server',
                 'link'      => 'https://discord.gg/yBPMajRj3y',
