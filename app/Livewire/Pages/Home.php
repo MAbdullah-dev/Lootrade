@@ -146,12 +146,13 @@ JS);
 
         // Extract handle from input: either @handle or full URL
         $handle = null;
-        if (preg_match('/@([\w]+)/', $rawInput, $matches)) {
+        if (preg_match('/(?:youtube\.com\/)?@([\w\.\-]+)/i', $rawInput, $matches)) {
             $handle = $matches[1];
         }
 
+
         if (!$handle) {
-            alert_error("Could not extract a valid YouTube handle from '{$rawInput}'");
+            alert_error("Could not extract a valid YouTube handle from '{$rawInput}'. Please enter a valid @handle or channel URL.");
             return;
         }
 
@@ -160,7 +161,6 @@ JS);
         try {
             $apiKey = env('YOUTUBE_API_KEY');
 
-            // Use channels.list with forHandle
             $channelResponse = Http::get("https://www.googleapis.com/youtube/v3/channels", [
                 'part' => 'id',
                 'forHandle' => "@{$handle}",
@@ -170,7 +170,7 @@ JS);
             Log::info("YouTube Channels API response: " . $channelResponse->body());
 
             if ($channelResponse->failed()) {
-                alert_error("Failed to fetch YouTube channel info.");
+                alert_error("Failed to fetch YouTube channel info. Please check your connection or try again later.");
                 return;
             }
 
@@ -178,13 +178,12 @@ JS);
             $items = $channelData['items'] ?? [];
 
             if (count($items) === 0) {
-                alert_error("Could not resolve a channel ID for '{$rawInput}'. Make sure the URL or handle is correct.");
+                alert_error("This handle could not be resolved. It is possible that this Google account does not have a YouTube channel yet. Please create a YouTube channel first and try again.");
                 return;
             }
 
             $channelId = $items[0]['id'];
 
-            // Save channel_id in user's Google social account
             $googleAccount = $user->socialAccounts()->where('provider', 'google')->first();
             $googleAccount->youtube_channel_id = $channelId;
             $googleAccount->save();
@@ -192,7 +191,6 @@ JS);
             $this->showYouTubeHandleModal = false;
             $this->youtubeHandle = '';
 
-            // Re-check the task now that channel ID exists
             if ($this->currentTaskId) {
                 $this->checkTaskAccess($this->currentTaskId);
                 $this->currentTaskId = null;
@@ -201,6 +199,7 @@ JS);
             alert_success("YouTube channel connected successfully!");
         } catch (\Exception $e) {
             Log::error("Error saving YouTube channel: " . $e->getMessage());
+
             alert_error("An unexpected error occurred. Please try again.");
         }
     }

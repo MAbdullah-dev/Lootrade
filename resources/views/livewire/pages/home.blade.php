@@ -269,19 +269,46 @@
                         <button type="button" wire:click="$set('showYouTubeHandleModal', false)"
                             class="btn-close"></button>
                     </div>
+
                     <div class="modal-body">
-                        <p>Please enter your YouTube handle or custom URL to continue the task:</p>
-                        <input type="text" class="form-control" placeholder="e.g. @username6231"
-                            wire:model="youtubeHandle">
+
+                        <p class="mb-2">
+                            To continue, please enter your YouTube <strong>@handle</strong> or custom channel URL.
+                        </p>
+
+                        <div class="alert alert-info small">
+                            <strong>Prerequisites:</strong>
+                            <ul class="mb-0">
+                                <li>Your YouTube channel must already exist.</li>
+                                <li>Your channel must have a @handle assigned.</li>
+                            </ul>
+                        </div>
+
+                        <div class="alert alert-warning small mt-2">
+                            <strong>Where to find your handle:</strong>
+                            <ul class="mb-0">
+                                <li>Go to <a href="https://www.youtube.com" target="_blank">YouTube</a> and click your
+                                    profile icon (top-right).</li>
+                                <li>Below your Gmail or Google account name, you will see your <strong>@handle</strong>.
+                                </li>
+                                <li>Copy that handle or the full channel URL and paste it here.</li>
+                            </ul>
+                        </div>
+
+                        <input type="text" class="form-control mt-2"
+                            placeholder="e.g. @username6231 or youtube.com/@username6231" wire:model="youtubeHandle">
+
                         @error('youtubeHandle')
                             <span class="text-danger small">{{ $message }}</span>
                         @enderror
                     </div>
+
                     <div class="modal-footer">
                         <button wire:click="saveYouTubeHandle" class="btn btn-success">Save</button>
                         <button wire:click="$set('showYouTubeHandleModal', false)"
                             class="btn btn-secondary">Cancel</button>
                     </div>
+
                 </div>
             </div>
         </div>
