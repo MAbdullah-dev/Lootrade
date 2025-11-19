@@ -296,7 +296,7 @@
                         </div>
 
                         <input type="text" class="form-control mt-2"
-                            placeholder="e.g. @username6231 or youtube.com/@username6231" wire:model="youtubeHandle">
+                             wire:model="youtubeHandle">
 
                         @error('youtubeHandle')
                             <span class="text-danger small">{{ $message }}</span>
