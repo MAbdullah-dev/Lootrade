@@ -163,7 +163,7 @@ JS);
 
             $channelResponse = Http::get("https://www.googleapis.com/youtube/v3/channels", [
                 'part' => 'id',
-                'forHandle' => "@{$handle}",
+                'forHandle' => $handle,
                 'key' => $apiKey,
             ]);
 
