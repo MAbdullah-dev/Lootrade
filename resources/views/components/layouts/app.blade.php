@@ -28,6 +28,10 @@
         {{ $slot }}
     </main>
     <livewire:inc.footer />
+    
+    <!-- Chatbot Component -->
+    <x-chatbot />
+    
     @livewireScripts
     @stack('js')
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>

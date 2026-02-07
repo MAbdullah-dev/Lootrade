@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\CheckoutController;
 use App\Livewire\Admindashboard\AdminWinners;
 use App\Livewire\Admindashboard\AdminRaffles;
@@ -53,6 +54,9 @@ Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProvi
     ->where('provider', 'google|twitter|discord|kick|twitch');
 Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+
+// Chatbot API
+Route::post('/api/chatbot', [ChatbotController::class, 'chat'])->name('chatbot.chat');
 
 
 // Route::get('/reset-password/{token}', function ($token) {

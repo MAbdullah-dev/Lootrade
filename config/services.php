@@ -35,7 +35,7 @@ return [
         ],
     ],
 
-    'google' => [
+       'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_URI'),
@@ -66,5 +66,13 @@ return [
     'node_api_url' => env('NODE_API_URL', 'http://127.0.0.1:4000'),
     'discord_bot_tasks_api_key' => env('DISCORD_BOT_TASKS_API_KEY'),
 
+    'azure_openai' => [
+        'api_key' => env('AZURE_API_KEY'),
+        'endpoint' => env('AZURE_ENDPOINT', 'https://zuse1-ai-foundry-t1-01.cognitiveservices.azure.com/'),
+        'deployment_name' => env('DEPLOYMENT_NAME', 'gpt-4.1'),
+        'api_version' => env('API_VERSION', '2024-12-01-preview'),
+        'max_tokens' => env('MAX_TOKENS', 500),
+        'temperature' => env('TEMPERATURE', 0.7),
+    ],
 
 ];

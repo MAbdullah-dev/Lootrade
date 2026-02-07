@@ -29,6 +29,10 @@
             </div>
         </div>
     </main>
+    
+    <!-- Chatbot Component -->
+    <x-chatbot />
+    
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @stack('js')

@@ -26,6 +26,10 @@
         {{ $slot }}
     </main>
     <livewire:inc.footer />
+    
+    <!-- Chatbot Component -->
+    <x-chatbot />
+    
     @livewireScripts
     @stack('js')
 </body>
